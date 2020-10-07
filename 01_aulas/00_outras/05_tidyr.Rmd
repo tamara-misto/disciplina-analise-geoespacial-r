@@ -1,0 +1,550 @@
+---
+title: "Introdução ao tidyverse <br><br>"
+subtitle: "5 Resultados de modelos e tidymodels <br><br> xaringan [presentation ninja]"
+author: "Maurício Vancine"
+date: "26/04/2019"
+output:
+  xaringan::moon_reader:
+    css: [metropolis]
+    lib_dir: libs
+    nature:
+      highlightStyle: rainbow
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+```
+
+class: clear, center, middle
+background-image: url(img/package_broom.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+background-image: url(img/package_broom.png), url(img/package_tidymodels.png)
+background-size: 250px, 250px
+background-position: 45% 90%, 90% 90%
+
+# 5 Modelos, tidyverse e tidymodels
+
+## Conteúdo
+5.1 Pacote broom
+<br>
+5.2 Funções tidying do broom
+<br>
+5.3 Aplicações
+<br>
+5.4 Função tidy
+<br>
+5.5 Função glance
+<br>
+5.6 Função augment
+<br>
+5.7 Pacote tidymodels
+<br>
+5.8 Pacote rsample
+<br>
+5.9 Pacote recipes
+<br>
+5.10 Pacote parsnip
+<br>
+5.11 Pacote yardstick
+
+---
+
+# 5 Modelos, tidyverse e tidymodels
+
+## Script
+
+<br><br><br><br><br><br>
+
+## .center[`script_aula_05.R`]
+
+---
+
+# 5.1 Pacote broom
+
+### Resume informações importantes sobre modelos em tidy tibbles
+
+<br>
+
+--
+
+### Organiza mais de 100 modelos de pacotes de modelagem populares e quase todos os objetos de saída de modelos que acompanha o Base R
+
+<br>
+
+--
+
+### Atualmente, os seguintes métodos estão disponíveis no **broom**: https://broom.tidyverse.org/articles/available-methods.html
+
+---
+
+# 5.2 Funções tidying do broom
+
+### O pacote **broom** fornece três funções para transformar modelos em data frames *tidy*:
+
+<br>
+
+### *broom::tidy()*: resume informações sobre os componentes do modelo
+
+--
+
+### *broom::glance()*: apresenta informações sobre o modelo inteiro
+
+--
+
+### *broom::augment()*: informações sobre observações do modelo
+
+---
+
+background-image: url(img/general_iris_data.png)
+background-size: 700px
+background-position: 50% 98%
+
+# 5.3 Aplicações
+
+## iris data
+```{r}
+# data
+dplyr::glimpse(iris)
+```
+
+---
+
+# 5.3 Aplicações
+
+## Modelo Linear (LM)
+```{r}
+# linear model
+lmfit <- lm(Sepal.Length ~ Petal.Length, iris)
+lmfit
+```
+
+---
+
+# 5.3 Aplicações
+
+### Modelo Linear (LM)
+```{r,size='small'}
+summary(lmfit)
+```
+
+---
+
+# 5.3 Aplicações
+
+## Modelo Linear (LM)
+```{r,echo=FALSE,message=FALSE,fig.align='center'}
+# plot
+ggplot(data = iris) +
+  aes(x = Petal.Length, y = Sepal.Length) +
+  geom_point(size = 4, col = "gray30") +
+  stat_smooth(method = "lm", size = 2) +
+  theme_bw() +
+  theme(axis.title = element_text(size = 20),
+        axis.text = element_text(size = 15))
+```
+
+---
+
+# 5.4 Função tidy
+
+### Informações sobre os componentes do modelo
+
+```{r}
+# package
+library(broom)
+
+# componentes do modelo
+broom::tidy(lmfit)
+```
+
+---
+
+# 5.5 Função glance
+
+## Informações sobre o modelo inteiro
+
+```{r}
+# package
+library(broom)
+
+# informacoes sobre o modelo inteiro
+broom::glance(lmfit)
+```
+
+---
+
+# 5.6 Função augment
+
+## Informações sobre observações do modelo
+
+```{r}
+# package
+library(broom)
+
+# observacoes do modelo
+broom::augment(lmfit)
+```
+
+---
+
+# 5.6 Função augment
+
+###  Add informações sobre observações do modelo aos dados
+
+```{r}
+# package
+library(broom)
+
+# observacoes do modelo
+broom::augment(lmfit, data = iris)
+```
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_tidymodels.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+background-image: url(img/tidymodels_site.png)
+background-size: 650px
+background-position: 50% 75%
+
+# 5.7 Pacote tidymodels
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://www.tidymodels.org/
+
+---
+
+background-image: url(img/tidymodels_structure.png)
+background-size: 850px
+background-position: 50% 60%
+
+# 5.7 Pacote tidymodels
+
+### Coleção de pacotes para **modelagem e aprendizado de máquina** usando princípios do **tidyverse**
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://rviews.rstudio.com/2019/06/19/a-gentle-intro-to-tidymodels/
+
+---
+
+background-image: url(img/tidymodels_process.png)
+background-size: 850px
+background-position: 50% 70%
+
+# 5.7 Pacote tidymodels
+
+## Principais Pacotes
+- rsample - Diferentes tipos de reamostragens
+- recipes - Transformações para pré-processamento de dados do modelo
+- parnip - Uma interface comum para criação de modelo
+- yardstick - Medir o desempenho do modelo
+
+<br><br><br><br><br><br><br><br><br><br>
+
+[*] https://rviews.rstudio.com/2019/06/19/a-gentle-intro-to-tidymodels/
+
+---
+
+# 5.7 Pacote tidymodels
+
+```{r}
+library(tidymodels)
+```
+
+---
+
+background-image: url(img/general_iris_data.png)
+background-size: 700px
+background-position: 50% 98%
+
+# 5.7 Pacote tidymodels
+
+## iris data
+```{r}
+# data
+dplyr::glimpse(iris)
+```
+
+---
+
+background-image: url(img/package_rsample.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.8 Pacote rsample
+
+### Data Sampling
+
+```{r}
+# Data Sampling (rsample)
+iris_split <- rsample::initial_split(iris, prop = 0.6)
+iris_split
+```
+
+---
+
+background-image: url(img/package_rsample.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.8 Pacote rsample
+
+### Data Sampling
+
+```{r}
+# train
+iris_split %>%
+  rsample::training() %>%
+  dplyr::glimpse()
+```
+
+---
+
+background-image: url(img/package_rsample.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.8 Pacote rsample
+
+### Data Sampling
+
+```{r}
+# test
+iris_split %>%
+  rsample::testing() %>%
+  dplyr::glimpse()
+```
+
+---
+
+background-image: url(img/package_recipes.png)
+background-size: 100px
+background-position: 95% 72%
+
+# 5.9 Pacote recipes
+
+```{r}
+# Pre-process interface (recipes)
+iris_recipe <- rsample::training(iris_split) %>%
+  recipes::recipe(Species ~.) %>%
+  recipes::step_corr(all_predictors()) %>%
+  recipes::step_center(all_predictors(), -all_outcomes()) %>%
+  recipes::step_scale(all_predictors(), -all_outcomes()) %>%
+  recipes::prep()
+iris_recipe
+```
+
+---
+
+background-image: url(img/package_recipes.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.9 Pacote recipes
+
+```{r}
+# test data
+iris_testing <- iris_recipe %>%
+  recipes::bake(rsample::testing(iris_split)) 
+dplyr::glimpse(iris_testing)
+```
+
+---
+
+background-image: url(img/package_recipes.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.9 Pacote recipes
+
+```{r}
+# train data
+iris_training <- recipes::juice(iris_recipe)
+dplyr::glimpse(iris_training)
+```
+
+---
+
+background-image: url(img/package_parsnip.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.10 Pacote parsnip
+
+```{r}
+# Model Training (parsnip)
+iris_rf <- parsnip::rand_forest(trees = 100, mode = "classification") %>%
+  parsnip::set_engine("randomForest") %>%
+  parsnip::fit(Species ~ ., data = iris_training)
+```
+
+---
+
+background-image: url(img/package_parsnip.png), url(img/algorithm_random_forest.png)
+background-size: 100px, 700px
+background-position: 95% 90%, 45% 50%
+
+# 5.10 Pacote parsnip
+
+## Random Forest
+
+---
+
+background-image: url(img/package_parsnip.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.10 Pacote parsnip
+```{r}
+# Predictions
+stats::predict(iris_rf, iris_testing)
+```
+
+---
+
+background-image: url(img/package_parsnip.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.10 Pacote parsnip
+```{r}
+iris_rf %>%
+  stats::predict(iris_testing) %>%
+  dplyr::bind_cols(iris_testing) %>%
+  dplyr::glimpse()
+```
+
+---
+
+background-image: url(img/package_yardstick.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.11 Pacote tyardstick
+```{r}
+# Model Validation (yardstick)
+iris_rf %>%
+  stats::predict(iris_testing) %>%
+  dplyr::bind_cols(iris_testing) %>%
+  yardstick::metrics(truth = Species, estimate = .pred_class)
+```
+
+---
+
+background-image: url(img/package_yardstick.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.11 Pacote tyardstick
+```{r}
+# Per classifier metrics
+iris_probs <- iris_rf %>%
+  stats::predict(iris_testing, type = "prob") %>%
+  dplyr::bind_cols(iris_testing)
+dplyr::glimpse(iris_probs)
+```
+
+---
+
+background-image: url(img/package_yardstick.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.11 Pacote tyardstick
+```{r}
+iris_probs %>%
+  yardstick::gain_curve(Species, .pred_setosa:.pred_virginica) %>%
+  dplyr::glimpse()
+```
+
+---
+
+background-image: url(img/package_yardstick.png)
+background-size: 100px
+background-position: 95% 83%
+
+# 5.11 Pacote tyardstick
+## ROC e AUC
+```{r,fig.width=10,fig.height=5}
+# roc e auc
+iris_probs %>%
+  yardstick::roc_curve(Species, .pred_setosa:.pred_virginica) %>%
+  ggplot2::autoplot()
+```
+
+---
+
+background-image: url(img/package_yardstick.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.11 Pacote tyardstick
+```{r}
+# predicao
+predict(iris_rf, iris_testing, type = "prob") %>%
+  dplyr::bind_cols(predict(iris_rf, iris_testing)) %>%
+  dplyr::bind_cols(select(iris_testing, Species)) %>%
+  dplyr::glimpse()
+```
+
+---
+
+background-image: url(img/package_yardstick.png)
+background-size: 100px
+background-position: 95% 90%
+
+# 5.11 Pacote tyardstick
+```{r}
+predict(iris_rf, iris_testing, type = "prob") %>%
+  dplyr::bind_cols(predict(iris_rf, iris_testing)) %>%
+  dplyr::bind_cols(select(iris_testing, Species)) %>%
+  metrics(Species, .pred_setosa:.pred_virginica, estimate = .pred_class)
+```
+
+---
+
+# tidymodels
+
+## Para saber mais
+
+### Pré-processamento de dados no R com o pacote {recipes} 
+[link](https://www.linkedin.com/pulse/pr%C3%A9-processamento-de-dados-r-com-o-pacote-recipes-edgar-cutar-junior/)
+
+### Ajuste de modelos preditivos no R com o pacote {parsnip}
+[link](https://www.linkedin.com/pulse/ajuste-de-modelos-preditivos-r-com-o-pacote-parsnip-cutar-junior/)
+
+---
+
+class: clear, middle
+
+<br><br><br>
+
+## Maurício Vancine
+
+<br>
+
+Contatos:
+
+`r icon::fa_envelope()` [mauricio.vancine@gmail.com](mauricio.vancine@gmail.com)
+<br>
+`r icon::fa_twitter()` [mauriciovancine](https://twitter.com/mauriciovancine)
+<br>
+`r icon::fa_link()` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
+
+<br><br><br>
+
+Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)

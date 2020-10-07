@@ -1,0 +1,398 @@
+Dados geográficos (Espaciais)
+========================================================
+author: Felipe Sodré Mendes Barros
+date: 27/06/2019
+autosize: false
+
+Tema
+========================================================
+
+- Tipos de dados geográficos;  
+- Leitura (carregamento) de dados;  
+- Álgebra de mapas;  
+- Operações espaciais (intersection, intersects, crop, mas);  
+- Plot básicos;  
+- Mapas com tmap;
+
+Bibliotecas
+========================================================
+Vamos usar as bibliotecas [sf](https://github.com/r-spatial/sf/) e [raster](https://cran.r-project.org/web/packages/raster/index.html)  
+
+Caso tenham problemas na intação veja o link, pois essas bibliotecas demandam algumas outras bibliotecas como dependência;  
+```{r}
+#install.packages("sf", dependencies = TRUE)
+library(sf)
+#install.packages("raster", dependencies = TRUE)
+library(raster)
+```
+
+Download dados raster
+========================================================
+Vamos começar falando sobre dados do tipo *raster*, ou *matriciais*:  
+* Como qualquer dado espacial, possui um sistema de coordenadas associado;  
+* Nos dá informações numéricas organizados em linhas e colunas, por isso chamados de matriciais;  
+* Está relacionado a natureza da informação mapeada;  
+* Possui alguns estributos específicos;  
+* Vamos fazer download de um exemplo simples: **Altitude** do Brasil  
+
+```{r, eval = F}
+getData("alt", country = "BRA", path = "./dados/raster/")
+```
+
+Carregando raster
+========================================================
+```{r}
+(altitude <- raster("./dados/raster/BRA_msk_alt.gri"))
+```
+
+Raster I: plot()
+========================================================
+Para ver tal dado bastar usar a função **plot()** do pacote base do R.  
+
+Pelo fato de nosso objeto ser da clase *raster* será usado um plot específico desenvolvido pelo paco **raster** para visualizá-lo de forma facilitada;  
+```{r}
+plot(altitude)
+```
+
+getData
+========================================================
+**getData** é uma função que vem no pacote *raster* e nos permite fazer download de alguns dados de uso MUITO comuns: **WorldClim**, por exemplo.  
+Veja o **help** para mais informações.  
+```{r, eval = F}
+?getData
+```
+
+Raster II
+========================================================
+As operações lógica também podem ser usadas nos rasters. Veja que a resposta é **booleana** (mas ao invés de **TRUE**/**FALSE** o retorno é **1**/**0**, já que estamos trabalhando com dados numéricos);  
+```{r}
+# Quais pixels possuem altitude maior que 500 metro
+plot(altitude > 500)
+```
+
+Raster III: Álgebra de mapas
+========================================================
+Pelo fato de, no **raster**, trabalharmos apenas com dados numéricos, podemos realizar álgebras (cáculos) entre esses tipos de dados.  
+
+Por exemplo, se queremos saber a altitude apenas dos pixels com altitude maior de 500 metros:  
+```{r}
+plot( (altitude > 500) * altitude)
+```
+
+Raster V: Extensões de arquivo
+========================================================
+Os arquivos espaciais de dados raster podem varias bastante:  
+* *.tif;  
+* *.img;  
+* *.asc;  
+* *.vrt;  
+* *.gri;  
+
+**Lembre-se que estamos falando de dados que estão georreferenciados!**  
+
+Raster VI: img de satélite
+========================================================
+As imagens de satélite são dados **raster** (**matriciais**), compostos por três ou mais layers (**rasters**).  
+Cada layer é a resposta espectral absorvida em uma faixa do espectro eletromagnético.  
+
+![](./img/espectro_visivel.jpg)  
+
+Raster VII: img de satélite
+========================================================
+Carregando um conjunto de imagens de satélite:  
+```{r}
+(satelite <- stack("./dados/raster/L8_20180901_cortado.tif"))
+plotRGB(satelite, 3, 2, 1)
+```
+
+Raster V: alterando contraste
+========================================================
+O R não é capaz de automaticamente ajustar o contraste da imagem carregada. Então podemos usar um argumento chamado **stretch** e defini-lo como **linear**;  
+```{r}
+plotRGB(satelite, 3, 2, 1, stretch = "lin")
+```
+
+Raster V: bandas visualizadas
+========================================================
+Podemos adicionar o infra-vermelho no canal do vermelho e o vermelho no canal do verde para pode ressaltar alguns elementos da imagem.  
+
+Quais elementos são ressaltados?
+```{r}
+plotRGB(satelite, 4, 3, 1, stretch = "lin")
+```
+
+Raster VI: Comparando os dados
+========================================================
+```{r}
+satelite
+altitude
+```
+
+Sistema de Coordenadas Geográfica
+========================================================
+* Sistema baseado em graus decimais;  
+* Cada ponto no mapa é passível de ser identificado de forma inequívoca por um par de coornadas;  
+
+![](./img/geographic_crs.png)  
+
+Sistema de Coordenadas Projetadas
+========================================================
+![](./img/projection_families.png)  
+
+Sistema de Coordenadas Projetadas
+========================================================
+* Sistema métrico;  
+* Restrito a escala regional/local;  
+* Em geral é importante conhecer o **sistema de projeção** e a **zona** usada, já que os pares de coordenadas coincidem;  
+
+![](./img/utm_zones.png)  
+
+Dados vetoriais
+========================================================
+Para ler, manusear e salvar dados espaciais do tipo vetoriais, vamos usar a biblioteca "sf".  
+
+Em geral os dados vetoriais são compartilhado no formato **.shp**. Contudo este formato é sempre causa de confusão pois setrata, na verdade de três ou mais arquivos com extensões diferentes (\*.prj, \*.dbf, \*.shx).  
+
+Por isso, e por alguns outro motivos, se desenvolveu uma extensão mais apropriada, chamada **geopackage** (\*.gpkg). Ele é um arquivo apenas e nos permite armazenar mais de uma **layer**;  
+
+![](./img/DadosVetoriais.png)
+
+Dados vetoriais: IBGE
+========================================================
+Para fazer [download](https://downloads.ibge.gov.br/downloads_geociencias.htm);  
+![](./img/Download_BCIM_IBGE.png)  
+
+Listando dados vetoriais: geopackage
+========================================================
+Para obter a lista de layers existentes em um geopackage, podeos usar a função ***st_layers()** onde, dentro da função informamos o caminho e o geopackage acom as layers a serem listadas.  
+```{r}
+st_layers("./dados/vetoriais/bcim_2016_21_11_2018.gpkg")
+```
+
+Carregando dados vetoriais: geopackage
+========================================================
+```{r}
+(uf <- read_sf(dsn = "./dados/vetoriais/bcim_2016_21_11_2018.gpkg", layer = "lim_unidade_federacao_a"))
+```
+
+Dados vetoriais: características
+========================================================
+* São dados representados por geometrias (ponto, linha, polígono);  
+* São comuns para mapear/representar feiões com posição bem definida;  
+* Como qualquer dado espacial, possui Sistema de Referencia Cartográfica;  
+* Em geral possuem uma tabela de atributos associada a cada feição (observaçao/registro);  
+
+Dados vetoriais: IBGE
+========================================================
+```{r}
+plot(uf)
+```
+
+Dados vetoriais: IBGE
+========================================================
+```{r, eval = FALSE}
+plot(uf["geocodigo"])
+plot(uf["sigla"])
+```
+
+Dados vetoriais: convertendo Sistema de Ref. Cartográfica
+========================================================
+vamos fazer um mapa para o Rio de Janeiro.
+Para isso vou usar a função **filter()** e vou aproveitar para converter o Sistema de Referência Cartográfico, mantendo o mesmo do raster de altimetria, com a função *&&**st_transform()**:
+```{r}
+library(dplyr)
+rj <- uf %>% 
+  filter(sigla == "RJ") %>% 
+  st_transform(crs = 4326)
+```
+
+Dados vetoriais: linhas
+========================================================
+Carregando dados de eixos de drenagem (rios)  
+```{r}
+(rios <- read_sf(dsn = "./dados/vetoriais/bcim_2016_21_11_2018.gpkg", layer = "hid_trecho_drenagem_l"))
+```
+
+Dados vetoriais: plot
+========================================================
+**NÃO EXECUTE ESSE COMANDO**
+Pode levar muito tempo, dependendo do computador, já que são feições de rio para todo o Brasil!
+
+**Ou execute quando não tiver com pressa para fazer outra coisa**.  
+```{r, cache = TRUE}
+plot(st_geometry(rios))
+```
+
+Dados vetoriais: cortando para uma área ("clip")
+=========================================================
+Vamos então usar o polígono do Rio de Janeiro para cortar os rios do estado, usando a função **st_intersection()**;  
+
+Essa função vai usar os limites do polígono para "recortar" os dados de rios;  
+
+Mas lembre-se que **teremos que transofrmar o crs** antes;  
+```{r}
+rios_rj <- rios %>% 
+  st_transform(crs = 4326) %>% 
+  st_intersection(rj)
+plot(st_geometry(rios_rj))
+```
+
+Dados vetoriais: pontos
+=========================================================
+Para dados pontuais, vamos usar os dados de ocorrência da flora maeçada de extinção ([CNCFlora](http://dados.gov.br/dataset/ocorrências-livro-vermelho-2013/resource/7a8cc214-6cf2-42fe-9947-38091b76c33b)) que é compatrilhado por csv (um clássico):  
+
+**Atenção**:  
+Esses dados foram pré-processados pois haviam muitas ocorrências com coordenadas erradas;  
+
+```{r}
+library(readr) # para carregar o csv em um tibble
+(flora <- read_csv("./dados/tabelas/livrovermelho2013occurrences2016-08-23-1308_Mod.csv"))
+```
+
+Dados vetoriais: pontos II
+=========================================================
+A partir da tabela temos duas colunas de nos permitem espacializar essas ocorrências: Longitude (eixo X) e latitude (eixo Y).  
+
+Poderíamos fazer como um gráfico de dispersão:
+```{r}
+plot(flora$longitude, flora$latitude)
+plot(st_geometry(uf), add = T, border = "red")
+```
+
+Dados vetoriais: pontos III
+=========================================================
+Mas vamos transforma-lo em um dado de fato espacial, o que nos permitirá fazer consultas espaciais:  
+Para isso vamos usar a função **st_as_sf()** onde além de informar as colunas com as coordenadas, eu informo qual o Sistema de Referência Cartográfica;  
+```{r}
+flora_sf <- st_as_sf(flora, coords = c("longitude", "latitude"), crs = 4326)
+flora_sf
+```
+
+Dados vetoriais: pontos IV
+=========================================================
+Um exemplo de **consulta espacial** é a identificação das oroccências de flora que estejam **dentro** do polígono do estado do Rio de Janeiro.  
+
+Perceba que essa função atua como um filtro: apenas as ocorrências que contemplam esse critério serão salvas no novo objeto;  
+
+```{r}
+flora_rj <- flora_sf[ st_intersects(rj, flora_sf)[[1]], ]
+plot(st_geometry(flora_rj))
+```
+
+Dados vetoriais: juntando tudo
+========================================================
+Podemos fazer um "mapa" usando o pacote base do R:
+```{r}
+plot(st_geometry(rj))
+plot(st_geometry(rios_rj), col = "light blue", add = TRUE)
+plot(st_geometry(flora_rj), col = "red", add = TRUE)
+```
+
+tmap: Mapa tematico tipo ggplot
+========================================================
+O **tmap** é uma biblioteca que segue a mesma proposta de sintaxe do **ggplot()**.  
+
+Vamos dar uma olhada nele:  
+
+```{r, eval = TRUE}
+library(tmap)    # Vamos usar para os mapa temáticos
+# Vamos criar um mapa para o Rio de Janeiro
+map <- tm_shape(rj) + 
+  tm_fill() +
+  tm_borders()
+map
+```
+
+tmap II
+========================================================
+```{r, eval = FALSE}
+map + 
+  tm_shape(rios_rj) + 
+  tm_lines( col = 'blue', lwd = .2) 
+
+map + 
+  tm_shape(rios_rj) + 
+  tm_lines( col = 'blue', lwd = .2)  +
+  tm_shape(flora_rj) + #Adicionando plantas
+  tm_dots(col = 'red', size = .05)
+```
+
+E o raster de altimetria?
+======================================
+Como ele é para o Brasil todo, vamos cortá-lo tbm para o estado do Rio de Janeiro.
+Mas como é um dado **raster**, vamos usar a função **crop()** e depois **mask()**:  
+```{r}
+alt_rj <- crop(altitude, rj)
+plot(alt_rj)
+plot(st_geometry(rj), add=TRUE)
+```
+
+E o raster de altimetria? II
+======================================
+```{r}
+alt_rj <- mask(alt_rj, rj)
+plot(alt_rj)
+plot(st_geometry(rj), add=TRUE)
+```
+
+E o raster de altimetria? III
+======================================
+```{r}
+mapaFinal <- map + 
+  tm_shape(alt_rj) + # adicionando o raster
+  tm_raster() +
+  tm_shape(rios_rj) + 
+  tm_lines( col = 'blue', lwd = .2)  +
+  tm_shape(flora_rj) +
+  tm_dots(col = 'red', size = .05)
+  
+mapaFinal
+```
+
+Transformando em um mapa e salvando
+======================================
+```{r}
+mapaFinal <- mapaFinal +
+  tm_compass(type = "8star", position = c("right", "top")) +
+  tm_scale_bar(breaks = c(0, 100, 200), size = 1)
+
+mapaFinal
+
+tmap_save(mapaFinal, filename = "rj_map.png")
+```
+
+Temas de mapas
+=============================================
+Assim como no **ggplot()**, o **tmap** também permite configurar todo elemento do mapa, assim como já possui alguns estilos pré-definidos:  
+```{r}
+# outros estilos existentes
+# tm_style("classic")
+# tm_style("cobalt")
+# tm_style("col_blind")
+map + 
+  tm_shape(rios_rj) + 
+  tm_lines(col = "blue") +
+  tm_style("bw")
+
+```
+
+Criando um mapa dinâmico
+=============================================
+Outra possibilidade bem interessante é criar um mapa dinâmico para poder explorar os dados apresentados.
+Para isso, vamos mudar o "**tmap_mode()** para "**view**":
+```{r, eval = FALSE}
+tmap_mode("view")
+map + 
+  tm_shape(rios_rj) + 
+  tm_lines(col = "blue") 
+#tmap_mode("plot")
+```
+
+Mais infos sobre tmap
+=====================================
+* [aqui](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html);  
+* [aqui II](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-changes-v2.html);  
+
+```{r}
+tmap_tip()
+```

@@ -1,0 +1,438 @@
+---
+title: "Introdução à análise geoespacial com R <br><br><br>"
+subtitle: "PPG Ecologia, Evolução e Biodiversidade <br><br><br>"
+author: "Maurício H. Vancine <br> Milton C. Ribeiro"
+date: "19/10/2020"
+output:
+  xaringan::moon_reader:
+    css: [metropolis]
+    lib_dir: libs
+    nature:
+      highlightStyle: rainbow
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE, encoding = "UTF-8")
+```
+
+class: clear, center, middle
+background-image: url(img/package_xaringan.png)
+
+---
+
+# Disciplina
+
+### Ministrada em 2019 na UFRPE a Pedido do **Prof. Thiago (Toyoyo)**
+
+--
+
+### Pedido do **Prof. Miltinho**
+
+--
+
+background-image: url(img/gif_apontando.webp)
+background-size: 700px
+background-position: 50% 70%
+
+---
+
+background-image: url(img/person_miltinho.jpg)
+background-size: 400px
+background-position: 50% 70%
+
+# Miltinho
+
+## Quer se apresentar e a disciplina?
+
+---
+
+background-image: url(img/person_mauricio_vancine.jpg)
+background-size: 250px
+background-position: 90% 80%
+
+# Maurício H. Vancine
+
+### Ecólogo (2015) | Mestre em Zoologia (2018) | Doutorado em Ecologia (2020)
+
+**Pesquisa**
+- Ecologia Espacial
+- Ecologia Quantitativa
+- Ecologia e Conservação de Anfíbios
+
+**Habilidades**
+- Modelos de Distribuição de Espécies (SDMs)
+- Análise de Dados Ecológicos e Geoespaciais
+- Open source [R, QGIS, GRASS GIS, Linux, ...]
+
+**Contatos e informações:**
+<br>
+`r icon::fa_envelope(colour = "#007D8D")` [mauricio.vancine@gmail.com]()
+<br>
+`r icon::fa_twitter(colour = "#007D8D")` [@mauriciovancine](https://twitter.com/mauriciovancine)
+<br>
+`r icon::fa_github(colour = "#007D8D")` [mauriciovancine](https://mauriciovancine.netlify.com/)
+<br>
+`r icon::fa_link(colour = "#007D8D")` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
+
+
+---
+
+# Participantes
+
+## Apresentações
+
+<br><br>
+
+### 1. Nome
+
+### 2. Formação
+
+### 3. Com o que trabalha?
+
+### 4. Conhece algo de R, git e/ou geoprocessamento?
+
+### 5. O que espera da disciplina?
+
+---
+
+# Disciplina
+
+### Carga horária
+60 h (4 créditos)
+
+--
+
+### Participantes
+10 alunxs (+ 5 especiais)
+
+--
+
+### Datas e horários
+Teórico-prático: 19/10 – 23/10 [09:00 h - 12:00 h | 14:00 h - 17:00 h] (30 horas)
+
+--
+
+Exercícios-atividades assistidas remotamente: 26/10 – 30/10 (30 horas)
+
+--
+
+### Repositório de dados da disciplina
+https://github.com/mauriciovancine/disciplina-analise-geoespacial-r
+
+---
+
+# Disciplina
+
+## Distribuição diária
+
+<br>
+<br>
+<br>
+<br>
+
+### ~05 horas de teórico-prático (manhã-tarde)
+
+### ~01 hora de exercícios (tarde)
+
+---
+
+background-image: url(img/git_github.png)
+background-size: 600px
+background-position: 100% 100%
+
+# Disciplina
+
+## Conteúdo
+
+### 1 Controle de versão, Git e GitHub (segunda)
+1. Conferir os notebooks e PCs
+1. Controle de versão
+1. Git
+1. GitHub, GitLab e BitBucket
+1. Funcionamento do controle de versão
+1. Fork
+1. Clone
+1. Branch
+1. Add e Commit
+1. Push
+1. Pull
+1. Controle de versão no RStudio
+
+---
+
+background-image: url(img/r_logo.svg)
+background-size: 300px
+background-position: 85% 85%
+
+# Disciplina
+
+## Conteúdo
+
+### 2 Linguagem R, aplicações e material (segunda)
+1. Linguagem R
+1. Linguagem R vs IDE RStudio
+1. Aplicações da linguagem R
+1. Apostilas, sites e livros
+
+---
+
+background-image: url(img/rstudio_logo.svg)
+background-size: 400px
+background-position: 85% 85%
+
+# Disciplina
+
+## Conteúdo
+
+### 3 Funcionamento da linguagem R (segunda)
+1. IDE RStudio
+1. Projeto do R
+1. Editor/Roteiro (script)
+1. Comentários (#)
+1. Atribuição (<-)
+1. Objetos
+1. Funções
+1. Pacotes
+1. Ambiente (environment/workspace)
+1. Ajuda (help)
+1. Citações
+1. Principais erros
+
+---
+
+background-image: url(img/r_data_structure.png)
+background-size: 350px
+background-position: 90% 85%
+
+# Disciplina
+
+## Conteúdo
+
+### 4 Estrutura e manejo de dados na linguagem R (segunda)
+1. Atributos dos objetos
+1. Modos dos objetos (numeric, character e logical)
+1. Estrutura dos objetos (vector, factor, matrix, data frame e list)
+1. Manejo de dados unidimensionais
+1. Manejo de dados bidimensionais
+1. Valores faltantes e especiais
+1. Diretório de trabalho
+1. Importar dados
+1. Conferir e manejar dados importados
+1. Exportar dados
+
+---
+
+background-image: url(img/package_tidyverse.png)
+background-size: 250px
+background-position: 85% 85%
+
+# Disciplina
+
+## Conteúdo
+
+### 5 Introdução ao tidyverse (terça)
+1. tidyverse
+1. readr
+1. readxl
+1. tibble
+1. magrittr (pipe - %>%)
+1. dplyr
+1. tidyr
+1. stringr
+1. forcats
+1. lubridate
+1. purrr
+
+---
+
+background-image: url(img/general_sig.jpg)
+background-size: 250px
+background-position: 97% 50%
+
+# Disciplina
+
+## Conteúdo
+
+### 6 Estrutura e fonte de dados geoespaciais (terça)
+1. Geoprocessamento (cartografia, GPS, sensoriamento remoto e SIG)
+1. Cartografia (escala, sistemas de coordenadas e Datum)
+1. GPS (Global Positioning System)
+1. Sensoriamento Remoto (bandas, satélites, resoluções e aplicações)
+1. Sistemas de Informações Geográficas (SIG)
+1. Dados espaciais (vetor e raster)
+1. Dados vetoriais (ponto, linha e polígono)
+1. Tabela de atributos
+1. Formato de arquivos vetoriais (shapefile - .dbf, .prj, .shx, .shp)
+1. Dados matriciais (gride ou raster)
+1. Formatos de arquivos matriciais (.tif)
+1. Banco de dados geoespaciais (geopackage - .gpkg)
+1. Repositórios de dados geoespaciais (IBGE, FBDS, MapBiomas, GeoBank, GADM, Natural Earth, USGS, SRTM, WorldClim, EarthEnv)
+
+---
+
+background-image: url(img/r_spatial.jpeg)
+background-size: 300px
+background-position: 90% 85%
+
+# Disciplina
+
+## Conteúdo
+
+### 7 Estrutura e manejo de dados geoespaciais (vetor) (quarta)
+1. Material e pacotes para análise de dados espacias
+1. Vetor: pacote sf
+1. Importar dados vetoriais
+1. Tipos de dados vetoriais
+1. Estrutura de dados vetoriais
+1. Projeção de dados vetoriais
+1. Tabela de atributos
+1. Operações de atributos de dados vetoriais
+1. Operações geométricas de dados vetoriais
+1. Operações espaciais de dados vetoriais
+
+---
+
+background-image: url(img/r_spatial.jpeg)
+background-size: 300px
+background-position: 90% 85%
+
+# Disciplina
+
+## Conteúdo
+
+### 8 Estrutura e manejo de dados geoespaciais (raster) (quinta)
+1. Raster: pacote raster
+1. Importar dados matriciais
+1. Tipos de dados matriciais
+1. Estrutura de dados matriciais
+1. Projeção de dados matriciais
+1. Manipulando dados matriciais
+1. Operação geométricas de dados matriciais
+1. Operação espaciais de dados matriciais
+1. Vetor para raster: pacote fasterize
+
+---
+
+background-image: url(img/package_ggplot2.png), url(img/package_tmap.png)
+background-size: 250px, 250px
+background-position: 25% 85%, 80% 85%
+
+# Disciplina
+
+## Conteúdo
+
+### 9 Produção de mapas (sexta)
+1. Elaboração de mapas (ggplot e tmap)
+
+---
+
+background-image: url(img/general_list.jpg)
+background-size: 200px
+background-position: 85% 90%
+
+# Disciplina
+
+## Exercícios-atividades assistidas remotamente
+
+--
+
+### Serão **exercícios** relativamente simples com aplicações práticas
+
+--
+  
+### Todos devem enviar os exercícios pelo **GitHub**
+
+--
+
+### A nota será pela **tentativa** e não pela **resolução em si**
+
+--
+
+### **Resumo de 3 páginas** sobre os **conceitos e a aplicações** em seu projeto de pesquisa
+
+---
+
+background-image: url(img/r_principio_agora_pt.png)
+background-size: 300px
+background-position: 97% 85%
+
+# Disciplina
+  
+## IMPORTANTE!
+
+--
+  
+### Essa é a **primeira vez** que ofereço uma disciplina de pós-graduação **à distância**
+  
+--
+
+### É possível que eu não consiga **passar todo o conteúdo**
+  
+--
+  
+### Entretanto, estou totalmente **focado em ensinar**
+  
+--
+  
+### Por favor, **perguntem** e **me interrompam**!
+
+--
+
+### O objetvo é que vocês **aprendam**!
+
+---
+
+# Disciplina
+
+## MAIS QUE ISSO!
+
+--
+
+### Eu tenho notado ao longo desses anos como professor e aluno (desde 2015), que os alunxs **se sentem inseguros** em interromper e fazer perguntas...
+
+--
+
+### Eu gostaria de deixar claro: esse é um **ambiente seguro**, onde eu preciso saber o que vocês enteram
+
+--
+
+### Errar é o principal passo para aprender: **não tenham medo ou vergonha** da sua dúvida ou pergunta!!!
+
+--
+
+### Ninguém aqui é **melhor ou superior** aos colegas (sou pós-graduando) como vocês =]
+
+---
+
+class: inverse, middle, center
+background-image: url(img/starwars-teamwork.png)
+background-size: 700px
+
+---
+
+class: inverse, middle, center
+
+# Dúvidas?
+
+---
+
+class: clear, middle
+
+## Maurício Vancine
+
+<br>
+
+Contatos:
+
+<br>
+`r icon::fa_envelope(colour = "#007D8D")` [mauricio.vancine@gmail.com]()
+<br>
+`r icon::fa_twitter(colour = "#007D8D")` [@mauriciovancine](https://twitter.com/mauriciovancine)
+<br>
+`r icon::fa_github(colour = "#007D8D")` [mauriciovancine](https://mauriciovancine.netlify.com/)
+<br>
+`r icon::fa_link(colour = "#007D8D")` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
+
+Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)

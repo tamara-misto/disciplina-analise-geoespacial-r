@@ -1,0 +1,76 @@
+
+Estética com relação lógica
+========================================================
+Podemos definir diferentes cores para uma operação lógica, como no exemplo:
+Como vocês imagina que fica o gráfico?  
+  
+```{r, eval=FALSE}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = displ < 5))
+```
+
+Estética com relação lógica
+========================================================
+E neste caso?
+```{r, eval= TRUE}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = displ < 5 | hwy < 20))  
+```  
+
+Operadores lógicos
+========================================================
+Falaremos mais a respeito dos operadores lógicos. Mas como já estamos usando...  
+  
+* | é usado como "OU"  
+* & é usado como "E"  
+
+Dividindo en distintos gráficos
+========================================================
+`ggplot` nos permite dividir um gráfico em função de uma variable categórica, usando a função `facet_warp()`  
+  
+* O primeiro argumento de facet_warp deve ser a formula a qual se deve dividir os gráficos. No exemplo a seguir, a divisão será feita **em função** da variável `class`;  
+
+```{r, eval = FALSE}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~class)
+```
+
+Dividindo os gráficos de acordo com duas variáveis
+=========================================================
+Para dividir os gráficos em função de duas variáveis, devemos usar a função `facet_grid`  
+```{r, eval=FALSE}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ cyl)
+```
+
+Exercício:
+===========================================================
+  
+- E se usarmos uma variável contínua na função `facet_warp`? Faz sentido?
+- Quais são as vantagens em se utilizar `facet`?  
+- E quais são as desvanragens? 
+
+```{r, eval=FALSE}
+head(mpg)
+```
+
+Exercício (resposta):
+===========================================================
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~cty)
+```
+
+
+Desafíos
+================================================================
+# **Desenvolver perguntas**
+```{r, eval=FALSE}
+ggplot(data = diamonds) + 
+  geom_point(mapping = aes(x = price, y = depth)) + 
+  facet_wrap(~clarity)
+```

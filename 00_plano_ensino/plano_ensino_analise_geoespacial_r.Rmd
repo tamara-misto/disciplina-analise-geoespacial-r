@@ -1,0 +1,205 @@
+---
+title: "Plano de ensino"
+author: "Maurício Vancine e Milton Cezar Ribeiro"
+date: "19/10/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introdução à análise geoespacial com R
+
+### Docentes responsáveis
+Prof. Dr. Milton Cezar Ribeiro
+
+Me. Maurício Humberto Vancine
+
+### Carga horária
+60 h (4 créditos)
+
+### Participantes
+10 alunos (+ 5 especiais)
+
+### Datas e horários
+Teórico-prático: 19/10 – 23/10 [09:00 h - 12:00 h | 14:00 h - 17:00 h] (30 horas)
+
+Exercícios-atividades assistidas remotamente: 26/10 – 30/10 (30 horas)
+
+### Repositório de dados da disciplina
+https://github.com/mauriciovancine/disciplina-analise-geoespacial-r
+
+### Resumo
+A disciplina oferecerá os principais conceitos teórico-práticos introdutórios de análises geoespaciais aplicado à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, Git e GitHub, (2) introdução e funcionamento da linguagem R e do software RStudio, (3) estrutura e manejo de dados na linguagem R, (4) funcionamento do tidyverse, (5) estrutura e fonte de dados geoespaciais, (6) manejo dados geoespaciais (vetor), (7) manejo dados geoespaciais (raster) e, (8) produção de mapas. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teóricas-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de exercícios práticos, que serão aplicados remotamente como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que os alunos adquiram conceitos gerais da estrutura e manipulação de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas ao geoprocessamento utilizando a linguagem R.
+
+### Conteúdo
+
+### 1 Controle de versão, Git e GitHub (segunda)
+1. conferir os notebooks e PCs
+1. Controle de versão
+1. Git
+1. GitHub, GitLab e BitBucket
+1. Funcionamento do controle de versão
+1. Fork
+1. Clone
+1. Branch
+1. Add e Commit
+1. Push
+1. Pull
+1. Controle de versão no RStudio
+
+### 2 Linguagem R, aplicações e material (segunda)
+1. Linguagem R
+1. Linguagem R vs IDE RStudio
+1. Aplicações da linguagem R
+1. Apostilas, sites e livros
+
+### 3 Funcionamento da linguagem R (segunda)
+1. IDE RStudio
+1. Editor/Roteiro (script)
+1. Comentários (#)
+1. Atribuição (<-)
+1. Objetos
+1. Funções
+1. Pacotes
+1. Ambiente (environment/workspace)
+1. Ajuda (help)
+1. Citações
+1. Principais erros
+
+### 4 Estrutura e manejo de dados na linguagem R (segunda)
+1. Atributos dos objetos
+1. Modos dos objetos (numeric, character e logical)
+1. Estrutura dos objetos (vector, factor, matrix, data frame e list)
+1. Manejo de dados unidimensionais
+1. Manejo de dados bidimensionais
+1. Valores faltantes e especiais
+1. Diretório de trabalho
+1. Importar dados
+1. Conferir e manejar dados importados
+1. Exportar dados
+
+### 5 Introdução ao tidyverse (terça)
+1. tidyverse
+1. readr
+1. readxl
+1. tibble
+1. magrittr (pipe - %>%)
+1. dplyr
+1. tidyr
+1. stringr
+1. forcats
+1. lubridate
+1. purrr
+
+### 6 Estrutura e fonte de dados geoespaciais (quarta)
+1. Geoprocessamento (cartografia, GPS, sensoriamento remoto e SIG)
+1. Cartografia (escala, sistemas de coordenadas e Datum)
+1. GPS (Global Positioning System)
+1. Sensoriamento Remoto (bandas, satélites, resoluções e aplicações)
+1. Sistemas de Informações Geográficas (SIG)
+1. Dados espaciais (vetor e raster)
+1. Dados vetoriais (ponto, linha e polígono)
+1. Tabela de atributos
+1. Formato de arquivos vetoriais (shapefile - .dbf, .prj, .shx, .shp)
+1. Dados matriciais (gride ou raster)
+1. Formatos de arquivos matriciais (.tif)
+1. Banco de dados geoespaciais (geopackage - .gpkg)
+1. Repositórios de dados geoespaciais (IBGE, FBDS, MapBiomas, GeoBank, GADM, Natural Earth, USGS, SRTM, WorldClim, EarthEnv)
+
+### 7 Estrutura e manejo de dados geoespaciais (vetor) (quarta-quinta)
+1. Material e pacotes para análise de dados espacias
+1. Vetor: pacote sf
+1. Importar dados vetoriais
+1. Tipos de dados vetoriais
+1. Estrutura de dados vetoriais
+1. Projeção de dados vetoriais
+1. Tabela de atributos
+1. Operações de atributos de dados vetoriais
+1. Operações geométricas de dados vetoriais
+1. Operações espaciais de dados vetoriais
+
+### 8 Estrutura e manejo de dados geoespaciais (raster) (quinta-sexta)
+1. Raster: pacote raster
+1. Importar dados matriciais
+1. Tipos de dados matriciais
+1. Estrutura de dados matriciais
+1. Projeção de dados matriciais
+1. Manipulando dados matriciais
+1. Operação geométricas de dados matriciais
+1. Operação espaciais de dados matriciais
+1. Vetor para raster: pacote fasterize
+
+### 9 Produção de mapas (sexta)
+1. Elaboração de mapas (ggplot e tmap)
+
+### Referências
+
+Adler J. 2012. R in a Nutshell: A Desktop Quick Reference. 2 ed. O'Reilly Media.
+
+atlan. 2019. Introduction to GIS: Manipulating and Mapping Geospatial Data in R. [https://cdn2.hubspot.net/hubfs/2287011/Atlan%20GIS%20Course/All%20lessons.pdf]
+
+Bivand RS, Pebesma E, Gómez-Rubio V. 2013. Applied Spatial Data Analysis with R. 2 ed. Springer.
+
+Brunsdon C, Comber L. 2015. An introduction to R for spatial analysis & mapping. SAGE Publications.
+
+Chang W. 2013. R Graphics Cookbook: Practical Recipes for Visualizing Data. 2 ed. O'Reilly Media. [https://r-graphics.org/]
+
+Cotton R. 2013. Learning R: A Step-by-Step Function Guide to Data Analysis. O'Reilly Media.
+
+Davies TM. 2016. The Book of R: A First Course in Programming and Statistics. No Starch Press.
+
+Engel C. 2019. R for Geospatial Analysis and Mapping. The Geographic Information Science & Technology Body of Knowledge (1st Quarter 2019 Edition), John P. Wilson (Ed.). DOI: 10.22224/gistbok/2019.1.3.
+
+Engel C. 2019. Introduction to R. [https://cengel.github.io/R-intro/]
+
+Engel C. 2019. Using Spatial Data with R. [https://cengel.github.io/R-spatial/]
+
+Fitz PR. 2008. Geoprocessamento sem complicação. Oficina de Textos. 
+
+Fletcher R, MJ Fortin. 2019. Spatial Ecology and Conservation Modeling: applications with R. Springer.
+
+Hastle T, Tibshirani R, Friedman J. 2016. The Elements of Statistical Learning: Data Mining, Inference, and Prediction. 2 ed. Springer. [https://web.stanford.edu/~hastie/ElemStatLearn/ ] . 
+
+Healy K. 2019. Data Visualization: a practical introduction. Princeton University Press.
+
+Hijmans, R. 2019. Spatial Data Analysis and Modeling with R. [http://rspatial.org]
+
+Horning N, Robinson JA, Sterling EJ, Turner W, Spector S. 2010. Remote Sensing for Ecology and Conservation: A Handbook of Techniques. Oxford University Press.
+
+James G, Witten D, Hastie T, Tibshirani R. 2013. An Introduction to Statistical Learning: with Applications in R. 2.ed. Springer. [http://faculty.marshall.usc.edu/gareth-james/ISL/]
+
+Kabacoff RI. 2015. R in Action: Data analysis and graphics with R. 2.ed. Manning.
+
+Lander JP. 2017. R for Everyone: Advanced Analytics and Graphics. Addison-Wesley Professional.
+
+Lepaine M, Usery EL. 2017. Choosing a Map Projection. Springer.
+
+Lovelace R, Nowosad J, Muenchow, J. 2019. Geocomputation with R. Chapman and Hall/CRC. [https://geocompr.robinlovelace.net/]
+
+Mas J, Horta MB, Vasconcelos RN, Cambui ECB. 2019. Análise espacial com R. UEFS Editora. [https://bit.ly/2KpSI7C]
+
+Matloff N. 2011. The Art of R Programming: A Tour of Statistical Software Design. No Starch Press.
+
+Oliveira PF, Guerra S, Mcdonnell, R. 2018. Ciência de dados com R – Introdução. IBPAD. [https://cdr.ibpad.com.br/]
+
+Pebesma, E. 2018. Simple Features for R: Standardized Support for Spatial Vector Data. The R Journal, 10(1):439–446.
+
+Pebesma E, Bivand R. 2019. Spatial Data Science. [https://keen-swartz-3146c4.netlify.com/]
+
+R Core Team. 2020. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. [https://www.r-project.org/]
+
+Teetor P. 2011. R Cookbook. O'Reilly Media. [http://www.cookbook-r.com/]
+
+Xavier-da-Silva J. 2009. O que é Geoprocessamento? Revista do CREA-RJ , 79:42–44.
+
+Wegmann M, Leutner B, Dech S. 2016. Remote Sensing and GIS for Ecologists. Pelagic Publishing. 
+
+Wickham H, Grolemund, G. 2017. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media. [https://r4ds.had.co.nz/]
+
+Wickham H. 2019. Advanced R. 2 ed. Chapman and Hall/CRC. [https://adv-r.hadley.nz/]
+
+Wickham H. 2020. ggplot2: Elegant Graphics for Data Analysis. 3 ed. Springer. [https://ggplot2-book.org/]
+
+Wilk CO. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. O'Reilly Media. [https://serialmentor.com/dataviz/]
