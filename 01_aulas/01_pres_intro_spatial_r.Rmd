@@ -903,6 +903,43 @@ background-position: 50% 70%
 
 ---
 
+background-image: url(img/git_merge.png)
+background-size: 700px
+background-position: 50% 90%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## **merge**: **mescla** as **linhas de desenvolvimento independentes** em um **único branch**
+
+```{bash eval=FALSE}
+git merge branch-1
+```
+```{bash eval=FALSE}
+## teste_branch1.txt                     |   0
+```
+
+---
+
+background-image: url(img/gif_git_merge.gif)
+background-size: 700px
+background-position: 50% 60%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## CUIDADO!
+
+---
+
+background-image: url(img/git_merge_warning.png)
+background-size: 500px
+background-position: 50% 60%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## CUIDADO!
+
+---
+
 background-image: url(img/git_branch)
 background-size: 500px
 background-position: 50% 90%
