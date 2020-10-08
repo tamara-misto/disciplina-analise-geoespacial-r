@@ -44,8 +44,8 @@ background-position: 100% 110%
 1. Iniciando: init ou clone
 1. Configurando: config
 1. Básico: add, status, commit e log
-1. Ramificações: branch, checkout e merge
-1. Remoto: fetch, push e pull
+1. Ramificações: branch, switch e merge
+1. Remoto: push e pull
 1. Pull request
 
 ---
@@ -539,7 +539,7 @@ background-position: 50% 90%
 1. **Modified**: marcou os arquivos modificados depois da edição
 1. **Staged**: marcou o arquivo adicionado ou modificado para ir para o commit
 
-* **Committ**: os arquivos são armazenados no banco de dados local (.git)
+* **Commit**: os arquivos são armazenados no banco de dados local (.git)
 
 ---
 
@@ -731,7 +731,7 @@ git status
 ---
 
 background-image: url(img/git_add_commit_flow.png)
-background-size: 600px
+background-size: 400px
 background-position: 50% 90%
 
 # 1.9 Básico: status, add, commit, e log
@@ -743,21 +743,17 @@ background-position: 50% 90%
 git commit -m "2020-10-19 add teste.txt"
 ```
 
----
-
-background-image: url(img/git_add_commit_flow.png)
-background-size: 600px
-background-position: 50% 70%
-
-# 1.9 Básico: status, add, commit, e log
-
-## **commit**: **armazena as mudanças** efetuadas e **descreve** o que foi alterado (repository)
+```bash
+## [master 06211a1] 2020-10-19 add teste.txt
+##  1 file changed, 1 insertion(+)
+##  create mode 100644 teste.txt
+```
 
 ---
 
-background-image: url(img/git_add_commit_flow.png)
+background-image: url(img/git_states.png)
 background-size: 600px
-background-position: 50% 70%
+background-position: 50% 90%
 
 # 1.9 Básico: status, add, commit, e log
 
@@ -765,7 +761,13 @@ background-position: 50% 70%
 
 
 ```bash
+git status
+```
 
+```bash
+## Changes to be committed:
+##   (use "git restore --staged &lt;file&gt;..." to unstage)
+##         new file:   teste.txt
 ```
 
 ---
@@ -776,11 +778,122 @@ background-position: 50% 90%
 
 # 1.9 Básico: status, add, commit, e log
 
-## **log**: **mostra as mudanças** que foram efetuadas: commit, autor e data
+## **log**: **registro** de todo o histórico de commits (tags)
 
 
 ```bash
+git log
+```
 
+```bash
+## Changes to be committed:
+##   (use "git restore --staged &lt;file&gt;..." to unstage)
+##         new file:   teste.txt
+```
+
+---
+
+class: clear, middle, center
+background-image: url(img/git_branches.png)
+background-size: 800px
+
+---
+
+background-image: url(img/git_branch.png)
+background-size: 600px
+background-position: 50% 70%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## **branch**: ramificação representa uma **linha independente** de desenvolvimento
+
+---
+
+background-image: url(img/git_branch.png)
+background-size: 500px
+background-position: 50% 85%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## **branch**: listar os branchs
+
+
+```bash
+git branch
+```
+
+```bash
+## * master
+```
+
+---
+
+background-image: url(img/git_branch.png)
+background-size: 500px
+background-position: 50% 85%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## **branch**: **criar** uma ramificação
+
+
+```bash
+git branch branch-1 branch-2
+```
+
+---
+
+background-image: url(img/git_branch.png)
+background-size: 500px
+background-position: 50% 85%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## **branch**: listar os branchs
+
+
+```bash
+git branch
+```
+
+```bash
+## branch-1
+## * master
+```
+
+---
+
+background-image: url(img/git_switch.png)
+background-size: 800px
+background-position: 50% 80%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## **switch**: **troca a raficação** de edição
+
+
+```bash
+git switch branch-1
+```
+
+---
+
+background-image: url(img/git_branch.png)
+background-size: 500px
+background-position: 50% 85%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## **branch**: listar os branchs e verificar o branch de edição
+
+
+```bash
+git branch
+```
+
+```bash
+## * branch-1
+##  master
 ```
 
 ---
@@ -789,27 +902,7 @@ background-image: url(img/git_branch)
 background-size: 500px
 background-position: 50% 90%
 
-# 1.10 Ramificações: branch, checkout e merge
-
-## branch: Enviar uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
-
----
-
-background-image: url(img/git_branch)
-background-size: 500px
-background-position: 50% 90%
-
-# 1.10 Ramificações: branch, checkout e merge
-
-## checkout: Enviar uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
-
----
-
-background-image: url(img/git_branch)
-background-size: 500px
-background-position: 50% 90%
-
-# 1.10 Ramificações: branch, checkout e merge
+# 1.10 Ramificações: branch, switch e merge
 
 ## merge: Enviar uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
 
@@ -819,17 +912,7 @@ background-image: url(img/git_branch)
 background-size: 500px
 background-position: 50% 90%
 
-# 1.11 Remoto: fetch, push, pull
-
-## fetch: enviar uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
-
----
-
-background-image: url(img/git_branch)
-background-size: 500px
-background-position: 50% 90%
-
-# 1.11 Remoto: fetch, push, pull
+# 1.11 Remoto: push e pull
 
 ## push: enviar uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
 
@@ -839,7 +922,7 @@ background-image: url(img/git_branch)
 background-size: 500px
 background-position: 50% 90%
 
-# 1.11 Remoto: fetch, push, pull
+# 1.11 Remoto: push e pull
 
 ## pull: enviar uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
 
