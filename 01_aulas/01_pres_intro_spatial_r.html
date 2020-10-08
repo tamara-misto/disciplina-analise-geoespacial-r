@@ -43,9 +43,9 @@ background-position: 100% 110%
 1. Fork
 1. Iniciando: init ou clone
 1. Configurando: config
-1. Básico: add, status, commit, log e reset
+1. Básico: add, status, commit e log
 1. Ramificações: branch, checkout e merge
-1. Remoto: fetch, push, pull
+1. Remoto: fetch, push e pull
 1. Pull request
 
 ---
@@ -510,13 +510,65 @@ background-position: 50% 50%
 
 ---
 
-background-image: url(img/git_workflow.svg)
+background-image: url(img/git_workflow.png)
 background-size: 800px
 background-position: 50% 50%
 
 # Fluxo de trabalho com o git e GitHub
 
-## Todos os **comandos em SHELL** para usar o git
+## **Comandos** para usar o git
+
+---
+
+class: inverse, middle, center
+
+# Agora prestem atenção...
+
+---
+
+background-image: url(img/git_states.png)
+background-size: 700px
+background-position: 50% 90%
+
+# Git Status
+
+## Estados do repositório local do git:
+
+1. **Untracked**: não registrou o arquivo criado ou deletado
+1. **Unmodified**: marcou os arquivos como não-modificados após o commit
+1. **Modified**: marcou os arquivos modificados depois da edição
+1. **Staged**: marcou o arquivo adicionado ou modificado para ir para o commit
+
+* **Committ**: os arquivos são armazenados no banco de dados local (.git)
+
+---
+
+background-image: url(img/git_add_commit_flow.png)
+background-size: 600px
+background-position: 50% 80%
+
+# Git Sections
+
+## Seções de um repositório git:
+
+1. **Working directory**: arquivos não-trackeados
+1. **Staging area**: arquivos trackeados (adicionados ou modificados)
+1. **Repository**:  arquivos comitados (.git)
+
+---
+
+background-image: url(img/git_states.png)
+background-size: 700px
+background-position: 50% 70%
+
+# 1.9 Básico: status, add, commit, e log
+
+## **status**: **mostra** o status do repositório e dos arquivos
+
+
+```bash
+git status
+```
 
 ---
 
@@ -531,77 +583,39 @@ background-position: 50% 80%
 
 ```bash
 # terminal
-cat &gt; arquivo_teste.txt
-teste
-# Ctrl + D - fechar
+touch teste.txt
 ```
 
 ---
 
-background-image: url(img/git_state_files.png)
-background-size: 550px
-background-position: 50% 90%
-
-# Git Status dos arquivos
-
-## Estados de um arquivo:
-
-1. **Untracked**: você alterou os arquivos
-1. **Tracked**: você marcou um arquivo modificado para ir para seu próximo instantâneo de commit
-1. **Staged**: os dados são armazenados com segurança em seu banco de dados local
-1. **Committed**: os dados são armazenados com segurança em seu banco de dados local
-1. **Modified**: os dados são armazenados com segurança em seu banco de dados local
-
----
-
 background-image: url(img/git_states.png)
-background-size: 800px
-background-position: 50% 90%
-
-# Git Status
-
-## Estados do repositório local do git:
-
-1. **Modified**: você alterou os arquivos
-1. **Staged**: você marcou um arquivo modificado para ir para o commit
-1. **Committed**: os dados são armazenados com segurança em seu banco de dados local (.git)
-
----
-
-background-image: url(img/git_add_commit_flow.png)
-background-size: 700px
-background-position: 50% 90%
-
-# Git Sections
-
-## Seções de um repositório git:
-
-1. **Working directory**: 
-1. **Staging Area**: 
-1. **Repository**: 
-
----
-
-background-image: url(img/git_add_commit_flow.png)
 background-size: 600px
-background-position: 50% 70%
+background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, log e reset
+# 1.9 Básico: status, add, commit, e log
 
 ## **status**: **mostra** o status do repositório e dos arquivos
 
 
 ```bash
+git status
+```
 
+```bash
+## Untracked files:
+##   (use "git add &lt;file&gt;..." to include in what will be committed)
+##     ../teste.txt
+## 
+## no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 ---
 
 background-image: url(img/git_add_commit_flow.png)
 background-size: 600px
-background-position: 50% 70%
+background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, log e reset
+# 1.9 Básico: status, add, commit, e log
 
 ## **add**: **adiciona** mudanças após edições (staging area)
 
@@ -611,19 +625,85 @@ background-position: 50% 70%
 git add -Av
 ```
 
+```bash
+## add 'teste.txt'
+```
+
+---
+
+background-image: url(img/git_states.png)
+background-size: 600px
+background-position: 50% 90%
+
+# 1.9 Básico: status, add, commit, e log
+
+## **status**: **mostra** o status do repositório e dos arquivos
+
+
+```bash
+git status
+```
+
+```bash
+## Changes to be committed:
+##   (use "git restore --staged &lt;file&gt;..." to unstage)
+##         new file:   teste.txt
+```
+
+---
+
+background-image: url(img/general_bloco_notas.png)
+background-size: 250px
+background-position: 50% 80%
+
+# Vamos editar o arquivo no diretório
+
+## Usando a aba **Files** do RStudio
+
+
+```bash
+Acabo de inserir um edição ao meu arquivo teste.txt
+```
+
 ---
 
 background-image: url(img/git_add_commit_flow.png)
 background-size: 600px
-background-position: 50% 70%
+background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, log e reset
+# 1.9 Básico: status, add, commit, e log
 
-## **status**: **mostra** o estatus do repositório
+## **add**: **adiciona** mudanças após edições (staging area)
 
 
 ```bash
+# terminal
+git add -Av
+```
 
+```bash
+add 'teste.txt'
+```
+
+---
+
+background-image: url(img/git_states.png)
+background-size: 600px
+background-position: 50% 90%
+
+# 1.9 Básico: status, add, commit, e log
+
+## **status**: **mostra** o status do repositório e dos arquivos
+
+
+```bash
+git status
+```
+
+```bash
+## Changes to be committed:
+##   (use "git restore --staged &lt;file&gt;..." to unstage)
+##         new file:   teste.txt
 ```
 
 ---
@@ -632,7 +712,7 @@ background-image: url(img/git_add_commit_flow.png)
 background-size: 600px
 background-position: 50% 70%
 
-# 1.9 Básico: status, add, commit, log e reset
+# 1.9 Básico: status, add, commit, e log
 
 ## **commit**: **armazena as mudanças** efetuadas e **descreve** o que foi alterado (repository)
 
@@ -647,7 +727,7 @@ background-image: url(img/git_add_commit_flow.png)
 background-size: 600px
 background-position: 50% 70%
 
-# 1.9 Básico: status, add, commit, log e reset
+# 1.9 Básico: status, add, commit, e log
 
 ## **status**: **mostra** o estatus do repositório
 
@@ -662,69 +742,9 @@ background-image: url(img/git_add_commit.png)
 background-size: 500px
 background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, log e reset
+# 1.9 Básico: status, add, commit, e log
 
 ## **log**: **mostra as mudanças** que foram efetuadas: commit, autor e data
-
-
-```bash
-
-```
-
----
-
-background-image: url(img/git_add_commit.png)
-background-size: 500px
-background-position: 50% 90%
-
-# 1.9 Básico: status, add, commit, log e reset
-
-## **reset**: **desfazer alterações** no diretório
-
-
-```bash
-
-```
-
----
-
-background-image: url(img/git_add_commit.png)
-background-size: 500px
-background-position: 50% 90%
-
-# 1.9 Básico: status, add, commit, log e reset
-
-## **reset --soft**: **desfazer alterações** no diretório
-
-
-```bash
-
-```
-
----
-
-background-image: url(img/git_add_commit.png)
-background-size: 500px
-background-position: 50% 90%
-
-# 1.9 Básico: status, add, commit, log e reset
-
-## **reset --mixed**: **desfazer alterações** no diretório
-
-
-```bash
-
-```
-
----
-
-background-image: url(img/git_add_commit.png)
-background-size: 500px
-background-position: 50% 90%
-
-# 1.9 Básico: status, add, commit, log e reset
-
-## **reset --hard**: **desfazer alterações** no diretório
 
 
 ```bash

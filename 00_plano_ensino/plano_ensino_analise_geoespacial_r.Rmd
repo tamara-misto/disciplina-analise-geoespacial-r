@@ -44,9 +44,9 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Fork
 1. Iniciando: init ou clone
 1. Configurando: config
-1. Básico: status, add, commit, log e reset
+1. Básico: status, add, commit e log
 1. Ramificações: branch, checkout e merge
-1. Remoto: fetch, push, pull
+1. Remoto: fetch, push e pull
 1. Pull request
 
 ### 2 Linguagem R, aplicações e material (segunda)
