@@ -940,13 +940,36 @@ background-position: 50% 60%
 
 ---
 
-background-image: url(img/git_branch)
+class: clear, middle, center
+background-image: url(img/git_push_pull.svg)
+background-size: 600px
+
+---
+
+background-image: url(img/git_push.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 1.11 Remoto: push e pull
+
+## **push**: **empurrar** uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+
+---
+
+background-image: url(img/git_push.jpg)
 background-size: 500px
 background-position: 50% 90%
 
 # 1.11 Remoto: push e pull
 
-## push: enviar uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+## **push**: **empurrar** uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+
+```{bash eval=FALSE}
+git push -u origin master
+```
+```{bash eval=FALSE}
+## teste_branch1.txt                     |   0
+```
 
 ---
 
@@ -956,7 +979,7 @@ background-position: 50% 90%
 
 # 1.11 Remoto: push e pull
 
-## pull: enviar uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+## **pull**: **puxar** uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
 
 ---
 
