@@ -139,7 +139,7 @@ https://github.com/mauriciovancine/disciplina-analise-geoespacial-r
 ---
 
 background-image: url(img/git_github.png)
-background-size: 600px
+background-size: 500px
 background-position: 100% 100%
 
 # Disciplina
@@ -150,15 +150,15 @@ background-position: 100% 100%
 1. Conferir os notebooks e PCs
 1. Controle de versão
 1. Git
-1. GitHub, GitLab e BitBucket
+1. GitHub
 1. Funcionamento do controle de versão
 1. Fork
-1. Clone
-1. Branch
-1. Add e Commit
-1. Push
-1. Pull
-1. Controle de versão no RStudio
+1. Iniciando: init ou clone
+1. Configurando: config
+1. Básico: status, add, commit, log e reset
+1. Ramificações: branch, checkout e merge
+1. Remoto: fetch, push, pull
+1. Pull request
 
 ---
 
@@ -407,7 +407,7 @@ background-position: 97% 85%
 ---
 
 class: inverse, middle, center
-background-image: url(img/starwars-teamwork.png)
+background-image: url(img/starwars_teamwork.png)
 background-size: 700px
 
 ---

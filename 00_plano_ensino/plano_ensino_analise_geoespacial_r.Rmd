@@ -36,18 +36,18 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 ### Conteúdo
 
 ### 1 Controle de versão, Git e GitHub (segunda)
-1. conferir os notebooks e PCs
+1. Conferir os notebooks e PCs
 1. Controle de versão
 1. Git
-1. GitHub, GitLab e BitBucket
+1. GitHub
 1. Funcionamento do controle de versão
 1. Fork
-1. Clone
-1. Branch
-1. Add e Commit
-1. Push
-1. Pull
-1. Controle de versão no RStudio
+1. Iniciando: init ou clone
+1. Configurando: config
+1. Básico: status, add, commit, log e reset
+1. Ramificações: branch, checkout e merge
+1. Remoto: fetch, push, pull
+1. Pull request
 
 ### 2 Linguagem R, aplicações e material (segunda)
 1. Linguagem R
@@ -145,6 +145,8 @@ Bivand RS, Pebesma E, Gómez-Rubio V. 2013. Applied Spatial Data Analysis with R
 Brunsdon C, Comber L. 2015. An introduction to R for spatial analysis & mapping. SAGE Publications.
 
 Chang W. 2013. R Graphics Cookbook: Practical Recipes for Visualizing Data. 2 ed. O'Reilly Media. [https://r-graphics.org/]
+
+Chacon S., Straub B. 2014. Pro Git. 2 ed. Apress. [https://git-scm.com/book/en/v2]
 
 Cotton R. 2013. Learning R: A Step-by-Step Function Guide to Data Analysis. O'Reilly Media.
 

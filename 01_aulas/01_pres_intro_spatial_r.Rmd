@@ -25,8 +25,8 @@ background-size: 500px
 ---
 
 background-image: url(img/git_github.png)
-background-size: 600px
-background-position: 100% 100%
+background-size: 550px
+background-position: 100% 110%
 
 # 1 Controle de versão, Git e GitHub
 
@@ -34,15 +34,15 @@ background-position: 100% 100%
 1. Conferir os notebooks e PCs
 1. Controle de versão
 1. Git
-1. GitHub, GitLab e BitBucket
+1. GitHub
 1. Funcionamento do controle de versão
 1. Fork
-1. Clone
-1. Branch
-1. Add e Commit
-1. Push
-1. Pull
-1. Controle de versão no RStudio
+1. Iniciando: init ou clone
+1. Configurando: config
+1. Básico: add, status, commit, log e reset
+1. Ramificações: branch, checkout e merge
+1. Remoto: fetch, push, pull
+1. Pull request
 
 ---
 
@@ -102,7 +102,7 @@ class: inverse, middle, center
 
 ---
 
-background-image: url(img/git_phd_comics.png)
+background-image: url(img/git_file_version.png)
 background-size: 400px
 background-position: 50% 50%
 
@@ -110,7 +110,7 @@ background-position: 50% 50%
 
 ---
 
-background-image: url(img/git_project_solo.png)
+background-image: url(img/git_one_brantch.png)
 background-size: 600px
 background-position: 50% 50%
 
@@ -120,7 +120,7 @@ background-position: 50% 50%
 
 ---
 
-background-image: url(img/git_project_ramos.png)
+background-image: url(img/git_multi_brantch.png)
 background-size: 700px
 background-position: 50% 50%
 
@@ -154,11 +154,23 @@ background-position: 50% 75%
 
 ---
 
-background-image: url(https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2017/12/gitHub.png)
-background-size: 700px
+background-image: url(img/git_github_diff.png)
+background-size: 800px
 background-position: 50% 80%
 
-# 1.4 GitHub
+# ATENÇÃO!
+
+### **Git**: software que faz o controle de versão
+
+### **GitHub**: repositório remoto que hospeda os arquivos versionados
+
+---
+
+background-image: url(img/git_github_link.png)
+background-size: 800px
+background-position: 50% 80%
+
+# ATENÇÃO!
 
 ### **Git**: software que faz o controle de versão
 
@@ -168,7 +180,7 @@ background-position: 50% 80%
 
 # 1.4 GitHub
 
-## Vamos criar uma conta no GitHub (caso não possuam)
+## Vamos **criar uma conta** no **GitHub** (caso não possuam)
 <br><br><br><br><br>
 ##.center[https://github.com]
 
@@ -176,13 +188,19 @@ background-position: 50% 80%
 
 # 1.4 GitHub
 
-## **Salvem essas informações!!!**
+## **Salvem ou recuperem essas informações!!!**
 
 <br><br><br>
 
 ## **username**: mauriciovancine
 ## **email**: mauricio.vancine@gmail.com
 ## **senha**: !@#$%¨&*+
+
+---
+
+class: inverse, middle, center
+
+# Tudo bem até aqui?
 
 ---
 
@@ -194,19 +212,25 @@ background-position: 50% 50%
 
 ---
 
+class: clear, center, middle
+background-image: url(img/git_work.png)
+background-size: 400px
+
+---
+
 background-image: url(img/git_fork.png)
 background-size: 500px
 background-position: 50% 60%
 
 # 1.6 Fork
 
-## Fork: cópia de um repositório remoto para o seu GitHub
+## **Fork**: **copia** um repositório remoto para o **seu GitHub**
 
 ---
 
-background-image: url(img/github_fork.png), url(img/gif_fork.gif)
-background-size: 600px, 500px
-background-position: 50% 30%, 50% 95%
+background-image: url(img/github_fork_site.png)
+background-size: 800px
+background-position: 50% 70%
 
 # 1.6 Fork
 
@@ -216,23 +240,62 @@ background-position: 50% 30%, 50% 95%
 
 ---
 
-background-image: url(https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2017/12/gitHub.png)
-background-size: 700px
+background-image: url(img/gif_fork.gif)
+background-size: 600px
 background-position: 50% 80%
 
-# 1.7 Clone
+# 1.6 Fork
 
-## Agora, vamos **criar uma pasta** chamada `github`
+## Forken o repositório da disciplina para o GitHub de vocês
+
+###.center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
 
 ---
 
-background-image: url(https://www.battelleecology.org/sites/default/files/images/pre-institute-content/pre-institute2-git/git_clone.png)
-background-size: 450px
+background-image: url(img/git_init.png)
+background-size: 400px
 background-position: 50% 80%
 
-# 1.7 Clone
+# 1.7 Iniciando: clone ou init
 
-## Vamos fazer o download do **repositório remoto (GitHub)** para o **repositório local (notebook)**
+## **init**: **inicia o versionamento** de um repositório
+
+---
+
+background-image: url(img/git_clone.png)
+background-size: 500px
+background-position: 50% 80%
+
+# 1.7 Iniciando: clone ou init
+
+## **clone**: **copia** um repositório remoto para o **seu PC**
+
+---
+
+background-image: url(img/git_clone.png)
+background-size: 500px
+background-position: 50% 80%
+
+# 1.7 Iniciando: clone ou init
+
+## Vamos clonar o **repositório remoto (GitHub)** para o **repositório local (PC)**
+
+---
+
+background-image: url(img/general_directory.png)
+background-size: 350px
+background-position: 50% 90%
+
+# 1.7 Iniciando: clone ou init
+
+## **Criem uma pasta** chamada `github` no PC de vocês
+
+```{r eval=FALSE}
+".                               # raiz"
+"    ├── home/                   # home"
+"        ├── data/               # dados" 
+"            ├── github/         # todos os repositorios"
+```
 
 ---
 
@@ -242,148 +305,464 @@ class: inverse, middle, center
 
 ---
 
-background-image: url(https://www.battelleecology.org/sites/default/files/images/pre-institute-content/pre-institute2-git/Git-ForkScreenshot-clone.png)
+background-image: url(img/github_clone_zip.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.7 Clone
+# 1.7 Iniciando: clone ou init
 
-## 1. Download Diretamente do repositório remoto
+## 1. **Download diretamente** do repositório remoto no formato **.zip**
 
 ---
 
-background-image: url(https://miro.medium.com/max/1378/1*UwLa1LPpa1tI7wIAsMH67w.jpeg)
-background-size: 500px
-background-position: 50% 50%
+background-image: url(img/github_clone_git.png)
+background-size: 800px
+background-position: 50% 60%
 
-# Git e RStudio
+# 1.7 Iniciando: clone ou init
+
+## 2. Usar o **terminal** para clonar pelo **HTTPS do repositório**
+
+---
+
+background-image: url(img/git_rstudio.jpg)
+background-size: 500px
+background-position: 50% 80%
+
+# 1.7 Iniciando: clone ou init
+
+## 3. Usar o **RStudio** para clonar pelo **HTTPS do repositório**
 
 ---
 
 class: inverse, middle, center
 
-# Abram o RStudio
+# Vamos abrir o RStudio
 
 ---
 
-background-image: url(https://diegopftrindade.netlify.com/img/1newproj.png)
+background-image: url(img/rstudio.png)
 background-size: 800px
-background-position: 50% 60%
-
-# 1.7 Clone
-
-## Criar um projeto R com controle de versão
-
----
-
-background-image: url(https://diegopftrindade.netlify.com/img/2choosegit.png)
-background-size: 800px
-background-position: 50% 60%
-
-# 1.7 Clone
-
-## Escolher clonar repositório do GitHub
-
----
-
-background-image: url(https://diegopftrindade.netlify.com/img/3fillrepo.png)
-background-size: 750px
-background-position: 50% 95%
-
-# 1.7 Clone
-
-### Endereço do repositório remoto do GitHub de vocês 
-https://github.com/username/disciplina-geoprocessamento.git
-
-### Diretório da pasta `github`
-/home/mude/data/github
-
----
-
-background-image: url(https://www.earthdatascience.org/images/workshops/version-control/git-fork-clone-flow.png)
-background-size: 450px
 background-position: 50% 50%
 
-# 1.4 Funcionamento do controle de versão
+# RStudio
 
 ---
 
-background-image: url(https://www.battelleecology.org/sites/default/files/images/pre-institute-content/pre-institute2-git/git-add-commit.png)
+background-image: url(img/git_rstudio_01.png)
+background-size: 750px
+background-position: 50% 100%
+
+# Git e RStudio
+
+## Indicar o caminho do git para o RStudio
+
+- `Tools > Globla Options > Git/SVN`
+
+---
+
+background-image: url(img/git_rstudio_02.png)
+background-size: 450px
+background-position: 70% 85%
+
+# Git e RStudio
+
+## Marcar **Enable version...** e **Git executable**:
+
+- Windows: `C:/Program Files/Git/bin/git.exe`
+- Ubuntu: `/usr/bin/git`
+
+---
+
+background-image: url(img/git_rstudio_create_ssh_key.jpg)
 background-size: 500px
-background-position: 50% 90%
+background-position: 80% 85%
 
-# 1.7 Add e Commit
+# Git e RStudio
 
-## Add
-**Adicionar** as mudanças após edições (stage)
+## Criar uma chave SSH
 
-## Commit
-**Criar** uma nova versão no repositório local
+- `Create RSA key`
 
----
+- `View public key`
 
-background-image: url(https://www.battelleecology.org/sites/default/files/images/pre-institute-content/pre-institute2-git/git-add-commit.png)
-background-size: 500px
-background-position: 50% 90%
-
-# 1.8 Push
-
-## Push
-Enviar uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
+- `Copiar: Ctrl + C`
 
 ---
 
-background-image: url(https://www.battelleecology.org/sites/default/files/images/pre-institute-content/pre-institute2-git/git-add-commit.png)
-background-size: 500px
-background-position: 50% 90%
+background-image: url(img/github_ssh_key.png)
+background-size: 900px
+background-position: 50% 70%
 
-# 1.9 Pull
+# GitHub e RStudio
 
-## Pull
-Enviar uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+## No GitHub...
+
+- `Perfil > Settings > SSH and GPG keys > New SSH key`
 
 ---
 
-background-image: url(http://www.geo.uzh.ch/microsite/reproducible_research/post/rr-rstudio-git/img/Rstudio-GitShell.png)
-background-size: 600px
+background-image: url(img/github_ssh_key_add.png)
+background-size: 900px
+background-position: 50% 80%
+
+# GitHub e RStudio
+
+## No GitHub...
+
+- `Title: um nome qualquer`
+- `Key: colar (Ctrl + V)`
+- `Add SSH key`
+
+---
+
+class: inverse, middle, center
+
+# Tudo certo até aqui?
+
+---
+
+background-image: url(img/rstudio_git_01_newproj.png)
+background-size: 800px
+background-position: 50% 80%
+
+# 1.7 Iniciando: clone ou init
+
+## Criar um **Projeto R** com controle de versão
+
+`File > New Project > Version Control`
+
+---
+
+background-image: url(img/rstudio_git_02_choosegit.png)
+background-size: 800px
+background-position: 50% 80%
+
+# 1.7 Iniciando: clone ou init
+
+## Escolher **clonar repositório** do GitHub
+
+`Git`
+
+---
+
+background-image: url(img/rstudio_git_03_fillrepo.png)
+background-size: 750px
+background-position: 50% 80%
+
+# 1.7 Iniciando: clone ou init
+
+## Preencher:
+
+Repository URL: https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
+
+Create project as subdirectory of: /home/mude/data/github
+
+---
+
+background-image: url(img/general_terminal.webp)
+background-size: 300px
 background-position: 50% 90%
 
-# 1.10 Controle de versão no RStudio
+# 1.7 Iniciando: clone ou init
 
-## RStudio
+## Terminal
 
-### Configurar o nome de usuário, e-mail e senha
+### Na aba **Terminal** do RStudio, digite:
 
-```{bash, eval = FALSE}
-git config --global user.name "seu_usuario"
-git config --global user.email "seu_email"
-eval $(ssh-agent -s)
-ssh-add ~/.ssh/id_rsa # digite a senha
+```{bash eval=FALSE}
+# terminal
+git clone https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
 ```
 
 ---
 
-background-image: url(https://saagie.zendesk.com/hc/article_attachments/360003474399/image2018-12-18_16-46-24.jpg)
-background-size: 400px
-background-position: 50% 80%
+background-image: url(img/git_config.jpg)
+background-size: 450px
+background-position: 50% 90%
 
-# 1.10 Controle de versão no RStudio
+# 1.8 Configurando: config
 
-## RStudio
+## Precisamos **definir as configurações** do git
 
-### Criar o SSH
+```{bash eval=FALSE}
+# terminal
+git config --list
+git config --global user.name "meu nome"
+git config --global user.email "email@dominio.com"
+git config --list
+```
 
 ---
 
-background-image: url(http://infoheap.com/wp-content/uploads/2015/12/github-ssh-add-key-interface.png)
-background-size: 600px
+background-image: url(img/git_add_commit.png)
+background-size: 800px
+background-position: 50% 50%
+
+# Fluxo de trabalho com o git e GitHub
+
+---
+
+background-image: url(img/git_workflow.svg)
+background-size: 800px
+background-position: 50% 50%
+
+# Fluxo de trabalho com o git e GitHub
+
+## Todos os **comandos em SHELL** para usar o git
+
+---
+
+background-image: url(img/general_bloco_notas.png)
+background-size: 250px
 background-position: 50% 80%
 
-# 1.10 Controle de versão no RStudio
+# Vamos criar um arquivo no diretório
 
-## RStudio
+## Usando a aba **Terminal** do RStudio
 
-### Adicionar o SSH ao GitHub
+```{bash eval=FALSE}
+# terminal
+cat > arquivo_teste.txt
+teste
+# Ctrl + D - fechar
+```
+
+---
+
+background-image: url(img/git_state_files.png)
+background-size: 550px
+background-position: 50% 90%
+
+# Git Status dos arquivos
+
+## Estados de um arquivo:
+
+1. **Untracked**: não registrou o arquivo criado
+1. **Tracked**: registrou o arquivo criado
+1. **Staged**: os dados são armazenados com segurança em seu banco de dados local
+1. **Committed**: os dados são armazenados com segurança em seu banco de dados local
+1. **Modified**: os dados são armazenados com segurança em seu banco de dados local
+
+---
+
+background-image: url(img/git_states.png)
+background-size: 800px
+background-position: 50% 90%
+
+# Git Status
+
+## Estados do repositório local do git:
+
+1. **Modified**: você alterou os arquivos
+1. **Staged**: você marcou um arquivo modificado para ir para o commit
+1. **Committed**: os dados são armazenados com segurança em seu banco de dados local (.git)
+
+---
+
+background-image: url(img/git_add_commit_flow.png)
+background-size: 700px
+background-position: 50% 90%
+
+# Git Sections
+
+## Seções de um repositório git:
+
+1. **Working directory**: 
+1. **Staging Area**: 
+1. **Repository**: 
+
+---
+
+background-image: url(img/git_add_commit_flow.png)
+background-size: 600px
+background-position: 50% 70%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **status**: **mostra** o status do repositório e dos arquivos
+
+```{bash eval=FALSE}
+```
+
+---
+
+background-image: url(img/git_add_commit_flow.png)
+background-size: 600px
+background-position: 50% 70%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **add**: **adiciona** mudanças após edições (staging area)
+
+```{bash eval=FALSE}
+# terminal
+git add -Av
+```
+
+---
+
+background-image: url(img/git_add_commit_flow.png)
+background-size: 600px
+background-position: 50% 70%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **status**: **mostra** o estatus do repositório
+
+```{bash eval=FALSE}
+```
+
+---
+
+background-image: url(img/git_add_commit_flow.png)
+background-size: 600px
+background-position: 50% 70%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **commit**: **armazena as mudanças** efetuadas e **descreve** o que foi alterado (repository)
+
+```{bash eval=FALSE}
+```
+
+---
+
+background-image: url(img/git_add_commit_flow.png)
+background-size: 600px
+background-position: 50% 70%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **status**: **mostra** o estatus do repositório
+
+```{bash eval=FALSE}
+```
+
+---
+
+background-image: url(img/git_add_commit.png)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **log**: **mostra as mudanças** que foram efetuadas: commit, autor e data
+
+```{bash eval=FALSE}
+```
+
+---
+
+background-image: url(img/git_add_commit.png)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **reset**: **desfazer alterações** no diretório
+
+```{bash eval=FALSE}
+```
+
+---
+
+background-image: url(img/git_add_commit.png)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **reset --soft**: **desfazer alterações** no diretório
+
+```{bash eval=FALSE}
+```
+
+---
+
+background-image: url(img/git_add_commit.png)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **reset --mixed**: **desfazer alterações** no diretório
+
+```{bash eval=FALSE}
+```
+
+---
+
+background-image: url(img/git_add_commit.png)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.9 Básico: status, add, commit, log e reset
+
+## **reset --hard**: **desfazer alterações** no diretório
+
+```{bash eval=FALSE}
+```
+
+---
+
+background-image: url(img/git_branch)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.10 Ramificações: branch, checkout e merge
+
+## branch: Enviar uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
+
+---
+
+background-image: url(img/git_branch)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.10 Ramificações: branch, checkout e merge
+
+## checkout: Enviar uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
+
+---
+
+background-image: url(img/git_branch)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.10 Ramificações: branch, checkout e merge
+
+## merge: Enviar uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
+
+---
+
+background-image: url(img/git_branch)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.11 Remoto: fetch, push, pull
+
+## fetch: enviar uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+
+---
+
+background-image: url(img/git_branch)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.11 Remoto: fetch, push, pull
+
+## push: enviar uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+
+---
+
+background-image: url(img/git_branch)
+background-size: 500px
+background-position: 50% 90%
+
+# 1.11 Remoto: fetch, push, pull
+
+## pull: enviar uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
 
 ---
 
@@ -391,9 +770,9 @@ background-image: url(https://diegopftrindade.netlify.com/img/8verscontrol.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.10 Controle de versão no RStudio
+# 1.12 Pull request
 
-## RStudio
+## Pull request: 
 
 ---
 
@@ -414,6 +793,45 @@ background-position: 50% 60%
 # 1.10 Controle de versão no RStudio
 
 ## RStudio
+
+---
+
+background-image: url(img/cheatsheet_git.jpg)
+background-size: 350px
+background-position: 50% 50%
+
+# Mais informações
+
+## Git Cheat Sheets
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://github.github.com/training-kit/downloads/pt_BR/github-git-cheat-sheet.pdf
+
+---
+
+background-image: url(img/package_usethis.png)
+background-size: 200px
+background-position: 85% 65%
+
+# Mais informações
+
+## Pacote [usethis](https://usethis.r-lib.org/)
+
+#### Comandos diretos no R para versionar um repositório
+
+```{r,eval=FALSE}
+install.packages("usethis")
+devtools::install_github("r-lib/usethis")
+```
+
+<br><br><br><br><br>
+
+## Material
+
+#### [Happy Git and GitHub for the useR](https://happygitwithr.com/) - Jenny Bryan
+
+#### [Primeiros passos utilizando o Git e GitHub no RStudio](https://beatrizmilz.github.io/RLadies-Git-RStudio-2019) - Beatriz Milz
 
 ---
 
