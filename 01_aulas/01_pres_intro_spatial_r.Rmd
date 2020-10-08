@@ -879,8 +879,8 @@ git commit -m "2020-10-19"
 
 ---
 
-background-image: url(img/git_merge.png)
-background-size: 800px
+background-image: url(img/git_branch.png)
+background-size: 500px
 background-position: 50% 70%
 
 # 1.10 Ramificações: branch, switch e merge
@@ -893,13 +893,13 @@ git switch master
 
 ---
 
-background-image: url(img/git_branch)
-background-size: 500px
-background-position: 50% 90%
+background-image: url(img/git_merge.png)
+background-size: 800px
+background-position: 50% 70%
 
 # 1.10 Ramificações: branch, switch e merge
 
-## merge: Enviar uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
+## **merge**: **mescla** as **linhas de desenvolvimento independentes** em um **único branch**
 
 ---
 
