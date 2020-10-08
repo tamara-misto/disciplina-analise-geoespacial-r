@@ -651,6 +651,26 @@ Acabo de inserir um edição ao meu arquivo teste.txt
 
 ---
 
+background-image: url(img/git_states.png)
+background-size: 600px
+background-position: 50% 90%
+
+# 1.9 Básico: status, add, commit, e log
+
+## **status**: **mostra** o status do repositório e dos arquivos
+
+```{bash eval=FALSE}
+git status
+```
+```{bash}
+## Changes not staged for commit:
+##   (use "git add <file>..." to update what will be committed)
+##   (use "git restore <file>..." to discard changes in working directory)
+##         modified:   teste.txt
+```
+
+---
+
 background-image: url(img/git_add_commit_flow.png)
 background-size: 600px
 background-position: 50% 90%
