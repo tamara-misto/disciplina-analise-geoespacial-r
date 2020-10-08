@@ -720,9 +720,9 @@ background-position: 50% 90%
 git commit -m "2020-10-19 add teste.txt"
 ```
 ```{bash}
-## Changes to be committed:
-##   (use "git restore --staged <file>..." to unstage)
-##         new file:   teste.txt
+## [master 06211a1] 2020-10-19 add teste.txt
+##  1 file changed, 1 insertion(+)
+##  create mode 100644 teste.txt
 ```
 
 ---
