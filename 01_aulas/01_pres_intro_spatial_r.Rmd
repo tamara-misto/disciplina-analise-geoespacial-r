@@ -862,6 +862,37 @@ git branch
 
 ---
 
+background-image: url(img/general_bloco_notas.png)
+background-size: 250px
+background-position: 50% 80%
+  
+# Vamos criar um arquivo no diretório
+  
+## Usando a aba **Terminal** do RStudio
+  
+```{bash eval=FALSE}
+# terminal
+touch teste_branch1.txt
+git add -Av
+git commit -m "2020-10-19"
+```
+
+---
+
+background-image: url(img/git_merge.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 1.10 Ramificações: branch, switch e merge
+
+## **switch**: **troca a raficação** de edição
+
+```{bash eval=FALSE}
+git switch master
+```
+
+---
+
 background-image: url(img/git_branch)
 background-size: 500px
 background-position: 50% 90%
