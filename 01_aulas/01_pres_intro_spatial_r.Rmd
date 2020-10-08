@@ -515,7 +515,7 @@ background-position: 50% 50%
 
 class: inverse, middle, center
 
-# Agora prestem atenção...
+# Agora prestem atenção porque complica... =]
 
 ---
 
@@ -643,7 +643,7 @@ background-position: 50% 80%
 
 # Vamos editar o arquivo no diretório
 
-## Usando a aba **Files** do RStudio
+## Usando a aba **Files** do RStudio abra e edite o arquivo **teste.txt**, inserindo:
 
 ```{bash eval=FALSE}
 Acabo de inserir um edição ao meu arquivo teste.txt
@@ -710,26 +710,37 @@ git status
 
 background-image: url(img/git_add_commit_flow.png)
 background-size: 600px
-background-position: 50% 70%
+background-position: 50% 90%
 
 # 1.9 Básico: status, add, commit, e log
 
-## **commit**: **armazena as mudanças** efetuadas e **descreve** o que foi alterado (repository)
+## **commit**: **armazena as mudanças** com uma **descrição** , criando uma **versão do repositório** (repository)
 
 ```{bash eval=FALSE}
+git commit -m "2020-10-19 add teste.txt"
+```
+```{bash}
+## Changes to be committed:
+##   (use "git restore --staged <file>..." to unstage)
+##         new file:   teste.txt
 ```
 
 ---
 
-background-image: url(img/git_add_commit_flow.png)
+background-image: url(img/git_states.png)
 background-size: 600px
-background-position: 50% 70%
+background-position: 50% 90%
 
 # 1.9 Básico: status, add, commit, e log
 
 ## **status**: **mostra** o estatus do repositório
 
 ```{bash eval=FALSE}
+```
+```{bash}
+## Changes to be committed:
+##   (use "git restore --staged <file>..." to unstage)
+##         new file:   teste.txt
 ```
 
 ---
@@ -740,9 +751,15 @@ background-position: 50% 90%
 
 # 1.9 Básico: status, add, commit, e log
 
-## **log**: **mostra as mudanças** que foram efetuadas: commit, autor e data
+## **log**: **registro** de todo o histórico de commits (tags)
 
 ```{bash eval=FALSE}
+git log
+```
+```{bash}
+## Changes to be committed:
+##   (use "git restore --staged <file>..." to unstage)
+##         new file:   teste.txt
 ```
 
 ---
