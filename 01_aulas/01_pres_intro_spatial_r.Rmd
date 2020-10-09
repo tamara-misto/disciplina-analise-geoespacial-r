@@ -43,6 +43,7 @@ background-position: 100% 110%
 1. Ramificações: branch, switch e merge
 1. Remoto: push e pull
 1. Pull request
+1. Interface Gráfica RStudio
 
 ---
 
@@ -349,7 +350,7 @@ background-position: 50% 50%
 
 ---
 
-background-image: url(img/git_rstudio_01.png)
+background-image: url(img/rstudio_git_config01.png)
 background-size: 750px
 background-position: 50% 100%
 
@@ -361,7 +362,7 @@ background-position: 50% 100%
 
 ---
 
-background-image: url(img/git_rstudio_02.png)
+background-image: url(img/rstudio_git_config02.png)
 background-size: 450px
 background-position: 70% 85%
 
@@ -374,7 +375,7 @@ background-position: 70% 85%
 
 ---
 
-background-image: url(img/git_rstudio_create_ssh_key.jpg)
+background-image: url(img/rstudio_git_config03.jpg)
 background-size: 500px
 background-position: 80% 85%
 
@@ -422,7 +423,7 @@ class: inverse, middle, center
 
 ---
 
-background-image: url(img/rstudio_git_01_newproj.png)
+background-image: url(img/rstudio_git_create01.png)
 background-size: 800px
 background-position: 50% 80%
 
@@ -434,7 +435,7 @@ background-position: 50% 80%
 
 ---
 
-background-image: url(img/rstudio_git_02_choosegit.png)
+background-image: url(img/rstudio_git_create02.png)
 background-size: 800px
 background-position: 50% 80%
 
@@ -446,7 +447,7 @@ background-position: 50% 80%
 
 ---
 
-background-image: url(img/rstudio_git_03_fillrepo.png)
+background-image: url(img/rstudio_git_create01.png)
 background-size: 750px
 background-position: 50% 80%
 
@@ -477,9 +478,9 @@ git clone https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.gi
 
 ---
 
-background-image: url(img/git_config.jpg)
-background-size: 450px
-background-position: 50% 90%
+background-image: url(img/git_config.png)
+background-size: 830px
+background-position: 50% 80%
 
 # 1.8 Configurando: config
 
@@ -998,7 +999,7 @@ Branch 'master' set up to track remote branch 'master' from 'origin'.
 
 ---
 
-background-image: url(img/git_push_force2.jpg)
+background-image: url(img/git_push_force01.jpg)
 background-size: 500px
 background-position: 50% 70%
 
@@ -1008,7 +1009,7 @@ background-position: 50% 70%
 
 ---
 
-background-image: url(img/git_push_force1.jpg)
+background-image: url(img/git_push_force02.jpg)
 background-size: 450px
 background-position: 50% 70%
 
@@ -1044,37 +1045,97 @@ class: inverse, middle, center
 
 ---
 
-background-image: url(https://diegopftrindade.netlify.com/img/8verscontrol.png)
-background-size: 800px
-background-position: 50% 60%
+background-image: url(img/rstudio_git_pane01.png)
+background-size: 700px
+background-position: 50% 80%
 
-# 1.13 Controle de versão no RStudio
+# 1.13 Interface Gráfica RStudio
 
-## Interface Gráfica RStudio
+## Git Panel
 
-RStudio oferece um cliente Git na aba "Git"
+### RStudio tem um **cliente Git** na aba "Git"
 
-Esse painel somente aparece em projetos que estejam versionados com git
-
----
-
-background-image: url(https://diegopftrindade.netlify.com/img/9changes.png)
-background-size: 800px
-background-position: 50% 60%
-
-# 1.13 Controle de versão no RStudio
-
-## RStudio
+### Esse painel aparece em **projetos** que estejam **versionados com git**
 
 ---
 
-background-image: url(https://diegopftrindade.netlify.com/img/commit.png)
+background-image: url(img/rstudio_git_pane02.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.13 Controle de versão no RStudio
+# 1.13 Interface Gráfica RStudio
 
-## RStudio
+## Git Panel - Detalhes
+
+---
+
+background-image: url(img/rstudio_git_pane03.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 1.13 Interface Gráfica RStudio
+
+## Git Panel - Branches
+
+---
+
+background-image: url(img/rstudio_git_pane04.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 1.13 Interface Gráfica RStudio
+
+## Git Panel - Diff - Changes: Revisar mudanças
+
+---
+
+background-image: url(img/rstudio_git_pane05.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 1.13 Interface Gráfica RStudio
+
+## Git Panel - Diff - History: Histórico de mudanças
+
+---
+
+background-image: url(img/rstudio_git_pane06.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 1.13 Interface Gráfica RStudio
+
+## Git pane - Staged
+
+---
+
+background-image: url(img/rstudio_git_pane07.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 1.13 Interface Gráfica RStudio
+
+## Git pane - Commit
+
+---
+
+background-image: url(img/rstudio_git_pane08.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 1.13 Interface Gráfica RStudio
+
+## Git pane - Commit
+
+---
+
+background-image: url(img/rstudio_git_pane09.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 1.13 Interface Gráfica RStudio
+
+## Git pane - Push e Pull
 
 ---
 
@@ -1093,27 +1154,35 @@ background-position: 50% 50%
 ---
 
 background-image: url(img/package_usethis.png)
-background-size: 200px
-background-position: 85% 65%
+background-size: 250px
+background-position: 50% 85%
 
 # Mais informações
 
 ## Pacote [usethis](https://usethis.r-lib.org/)
 
-#### Comandos diretos no R para versionar um repositório
+### Comandos direto no R para criar e versionar um repositório
 
 ```{r,eval=FALSE}
 install.packages("usethis")
 devtools::install_github("r-lib/usethis")
 ```
 
-<br><br><br><br><br>
+---
+
+# Mais informações
 
 ## Material
 
-#### [Happy Git and GitHub for the useR](https://happygitwithr.com/) - Jenny Bryan
+### [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon e Ben Straub
 
-#### [Primeiros passos utilizando o Git e GitHub no RStudio](https://beatrizmilz.github.io/RLadies-Git-RStudio-2019) - Beatriz Milz
+### [Happy Git and GitHub for the useR](https://happygitwithr.com/) - Jenny Bryan
+
+### [Primeiros passos utilizando o Git e GitHub no RStudio](https://beatrizmilz.github.io/RLadies-Git-RStudio-2019) - Beatriz Milz
+
+### [Oh Shit, Git!?!](https://ohshitgit.com/pt_BR) - Katie Sylor-Miller
+
+### [Dangit, Git!?!](https://dangitgit.com/pt_BR) - Katie Sylor-Miller
 
 ---
 
