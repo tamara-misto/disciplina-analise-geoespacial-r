@@ -50,18 +50,16 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Pull request
 1. Interface Gráfica RStudio
 
-### 2 Linguagem R, aplicações e material (segunda)
+### 2 Funcionamento da linguagem R (segunda)
 1. Linguagem R
 1. Linguagem R vs IDE RStudio
 1. Aplicações da linguagem R
-1. Apostilas, sites e livros
-
-### 3 Funcionamento da linguagem R (segunda)
-1. IDE RStudio
+1. Principal material de estudo
+1. IDE RStudio e Projeto R
 1. Editor/Roteiro (script)
 1. Comentários (#)
 1. Atribuição (<-)
-1. Objetos
+1. Objetos e operadores
 1. Funções
 1. Pacotes
 1. Ambiente (environment/workspace)
@@ -69,7 +67,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Citações
 1. Principais erros
 
-### 4 Estrutura e manejo de dados na linguagem R (segunda)
+### 3 Estrutura e manejo de dados na linguagem R (segunda)
 1. Atributos dos objetos
 1. Modos dos objetos (numeric, character e logical)
 1. Estrutura dos objetos (vector, factor, matrix, data frame e list)
@@ -81,7 +79,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Conferir e manejar dados importados
 1. Exportar dados
 
-### 5 Introdução ao tidyverse (terça)
+### 4 Introdução ao tidyverse (terça)
 1. tidyverse
 1. readr
 1. readxl
@@ -94,7 +92,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. lubridate
 1. purrr
 
-### 6 Estrutura e fonte de dados geoespaciais (quarta)
+### 5 Estrutura e fonte de dados geoespaciais (quarta)
 1. Geoprocessamento (cartografia, GPS, sensoriamento remoto e SIG)
 1. Cartografia (escala, sistemas de coordenadas e Datum)
 1. GPS (Global Positioning System)
@@ -109,7 +107,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Banco de dados geoespaciais (geopackage - .gpkg)
 1. Repositórios de dados geoespaciais (IBGE, FBDS, MapBiomas, GeoBank, GADM, Natural Earth, USGS, SRTM, WorldClim, EarthEnv)
 
-### 7 Estrutura e manejo de dados geoespaciais (vetor) (quarta-quinta)
+### 6 Estrutura e manejo de dados geoespaciais (vetor) (quarta-quinta)
 1. Material e pacotes para análise de dados espacias
 1. Vetor: pacote sf
 1. Importar dados vetoriais
@@ -121,7 +119,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Operações geométricas de dados vetoriais
 1. Operações espaciais de dados vetoriais
 
-### 8 Estrutura e manejo de dados geoespaciais (raster) (quinta-sexta)
+### 7 Estrutura e manejo de dados geoespaciais (raster) (quinta-sexta)
 1. Raster: pacote raster
 1. Importar dados matriciais
 1. Tipos de dados matriciais
@@ -132,7 +130,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Operação espaciais de dados matriciais
 1. Vetor para raster: pacote fasterize
 
-### 9 Produção de mapas (sexta)
+### 8 Produção de mapas (sexta)
 1. Elaboração de mapas (ggplot e tmap)
 
 ### Referências
