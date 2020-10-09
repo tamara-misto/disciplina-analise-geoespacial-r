@@ -727,6 +727,16 @@ git commit -m "2020-10-19 add teste.txt"
 
 ---
 
+background-image: url(img/git_commit_message.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 1.9 Básico: status, add, commit, e log
+
+## ATENÇÃO!
+
+---
+
 background-image: url(img/git_states.png)
 background-size: 600px
 background-position: 50% 90%
@@ -921,7 +931,7 @@ git merge branch-1
 ---
 
 background-image: url(img/gif_git_merge.gif)
-background-size: 700px
+background-size: 600px
 background-position: 50% 60%
 
 # 1.10 Ramificações: branch, switch e merge
@@ -932,7 +942,7 @@ background-position: 50% 60%
 
 background-image: url(img/git_merge_warning.png)
 background-size: 500px
-background-position: 50% 60%
+background-position: 50% 70%
 
 # 1.10 Ramificações: branch, switch e merge
 
@@ -957,8 +967,14 @@ background-position: 50% 60%
 ---
 
 background-image: url(img/git_push.jpg)
-background-size: 500px
+background-size: 700px
 background-position: 50% 90%
+
+# 1.11 Remoto: push e pull
+
+## **push**: **empurrar** uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+
+---
 
 # 1.11 Remoto: push e pull
 
@@ -968,14 +984,43 @@ background-position: 50% 90%
 git push -u origin master
 ```
 ```{bash eval=FALSE}
-## teste_branch1.txt                     |   0
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 230 bytes | 230.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
+   938e7b2..6ba8f7f  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
 ```
 
 ---
 
-background-image: url(img/git_branch)
+background-image: url(img/git_push_force2.jpg)
 background-size: 500px
-background-position: 50% 90%
+background-position: 50% 70%
+
+# 1.11 Remoto: push e pull
+
+## CUIDADO!
+
+---
+
+background-image: url(img/git_push_force1.jpg)
+background-size: 450px
+background-position: 50% 70%
+
+# 1.11 Remoto: push e pull
+
+## CUIDADO!
+
+---
+
+background-image: url(img/git_pull.png)
+background-size: 800px
+background-position: 50% 60%
 
 # 1.11 Remoto: push e pull
 
@@ -983,13 +1028,33 @@ background-position: 50% 90%
 
 ---
 
-background-image: url(https://diegopftrindade.netlify.com/img/8verscontrol.png)
+background-image: url(img/git_pull_request.png)
 background-size: 800px
 background-position: 50% 60%
 
 # 1.12 Pull request
 
-## Pull request: 
+## **Pull request**: solicita que o **repositório de destino** (remoto) aceite ('puxe') suas **alterações**
+
+---
+
+class: inverse, middle, center
+
+# Interface Gráfica RStudio
+
+---
+
+background-image: url(https://diegopftrindade.netlify.com/img/8verscontrol.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 1.13 Controle de versão no RStudio
+
+## Interface Gráfica RStudio
+
+RStudio oferece um cliente Git na aba "Git"
+
+Esse painel somente aparece em projetos que estejam versionados com git
 
 ---
 
@@ -997,7 +1062,7 @@ background-image: url(https://diegopftrindade.netlify.com/img/9changes.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.10 Controle de versão no RStudio
+# 1.13 Controle de versão no RStudio
 
 ## RStudio
 
@@ -1007,7 +1072,7 @@ background-image: url(https://diegopftrindade.netlify.com/img/commit.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.10 Controle de versão no RStudio
+# 1.13 Controle de versão no RStudio
 
 ## RStudio
 
