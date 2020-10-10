@@ -58,7 +58,6 @@ background-position: 85% 75%
 class: clear
 background-image: url(img/package_tidyverse.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -106,8 +105,8 @@ background-position: 50% 60%
 
 ---
 
-background-image: url(img/tidyverse_flowchart.png)
-background-size: 700px
+background-image: url(img/tidyverse_flow.png)
+background-size: 650px
 background-position: 50% 60%
 
 # 4.1 tidyverse
@@ -117,12 +116,12 @@ background-position: 50% 60%
 ---
 
 background-image: url(img/general_messy_data.png)
-background-size: 700px
-background-position: 50% 50%
+background-size: 600px
+background-position: 50% 60%
 
 # 4.1 tidyverse
 
-## Objetivo
+## Objetivo: te ajudar na luta contra os dados
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -506,7 +505,7 @@ background-position: 50% 80%
 
 class: inverse, center, middle
 
-# Mas antes, uma outra forma de indicar diretórios
+# Mas antes, uma outra forma de definir diretórios
 
 ---
 
@@ -518,7 +517,71 @@ background-size: 700px
 
 # here
 
+## Constrói caminhos para os arquivos do seu projeto
 
+<br>
+
+### - **Mudar o diretório**: tende à ser chato demais...
+### - **Fragilidade**: conectado exatamente a lugar e a momento (reprodutibilidade)
+### - **Subdiretóios**: facilita o trabalho de definir subpastas para importar ou exportar dados
+
+---
+
+background-image: url(img/here.png)
+background-size: 400px
+background-position: 50% 90%
+
+# here
+
+## Pacote
+```{r eval=FALSE}
+# install
+install.packages("here")
+
+# library(here)
+library(here)
+```
+
+---
+
+background-image: url(img/here.png)
+background-size: 400px
+background-position: 50% 90%
+
+# here
+
+## Usa diversos critérios para encontrar o diretório raiz
+
+```{r eval=FALSE}
+# confer
+here::here()
+
+# create a .here file
+here::set_here()
+```
+
+---
+
+class: inverse, center, middle
+
+# Agora sim, vamos importar os dados usando o here::here()
+
+---
+
+# readr
+
+## **Formato .csv**
+```{r}
+# import sites
+si <- readr::read_csv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.csv"))
+si
+```
+
+---
+
+class: inverse, center, middle
+
+# Ou não...
 
 ---
 
@@ -527,12 +590,13 @@ background-size: 700px
 ## **Formato .csv**
 ```{r eval=FALSE}
 # import sites
-si <- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
+si <- readr::read_csv("./03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
 si
 ```
 
 ```{r echo=FALSE}
-si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
+# import sites
+si <- readr::read_csv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.csv"))
 si
 ```
 
@@ -541,14 +605,9 @@ si
 # 4.3 readr
 
 ## **Formato .txt**
-```{r eval=FALSE}
+```{r}
 # import sites
-si <- readr::read_tsv("ATLANTIC_AMPHIBIANS_sites.txt")
-si
-```
-
-```{r echo=FALSE}
-si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
+si <- readr::read_tsv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.txt"))
 si
 ```
 
@@ -614,54 +673,35 @@ library("writexl")
 
 ## **Formato .xlsx**
 
-```{r eval=FALSE}
-# diretorio
-setwd("/home/mude/data/github/disciplina-analise-geoespacial/03_dados")
-```
+### O argumento `sheet` define a aba a ser importada (número ou nome)
 
-```{r eval=FALSE}
+```{r}
 # import sites
-si <- readxl::read_xlsx("ATLANTIC_AMPHIBIANS_sites.xlsx")
-si
-```
-
-```{r echo=FALSE}
-si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
+si <- readxl::read_xlsx(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
+                        sheet = 1)
 si
 ```
 
 ---
 
+background-image: url(img/gif_frog.gif)
+background-size: 200px
+background-position: 50% 100%
+
 # Importar os dados
 
 ## **Formato .csv**
 
-<br>
-
-### Matriz de locais
-```{r eval=FALSE}
+### Matriz de localidades
+```{r}
 # import sites
-si <- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
-si
+si <- readr::read_csv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.csv"))
 ```
-
-<br>
 
 ### Matriz de espécies
-```{r eval=FALSE}
+```{r}
 # import species
-sp <- readr::read_csv("ATLANTIC_AMPHIBIANS_species.csv")
-sp
-```
-
-```{r,include=FALSE}
-si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
-si
-```
-
-```{r,include=FALSE}
-sp <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_species.csv")
-sp
+sp <- readr::read_csv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_species.csv"))
 ```
 
 ---
@@ -669,11 +709,10 @@ sp
 class: clear
 background-image: url(img/package_tibble.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
-# 3.5 tibble
+# 4.5 tibble
 
 ### O tibble (classe *tbl_df*) é um **tipo especial de data frame**
 
@@ -695,21 +734,17 @@ background-position: 50% 50%
 
 ---
 
-# 3.5 tibble
+# 4.5 tibble
 
 ## Descrição dos modos das colunas através da função `glimpse()` - "espiar os dados"
 
-```{r, include = FALSE}
-si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
-```
---
 ```{r}
 tibble::glimpse(si)
 ```
 
 ---
 
-# 3.5 tibble
+# 4.5 tibble
 
 ## tibble vs data.frame
 
@@ -719,14 +754,14 @@ df <- data.frame(ch = c("a", "b"), nu = 1:2)
 str(df)
 ```
 --
-```{r, message = FALSE}
+```{r message=FALSE}
 tb <- tibble::tibble(ch = c("a", "b"), nu = 1:2)
 tibble::glimpse(tb)
 ```
 
 ---
 
-# 3.5 tibble
+# 4.5 tibble
 
 ## tibble vs data.frame
 
@@ -749,7 +784,7 @@ class(tb_ch)
 
 ---
 
-# 3.5 tibble
+# 4.5 tibble
 
 ## tibble vs data.frame
 
@@ -764,16 +799,9 @@ tb$c
 
 ---
 
-class: clear, inverse, center, middle
-
-# Dúvidas?
-
----
-
 class: clear
 background-image: url(img/package_tidyr.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -781,7 +809,7 @@ background-image: url(img/cheatsheet_tidyr.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## Data Import Cheatsheet
 
@@ -791,7 +819,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ### Os conjuntos de dados **tidy** (organizados) são fáceis de manipular, modelar e visualizar
 
@@ -812,11 +840,13 @@ background-image: url(img/tidyr_data.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.6 tidyr
+# 4.6 tidyr
+
+## Conjuntos de dados 'tidy'
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## Funções
 
@@ -830,9 +860,9 @@ background-position: 50% 50%
 
 #### **5 replace_na()**: substitui NA
 
-#### **6 spread() => pivot_wider()**: long para wide
+#### **6 pivot_wider()**: long para wide
 
-#### **7 gather() => pivot_longer()**: wide para long
+#### **7 pivot_longer()**: wide para long
 
 ---
 
@@ -840,15 +870,15 @@ background-image: url(img/tidyr_unite.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## **1 unite**
 
-### unir as colunas latirude e longitude separadas por uma vírgula
+### Unir as colunas latirude e longitude separadas por uma vírgula
 ```{r}
 # sem pipes
 si_unite <- tidyr::unite(si, "lat_lon", latitude:longitude, sep = ",")
@@ -857,11 +887,11 @@ si_unite$lat_lon
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## **1 unite**
 
-### unir as colunas latirude e longitude separadas por uma vírgula
+### Unir as colunas latirude e longitude separadas por uma vírgula
 ```{r}
 # com pipes
 si_unite <- si %>% 
@@ -875,15 +905,15 @@ background-image: url(img/tidyr_separate.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## **2 separate**
 
-### separar os dados de "period" em quatro colunas dos seus valores
+### Separar os dados de "period" em quatro colunas dos seus valores
 ```{r}
 si_separate <- si %>% 
   tidyr::separate("period", c("mo", "da", "tw", "ni"), remove = FALSE)
@@ -892,11 +922,11 @@ si_separate[, c(1, 9:13)]
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## **3 separate_rows()**
 
-### separar os dados de "period" na mesma coluna e repetindo os valores
+### Separar os dados de "period" na mesma coluna e repetindo os valores
 ```{r}
 si_separate_row <- si %>% 
   tidyr::separate_rows("period")
@@ -905,11 +935,11 @@ si_separate_row[, c(1, 9:13)]
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## **4 drop_na()**
 
-### remove as linhas com NA de todas as colunas
+### Remove as linhas com NA de todas as colunas
 ```{r}
 si_drop_na <- si %>% 
   tidyr::drop_na()
@@ -918,10 +948,11 @@ si_drop_na
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## **4 drop_na()**
-### remove as linhas com NA da coluna "active_methods"
+
+### Remove as linhas com NA da coluna "active_methods"
 ```{r}
 si_drop_na <- si %>% 
   tidyr::drop_na(active_methods)
@@ -930,11 +961,11 @@ si_drop_na
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## **5 replace_na()**
 
-### substituir os NAs da coluna "active_methods" por 0 
+### Substituir os NAs da coluna "active_methods" por 0 
 ```{r}
 si_replace_na <- si %>% 
   tidyr::replace_na(list(active_methods = 0))
@@ -943,23 +974,24 @@ si_replace_na
 
 ---
 
-background-image: url(img/tidyr_spread_pivot_wider.png)
+background-image: url(img/tidyr_pivot_wider.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
-## **6 spread()** 
+## **6 pivot_wider()** 
 
-Long para wide
+### Long para wide
 
-1. **key**: variável categórica que irá definir os nomes das colunas
-2. **value**: variável numérica que irá preencher os dados
-3. **fill**: valor para preencher os NAs
+1. **id_cols**: variável id
+2. **names_from**: variável categórica que irá definir os nomes das colunas
+3. **values_from**: variável numérica que irá preencher os dados
+4. **values_fill**: valor para preencher os NAs
 
 ```{r}
 si[, c("id", "record", "species_number")]
@@ -967,113 +999,57 @@ si[, c("id", "record", "species_number")]
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
-## **6 spread()** 
+## **6 pivot_wider()** 
 
-Long para wide
+### Long para wide
 
-1. **key**: variável categórica que irá definir os nomes das colunas
-2. **value**: variável numérica que irá preencher os dados
-3. **fill**: valor para preencher os NAs
+1. **id_cols**: variável id
+2. **names_from**: variável categórica que irá definir os nomes das colunas
+3. **values_from**: variável numérica que irá preencher os dados
+4. **values_fill**: valor para preencher os NAs
 
 ```{r}
-si_spread <- si[, c("id", "state_abbreviation", "species_number")] %>% 
-  tidyr::spread(key = state_abbreviation, value = species_number, fill = 0)
-si_spread
+si_wide <- si %>% 
+  tidyr::pivot_wider(id_cols = id, 
+                     names_from = state_abbreviation,
+                     values_from = species_number, 
+                     values_fill = list(species_number = 0))
+si_wide
 ```
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
-## **6 spread()** 
+## **6 pivot_wider()** 
 
-Long para wide
+### Long para wide
 
-1. **key**: variável categórica que irá definir os nomes das colunas
-2. **value**: variável numérica que irá preencher os dados
-3. **fill**: valor para preencher os NAs
+1. **id_cols**: variável id
+2. **names_from**: variável categórica que irá definir os nomes das colunas
+3. **values_from**: variável numérica que irá preencher os dados
+4. **values_fill**: valor para preencher os NAs
 
 ```{r}
 sp[1:1000, c("id", "species", "individuals")]
-
 ```
 
 ---
 
-# 3.6 tidyr
+# 4.6 tidyr
 
-## **6 spread()** 
+## **6 pivot_wider()** 
 
-Long para wide
+### Long para wide
 
-1. **key**: variável categórica que irá definir os nomes das colunas
-2. **value**: variável numérica que irá preencher os dados
-3. **fill**: valor para preencher os NAs
+1. **id_cols**: variável id
+2. **names_from**: variável categórica que irá definir os nomes das colunas
+3. **values_from**: variável numérica que irá preencher os dados
+4. **values_fill**: valor para preencher os NAs
 
 ```{r}
-sp_spread <- sp[1:1000, c("id", "species", "individuals")] %>% 
-  tidyr::replace_na(list(individuals = 0)) %>% 
-  tidyr::spread(key = species, value = individuals, fill = 0)
-sp_spread
-```
-
----
-
-# 3.6 tidyr
-
-## **6 pivot_wider()** 
-
-Long para wide
-
-1. **id_cols**: variável id
-2. **names_from**: variável categórica que irá definir os nomes das colunas
-3. **values_from**: variável numérica que irá preencher os dados
-4. **values_fill**: valor para preencher os NAs
-
-```{r eval=FALSE}
-si_wide <- si %>% 
-  tidyr::pivot_wider(id_cols = id, 
-                     names_from = state_abbreviation,
-                     values_from = species_number, 
-                     values_fill = list(species_number = 0))
-si_wide
-```
-
-```{r,include=FALSE}
-si_wide <- si %>% 
-  tidyr::pivot_wider(id_cols = id, 
-                     names_from = state_abbreviation,
-                     values_from = species_number, 
-                     values_fill = list(species_number = 0))
-si_wide
-```
-
----
-
-# 3.6 tidyr
-
-## **6 pivot_wider()** 
-
-Long para wide
-
-1. **id_cols**: variável id
-2. **names_from**: variável categórica que irá definir os nomes das colunas
-3. **values_from**: variável numérica que irá preencher os dados
-4. **values_fill**: valor para preencher os NAs
-
-```{r eval=FALSE}
-sp_wide <- sp[1:1000, ] %>% 
-  tidyr::replace_na(list(individuals = 0)) %>% 
-  tidyr::pivot_wider(id_cols = id, 
-                     names_from = species, 
-                     values_from = individuals, 
-                     values_fill = list(individuals = 0))
-sp_wide
-```
-
-```{r,include=FALSE}
 sp_wide <- sp[1:1000, ] %>% 
   tidyr::replace_na(list(individuals = 0)) %>% 
   tidyr::pivot_wider(id_cols = id, 
@@ -1085,36 +1061,19 @@ sp_wide
 
 ---
 
-background-image: url(img/tidyr_gather_pivot_longer.png)
+background-image: url(img/tidyr_pivot_longer.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.6 tidyr
+# 4.6 tidyr
 
 ---
 
-# 3.6 tidyr
-
-## **7 gather()**
-
-wide para long
-
-1. **key**: variável categórica que irá definir os nomes das colunas
-2. **value**: variável numérica que irá preencher os dados
-
-```{r}
-si_gather <- si_spread %>% 
-  tidyr::gather(key = record, value = species_number, -id)
-si_gather
-```
-
----
-
-# 3.6 tidyr
+# 4.6 tidyr
 
 ## **7 pivot_longer()**
 
-wide para long
+### Wide para long
 
 1. **cols**: coluna do id
 2. **names_to**: nome da coluna que receberá os nomes
@@ -1130,7 +1089,7 @@ si_long
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Exercícios
 
@@ -1181,7 +1140,7 @@ family_wide
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Dúvidas?
 
@@ -1190,15 +1149,12 @@ class: clear, inverse, center, middle
 class: clear
 background-image: url(img/package_dplyr.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
+class: clear
 background-image: url(img/dplyr_wrangling.png)
 background-size: 600px
-background-position: 50% 50%
-
-# 3.7 dplyr
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -1210,7 +1166,7 @@ background-image: url(img/cheatsheet_dplyr.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## Data Transformation Cheatsheet
 
@@ -1220,7 +1176,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ### O **dplyr** é um pacote que **facilita** o trabalho com dados, com uma **gramática de manipulação** de dados **simples e flexível** (filtragem, reordenamento, seleção, entre outras)
 
@@ -1234,7 +1190,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ### Sua gramática simples contém **funções verbais** para manipulação de dados
 
@@ -1257,7 +1213,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ### Sua gramática simples contém **funções verbais** para manipulação de dados
 
@@ -1275,7 +1231,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ### O **tibble** é sempre o **primeiro argumento** das funções verbais
 
@@ -1304,13 +1260,13 @@ background-image: url(img/dplyr_select.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **1 select**
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **1 select**
 
@@ -1324,7 +1280,7 @@ si_select
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **1 select**
 
@@ -1337,7 +1293,7 @@ si_select
 ```
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **1 select**
 
@@ -1356,7 +1312,7 @@ background-image: url(img/dplyr_pull.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **2 pull**
 
@@ -1364,7 +1320,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **2 pull**
 
@@ -1379,7 +1335,7 @@ si_pull
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **2 pull**
 
@@ -1394,7 +1350,7 @@ si_pull
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **3 rename**
 
@@ -1412,13 +1368,13 @@ background-image: url(img/dplyr_mutate.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **4 mutate**
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **4 mutate**
 
@@ -1436,13 +1392,13 @@ background-image: url(img/dplyr_arrange.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **5 arrange**
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **5 arrange**
 
@@ -1455,7 +1411,7 @@ si_arrange
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **5 arrange**
 
@@ -1468,7 +1424,7 @@ si_arrange
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **5 arrange**
 
@@ -1485,13 +1441,13 @@ background-image: url(img/dplyr_filter.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **6 filter**
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **6 filter** 
 
@@ -1502,7 +1458,9 @@ si_filter <- si %>%
   dplyr::filter(species_number > 5)
 si_filter
 ```
+
 --
+
 ### Filtrar para locais centre 1 e 5 espécies
 ```{r eval=FALSE}
 si_filter <- si %>% 
@@ -1512,7 +1470,7 @@ si_filter
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **6 filter** 
 ### Filtrar para locais com NA no métodos passivos
@@ -1531,7 +1489,7 @@ si_filter
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **6 filter** 
 ### Filtrar para locais sem NA no métodos ativos **E** passivos
@@ -1543,7 +1501,7 @@ si_filter
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **6 filter** 
 ### Filtrar para locais amostrados com mais de 5 espécies **E** em São Paulo
@@ -1562,7 +1520,7 @@ si_filter
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **7 distinct**
 ### Remove linhas duplicadas considerando a coluna número de espécies
@@ -1574,7 +1532,7 @@ si_distinct
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **7 distinct**
 ### Remove linhas duplicadas considerando a coluna número de espécies e mantém as demais
@@ -1586,7 +1544,7 @@ si_distinct
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **8 slice** 
 ### Selecionar linhas 1 a 10
@@ -1598,7 +1556,7 @@ si_slice
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **9 n_sample** 
 
@@ -1615,13 +1573,13 @@ background-image: url(img/dplyr_summarize.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **10 summarise**
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **10 summarise**
 
@@ -1636,7 +1594,7 @@ si_summarise
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **10 summarise**
 ### Média e desvio padrão do número de espécies por país
@@ -1654,7 +1612,7 @@ background-image: url(img/dplyr_join.png)
 background-size: 350px
 background-position: 50% 60%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **11 *_join**
 
@@ -1668,7 +1626,7 @@ background-image: url(img/dplyr_leftjoin.png), url(img/dplyr_rightjoin.png), url
 background-size: 600px, 600px, 600px, 600px
 background-position: 50% 20%, 50% 45%, 50% 70%, 50% 95%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **11 *_join**
 
@@ -1678,7 +1636,7 @@ background-image: url(img/dplyr_semijoin.png), url(img/dplyr_antijoin.png)
 background-size: 700px, 700px
 background-position: 50% 40%, 50% 80%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **11 *_join**
 
@@ -1688,13 +1646,13 @@ background-image: url(img/dplyr_leftjoin.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **11 *_join**
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **11 *_join**
 
@@ -1709,7 +1667,7 @@ si_coord
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **11 *_join**
 
@@ -1725,7 +1683,7 @@ sp_join
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## **11 *_join**
 
@@ -1738,13 +1696,13 @@ colnames(sp_join)
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # E não termina nunca...
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 
 ## Sufixos: _at(), _if(), _all()
 
@@ -1760,13 +1718,13 @@ sp_wide_rename
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Mas o mais importante é a ideia de **encadeamento das funções**
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 ## Permite manipular os dados de forma simples
 ```{r}
 da <- si %>% 
@@ -1776,7 +1734,7 @@ da
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 ## Permite manipular os dados de forma simples
 ```{r}
 da <- si %>% 
@@ -1787,7 +1745,7 @@ da
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 ## Permite manipular os dados de forma simples
 ```{r}
 da <- si %>% 
@@ -1800,7 +1758,7 @@ da
 
 ---
 
-# 3.7 dplyr
+# 4.7 dplyr
 ## Permite manipular os dados de forma simples
 ```{r}
 da <- si %>% 
@@ -1814,7 +1772,7 @@ da
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Exercícios
 
@@ -1908,10 +1866,10 @@ si_sa
 ```
 
 ---
+
 class: clear
 background-image: url(img/package_stringr.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -1919,7 +1877,7 @@ background-image: url(img/cheatsheet_stringr.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 3.8 stringr
+# 4.8 stringr
 
 ## Work with Strings Cheatsheet
 
@@ -1929,7 +1887,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.8 stringr
+# 4.8 stringr
 
 ## Pacote para a manipulação de strings
 
@@ -1947,7 +1905,7 @@ str_sub("abc", 3)
 
 ---
 
-# 3.8 stringr
+# 4.8 stringr
 
 ### Inserir espaço em branco
 ```{r}
@@ -1970,7 +1928,7 @@ str_trim(" abc ")
 
 ---
 
-# 3.8 stringr
+# 4.8 stringr
 
 ### Minúsculas e maiúsculas
 ```{r}
@@ -1987,7 +1945,7 @@ str_to_title("aBc")
 
 ---
 
-# 3.8 stringr
+# 4.8 stringr
 
 ### Ordenarção
 ```{r}
@@ -2005,7 +1963,7 @@ str_sort(le, dec = TRUE)
 
 ---
 
-# 3.8 stringr
+# 4.8 stringr
 
 ### Extrair
 ```{r}
@@ -2027,7 +1985,6 @@ str_split("a-b-c", "-")
 class: clear
 background-image: url(img/package_forcats.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -2035,7 +1992,7 @@ background-image: url(img/cheatsheet_forcats.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 3.9 forcats
+# 4.9 forcats
 
 ## Factors with forcats Cheatsheet
 
@@ -2045,7 +2002,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.9 forcats
+# 4.9 forcats
 
 ### **as_factor()**: cria fatores
 ```{r}
@@ -2060,7 +2017,7 @@ fa
 
 ---
 
-# 3.9 forcats
+# 4.9 forcats
 
 ### **fct_recode()**: muda o nome dos níveis
 ```{r}
@@ -2072,7 +2029,7 @@ fa_recode
 
 ---
 
-# 3.9 forcats
+# 4.9 forcats
 
 ### **fct_rev()**: inverte os níveis
 ```{r}
@@ -2084,7 +2041,7 @@ fa_rev
 
 ---
 
-# 3.9 forcats
+# 4.9 forcats
 
 ### **fct_relevel()**: especifica a classificação de um ou mais níveis
 ```{r}
@@ -2096,7 +2053,7 @@ fa_relevel
 
 ---
 
-# 3.9 forcats
+# 4.9 forcats
 
 ### **fct_inorder()**: ordem em que aparece
 ```{r}
@@ -2108,7 +2065,7 @@ fa_inorder
 
 ---
 
-# 3.9 forcats
+# 4.9 forcats
 
 ### **fct_infreq()**: ordem (decrescente) de frequência
 ```{r}
@@ -2120,7 +2077,7 @@ fa_infreq
 
 ---
 
-# 3.9 forcats
+# 4.9 forcats
 
 ### **fct_lump()**: agregação de níveis raros em um nível
 ```{r}
@@ -2135,7 +2092,16 @@ fa_lump
 class: clear
 background-image: url(img/package_lubridate.png)
 background-size: 400px
-background-position: 50% 50%
+
+---
+
+class: clear
+background-image: url(img/lubridate_allison.png)
+background-size: 600px
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
@@ -2143,7 +2109,7 @@ background-image: url(img/cheatsheet_lubridate.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ## Dates and Times Cheatsheet
 
@@ -2153,7 +2119,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ## Pacote à parte do tidyverse
 
@@ -2171,7 +2137,7 @@ library(lubridate)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### As funções `date()` e `as_date()` assumem que a ordem segue o padrão da língua inglesa: ano-mês-dia (ymd)
 
@@ -2185,7 +2151,7 @@ class(data_string)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### As funções `date()` e `as_date()` assumem que a ordem segue o padrão da língua inglesa: ano-mês-dia (ymd)
 
@@ -2199,7 +2165,7 @@ class(data_date)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### As funções `date()` e `as_date()` assumem que a ordem segue o padrão da língua inglesa: ano-mês-dia (ymd)
 
@@ -2213,21 +2179,21 @@ class(data_date)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
 
 ### **date**: classe para datas
 ```{r}
 # string
-data_string <- "24-04-2020"
+data_string <- "20-10-2020"
 data_string
 class(data_string)
 ```
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
 
@@ -2241,29 +2207,29 @@ class(data_date)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Além de outros diversos formatos
 
 ```{r}
 # formatos
-lubridate::dmy(24042020)
-lubridate::dmy("24042020")
-lubridate::dmy("24/04/2020")
-lubridate::dmy("24.04.2020")
+lubridate::dmy(20102020)
+lubridate::dmy("20102020")
+lubridate::dmy("20/10/2020")
+lubridate::dmy("20.10.2020")
 ```
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Especificar horários
 
 ```{r}
 # especificar horarios
-lubridate::dmy_h(2404202013)
-lubridate::dmy_hm(240420201335)
-lubridate::dmy_hms(24042020133535)
+lubridate::dmy_h(20102020120)
+lubridate::dmy_hm(201020202035)
+lubridate::dmy_hms(20102020203535)
 ```
 
 ---
@@ -2272,7 +2238,7 @@ background-image: url(img/package_lubridate.png)
 background-size: 300px
 background-position: 80% 80%
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ## Funções úteis
 - second() - extrai os segundos
@@ -2289,12 +2255,12 @@ background-position: 80% 80%
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Extração
 ```{r}
 # criar
-data <- lubridate::dmy_hms(24042020133535)
+data <- lubridate::dmy_hms(20102020203535)
 data
 ```
 --
@@ -2307,12 +2273,12 @@ lubridate::month(data)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Extração
 ```{r}
 # criar
-data <- lubridate::dmy_hms(24042020133535)
+data <- lubridate::dmy_hms(20102020203535)
 data
 ```
 
@@ -2324,12 +2290,12 @@ lubridate::wday(data, label = TRUE)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Inclusão
 ```{r}
 # criar
-data <- lubridate::dmy(24042020)
+data <- lubridate::dmy(20102020)
 data
 ```
 
@@ -2341,7 +2307,7 @@ data
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Extrair a data no instante da execução
 <br>
@@ -2363,7 +2329,7 @@ quando eu preparava essa aula...
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Fusos horários
 ```{r}
@@ -2379,7 +2345,7 @@ OlsonNames()
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ### Fusos horários
 ```{r}
@@ -2396,7 +2362,7 @@ lubridate::force_tz(agora, tzone = "GMT")
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ## Operações com datas
 
@@ -2415,7 +2381,7 @@ class(r_interval)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ## Operações com datas
 
@@ -2435,7 +2401,7 @@ lubridate::int_overlaps(r_interval, namoro_interval)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ## Operações com datas
 
@@ -2448,7 +2414,7 @@ inicio_r + lubridate::dyears(1)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ## Operações com datas
 
@@ -2461,7 +2427,7 @@ reunioes
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ## Operações com datas
 
@@ -2480,7 +2446,7 @@ r_interval / lubridate::ddays(1)
 
 ---
 
-# 3.10 lubridate
+# 4.10 lubridate
 
 ## Operações com datas
 
@@ -2500,7 +2466,6 @@ lubridate::as.period(namoro_interval)
 class: clear
 background-image: url(img/package_purrr.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -2508,7 +2473,7 @@ background-image: url(img/cheatsheet_purrr.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 3.11 purrr
+# 4.11 purrr
 
 ## Data Import Cheatsheet
 
@@ -2518,7 +2483,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.11 purrr
+# 4.11 purrr
 
 ### Pacote que implementa **Programação Funcional** 
 
@@ -2545,7 +2510,7 @@ background-image: url(img/purrr_map.png)
 background-size: 400px
 background-position: 85% 90%
 
-# 3.11 purrr
+# 4.11 purrr
 
 ## A principal função é a `map*()` e sua "família"
 
@@ -2557,7 +2522,7 @@ background-position: 85% 90%
 
 ---
 
-# 3.11 purrr
+# 4.11 purrr
 
 ## Aplicando uma função em série
 
@@ -2577,7 +2542,7 @@ purrr::map(x, sum)
 
 ---
 
-# 3.11 purrr
+# 4.11 purrr
 
 ## Tipos de retorno
 
@@ -2595,7 +2560,7 @@ purrr::map(x, sum)
 
 ---
 
-# 3.11 purrr
+# 4.11 purrr
 
 <br><br>
 
@@ -2615,7 +2580,7 @@ purrr::map_chr(x, paste, collapse = " ")
 
 ---
 
-# 3.11 purrr
+# 4.11 purrr
 
 ## Duas listas em paralelo
 ```{r}
@@ -2638,7 +2603,7 @@ purrr::pmap_dbl(list(x, y, z), prod)
 
 ---
 
-# 3.11 purrr
+# 4.11 purrr
 
 ### Calcular a média para várias colunas
 ```{r}
@@ -2664,13 +2629,19 @@ background-image: url(img/general_curso_r.png), url(img/person_jenny_bryan.jpeg)
 background-size: 400px, 300px
 background-position: 10% 70%, 90% 80%
 
-# 3.11 purrr
+# 4.11 purrr
 
 ## Material
 
 ### [Webinar de purrr avançado](https://youtu.be/vb1lD9_AFcU) - Curso-R
 
 ### [purrr tutorial](https://jennybc.github.io/purrr-tutorial/) - Jennifer (Jenny) Bryan
+
+---
+
+class: inverse, center, middle
+
+# Dúvidas?
 
 ---
 
@@ -2684,11 +2655,14 @@ class: clear, middle
 
 Contatos:
 
-`r icon::fa_envelope()` [mauricio.vancine@gmail.com](mauricio.vancine@gmail.com)
 <br>
-`r icon::fa_twitter()` [mauriciovancine](https://twitter.com/mauriciovancine)
+`r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
 <br>
-`r icon::fa_link()` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
+`r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)
+<br>
+`r icon::fa_github(colour = "#0000ee")` [mauriciovancine](https://mauriciovancine.netlify.com/)
+<br>
+`r icon::fa_link(colour = "#0000ee")` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
 
 <br><br><br>
 
