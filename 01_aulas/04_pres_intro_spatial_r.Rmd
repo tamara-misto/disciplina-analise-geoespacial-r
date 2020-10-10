@@ -1,8 +1,8 @@
 ---
-title: "Introdução ao tidyverse <br><br>"
-subtitle: "<br> 3 tidyverse <br><br> xaringan [presentation ninja]"
-author: "Maurício Vancine"
-date: "25/04/2019"
+title: "Introdução à análise geoespacial com R <br><br><br>"
+subtitle: "4 Introdução ao tidyverse <br><br><br>"
+author: "Maurício H. Vancine <br> Milton C. Ribeiro"
+date: "19/10/2020"
 output:
   xaringan::moon_reader:
     css: [metropolis]
@@ -14,16 +14,14 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
+options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
-if(!require(lubridate)) install.packages("lubridate")
 ```
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_tidyverse.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -31,40 +29,29 @@ background-image: url(img/package_tidyverse.png)
 background-size: 350px
 background-position: 85% 75%
 
-# 3 tidyverse
+# 4 tidyverse
 
 ## Conteúdo
-
-3.1 Pacote tidyverse
-<br>
-3.2 Pacote readr
-<br>
-3.3 Pacotes readxl e writexl
-<br>
-3.4 Pacote tibble
-<br>
-3.5 Pacote magrittr (*pipe - %>%*)
-<br>
-3.6 Pacote tidyr
-<br>
-3.7 Pacote dplyr
-<br>
-3.8 Pacote stringr
-<br>
-3.9 Pacote forcats
-<br>
-3.10 Pacote lubridate
-<br>
-3.11 Pacote purrr
+1. tidyverse
+1. readr
+1. readxl
+1. tibble
+1. magrittr (pipe - %>%)
+1. dplyr
+1. tidyr
+1. stringr
+1. forcats
+1. lubridate
+1. purrr
 
 ---
 
-# 3 tidyverse
+# 4 tidyverse
 ## Script
 
 <br><br><br><br><br><br>
 
-## .center[`script_aula_03.R`]
+## .center[`script_aula_04.R`]
 
 ---
 
@@ -75,41 +62,47 @@ background-position: 50% 50%
 
 ---
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
-### O tidyverse é um **pacote** com a função de **instalar** e **carregar** outros pacotes
+### O tidyverse é um **conjunto de pacotes** designados para **Data Science**
 
---
-
-### O **conjunto** desses pacotes forma o **tidyverse**
+<br>
 
 --
 
-### É considerado um “universo” à parte do R, pois todas as suas **ferramentas** possuem formas de uso consistentes e **funcionam** muito bem em conjunto
+### Todos os pacotes compartilham uma **filosofia** de design, gramática e estruturas de dados
+
+<br>
 
 --
 
-### Seu uso é mais voltado para a **Ciência de Dados**
+### É um **"dialeto"** novo para a linguagem R
+
+<br>
 
 --
 
-### E depois que vocês **aprenderem**, nunca mais usaram o R de outra forma...
+### **tidy**: organizado, arrumado, ordenado
+
+### **verse**: universo
 
 ---
 
-class: inverse, center
-background-image: url(img/gig_avenger_reference.gif)
+class: inverse
+background-image: url(img/gif_avenger_reference.gif)
 background-size: 800px
 
 # Iniciativa Vingadores do R
 
 ---
 
-background-image: url(img/tidyverse_flowchart.png)
-background-size: 800px
+background-image: url(img/genral_data_science.png)
+background-size: 700px
 background-position: 50% 60%
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
+
+## Workflow
 
 ---
 
@@ -117,21 +110,35 @@ background-image: url(img/general_data_science_r4ds.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+## Workflow
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
+background-image: url(img/tidyverse_flowchart.png)
+background-size: 700px
+background-position: 50% 60%
+
+# 4.1 tidyverse
+
+## Pacotes
+
+---
+
 background-image: url(img/general_messy_data.png)
-background-size: 800px
+background-size: 700px
 background-position: 50% 50%
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+## Objetivo
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 Fonte: [@ViviFabrien](https://twitter.com/ViviFabrien)
 
@@ -141,7 +148,7 @@ background-image: url(img/person_hadley_wickham.jpg)
 background-size: 550px
 background-position: 50% 60%
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
 ### O idealizador foi o **Hadley Wickham** e atualmente **muitas pessoas** têm contribuído para sua expansão
 
@@ -155,7 +162,7 @@ background-image: url(img/tidyverse_article_tidy.png)
 background-size: 500px
 background-position: 50% 55%
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
 ### Tidy Data (2014) - *Journal of Statistics Software*
 
@@ -171,7 +178,7 @@ background-image: url(img/cover_data_science_r.png)
 background-size: 300px
 background-position: 50% 55%
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
 ## R for Data Science (2017)
 
@@ -185,7 +192,7 @@ background-image: url(img/tidyverse_site1.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
 ## Sites
 
@@ -199,7 +206,7 @@ background-image: url(img/tidyverse_site2.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
 ## Sites
 
@@ -209,20 +216,33 @@ background-position: 50% 50%
 
 ---
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
 ### Para utilizar os pacotes do **tidyverse** é preciso instalar e carregar o pacote `tidyverse`
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # instalar o pacote
 install.packages("tidyverse")
 ```
 
 --
 
-```{r,message=TRUE}
+```{r message=TRUE}
 # carregar o pacote
 library(tidyverse)
+```
+
+---
+
+# 4.1 tidyverse
+
+## Listar todos os pacotes do tidyverse
+
+<br><br>
+
+```{r}
+# list all packages in the tidyverse 
+tidyverse::tidyverse_packages(include_self = TRUE)
 ```
 
 ---
@@ -231,11 +251,11 @@ background-image: url(img/code_snake_case.png)
 background-size: 500px
 background-position: 80% 80%
 
-# 3.1 Pacote tidyverse
+# 4.1 tidyverse
 
 ## IMPORTANTE!
 
-### Todas as funções dos pacotes atrelados ao **tidyverse** usam `_` para separar os nomes internos das funções (snake_code)
+### Todas as funções dos pacotes **tidyverse** usão fonte minúscula e usam `_` para separar os nomes internos das funções (snake_code)
 
 <br><br>
 
@@ -251,23 +271,9 @@ background-position: 80% 80%
 
 ---
 
-# 3.1 Pacote tidyverse
-
-## Listar todos os pacotes do tidyverse
-
-<br><br>
-
-```{r}
-# list all packages in the tidyverse 
-tidyverse::tidyverse_packages(include_self = TRUE)
-```
-
----
-
-class: clear, center, middle
+class: clear
 background-image: url(img/package_magrittr.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -275,13 +281,13 @@ background-image: url(img/person_rene_magritte.jpg), url(img/tidyverse_magritte_
 background-size: 250px, 500px
 background-position: 10% 30%, 85% 75%
 
-# 3.2 magrittr (pipe - %>%)
+# 4.2 magrittr (pipe - %>%)
 
 ## René Magritte (1898-1967)
 
 ---
 
-# 3.2 magrittr (pipe - %>%)
+# 4.2 magrittr (pipe - %>%)
 
 ### O operador pipe (*%>%*) permite o “encadeamento” de várias funções e **não é preciso de objetos** para armazenar resultados intermediários
 
@@ -299,7 +305,7 @@ background-position: 10% 30%, 85% 75%
 
 ---
 
-# 3.2 magrittr (pipe - %>%)
+# 4.2 magrittr (pipe - %>%)
 
 ### Atalho: `crtl + shift + M`
 ```{r}
@@ -309,13 +315,27 @@ sqrt(sum(1:100))
 
 --
 
-background-image: url(img/general_fog.jpg)
+background-image: url(img/general_fog01.jpg)
 background-size: 500px
 background-position: 50% 80%
 
 ---
 
-# 3.2 magrittr (pipe - %>%)
+background-image: url(img/general_fog02.jpg)
+background-size: 500px
+background-position: 50% 80%
+
+# 4.2 magrittr (pipe - %>%)
+
+### Atalho: `crtl + shift + M`
+```{r}
+# sem pipe
+sqrt(sum(1:100))
+```
+
+---
+
+# 4.2 magrittr (pipe - %>%)
 
 ### Atalho: `crtl + shift + M`
 ```{r}
@@ -339,7 +359,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.2 magrittr (pipe - %>%)
+# 4.2 magrittr (pipe - %>%)
 
 ### Atalho: `crtl + shift + M`
 ```{r}
@@ -366,10 +386,9 @@ ve
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse
 background-image: url(img/gif_mario.gif)
 background-size: 700px
-background-position: 50% 50%
 
 ---
 
@@ -389,7 +408,7 @@ class: clear, inverse, center, middle
 <br>
 `prod(sort(sample(1:10, 10000, rep = TRUE)))`
 
-```{r echo = FALSE}
+```{r echo=FALSE}
 countdown(minutes = 5, seconds = 00, color_background = "gray30")
 ```
 
@@ -397,7 +416,7 @@ countdown(minutes = 5, seconds = 00, color_background = "gray30")
 
 # Exercício 09
 ## Solução
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # solucao
 # 1.
 log10(cumsum(1:100))
@@ -411,7 +430,7 @@ log10(cumsum(1:100))
 # Exercício 09
 ## Solução
   
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # 2.
 sum(sort(rnorm(100)))
 
@@ -425,7 +444,7 @@ sum(sort(rnorm(100)))
 # Exercício 09
 ## Solução
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # 3.
 scale(sample(1:10, 10000, rep = TRUE))
 
@@ -436,16 +455,15 @@ scale(sample(1:10, 10000, rep = TRUE))
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Dúvidas?
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_readr.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -453,7 +471,7 @@ background-image: url(img/cheatsheet_readr.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 3.3 readr
+# 4.3 readr
 
 ## Data Import Cheatsheet
 
@@ -463,7 +481,7 @@ background-position: 50% 50%
 
 ---
 
-# 3.3 readr
+# 4.3 readr
 
 ### **Carrega e salva** grandes arquivos de forma **mais rápida**
 
@@ -493,7 +511,7 @@ background-image: url(img/general_data_eu_mesmo.png)
 background-size: 600px
 background-position: 50% 90%
 
-# 3.3 readr
+# 4.3 readr
 
 ## ATLANTIC AMPHIBIANS: a dataset of amphibian communities from the Atlantic Forests of South America
 
@@ -501,44 +519,38 @@ background-position: 50% 90%
 
 ---
 
-# 3.3 readr
+# 4.3 readr
 
 ## **Formato .csv**
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # diretorio
-setwd("/home/mude/data/github/minicurso-tidyverse/03_dados")
+setwd("/home/mude/data/github/disciplina-analise-geoespacial/03_dados")
 ```
 --
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # import sites
 si <- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
 si
 ```
 
-```{r,echo=FALSE}
-si <- readr::read_csv("/home/mude/data/github/minicurso-tidyverse/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
+```{r echo=FALSE}
+si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
 si
 ```
 
 ---
 
-# 3.3 readr
+# 4.3 readr
 
 ## **Formato .txt**
-
-```{r,eval=FALSE}
-# diretorio
-setwd("/home/mude/data/github/minicurso-tidyverse/03_dados")
-```
-
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # import sites
 si <- readr::read_tsv("ATLANTIC_AMPHIBIANS_sites.txt")
 si
 ```
 
-```{r,echo=FALSE}
-si <- readr::read_csv("/home/mude/data/github/minicurso-tidyverse/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
+```{r echo=FALSE}
+si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
 si
 ```
 
@@ -551,13 +563,13 @@ background-position: 50% 50%
 
 ---
 
-# 3.4 readxl e writexl
+# 4.4 readxl e writexl
 
 ## São pacotes à parte do **tidyverse**
 
 <br><br><br>
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # import .xlsx
 install.packages("readxl")
 library("readxl")
@@ -567,7 +579,7 @@ library("readxl")
 --
 
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # export .xlsx
 install.packages("writexl")
 library("writexl")
@@ -575,7 +587,7 @@ library("writexl")
 
 ---
 
-# 3.4 readxl e writexl
+# 4.4 readxl e writexl
 
 ### **Carrega e salva** grandes arquivos de forma **mais rápida** no formato **.xlsx**
 
@@ -601,23 +613,23 @@ library("writexl")
 
 ---
 
-# 3.4 readxl e writexl
+# 4.4 readxl e writexl
 
 ## **Formato .xlsx**
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # diretorio
-setwd("/home/mude/data/github/minicurso-tidyverse/03_dados")
+setwd("/home/mude/data/github/disciplina-analise-geoespacial/03_dados")
 ```
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # import sites
 si <- readxl::read_xlsx("ATLANTIC_AMPHIBIANS_sites.xlsx")
 si
 ```
 
-```{r,echo=FALSE}
-si <- readr::read_csv("/home/mude/data/github/minicurso-tidyverse/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
+```{r echo=FALSE}
+si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
 si
 ```
 
@@ -630,7 +642,7 @@ si
 <br>
 
 ### Matriz de locais
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # import sites
 si <- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
 si
@@ -639,19 +651,19 @@ si
 <br>
 
 ### Matriz de espécies
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # import species
 sp <- readr::read_csv("ATLANTIC_AMPHIBIANS_species.csv")
 sp
 ```
 
 ```{r,include=FALSE}
-si <- readr::read_csv("/home/mude/data/github/minicurso-tidyverse/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
+si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
 si
 ```
 
 ```{r,include=FALSE}
-sp <- readr::read_csv("/home/mude/data/github/minicurso-tidyverse/03_dados/ATLANTIC_AMPHIBIANS_species.csv")
+sp <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_species.csv")
 sp
 ```
 
@@ -691,7 +703,7 @@ background-position: 50% 50%
 ## Descrição dos modos das colunas através da função `glimpse()` - "espiar os dados"
 
 ```{r, include = FALSE}
-si <- readr::read_csv("/home/mude/data/github/minicurso-tidyverse/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
+si <- readr::read_csv("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
 ```
 --
 ```{r}
@@ -1023,7 +1035,7 @@ Long para wide
 3. **values_from**: variável numérica que irá preencher os dados
 4. **values_fill**: valor para preencher os NAs
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 si_wide <- si %>% 
   tidyr::pivot_wider(id_cols = id, 
                      names_from = state_abbreviation,
@@ -1054,7 +1066,7 @@ Long para wide
 3. **values_from**: variável numérica que irá preencher os dados
 4. **values_fill**: valor para preencher os NAs
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 sp_wide <- sp[1:1000, ] %>% 
   tidyr::replace_na(list(individuals = 0)) %>% 
   tidyr::pivot_wider(id_cols = id, 
@@ -1130,7 +1142,7 @@ class: clear, inverse, center, middle
 # Exercício 10
 ### Combine as colunas `country`, `state`, `state_abbreviation`, `municipality`, `site`, em uma coluna chamada `local_total` separadas por `, (vírgula + espaço)`, atribuindo o resultado a um novo objeto, utilizando o formato tidyverse
 
-```{r echo = FALSE}
+```{r echo=FALSE}
 countdown(minutes = 1, seconds = 00, color_background = "gray30")
 ```
 
@@ -1150,7 +1162,7 @@ si_local$local_total
 
 # Exercício 11
 ### Quanto indivíduos por há por família nos locais amostrados? Apenas para as 1000 primeiras linhas da tabela `sp`
-```{r echo = FALSE}
+```{r echo=FALSE}
 countdown(minutes = 5, seconds = 00, color_background = "gray30")
 ```
 
@@ -1284,7 +1296,7 @@ background-position: 50% 50%
 
 ### As funções verbais **não modificam** o tibble original
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 tb_dplyr <- tb %>% 
   funcao_verbal(argumento1, argumento2)
 ```
@@ -1488,14 +1500,14 @@ background-position: 50% 50%
 
 ### operadores: >, >=, <, <=, ==, !=, is.na, !is.na, %in%
 ### Filtrar para locais com mais de 5 espécies
-```{r,eval=FALSE}
+```{r eval=FALSE}
 si_filter <- si %>% 
   dplyr::filter(species_number > 5)
 si_filter
 ```
 --
 ### Filtrar para locais centre 1 e 5 espécies
-```{r,eval=FALSE}
+```{r eval=FALSE}
 si_filter <- si %>% 
   dplyr::filter(between(species_number, 1, 5))
 si_filter
@@ -1507,14 +1519,14 @@ si_filter
 
 ## **6 filter** 
 ### Filtrar para locais com NA no métodos passivos
-```{r,eval=FALSE}
+```{r eval=FALSE}
 si_filter <- si %>% 
   dplyr::filter(is.na(passive_methods))
 si_filter
 ```
 --
 ### Filtrar para locais sem NA no métodos passivos
-```{r,eval=FALSE}
+```{r eval=FALSE}
 si_filter <- si %>% 
   dplyr::filter(!is.na(passive_methods))
 si_filter
@@ -1526,7 +1538,7 @@ si_filter
 
 ## **6 filter** 
 ### Filtrar para locais sem NA no métodos ativos **E** passivos
-```{r,eval=FALSE}
+```{r eval=FALSE}
 si_filter <- si %>% 
   dplyr::filter(!is.na(active_methods) & !is.na(passive_methods))
 si_filter
@@ -1538,14 +1550,14 @@ si_filter
 
 ## **6 filter** 
 ### Filtrar para locais amostrados com mais de 5 espécies **E** em São Paulo
-```{r,eval=FALSE}
+```{r eval=FALSE}
 si_filter <- si %>% 
   dplyr::filter(species_number > 5 & state_abbreviation == "BR-SP") 
 si_filter
 ```
 --
 ### Filtrar para locais amostrados com mais de 5 espécies **OU** em São Paulo
-```{r,eval=FALSE}
+```{r eval=FALSE}
 si_filter <- si %>% 
   dplyr::filter(species_number > 5 | state_abbreviation == "BR-SP")
 si_filter
@@ -1815,7 +1827,7 @@ class: clear, inverse, center, middle
 
 ### Adicione essas novas colunas `alt_log, tem_log e pre_log`, que são a operação `log10` das colunas `altitude,	temperature e	precipitation` e atribua ao mesmo objeto `si` utilizando o formato tidyverse
 
-```{r echo = FALSE}
+```{r echo=FALSE}
 countdown(minutes = 1, seconds = 30, color_background = "gray30")
 ```
 
@@ -1838,7 +1850,7 @@ si[, 25:28]
 
 ### Ordene os dados em forma decrescente pela coluna `altitude`, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-```{r echo = FALSE}
+```{r echo=FALSE}
 countdown(minutes = 1, seconds = 30, color_background = "gray30")
 ```
 
@@ -1859,7 +1871,7 @@ si_ar
 
 ###  Filtre as linhas com `altitude` maior que 1000 mm, `temperature` menor que 15 ºC e `precipitation` maior que 1000 mm, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-```{r echo = FALSE}
+```{r echo=FALSE}
 countdown(minutes = 1, seconds = 30, color_background = "gray30")
 ```
 
@@ -1882,7 +1894,7 @@ si_fi
 
 ### Amostre 200 linhas aleatoriamente com número de espécies maior que 15 espécies, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-```{r echo = FALSE}
+```{r echo=FALSE}
 countdown(minutes = 1, seconds = 30, color_background = "gray30")
 ```
 
@@ -2149,7 +2161,7 @@ background-position: 50% 50%
 ## Pacote à parte do tidyverse
 
 ### Instalar
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # install
 install.packages("lubridate")
 ```
@@ -2552,7 +2564,7 @@ background-position: 85% 90%
 
 ## Aplicando uma função em série
 
-```{r,eval=FALSE}
+```{r eval=FALSE}
 li <- list(1:5, c(4, 5, 7), c(98, 34,-10), c(2, 2, 2, 2, 2))
 li
 ```

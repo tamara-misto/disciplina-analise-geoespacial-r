@@ -16,7 +16,6 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-if(!require(tidyverse)) devtools::install_github("tidyverse")
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
