@@ -19,7 +19,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
-class: clear, center, middle
+class: clear
 background-image: url(img/r_rstudio.png)
 background-size: 500px
 
@@ -71,6 +71,16 @@ O R é uma **linguagem de programação livre** (*open source*), direcionada ao 
 
 ---
 
+background-image: url(img/r_power.jpeg)
+background-size: 500px
+background-position: 50% 90%
+
+# 2.1 Linguagem R
+
+## E por que usar o R?
+
+---
+
 # 2.1 Linguagem R
 
 ## E por que usar o R?
@@ -90,6 +100,16 @@ O R é uma **linguagem de programação livre** (*open source*), direcionada ao 
 --
 
 ### 4. Atualmente é uma das **principais linguagens** utilizadas para análise de dados
+
+---
+
+background-image: url(img/r_rollercoaster.png)
+background-size: 800px
+background-position: 50% 80%
+
+# 2.1 Linguagem R
+
+## É legal, mas nem sempre é fácil...
 
 ---
 
@@ -158,7 +178,7 @@ background-position: 50% 50%
 
 background-image: url(img/r_rstudio_vs01.png)
 background-size: 600px
-background-position: 50% 75%
+background-position: 50% 70%
 
 # 2.2 IDE RStudio
 
@@ -485,7 +505,7 @@ class: inverse, center, middle
 
 ---
 
-class: inverse
+class: clear, inverse
 background-image: url(img/gif_office.gif)
 background-size:700px
 
@@ -515,7 +535,7 @@ class: inverse, center, middle
 
 ---
 
-class: inverse
+class: clear, inverse
 background-image: url(img/gif_office.gif)
 background-size:700px
 
@@ -767,7 +787,7 @@ obj_10 <- 10
 
 ---
 
-class: inverse
+class: clear, inverse
 background-image: url(img/gif_where.gif)
 background-size: 700px
 
@@ -1176,7 +1196,7 @@ class: clear, clean, inverse, middle, center
 ### Façam o logaritmo natural (função **log**) do objeto *mult* e atribuam ao objeto *loge*
 
 ```{r echo = FALSE}
-countdown(minutes = 2, seconds = 00, color_background = "gray30")
+countdown(minutes = 4, seconds = 00, color_background = "gray30")
 ```
 
 ---
@@ -1215,15 +1235,14 @@ class: inverse, center, middle
 
 ---
 
-class: inverse, center, middle
+class: clear, inverse
 background-image: url(img/gif_google_it.gif)
 background-size: 800px
-background-position: 50% 50%
 
 ---
 
 class: clear
-background-image: url(http://material.curso-r.com/rbase/figures/ajuda_google.png)
+background-image: url(img/general_ajuda_google.png)
 background-size: 800px
 background-position: 50% 50%
 
@@ -1237,17 +1256,18 @@ class: inverse, center, middle
 
 ---
 
+background-image: url(img/package_r.png)
+background-size: 200px
+background-position: 85% 100%
+
 # 2.10 Funções
 ## Funções vêm de **duas fontes**:
 
-<br><br><br>
-
-### 1. Pacotes já **instalados por padrão** e que são **carregados** quando abrimos o R
+## 1. Pacotes já **instalados por padrão** e que são **carregados** quando abrimos o R
 
 --
-<br>
 
-### 2. Pacotes que **instalamos** e **carregamos** com comandos
+## 2. Pacotes que **instalamos** e **carregamos** com comandos
 
 ---
 
@@ -1256,6 +1276,10 @@ class: inverse, center, middle
 # E o que são pacotes afinal?!
 
 ---
+
+background-image: url(img/package_r.png)
+background-size: 200px
+background-position: 85% 100%
 
 # 2.11 Pacotes
 
@@ -1271,10 +1295,13 @@ class: inverse, center, middle
 ```{r}
 # verificar pacotes carregados
 search()
-
 ```
 
 ---
+
+background-image: url(img/package_r.png)
+background-size: 200px
+background-position: 85% 100%
 
 # 2.11 Pacotes
 
@@ -1290,6 +1317,10 @@ library()
 ```
 
 ---
+
+background-image: url(img/package_r.png)
+background-size: 200px
+background-position: 85% 100%
 
 # 2.11 Pacotes
 
@@ -1426,9 +1457,13 @@ class: inverse, center, middle
 
 ---
 
+background-image: url(img/package_r.png)
+background-size: 200px
+background-position: 85% 100%
+
 # 2.11 Pacotes
 
-<br><br><br>
+## Diretório dos pacotes instalados
 
 ## Windows
 C:/Users/**nome_do_computador**/Documentos/R/win-library/**numero_da_versao_r**
@@ -1439,6 +1474,10 @@ C:/Users/**nome_do_computador**/Documentos/R/win-library/**numero_da_versao_r**
 /home/**nome_do_computador**/R/**tipo_do_computador**/**numero_da_versao_r**
 
 ---
+
+background-image: url(img/package_r.png)
+background-size: 200px
+background-position: 85% 100%
 
 # 2.11 Pacotes
 
@@ -1475,7 +1514,8 @@ https://cran.r-project.org/web/packages/available_packages_by_name.html
 
 ---
 
-class: clear, clean, inverse, middle, center
+class: inverse, middle, center
+
 # Exercícios
 
 ---
@@ -1506,10 +1546,9 @@ class: inverse, center, middle
 
 ---
 
-class: inverse, center, middle
+class: clear, inverse
 background-image: url(img/gif_not.webp)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -1608,6 +1647,7 @@ background-position: 50% 78%
 `Session -> Save Workspace As... -> meus_objetos.RData` 
 
 ```{r eval=FALSE}
+# exportar objetos
 save.image("meus_objetos.RData")
 ```
 
@@ -1617,6 +1657,7 @@ save.image("meus_objetos.RData")
 `Session -> Load Workspace... -> meus_objetos.RData` 
 
 ```{r eval=FALSE}
+# importar objetos
 load("meus_objetos.RData")
 ```
 
@@ -1731,12 +1772,12 @@ class: clear, inverse, middle, center
 
 ---
 
-class: inverse
+class: clear, inverse
 background-image: url(img/gif_bugcat_error.gif)
 
 ---
 
-class: inverse
+class: clear, inverse
 background-image: url(img/gif_bugcat_sad.gif)
 
 ---

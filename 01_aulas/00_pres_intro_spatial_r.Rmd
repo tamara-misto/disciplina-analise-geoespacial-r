@@ -213,8 +213,8 @@ background-position: 90% 85%
 
 ---
 
-background-image: url(img/package_tidyverse.png)
-background-size: 250px
+background-image: url(img/tidyverse_celestial.png)
+background-size: 350px
 background-position: 85% 85%
 
 # Disciplina
@@ -395,7 +395,7 @@ background-position: 97% 85%
 
 ---
 
-class: clear, middle, center
+class: clear, inverse
 background-image: url(img/general_starwars_teamwork.png)
 background-size: 700px
 

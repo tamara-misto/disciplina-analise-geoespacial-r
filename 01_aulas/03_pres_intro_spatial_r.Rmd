@@ -362,7 +362,7 @@ sa_com_rep
 
 ---
 
-class: clear,  clean, inverse, middle, center
+class: inverse, middle, center
 # Exercícios
 
 ---
@@ -648,7 +648,7 @@ background-position: 50% 60%
 
 ---
 
-class: clear
+class: clear, inverse
 background-image: url(img/gif_mind_blowing01.gif)
 background-size: 700px
 
@@ -744,7 +744,7 @@ ma_cbind
 
 ---
 
-class: clear,  clean, inverse, middle, center
+class: inverse, middle, center
 # Exercícios
 
 ---
@@ -800,7 +800,7 @@ background-position: 90% 100%
 
 ---
 
-class: clear
+class: clear, inverse
 background-image: url(img/gif_jim_carrey.gif)
 background-size: 700px
 
@@ -912,7 +912,7 @@ class: inverse, center, middle
 
 ---
 
-class: clear
+class: clear, inverse
 background-image: url(img/gif_mind_blowing02.gif)
 background-size: 700px
 
@@ -1894,7 +1894,7 @@ class: inverse, center, middle
 
 ---
 
-class: clear
+class: clear, inverse
 background-image: url(img/general_real_data.jpg)
 background-size: 500px
 
@@ -1959,7 +1959,7 @@ class(da)
 
 ---
 
-class: clear,  inverse, center, middle
+class: inverse, center, middle
 
 # IMPORTANTE: a tabela importada para o R sempre será um **data frame**!
 

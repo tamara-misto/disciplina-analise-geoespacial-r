@@ -25,13 +25,12 @@ class: center, middle, inverse, title-slide
 
 
 class: clear
-background-image: url(img/package_tidyverse.png)
-background-size: 400px
-background-position: 50% 50%
+background-image: url(img/general_data_science_r4ds.png)
+background-size: 800px
 
 ---
 
-background-image: url(img/package_tidyverse.png)
+background-image: url(img/tidyverse_celestial.png)
 background-size: 350px
 background-position: 85% 75%
 
@@ -61,7 +60,7 @@ background-position: 85% 75%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_tidyverse.png)
 background-size: 400px
 background-position: 50% 50%
@@ -94,7 +93,7 @@ background-position: 50% 50%
 
 ---
 
-class: inverse
+class: inverse, center
 background-image: url(img/gif_avenger_reference.gif)
 background-size: 800px
 
@@ -109,20 +108,6 @@ background-position: 50% 60%
 # 4.1 tidyverse
 
 ## Workflow
-
----
-
-background-image: url(img/general_data_science_r4ds.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 4.1 tidyverse
-
-## Workflow
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
@@ -259,30 +244,6 @@ library(tidyverse)
 
 ---
 
-background-image: url(img/code_snake_case.png)
-background-size: 500px
-background-position: 80% 80%
-
-# 4.1 tidyverse
-
-## IMPORTANTE!
-
-### Todas as funções dos pacotes atrelados ao **tidyverse** usam `_` para separar os nomes internos das funções (snake_code)
-
-&lt;br&gt;&lt;br&gt;
-
-`read_csv()`
-
-`read_xlsx()`
-
-`as_tibble()`
-
-`left_join()`
-
-`group_by()`
-
----
-
 # 4.1 tidyverse
 
 ## Listar todos os pacotes do tidyverse
@@ -306,10 +267,33 @@ tidyverse::tidyverse_packages(include_self = TRUE)
 
 ---
 
-class: clear, center, middle
+background-image: url(img/code_snake_case.png)
+background-size: 500px
+background-position: 80% 80%
+
+# 4.1 tidyverse
+
+## IMPORTANTE!
+
+### Todas as funções dos pacotes **tidyverse** usão fonte minúscula e usam `_` para separar os nomes internos das funções (snake_code)
+
+&lt;br&gt;&lt;br&gt;
+
+`read_csv()`
+
+`read_xlsx()`
+
+`as_tibble()`
+
+`left_join()`
+
+`group_by()`
+
+---
+
+class: clear
 background-image: url(img/package_magrittr.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -356,9 +340,28 @@ sqrt(sum(1:100))
 
 --
 
-background-image: url(img/general_fog.jpg)
+background-image: url(img/general_fog01.jpg)
 background-size: 500px
 background-position: 50% 80%
+
+---
+
+background-image: url(img/general_fog02.jpg)
+background-size: 350px
+background-position: 50% 90%
+
+# 4.2 magrittr (pipe - %&gt;%)
+
+### Atalho: `crtl + shift + M`
+
+```r
+# sem pipe
+sqrt(sum(1:100))
+```
+
+```
+## [1] 71.06335
+```
 
 ---
 
@@ -389,10 +392,9 @@ sqrt(sum(1:100))
 
 ---
 
-class: clear, inverse, center, middle
+class: clear, inverse
 background-image: url(img/gif_uou.webp)
 background-size: 800px
-background-position: 50% 50%
 
 ---
 
@@ -433,13 +435,13 @@ ve
 
 ---
 
-class: inverse
+class: clear, inverse
 background-image: url(img/gif_mario.gif)
 background-size: 700px
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Exercícios
 
@@ -455,7 +457,7 @@ class: clear, inverse, center, middle
 &lt;br&gt;
 `prod(sort(sample(1:10, 10000, rep = TRUE)))`
 
-<div class="countdown" id="timer_5f80c462" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f813731" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -559,7 +561,7 @@ background-position: 50% 50%
 
 background-image: url(img/general_data_eu_mesmo.png)
 background-size: 600px
-background-position: 50% 90%
+background-position: 50% 80%
 
 # 4.3 readr
 
@@ -569,15 +571,27 @@ background-position: 50% 90%
 
 ---
 
-# 4.3 readr
+class: inverse, center, middle
+
+# Mas antes, uma outra forma de indicar diretórios
+
+---
+
+class: clear
+background-image: url(img/here.png)
+background-size: 700px
+
+---
+
+# here
+
+
+
+---
+
+# readr
 
 ## **Formato .csv**
-
-```r
-# diretorio
-setwd("/home/mude/data/github/disciplina-analise-geoespacial/03_dados")
-```
---
 
 ```r
 # import sites
@@ -647,10 +661,9 @@ si
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_readxl.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -779,7 +792,7 @@ sp
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_tibble.png)
 background-size: 400px
 background-position: 50% 50%
@@ -952,7 +965,7 @@ class: clear, inverse, center, middle
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_tidyr.png)
 background-size: 400px
 background-position: 50% 50%
@@ -2743,7 +2756,7 @@ class: clear, inverse, center, middle
 # Exercício 10
 ### Combine as colunas `country`, `state`, `state_abbreviation`, `municipality`, `site`, em uma coluna chamada `local_total` separadas por `, (vírgula + espaço)`, atribuindo o resultado a um novo objeto, utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f80c2d2" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f81349f" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -3930,7 +3943,7 @@ si_local$local_total
 
 # Exercício 11
 ### Quanto indivíduos por há por família nos locais amostrados? Apenas para as 1000 primeiras linhas da tabela `sp`
-<div class="countdown" id="timer_5f80c2b8" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8137cb" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -3978,7 +3991,7 @@ class: clear, inverse, center, middle
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_dplyr.png)
 background-size: 400px
 background-position: 50% 50%
@@ -5344,7 +5357,7 @@ class: clear, inverse, center, middle
 
 ### Adicione essas novas colunas `alt_log, tem_log e pre_log`, que são a operação `log10` das colunas `altitude,	temperature e	precipitation` e atribua ao mesmo objeto `si` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f80c20f" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8136a3" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5385,7 +5398,7 @@ si[, 25:28]
 
 ### Ordene os dados em forma decrescente pela coluna `altitude`, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f80c0ec" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f813753" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5430,7 +5443,7 @@ si_ar
 
 ###  Filtre as linhas com `altitude` maior que 1000 mm, `temperature` menor que 15 ºC e `precipitation` maior que 1000 mm, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f80c269" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8136f4" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5477,7 +5490,7 @@ si_fi
 
 ### Amostre 200 linhas aleatoriamente com número de espécies maior que 15 espécies, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f80c3e5" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f813481" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5518,7 +5531,7 @@ si_sa
 ```
 
 ---
-class: clear, center, middle
+class: clear
 background-image: url(img/package_stringr.png)
 background-size: 400px
 background-position: 50% 50%
@@ -5708,7 +5721,7 @@ str_split("a-b-c", "-")
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_forcats.png)
 background-size: 400px
 background-position: 50% 50%
@@ -5862,7 +5875,7 @@ fa_lump
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_lubridate.png)
 background-size: 400px
 background-position: 50% 50%
@@ -6241,7 +6254,7 @@ lubridate::today()
 ```
 
 ```
-## [1] "2020-10-09"
+## [1] "2020-10-10"
 ```
 
 --
@@ -6255,7 +6268,7 @@ lubridate::now()
 ```
 
 ```
-## [1] "2020-10-09 16:58:33 -03"
+## [1] "2020-10-10 01:10:22 -03"
 ```
 
 quando eu preparava essa aula...
@@ -6273,7 +6286,7 @@ agora
 ```
 
 ```
-## [1] "2020-10-09 16:58:33 -03"
+## [1] "2020-10-10 01:10:22 -03"
 ```
 --
 
@@ -6601,7 +6614,7 @@ lubridate::with_tz(agora, tzone = "GMT")
 ```
 
 ```
-## [1] "2020-10-09 19:58:33 GMT"
+## [1] "2020-10-10 04:10:22 GMT"
 ```
 
 ```r
@@ -6609,7 +6622,7 @@ lubridate::with_tz(agora, tzone = "Europe/Stockholm")
 ```
 
 ```
-## [1] "2020-10-09 21:58:33 CEST"
+## [1] "2020-10-10 06:10:22 CEST"
 ```
 --
 &lt;br&gt;&lt;br&gt;
@@ -6620,7 +6633,7 @@ lubridate::force_tz(agora, tzone = "GMT")
 ```
 
 ```
-## [1] "2020-10-09 16:58:33 GMT"
+## [1] "2020-10-10 01:10:22 GMT"
 ```
 
 ---
@@ -6643,7 +6656,7 @@ r_interval
 ```
 
 ```
-## [1] 2011-11-30 UTC--2020-10-09 UTC
+## [1] 2011-11-30 UTC--2020-10-10 UTC
 ```
 
 ```r
@@ -6722,9 +6735,9 @@ reunioes
 ```
 
 ```
-##  [1] "2020-10-09" "2020-10-16" "2020-10-23" "2020-10-30" "2020-11-06"
-##  [6] "2020-11-13" "2020-11-20" "2020-11-27" "2020-12-04" "2020-12-11"
-## [11] "2020-12-18"
+##  [1] "2020-10-10" "2020-10-17" "2020-10-24" "2020-10-31" "2020-11-07"
+##  [6] "2020-11-14" "2020-11-21" "2020-11-28" "2020-12-05" "2020-12-12"
+## [11] "2020-12-19"
 ```
 
 ---
@@ -6742,7 +6755,7 @@ r_interval
 ```
 
 ```
-## [1] 2011-11-30 UTC--2020-10-09 UTC
+## [1] 2011-11-30 UTC--2020-10-10 UTC
 ```
 --
 
@@ -6752,7 +6765,7 @@ r_interval / lubridate::dyears(1)
 ```
 
 ```
-## [1] 8.859685
+## [1] 8.862423
 ```
 
 ```r
@@ -6760,7 +6773,7 @@ r_interval / lubridate::ddays(1)
 ```
 
 ```
-## [1] 3236
+## [1] 3237
 ```
 
 ---
@@ -6777,7 +6790,7 @@ lubridate::as.period(r_interval)
 ```
 
 ```
-## [1] "8y 10m 9d 0H 0M 0S"
+## [1] "8y 10m 10d 0H 0M 0S"
 ```
 --
 
@@ -6787,12 +6800,12 @@ lubridate::as.period(namoro_interval)
 ```
 
 ```
-## [1] "12y 3m 14d 0H 0M 0S"
+## [1] "12y 3m 15d 0H 0M 0S"
 ```
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_purrr.png)
 background-size: 400px
 background-position: 50% 50%

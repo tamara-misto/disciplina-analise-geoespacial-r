@@ -20,12 +20,12 @@ if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
 class: clear
-background-image: url(img/package_tidyverse.png)
-background-size: 400px
+background-image: url(img/general_data_science_r4ds.png)
+background-size: 800px
 
 ---
 
-background-image: url(img/package_tidyverse.png)
+background-image: url(img/tidyverse_celestial.png)
 background-size: 350px
 background-position: 85% 75%
 
@@ -55,7 +55,7 @@ background-position: 85% 75%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_tidyverse.png)
 background-size: 400px
 background-position: 50% 50%
@@ -88,7 +88,7 @@ background-position: 50% 50%
 
 ---
 
-class: inverse
+class: inverse, center
 background-image: url(img/gif_avenger_reference.gif)
 background-size: 800px
 
@@ -103,20 +103,6 @@ background-position: 50% 60%
 # 4.1 tidyverse
 
 ## Workflow
-
----
-
-background-image: url(img/general_data_science_r4ds.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 4.1 tidyverse
-
-## Workflow
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
@@ -322,8 +308,8 @@ background-position: 50% 80%
 ---
 
 background-image: url(img/general_fog02.jpg)
-background-size: 500px
-background-position: 50% 80%
+background-size: 350px
+background-position: 50% 90%
 
 # 4.2 magrittr (pipe - %>%)
 
@@ -352,10 +338,9 @@ sqrt(sum(1:100))
 
 ---
 
-class: clear, inverse, center, middle
+class: clear, inverse
 background-image: url(img/gif_uou.webp)
 background-size: 800px
-background-position: 50% 50%
 
 ---
 
@@ -386,13 +371,13 @@ ve
 
 ---
 
-class: inverse
+class: clear, inverse
 background-image: url(img/gif_mario.gif)
 background-size: 700px
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Exercícios
 
@@ -509,7 +494,7 @@ background-position: 50% 50%
 
 background-image: url(img/general_data_eu_mesmo.png)
 background-size: 600px
-background-position: 50% 90%
+background-position: 50% 80%
 
 # 4.3 readr
 
@@ -519,14 +504,27 @@ background-position: 50% 90%
 
 ---
 
-# 4.3 readr
+class: inverse, center, middle
+
+# Mas antes, uma outra forma de indicar diretórios
+
+---
+
+class: clear
+background-image: url(img/here.png)
+background-size: 700px
+
+---
+
+# here
+
+
+
+---
+
+# readr
 
 ## **Formato .csv**
-```{r eval=FALSE}
-# diretorio
-setwd("/home/mude/data/github/disciplina-analise-geoespacial/03_dados")
-```
---
 ```{r eval=FALSE}
 # import sites
 si <- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
@@ -556,10 +554,9 @@ si
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_readxl.png)
 background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -669,7 +666,7 @@ sp
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_tibble.png)
 background-size: 400px
 background-position: 50% 50%
@@ -773,7 +770,7 @@ class: clear, inverse, center, middle
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_tidyr.png)
 background-size: 400px
 background-position: 50% 50%
@@ -1190,7 +1187,7 @@ class: clear, inverse, center, middle
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_dplyr.png)
 background-size: 400px
 background-position: 50% 50%
@@ -1911,7 +1908,7 @@ si_sa
 ```
 
 ---
-class: clear, center, middle
+class: clear
 background-image: url(img/package_stringr.png)
 background-size: 400px
 background-position: 50% 50%
@@ -2027,7 +2024,7 @@ str_split("a-b-c", "-")
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_forcats.png)
 background-size: 400px
 background-position: 50% 50%
@@ -2135,7 +2132,7 @@ fa_lump
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_lubridate.png)
 background-size: 400px
 background-position: 50% 50%
@@ -2500,7 +2497,7 @@ lubridate::as.period(namoro_interval)
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_purrr.png)
 background-size: 400px
 background-position: 50% 50%

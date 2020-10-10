@@ -776,7 +776,7 @@ git log
 
 ---
 
-class: clear, middle, center
+class: clear
 background-image: url(img/git_branches.png)
 background-size: 800px
 
@@ -951,7 +951,7 @@ background-position: 50% 70%
 
 ---
 
-class: clear, middle, center
+class: clear
 background-image: url(img/git_push_pull.svg)
 background-size: 600px
 
