@@ -5,7 +5,7 @@ author: "Maurício H. Vancine <br> Milton C. Ribeiro"
 date: "19/10/2020"
 output:
   xaringan::moon_reader:
-    css: [metropolis]
+    css: [metropolis, metropolis-fonts]
     lib_dir: libs
     nature:
       highlightStyle: rainbow
@@ -168,8 +168,8 @@ background-position: 50% 80%
 ---
 
 background-image: url(img/git_github_link.png)
-background-size: 800px
-background-position: 50% 80%
+background-size: 700px
+background-position: 50% 90%
 
 # ATENÇÃO!
 
@@ -213,7 +213,7 @@ background-position: 50% 50%
 
 ---
 
-class: clear
+class: clear, inverse
 background-image: url(img/git_work.png)
 background-size: 400px
 
@@ -231,25 +231,29 @@ background-position: 50% 60%
 
 background-image: url(img/github_fork_site.png)
 background-size: 800px
-background-position: 50% 70%
+background-position: 50% 80%
 
 # 1.6 Fork
 
-## Forken o repositório da disciplina para o GitHub de vocês
+## Forken o repositório da disciplina
 
-###.center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
+<br>
+
+.center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
 
 ---
 
 background-image: url(img/gif_fork.gif)
 background-size: 600px
-background-position: 50% 80%
+background-position: 50% 90%
 
 # 1.6 Fork
 
-## Forken o repositório da disciplina para o GitHub de vocês
+## Forken o repositório da disciplina
 
-###.center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
+<br>
+
+.center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
 
 ---
 
@@ -344,9 +348,11 @@ class: inverse, center, middle
 
 background-image: url(img/rstudio.png)
 background-size: 800px
-background-position: 50% 50%
+background-position: 50% 70%
 
 # RStudio
+
+## IDE RStudio
 
 ---
 
@@ -393,11 +399,11 @@ background-position: 80% 85%
 
 background-image: url(img/github_ssh_key.png)
 background-size: 900px
-background-position: 50% 70%
+background-position: 50% 80%
 
 # GitHub e RStudio
 
-## No GitHub...
+## No GitHub
 
 - `Perfil > Settings > SSH and GPG keys > New SSH key`
 
@@ -405,11 +411,11 @@ background-position: 50% 70%
 
 background-image: url(img/github_ssh_key_add.png)
 background-size: 900px
-background-position: 50% 80%
+background-position: 50% 90%
 
 # GitHub e RStudio
 
-## No GitHub...
+## No GitHub
 
 - `Title: um nome qualquer`
 - `Key: colar (Ctrl + V)`
@@ -457,7 +463,7 @@ background-position: 50% 80%
 
 Repository URL: https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
 
-Create project as subdirectory of: /home/mude/data/github
+Create project as subdirectory of: `/home/mude/data/github`
 
 ---
 
@@ -470,6 +476,8 @@ background-position: 50% 90%
 ## Terminal
 
 ### Na aba **Terminal** do RStudio, digite:
+
+<br>
 
 ```{bash eval=FALSE}
 # terminal
@@ -485,6 +493,8 @@ background-position: 50% 80%
 # 1.8 Configurando: config
 
 ## Precisamos **definir as configurações** do git
+
+<br>
 
 ```{bash eval=FALSE}
 # terminal
@@ -516,7 +526,7 @@ background-position: 50% 50%
 
 class: inverse, center, middle
 
-# Agora prestem atenção porque complica... =]
+# Agora prestem bastante atenção, porque complica...
 
 ---
 
@@ -555,9 +565,9 @@ background-image: url(img/git_states.png)
 background-size: 700px
 background-position: 50% 70%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
-## **status**: **mostra** o status do repositório e dos arquivos
+## **status**: **mostra** o status do repositório
 
 ```{bash eval=FALSE}
 git status
@@ -584,9 +594,9 @@ background-image: url(img/git_states.png)
 background-size: 600px
 background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
-## **status**: **mostra** o status do repositório e dos arquivos
+## **status**: **mostra** o status do repositório
 
 ```{bash eval=FALSE}
 git status
@@ -602,10 +612,10 @@ git status
 ---
 
 background-image: url(img/git_add_commit_flow.png)
-background-size: 600px
+background-size: 500px
 background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
 ## **add**: **adiciona** mudanças após edições (staging area)
 
@@ -623,9 +633,9 @@ background-image: url(img/git_states.png)
 background-size: 600px
 background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
-## **status**: **mostra** o status do repositório e dos arquivos
+## **status**: **mostra** o status do repositório
 
 ```{bash eval=FALSE}
 git status
@@ -656,9 +666,9 @@ background-image: url(img/git_states.png)
 background-size: 600px
 background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
-## **status**: **mostra** o status do repositório e dos arquivos
+## **status**: **mostra** o status do repositório
 
 ```{bash eval=FALSE}
 git status
@@ -673,10 +683,10 @@ git status
 ---
 
 background-image: url(img/git_add_commit_flow.png)
-background-size: 600px
+background-size: 500px
 background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
 ## **add**: **adiciona** mudanças após edições (staging area)
 
@@ -685,7 +695,7 @@ background-position: 50% 90%
 git add -Av
 ```
 ```{bash eval=FALSE}
-add 'teste.txt'
+## add 'teste.txt'
 ```
 
 ---
@@ -694,9 +704,9 @@ background-image: url(img/git_states.png)
 background-size: 600px
 background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
-## **status**: **mostra** o status do repositório e dos arquivos
+## **status**: **mostra** o status do repositório
 
 ```{bash eval=FALSE}
 git status
@@ -710,12 +720,12 @@ git status
 ---
 
 background-image: url(img/git_add_commit_flow.png)
-background-size: 400px
-background-position: 50% 90%
+background-size: 500px
+background-position: 50% 93%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
-## **commit**: **armazena as mudanças** com uma **descrição** , criando uma **versão do repositório** (repository)
+## **commit**: **armazena as mudanças** com uma **descrição**, nova **versão do repositório** (repository)
 
 ```{bash eval=FALSE}
 git commit -m "2020-10-19 add teste.txt"
@@ -729,12 +739,16 @@ git commit -m "2020-10-19 add teste.txt"
 ---
 
 background-image: url(img/git_commit_message.png)
-background-size: 800px
-background-position: 50% 70%
+background-size: 600px
+background-position: 50% 80%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
 ## ATENÇÃO!
+
+- As mensagens no commit são fundamentais! 
+
+- Devem ser curtas e indicar as mudanças!
 
 ---
 
@@ -742,7 +756,7 @@ background-image: url(img/git_states.png)
 background-size: 600px
 background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
 ## **status**: **mostra** o estatus do repositório
 
@@ -761,7 +775,7 @@ background-image: url(img/git_add_commit.png)
 background-size: 500px
 background-position: 50% 90%
 
-# 1.9 Básico: status, add, commit, e log
+# 1.9 Básico: status, add, commit e log
 
 ## **log**: **registro** de todo o histórico de commits (tags)
 
@@ -786,7 +800,7 @@ background-image: url(img/git_branch.png)
 background-size: 600px
 background-position: 50% 70%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## **branch**: ramificação representa uma **linha independente** de desenvolvimento
 
@@ -794,9 +808,9 @@ background-position: 50% 70%
 
 background-image: url(img/git_branch.png)
 background-size: 500px
-background-position: 50% 85%
+background-position: 50% 90%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## **branch**: **listar** os branchs e **verificar** o branch de edição
 
@@ -811,9 +825,9 @@ git branch
 
 background-image: url(img/git_branch.png)
 background-size: 500px
-background-position: 50% 85%
+background-position: 50% 90%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## **branch**: **criar** uma ramificação
 
@@ -825,9 +839,9 @@ git branch branch-1
 
 background-image: url(img/git_branch.png)
 background-size: 500px
-background-position: 50% 85%
+background-position: 50% 90%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## **branch**: **listar** os branchs e **verificar** o branch de edição
 
@@ -843,9 +857,9 @@ git branch
 
 background-image: url(img/git_switch.png)
 background-size: 800px
-background-position: 50% 80%
+background-position: 50% 90%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## **switch**: **troca a raficação** de edição
 
@@ -857,9 +871,9 @@ git switch branch-1
 
 background-image: url(img/git_branch.png)
 background-size: 500px
-background-position: 50% 85%
+background-position: 50% 90%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## **branch**: **listar** os branchs e **verificar** o branch de edição
 
@@ -894,7 +908,7 @@ background-image: url(img/git_branch.png)
 background-size: 500px
 background-position: 50% 70%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## **switch**: **troca a raficação** de edição
 
@@ -908,7 +922,7 @@ background-image: url(img/git_merge.png)
 background-size: 800px
 background-position: 50% 70%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## **merge**: **mescla** as **linhas de desenvolvimento independentes** em um **único branch**
 
@@ -918,7 +932,7 @@ background-image: url(img/git_merge.png)
 background-size: 700px
 background-position: 50% 90%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## **merge**: **mescla** as **linhas de desenvolvimento independentes** em um **único branch**
 
@@ -935,7 +949,7 @@ background-image: url(img/gif_git_merge.gif)
 background-size: 600px
 background-position: 50% 60%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## CUIDADO!
 
@@ -945,7 +959,7 @@ background-image: url(img/git_merge_warning.png)
 background-size: 500px
 background-position: 50% 70%
 
-# 1.10 Ramificações: branch, switch e merge
+# 1.10 Ramificações
 
 ## CUIDADO!
 
@@ -1063,9 +1077,9 @@ background-position: 50% 80%
 
 ## Git Panel
 
-### RStudio tem um **cliente Git** na aba "Git"
+- RStudio tem um **cliente Git** na aba "Git"
 
-### Esse painel aparece em **projetos** que estejam **versionados com git**
+- Esse painel aparece em **projetos** que estejam **versionados com git**
 
 ---
 
@@ -1220,7 +1234,6 @@ class: clear, middle
 
 Contatos:
 
-<br>
 `r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
 <br>
 `r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)

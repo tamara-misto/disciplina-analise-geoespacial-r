@@ -97,14 +97,15 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Cartografia (escala, sistemas de coordenadas e Datum)
 1. GPS (Global Positioning System)
 1. Sensoriamento Remoto (bandas, satélites, resoluções e aplicações)
-1. Sistemas de Informações Geográficas (SIG)
-1. Dados espaciais (vetor e raster)
+1. Sistema de Informação Geográfica (SIG)
+1. Dados geoespaciais (vetor e raster)
 1. Dados vetoriais (ponto, linha e polígono)
 1. Tabela de atributos
 1. Formato de arquivos vetoriais (shapefile - .dbf, .prj, .shx, .shp)
 1. Dados matriciais (gride ou raster)
 1. Formatos de arquivos matriciais (.tif)
 1. Banco de dados geoespaciais (geopackage - .gpkg)
+1. Conversão de dados geosespaciais
 1. Repositórios de dados geoespaciais (IBGE, FBDS, MapBiomas, GeoBank, GADM, Natural Earth, USGS, SRTM, WorldClim, EarthEnv)
 
 ### 6 Estrutura e manejo de dados geoespaciais (vetor) (quarta-quinta)
@@ -131,7 +132,16 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Vetor para raster: pacote fasterize
 
 ### 8 Produção de mapas (sexta)
-1. Elaboração de mapas (ggplot e tmap)
+1. Elementos de um mapa
+1. Pacotes para produção de mapas
+1. Pacote ggplot2
+1. Pacote tmap
+1. Mapas vetoriais
+1. Mapas matriciais
+1. Mapas estáticos
+1. Mapas animados
+1. Mapas interativos
+1. Exportar mapas
 
 ### Referências
 

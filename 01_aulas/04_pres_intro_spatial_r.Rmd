@@ -2,10 +2,10 @@
 title: "Introdução à análise geoespacial com R <br><br><br>"
 subtitle: "4 Introdução ao tidyverse <br><br><br>"
 author: "Maurício H. Vancine <br> Milton C. Ribeiro"
-date: "19/10/2020"
+date: "20/10/2020"
 output:
   xaringan::moon_reader:
-    css: [metropolis]
+    css: [metropolis, metropolis-fonts]
     lib_dir: libs
     nature:
       highlightStyle: rainbow
@@ -95,7 +95,7 @@ background-size: 800px
 
 ---
 
-background-image: url(img/genral_data_science.png)
+background-image: url(img/general_data_science.png)
 background-size: 700px
 background-position: 50% 60%
 
@@ -550,7 +550,7 @@ background-position: 50% 90%
 
 # here
 
-## Usa diversos critérios para encontrar o diretório raiz
+## Diversos critérios para encontrar o diretório raiz
 
 ```{r eval=FALSE}
 # confer
@@ -2655,7 +2655,6 @@ class: clear, middle
 
 Contatos:
 
-<br>
 `r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
 <br>
 `r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)

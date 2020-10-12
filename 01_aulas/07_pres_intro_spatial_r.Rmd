@@ -1,0 +1,477 @@
+---
+title: "Introdução à análise geoespacial com R <br><br><br>"
+subtitle: "7 Estrutura e manejo de dados matriciais <br><br><br>"
+author: "Maurício H. Vancine <br> Milton C. Ribeiro"
+date: "23/10/2020"
+output:
+  xaringan::moon_reader:
+    css: [metropolis, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: rainbow
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r,setup, include=FALSE}
+options(htmltools.dir.version = FALSE, encoding = "UTF-8")
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+class: clear
+background-image: url(img/raster.jpeg)
+background-size: 400px
+background-position: 90% 85%
+
+---
+
+background-image: url(img/r_spatial.jpeg)
+background-size: 350px
+background-position: 90% 85%
+
+# 7 Estrutura e manejo de dados matriciais
+
+## Tópicos
+1. Raster: pacote raster
+1. Importar dados matriciais
+1. Tipos de dados matriciais
+1. Estrutura de dados matriciais
+1. Projeção de dados matriciais
+1. Manipulando dados matriciais
+1. Operação geométricas de dados matriciais
+1. Operação espaciais de dados matriciais
+1. Vetor para raster: pacote fasterize
+1. Exportar dados matriciais
+
+---
+
+background-image: url(https://geocompr.robinlovelace.net/figures/raster-intro-plot-1.png)
+background-size: 300px
+background-position: 50% 70%
+
+# 7.1 Raster: pacote raster
+
+## Pacote raster
+```{r,eval=FALSE}
+# raster
+install.packages("rgdal")
+install.packages("raster")
+library(raster)
+```
+
+---
+
+# 7.2 Importar dados matriciais
+
+## download raster
+```{r,eval=FALSE}
+# directory
+setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
+
+# download
+download.file(url = "http://biogeo.ucdavis.edu/data/worldclim/v2.0/tif/base/wc2.0_10m_bio.zip",
+              destfile = "wc2.0_10m_bio.zip")
+
+# unzip
+unzip("wc2.0_10m_bio.zip")
+```
+
+---
+
+# 7.2 Importar dados matriciais
+## import raster
+```{r,eval=FALSE}
+# pacote
+library(raster)
+
+# diretorio
+setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
+
+# import raster
+ra <- raster::raster("wc2.0_bio_10m_01.tif")
+ra
+
+# map
+raster::plot(ra)
+```
+
+---
+
+# 7.2 Importar dados matriciais
+## import raster
+```{r,warning=FALSE, message=FALSE, fig.align='center', out.width='50%'}
+# pacote
+library(raster)
+
+# diretorio
+setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
+
+# import raster
+ra <- raster::raster("wc2.0_bio_10m_01.tif")
+ra
+
+# map
+raster::plot(ra)
+```
+
+---
+
+background-image: url(https://geocompr.robinlovelace.net/figures/raster-intro-plot2-1.png)
+background-size: 300px
+background-position: 50% 70%
+
+# 7.3 Tipos de dados matriciais
+
+---
+
+background-image: url(https://www.neonscience.org/sites/default/files/images/dc-spatial-raster/single_multi_raster.png)
+background-size: 300px
+background-position: 50% 70%
+
+# 7.3 Tipos de dados matriciais
+
+---
+
+# 7.2 Importar dados matriciais
+## import raster
+```{r}
+# listar arquivos
+fi <- dir(pattern = ".tif")
+fi
+```
+
+```{r,echo=FALSE}
+# pacote
+library(raster)
+
+# diretorio
+setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
+
+# listar arquivos
+fi <- dir(pattern = ".tif")
+fi
+```
+
+---
+
+# 7.2 Importar dados matriciais
+## import raster
+
+```{r,eval=FALSE}
+# import raster
+st <- raster::stack(fi)
+st
+```
+
+```{r,echo=FALSE}
+# pacote
+library(raster)
+
+# diretorio
+setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
+
+# listar arquivos
+fi <- dir(pattern = ".tif")
+fi
+
+# import raster
+st <- raster::stack(fi)
+st
+```
+
+---
+
+# 7.2 Importar dados matriciais
+## import raster
+
+```{r,eval=FALSE}
+# map
+raster::plot(st)
+```
+
+---
+
+# 7.2 Importar dados matriciais
+## import raster
+
+```{r,echo=FALSE}
+# pacote
+library(raster)
+
+# diretorio
+setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
+
+# listar arquivos
+fi <- dir(pattern = ".tif")
+fi
+
+# import raster
+st <- raster::stack(fi)
+st
+
+# map
+raster::plot(st)
+```
+
+
+---
+
+# 7.4 Estrutura de dados matriciais
+### Número de linhas
+```{r}
+nrow(ra)
+```
+
+--
+
+### Número de colunas
+```{r}
+ncol(ra)
+```
+
+### Número de linhas
+```{r}
+ncell(ra)
+```
+
+---
+
+# 7.4 Estrutura de dados matriciais
+### Resolução
+```{r}
+# resolucao
+res(ra)
+```
+
+--
+
+### Extenção
+```{r}
+extent(ra)
+```
+
+--
+
+### Projeção
+```{r}
+# projecao
+projection(ra)
+```
+
+---
+
+# 7.4 Estrutura de dados matriciais
+### names
+```{r}
+# names
+names(ra)
+```
+
+--
+
+### Valores
+```{r}
+values(ra)
+```
+
+---
+
+# 8.16 Manipulando dados matriciais
+## Seleção de raster
+```{r}
+# map
+raster::plot(st[[1:5]])
+```
+
+---
+
+# 8.16 Manipulando dados matriciais
+## Seleção de raster
+```{r}
+# map
+raster::plot(st$wc2.0_bio_10m_01 )
+```
+
+---
+
+# 8.16 Manipulando dados matriciais
+## Álgebra de raster
+```{r}
+# calculadora de raster
+ra_15 <- ra > 15
+ra_15
+```
+
+--
+
+```{r}
+# map
+raster::plot(ra_15)
+```
+
+---
+
+# 8.16 Manipulando dados matriciais
+## Álgebra de raster
+```{r}
+# calculadora de raster
+ra2 <- ra * ra
+ra2
+```
+
+--
+
+```{r}
+# map
+raster::plot(ra2)
+```
+
+---
+
+# 8.17 Operação geométricas de dados matriciais
+## Agregação e desagregação
+```{r}
+# resolution
+res(ra)
+```
+
+--
+
+```{r}
+# aggregation - aumenta o tamanho do raster
+ra_03 <- aggregate(ra, fact = 2)
+ra_03
+
+# new resolution
+res(ra_03)[1]
+```
+
+--
+
+```{r}
+# desagregacao - diminiu o tamanho do raster
+ra_01 <- disaggregate(ra_03, fact = 3)
+ra_01
+
+# new resolution
+res(ra_01)[1]
+```
+
+---
+
+# 8.18 Operação espaciais de dados matriciais
+### Extração pela máscara
+```{r}
+# crop - adjust extention
+ra_crop <- raster::crop(ra, rec_bairros_union)
+ra_crop
+
+plot(ra_crop)
+```
+
+```{r}
+# crop - adjust extention
+ra_crop <- raster::crop(ra, rec_bairros_union)
+ra_crop
+
+plot(ra_crop)
+```
+
+
+---
+
+# 8.18 Operação espaciais de dados matriciais
+### Extração pela máscara
+```{r}
+# mask
+ra_mask <- mask(ra_crop, rec_bairros_union)
+ra_mask
+
+plot(ra_mask)
+```
+
+---
+
+# 8.18 Operação espaciais de dados matriciais
+### Extração de valores para pontos
+```{r}
+# mask
+po_ext <- raster::extract(ra_mask, rec_bairros_rp)
+po_ext
+
+hist(po_ext)
+```
+
+---
+
+# 8.19 Vetor para raster: pacote fasterize
+
+## vetor para raster 
+```{r}
+# pacote
+# install.packages("fasterize")
+library(fasterize)
+```
+
+--
+
+```{r}
+# criar um raster
+ra_fast <- fasterize::raster(rec_bairros, res = 90)
+ra_fast
+```
+
+--
+
+```{r}
+rec_uso_raster <- fasterize::fasterize(sf = rec_bairros, ra_fast)
+rec_uso_raster
+```
+
+---
+
+# 8.20 Reprojeção e exportar dados matriciais
+# Reprojeção
+```{r}
+ra_mask_utm <- raster::projectRaster(ra_mask, CRS = 31965)
+ra_mask_utm
+
+plot(ra_mask_utm)
+```
+
+---
+
+# 8.20 Reprojeção e exportar dados matriciais
+# Exportar
+```{r}
+setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
+
+raster::writeRaster(ra_mask_utm, "ra_mask_utm.tif")
+```
+
+---
+
+class: inverse, middle, center
+
+# Dúvidas?
+
+---
+
+class: clear, middle
+
+## Maurício Vancine
+
+<br>
+
+Contatos:
+
+<br>
+`r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
+<br>
+`r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)
+<br>
+`r icon::fa_github(colour = "#0000ee")` [mauriciovancine](https://mauriciovancine.netlify.com/)
+<br>
+`r icon::fa_link(colour = "#0000ee")` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
+
+Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)

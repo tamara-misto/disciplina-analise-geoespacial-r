@@ -5,7 +5,7 @@ author: "Maurício H. Vancine <br> Milton C. Ribeiro"
 date: "19/10/2020"
 output:
   xaringan::moon_reader:
-    css: [metropolis]
+    css: [metropolis, metropolis-fonts]
     lib_dir: libs
     nature:
       highlightStyle: rainbow
@@ -34,18 +34,18 @@ background-image: url(img/package_xaringan.png)
 --
 
 background-image: url(img/gif_apontando.webp)
-background-size: 700px
-background-position: 50% 70%
+background-size: 600px
+background-position: 50% 60%
 
 ---
 
 background-image: url(img/person_miltinho.jpg)
-background-size: 400px
+background-size: 300px
 background-position: 50% 70%
 
 # Miltinho
 
-## Quer se apresentar e a disciplina?
+## Quer se apresentar e apresentar a disciplina?
 
 ---
 
@@ -133,13 +133,20 @@ https://github.com/mauriciovancine/disciplina-analise-geoespacial-r
 ## Distribuição diária
 
 <br>
-<br>
-<br>
+
+### Primeira semana
+
+- ~05 horas de teórico-prático
+
+- ~01 hora de exercícios
+
 <br>
 
-### ~05 horas de teórico-prático (manhã-tarde)
+### Segunda semana
 
-### ~01 hora de exercícios (tarde)
+- ~03 horas de exercícios síncronos
+
+- ~03 hora de exercícios assíncronos
 
 ---
 
@@ -169,7 +176,7 @@ background-position: 100% 100%
 ---
 
 background-image: url(img/r_rstudio.png)
-background-size: 400px
+background-size: 350px
 background-position: 85% 75%
 
 # Disciplina
@@ -197,7 +204,7 @@ background-position: 85% 75%
 
 background-image: url(img/r_data_structure.png)
 background-size: 350px
-background-position: 90% 85%
+background-position: 80% 85%
 
 # Disciplina
 
@@ -218,7 +225,7 @@ background-position: 90% 85%
 ---
 
 background-image: url(img/tidyverse_celestial.png)
-background-size: 350px
+background-size: 400px
 background-position: 85% 85%
 
 # Disciplina
@@ -241,27 +248,28 @@ background-position: 85% 85%
 ---
 
 background-image: url(img/general_sig.jpg)
-background-size: 250px
-background-position: 97% 50%
+background-size: 270px
+background-position: 90% 90%
 
 # Disciplina
 
 ## Conteúdo
 
-### 5 Estrutura e fonte de dados geoespaciais (terça)
-1. Geoprocessamento (cartografia, GPS, sensoriamento remoto e SIG)
-1. Cartografia (escala, sistemas de coordenadas e Datum)
-1. GPS (Global Positioning System)
-1. Sensoriamento Remoto (bandas, satélites, resoluções e aplicações)
-1. Sistemas de Informações Geográficas (SIG)
-1. Dados espaciais (vetor e raster)
-1. Dados vetoriais (ponto, linha e polígono)
+### 5 Estrutura e fonte de dados geoespaciais (quarta)
+1. Geoprocessamento
+1. Cartografia
+1. GPS
+1. Sensoriamento Remoto
+1. Sistema de Informação Geográfica (SIG)
+1. Dados geoespaciais
+1. Dados vetoriais 
 1. Tabela de atributos
-1. Formato de arquivos vetoriais (shapefile - .dbf, .prj, .shx, .shp)
-1. Dados matriciais (gride ou raster)
-1. Formatos de arquivos matriciais (.tif)
-1. Banco de dados geoespaciais (geopackage - .gpkg)
-1. Repositórios de dados geoespaciais (IBGE, FBDS, MapBiomas, GeoBank, GADM, Natural Earth, USGS, SRTM, WorldClim, EarthEnv)
+1. Formato de arquivos vetoriais
+1. Dados matriciais
+1. Formatos de arquivos matriciais
+1. Banco de dados geoespaciais
+1. Conversão de dados geosespaciais
+1. Repositórios de dados geoespaciais
 
 ---
 
@@ -309,29 +317,38 @@ background-position: 90% 85%
 ---
 
 background-image: url(img/package_ggplot2.png), url(img/package_tmap.png)
-background-size: 250px, 250px
-background-position: 25% 85%, 80% 85%
+background-size: 200px, 200px
+background-position: 55% 70%, 90% 90%
 
 # Disciplina
 
 ## Conteúdo
 
 ### 8 Produção de mapas (sexta)
-1. Elaboração de mapas (ggplot e tmap)
+1. Elementos de um mapa
+1. Pacotes para produção de mapas
+1. Pacote ggplot2
+1. Pacote tmap
+1. Mapas vetoriais
+1. Mapas matriciais
+1. Mapas estáticos
+1. Mapas animados
+1. Mapas interativos
+1. Exportar mapas
 
 ---
 
 background-image: url(img/general_list.jpg)
 background-size: 200px
-background-position: 85% 90%
+background-position: 50% 95%
 
 # Disciplina
 
-## Exercícios-atividades assistidas remotamente
+## Avaliação
 
 --
 
-### Serão **exercícios** relativamente simples com aplicações práticas
+### Serão **exercícios** simples com aplicações práticas
 
 --
 
@@ -343,7 +360,7 @@ background-position: 85% 90%
 
 --
 
-### **Resumo de 3 páginas** sobre os **conceitos e a aplicações** em seu projeto de pesquisa
+### **Resumo de 3 páginas** sobre os **conceitos e aplicações** da análise geoespacial em seu projeto de pesquisa
 
 ---
 
@@ -361,11 +378,11 @@ background-position: 97% 85%
 
 --
 
-### É possível que eu não consiga **passar todo o conteúdo**
+### É possível que **tenhamos alguns problemas...**
 
 --
 
-### Entretanto, estou totalmente **focado em ensinar**
+### Entretanto, o foco será no **ensino**
 
 --
 
@@ -383,7 +400,7 @@ background-position: 97% 85%
 
 --
 
-### Eu tenho notado ao longo desses anos como professor e aluno (desde 2015), que os alunxs **se sentem inseguros** em interromper e fazer perguntas...
+### Eu tenho notado ao longo desses anos como professor e aluno, que os alunxs **se sentem inseguros** em interromper e fazer perguntas...
 
 --
 
@@ -391,11 +408,7 @@ background-position: 97% 85%
 
 --
 
-### Errar é o principal passo para aprender: **não tenham medo ou vergonha** da sua dúvida ou pergunta!!!
-
---
-
-### Ninguém aqui é **melhor ou superior** aos colegas (sou pós-graduando) como vocês =]
+### **Errar** é o principal passo para **aprender**: **não tenham medo ou vergonha** da sua dúvida ou pergunta!!!
 
 ---
 
@@ -419,7 +432,6 @@ class: clear, middle
 
 Contatos:
 
-<br>
 `r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
 <br>
 `r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)

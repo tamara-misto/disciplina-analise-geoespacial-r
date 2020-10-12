@@ -11,6 +11,6 @@ setwd("01_aulas")
 dir(pattern = ".Rmd")
 
 # convert rmarkdown
-purrr::map(dir(pattern = ".Rmd")[2], chrome_print, timeout = 2000)
+purrr::map(dir(pattern = ".Rmd")[1], chrome_print, timeout = 2000)
 
 # end ---------------------------------------------------------------------

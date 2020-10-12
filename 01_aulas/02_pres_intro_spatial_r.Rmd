@@ -5,7 +5,7 @@ author: "Maurício H. Vancine <br> Milton C. Ribeiro"
 date: "19/10/2020"
 output:
   xaringan::moon_reader:
-    css: [metropolis]
+    css: [metropolis, metropolis-fonts]
     lib_dir: libs
     nature:
       highlightStyle: rainbow
@@ -349,6 +349,21 @@ background-position: 50% 50%
 
 ---
 
+background-image: url(img/cover_rmarkdown_cookbook.png)
+background-size: 280px
+background-position: 50% 50%
+
+# 2.4 Principal material de estudo
+
+## R Markdown Cookbook (2020)
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://bookdown.org/yihui/rmarkdown-cookbook/
+
+
+---
+
 background-image: url(img/cover_geocompr.png)
 background-size: 280px
 background-position: 50% 50%
@@ -597,7 +612,7 @@ class: inverse, center, middle
 
 ```{r}
 #' ---
-#' title: aula 01 - funcionamento linguagem r
+#' title: aula 02 - funcionamento linguagem r
 #' author: seu nome
 #' date: 19-10-2020
 #' ---
@@ -1893,7 +1908,6 @@ class: clear, middle
 
 Contatos:
 
-<br>
 `r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
 <br>
 `r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)
