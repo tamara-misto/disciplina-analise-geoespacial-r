@@ -18,9 +18,6 @@ options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
-``
-
-
 ---
 
 # 6.7 Operações com tabela de atributos
