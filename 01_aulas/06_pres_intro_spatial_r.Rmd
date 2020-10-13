@@ -15,7 +15,6 @@ output:
 
 ```{r,setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
 class: clear
@@ -32,16 +31,16 @@ background-position: 90% 85%
 
 ## Tópicos
 1. Pacote sf
-1. Importar dados vetoriais
-1. Tipos de dados vetoriais
-
-1. Estrutura de dados vetoriais
-1. Projeção de dados vetoriais
+1. Geometrias sf
+1. Classes sf
+1. Importar dados
+1. Estrutura de objetos sf
+1. Sistema de referência de coordenadas
 1. Tabela de atributos
-1. Operações de atributos de dados vetoriais
-1. Operações geométricas de dados vetoriais
-1. Operações espaciais de dados vetoriais
-1. Exportar dados vetoriais
+1. Operações de atributos
+1. Operações geométricas
+1. Operações espaciais
+1. Exportar dados
 
 ---
 
@@ -53,11 +52,19 @@ background-position: 50% 70%
 
 ## sf
 
+### Instalar o pacote sf
 ```{r eval=FALSE}
 # sf
 install.packages("sf")
+```
+
+--
+
+### Carregar o pacote sf
+```{r}
 library(sf)
 ```
+
 
 <br><br><br><br><br><br><br><br><br><br><br>
 
@@ -85,29 +92,297 @@ library(sf)
 
 --
 
-### Os nomes das funções sf são relativamente **consistentes e intuitivos** (todos começam com `st_`)
+### Os nomes das funções sf são relativamente **consistentes e intuitivos** (todos começam com `sf::st_`)
 
 ---
 
-background-image: url(img/geo_vector_sf_classes.png)
+background-image: url(img/geo_vector_sf_types.png)
 background-size: 450px
 background-position: 50% 60%
 
-# 6.2 Tipos de dados vetoriais
+# 6.2 Tipos de geometrias sf
+
+## Tipos de geometrias
 
 ---
 
-background-image: url(https://www.neonscience.org/sites/default/files/images/dc-spatial-vector/pnt_line_poly.png)
-background-size: 500px
-background-position: 50% 70%
+# 6.3 Classes sf
 
-# 6.2 Tipos de dados vetoriais
+## Simple feature geometries (sfg)
+
+### A classe `sfg` representa os diferentes tipos de geometrias no R: ponto, linha, polígono (e seus equivalentes ‘multi’) ou coleção de geometrias
+
+--
+
+### Funções para criar geometrias da classe `sfg`:
+
+```{r eval=FALSE}
+sf::st_point()
+sf::st_linestring()
+sf::st_polygon()
+sf::st_multipoint()
+sf::st_multilinestring()
+sf::st_multipolygon()
+sf::st_geometrycollection()
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature geometries (sfg)
+
+### Os objetos `sfg` podem ser criados a partir de três tipos de dados R base:
+
+<br><br>
+
+#### 1. **vetor numérico**: um único ponto
+#### 2. **matriz**: um conjunto de pontos, onde cada linha representa um ponto, um multiponto ou uma linha
+#### 3. **lista**: uma coleção de objetos como matrizes, cadeias multilinha ou coleções de geometrias
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature geometries (sfg)
+
+```{r}
+# vector - point
+po <- sf::st_point(c(5, 2))
+po
+```
+
+```{r fig.align='center', out.width='30%'}
+# vector - point
+plot(po, pch = 20, cex = 4, axes = TRUE)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature geometries (sfg)
+
+```{r}
+# matrix - multipoint
+multipoint_matrix = rbind(c(5, 2), c(1, 3), c(3, 4), c(3, 2))
+po_mul <- sf::st_multipoint(multipoint_matrix)
+po_mul
+```
+
+```{r fig.align='center', out.width='30%'}
+# matrix - multipoint
+plot(po_mul, pch = 20, cex = 4, axes = TRUE)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature geometries (sfg)
+
+```{r}
+# matrix - multipoint
+multipoint_matrix = rbind(c(5, 2), c(1, 3), c(3, 4), c(3, 2))
+lin <- sf::st_linestring(multipoint_matrix)
+lin
+```
+
+```{r fig.align='center', out.width='30%'}
+# matrix - multipoint
+plot(lin, lwd = 2, axes = TRUE)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature geometries (sfg)
+
+```{r}
+# list - polygon
+polygon_list = list(rbind(c(1, 5), c(2, 2), c(4, 1), c(4, 4), c(1, 5)))
+pol <- sf::st_polygon(polygon_list)
+pol
+```
+
+```{r fig.align='center', out.width='30%'}
+# list - polygon
+plot(pol, col = "gray", axes = TRUE)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature columns (sfc)
+
+### Uma **lista de objetos** `sfg` que possui o **mesmo CSR** (Coordinate Reference System)
+
+--
+
+### Pode conter objetos da **mesma geometria** ou de **geometrias diferentes**
+
+--
+
+### Funções para **criar** a classe `sfc` e verificar o **tipo da geometria e CRS**:
+```{r eval=FALSE}
+sf::st_sfc()
+sf::st_geometry_type()
+sf::st_crs()
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature columns (sfc)
+```{r}
+# sfc POINT
+point1 = st_point(c(5, 2))
+point2 = st_point(c(1, 3))
+points_sfc = st_sfc(point1, point2)
+points_sfc
+```
+
+```{r}
+sf::st_geometry_type(points_sfc)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature columns (sfc)
+```{r fig.align='center', out.width='50%'}
+plot(points_sfc, pch = 20, cex = 4, axes = TRUE)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature columns (sfc)
+```{r}
+# sfc GEOMETRY
+po_pol_sfc = st_sfc(po, pol)
+po_pol_sfc
+```
+
+```{r}
+sf::st_geometry_type(po_pol_sfc)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature columns (sfc)
+```{r fig.align='center', out.width='50%'}
+plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature columns (sfc)
+
+### Coordinate Reference Systems (CRS) - EPSG
+```{r}
+# EPSG definition
+points_sfc_wgs <- st_sfc(point1, point2, crs = 4326)
+st_crs(points_sfc_wgs)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature columns (sfc)
+
+### Coordinate Reference Systems (CRS) - proj4string
+```{r}
+# EPSG definition
+points_sfc_wgs <- st_sfc(point1, point2, crs = "+proj=longlat +datum=WGS84 +no_defs")
+st_crs(points_sfc_wgs)
+```
+
+---
+
+# 6.3 Classes sf
+
+## Simple feature columns (sfc)
+```{r fig.align='center', out.width='50%'}
+plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE)
+```
+
+---
+
+# 6.3 Classes sf
+
+## A classe sf
+
+### A classe sf (simple features) são **data.frames** com **atributos espaciais** armazenados em uma coluna, geralmente chamada de **geometry** 
+
+--
+
+### Essa **dualidade** é central para o conceito de **simple features**: na maioria das vezes, um sf pode **ser tratado e se comporta** como um data.frame 
+
+--
+
+### **Simple features** são, em essência, **data.frames** com uma **extensão espacial**
+
+---
+
+# 6.3 Classes sf
+
+## A classe sf
+
+### Criar um objeto sf
+```{r}
+rc_point <- sf::st_point(c(-47.57,-22.39))         # sfg object
+rc_geom <- sf::st_sfc(rc_point, crs = 4326)        # sfc object
+rc_attrib <- data.frame(                       # data.frame object
+  name = "Rio Claro",
+  temperature = 19,
+  date = as.Date("2020-10-13")
+  )
+rc_sf <- sf::st_sf(rc_attrib, geometry = rc_geom)  # sf object
+```
+
+---
+
+# 6.3 Classes sf
+
+## A classe sf
+
+### A estrutura de um objeto sf
+```{r}
+rc_sf
+```
+
+### As duas classes do objeto sf
+```{r}
+class(rc_sf)
+```
+
+---
+
+# 6.3 Classes sf
+
+## A classe sf
+
+### Plot
+```{r fig.align='center', out.width='50%'}
+plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE) # rc_sf[2] - plotar a segunda coluna
+```
 
 ---
 
 class: inverse, center, middle
 
-# Vamos começar fazendo o download de um vetor pelo R
+# Vamos começar fazendo o download de vetores pelo R
 
 ---
 
@@ -458,7 +733,7 @@ plot(si_ve[1], pch = 20, main = NA)
 # 6.3 Importar dados vetoriais
 
 ## Dados de GPS (.gpx)
-```{r,message=FALSE}
+```{r eval=FALSE}
 # import gps data
 gps <- sf::read_sf("10Set_2019_casa.gpx", layer = "waypoints")
 gps
@@ -469,7 +744,7 @@ gps
 # 6.3 Importar dados vetoriais
 
 ## Dados de uma planilha .csv
-```{r, fig.align='center', out.width='60%'}
+```{r, eval=FALSE, fig.align='center', out.width='60%'}
 # plot
 plot(gps[1], pch = 20, main = NA)
 ```
@@ -481,7 +756,7 @@ plot(gps[1], pch = 20, main = NA)
 ## Informações geográficas e da tabela de atributos
 ```{r}
 # bairros de refice
-rec_bairros
+rc_2019
 ```
 
 ---
@@ -492,14 +767,14 @@ rec_bairros
 
 ```{r}
 # extention
-sf::st_bbox(rec_bairros)
+sf::st_bbox(rc_2019)
 ```
 
 --
 
 ```{r}
 # projection
-sf::st_crs(rec_bairros)
+sf::st_crs(rc_2019)
 ```
 
 ---
@@ -509,13 +784,13 @@ sf::st_crs(rec_bairros)
 ## Acessar a tabela de atributos de um `sf`
 ```{r}
 # acessar a tabela de atributos
-rec_bairros_tab <- sf::st_drop_geometry(rec_bairros)
-rec_bairros_tab
+rc_2019_tab <- sf::st_drop_geometry(rc_2019)
+rc_2019_tab
 ```
 
 ```{r}
 # classe
-class(rec_bairros_tab)
+class(rc_2019_tab)
 ```
 
 ---

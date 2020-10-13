@@ -33,15 +33,15 @@ background-position: 90% 85%
 
 ## Tópicos
 1. Pacote raster
-1. Importar dados matriciais
-1. Tipos de dados matriciais
-1. Estrutura de dados matriciais
-1. Projeção de dados matriciais
-1. Manipulando dados matriciais
-1. Operação geométricas de dados matriciais
-1. Operação espaciais de dados matriciais
-1. Transformações de dados geoespaciais
-1. Exportar dados matriciais
+1. Classes raster
+1. Importar dados
+1. Estrutura de objetos raster
+1. Sistema de referência de coordenadas
+1. Manejo de dados
+1. Operação geométricas
+1. Operação espaciais
+1. Conversões
+1. Exportar dados
 
 ---
 

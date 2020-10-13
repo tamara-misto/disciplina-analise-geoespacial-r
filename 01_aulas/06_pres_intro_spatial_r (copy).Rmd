@@ -18,75 +18,8 @@ options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
----
+``
 
-# 6.3 Importar dados vetoriais
-
-## Dados de GPS (.gpx)
-```{r,message=FALSE}
-# import gps data
-gps <- sf::read_sf("10Set_2019_casa.gpx", layer = "waypoints")
-```
-
----
-
-# 6.3 Importar dados vetoriais
-
-## Dados de uma planilha .csv
-```{r, fig.align='center', out.width='60%'}
-# plot
-plot(gps[1], pch = 20, main = NA)
-```
-
----
-
-class: inverse, middle, center
-
-# Dúvidas?
-
----
-
-# 6.5 Estrutura de dados vetoriais
-
-## Informações geográficas e da tabela de atributos
-```{r}
-# bairros de refice
-rec_bairros
-```
-
----
-
-# 6.5 Estrutura de dados vetoriais
-
-## Informações geográficas e da tabela de atributos
-
-```{r}
-# extention
-sf::st_bbox(rec_bairros)
-```
-
---
-
-```{r}
-# projection
-sf::st_crs(rec_bairros)
-```
-
----
-
-# 6.6 Tabela de atributos
-
-## Acessar a tabela de atributos de um `sf`
-```{r}
-# acessar a tabela de atributos
-rec_bairros_tab <- sf::st_drop_geometry(rec_bairros)
-rec_bairros_tab
-```
-
-```{r}
-# classe
-class(rec_bairros_tab)
-```
 
 ---
 

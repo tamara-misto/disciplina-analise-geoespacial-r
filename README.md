@@ -23,7 +23,7 @@ Prof. Maurício Humberto Vancine
 ### Informações aos participantes
 
 **Datas e horários** <br>
-Teórico-prático: 19/10 – 23/10 [09:00 h - 12:00 h | 14:00 h - 17:00 h] (30 horas)
+Teórico-prático: 19/10 – 23/10 [09 h - 12 h | 14 h - 17 h] (30 horas)
 
 Exercícios-atividades assistidas remotamente: 26/10 – 30/10 (30 horas)
 
