@@ -107,10 +107,10 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Banco de dados geoespaciais (geopackage - .gpkg)
 1. Conversão de dados geosespaciais
 1. Repositórios de dados geoespaciais (IBGE, FBDS, MapBiomas, GeoBank, GADM, Natural Earth, USGS, SRTM, WorldClim, EarthEnv)
+1. Material para análise de dados geoespacias
 
-### 6 Estrutura e manejo de dados geoespaciais (vetor) (quarta-quinta)
-1. Material e pacotes para análise de dados espacias
-1. Vetor: pacote sf
+### 6 Estrutura e manejo de dados vetoriais (quarta-quinta)
+1. Pacote sf
 1. Importar dados vetoriais
 1. Tipos de dados vetoriais
 1. Estrutura de dados vetoriais
@@ -119,9 +119,10 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Operações de atributos de dados vetoriais
 1. Operações geométricas de dados vetoriais
 1. Operações espaciais de dados vetoriais
+1. Exportar dados vetoriais
 
 ### 7 Estrutura e manejo de dados geoespaciais (raster) (quinta-sexta)
-1. Raster: pacote raster
+1. Pacote raster
 1. Importar dados matriciais
 1. Tipos de dados matriciais
 1. Estrutura de dados matriciais
@@ -129,7 +130,8 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Manipulando dados matriciais
 1. Operação geométricas de dados matriciais
 1. Operação espaciais de dados matriciais
-1. Vetor para raster: pacote fasterize
+1. Transformações de dados geoespaciais (raster -> vetor e vetor -> raster)
+1. Exportar dados matriciais
 
 ### 8 Produção de mapas (sexta)
 1. Elementos de um mapa

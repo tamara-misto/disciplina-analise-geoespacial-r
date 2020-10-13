@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Introdução à análise geoespacial com R <br><br><br>
 ## 5 Estrutura e fonte de dados geoespaciais <br><br><br>
 ### Maurício H. Vancine <br> Milton C. Ribeiro
-### 19/10/2020
+### 21/10/2020
 
 ---
 
@@ -50,6 +50,7 @@ background-position: 90% 80%
 1. Banco de dados geoespaciais
 1. Conversão de dados geosespaciais
 1. Repositórios de dados geoespaciais
+1. Material para análise de dados geoespacias
 
 ---
 
@@ -220,13 +221,15 @@ background-position: 50% 80%
 
 background-image: url(img/geo_geographic.png)
 background-size: 500px
-background-position: 80% 70%
+background-position: 85% 60%
 
 # 5.2 Cartografia
 
 ## Sistemas de coordenadas 
 
 ### Geográficas (graus)
+
+&lt;br&gt;
 
 **1. Graus, minutos e segundos**
 - Longitude: 42°42’42”O
@@ -236,9 +239,10 @@ background-position: 80% 70%
 - Longitude: -42.71167
 - Latitude: -23.38972
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
 
-**Converção**: 23 + (23/60) + (23/3600)
+**Conversão**: 42 + (42/60) + (42/3600) = 42.71167 &lt;br&gt;
+**Conversão**: 23 + (23/60) + (23/3600) = 23.38972
 
 ---
 
@@ -263,6 +267,24 @@ background-position: 50% 75%
 ## Sistemas de coordenadas 
 
 ### Projetadas (metros) - UTM
+
+---
+
+background-image: url(img/geo_utm_coords.png)
+background-size: 450px
+background-position: 70% 85%
+
+# 5.2 Cartografia
+
+## Sistemas de coordenadas 
+
+### Projetadas (metros) - UTM
+
+**1. Zona e metros**
+- X UTM: 733876 m E
+- Y UTM: 7411482 m S
+- Zona: 23K
+
 
 ---
 
@@ -324,7 +346,7 @@ background-position: 85% 45%
 
 &lt;br&gt;&lt;br&gt;
 
-**Converção**: não é trival e requer muita trigonometria - feita por computador
+**conversão**: não é trival e requer muita trigonometria - feita por computador
 
 ---
 
@@ -387,8 +409,8 @@ background-position: 95% 90%
 &lt;br&gt;
 
 **Coordenadas projetadas (UTM)**
-- 25L 232323, 4242424; WGS 84
-- 25L 232323, 4242424; SIRGAS 2000
+- 23K 733876E, 7411482S; WGS 84
+- 23K 733876E, 7411482S; SIRGAS 2000
 
 ---
 
@@ -852,6 +874,181 @@ https://www.worldclim.org/
 
 - **EarthEnv**: dados de cobertura da terra, nuvens, relevo e hidrografia &lt;br&gt;
 https://www.earthenv.org/
+
+---
+
+background-image: url(img/cover_analise_espacial_r.jpg)
+background-size: 250px
+background-position: 50% 65%
+
+# 5.14 Material
+
+## Livros
+
+### **Análise espacial com R (2019)**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://www.dropbox.com/s/blgtp2bmpdghol7/AnaliseEspacialComR.pdf?dl=0
+
+---
+
+background-image: url(img/cover_geocompr.png)
+background-size: 230px
+background-position: 50% 65%
+
+# 5.14 Material
+
+## Livros
+
+### **Geocomputation with R (2019)**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://geocompr.robinlovelace.net/
+
+---
+
+background-image: url(img/cover_intro_r_spatial_2ed.jpg)
+background-size: 230px
+background-position: 50% 65%
+
+# 5.14 Material
+
+## Livros
+
+### **An introduction to R for spatial analysis &amp; mapping (2019)**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://bookdown.org/lexcomber/brunsdoncomber2e/
+
+---
+
+background-image: url(img/cover_remote_sensing_and_gis.jpg)
+background-size: 230px
+background-position: 50% 65%
+
+# 5.14 Material
+
+## Livros
+
+### **Remote Sensing and GIS for Ecologists (2016)**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] http://book.ecosens.org/rsebook/
+
+---
+
+background-image: url(img/cover_introduction_spatial_data_analysis.jpg)
+background-size: 230px
+background-position: 50% 65%
+
+# 5.14 Material
+
+## Livros
+
+### **An Introduction to Spatial Data Analysis (2020)**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] http://book.ecosens.org/gsbook/
+
+---
+
+background-image: url(img/cover_geospatial_health_data.jpg)
+background-size: 220px
+background-position: 50% 65%
+
+# 5.14 Material
+
+## Livros
+
+### **Geospatial Health Data**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://www.paulamoraga.com/book-geospatial/
+
+---
+
+background-image: url(img/cover_data_visualization_with_r.png)
+background-size: 230px
+background-position: 50% 65%
+
+# 5.14 Material
+
+## Livros
+
+### **Data Visualization with R (2019)**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://keen-swartz-3146c4.netlify.com/
+
+---
+
+background-image: url(img/cover_fundamentals_of_data_visualization.png)
+background-size: 230px
+background-position: 50% 65%
+
+# 5.14 Material
+
+## Livros
+
+### **Fundamentals of data visualization (2019)**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://keen-swartz-3146c4.netlify.com/
+
+---
+
+background-image: url(img/person_edzer_pebesma.jpg)
+background-size: 230px
+background-position: 50% 65%
+
+# 5.14 Material
+
+## Livros
+
+### **Spatial Data Science (2019) - Edzer Pebesma**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://keen-swartz-3146c4.netlify.com/
+
+---
+
+background-image: url(img/cover_intro_gis.png)
+background-size: 280px
+background-position: 50% 75%
+
+# 5.14 Material
+
+## Apostilas
+
+### **Introduction to GIS: Manipulating and Mapping Geospatial Data in R (2019)**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://cdn2.hubspot.net/hubfs/2287011/Atlan%20GIS%20Course/All%20lessons.pdf
+---
+
+background-image: url(img/person_robert_hijmans.jpg)
+background-size: 230px
+background-position: 50% 70%
+
+# 5.14 Material
+
+## Site
+
+### **Spatial Data Analysis and Modeling with R (2020)**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] http://rspatial.org
 
 ---
 

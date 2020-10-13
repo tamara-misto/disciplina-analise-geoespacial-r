@@ -22,35 +22,9 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 # 6.3 Importar dados vetoriais
 
-## Dados de uma planilha .csv
-```{r}
-# .csv para .shp
-si_ve <- si %>% 
-  dplyr::mutate(lon = longitude, lat = latitude) %>% 
-  sf::st_as_sf(coords = c("lon", "lat"), crs = 4236)
-si_ve
-```
-
----
-
-# 6.3 Importar dados vetoriais
-
-## Dados de uma planilha .csv
-```{r, fig.align='center', out.width='50%'}
-# plot
-plot(si_ve[1], pch = 20, main = NA)
-```
-
----
-
-# 6.3 Importar dados vetoriais
-
 ## Dados de GPS (.gpx)
 ```{r,message=FALSE}
-# diretorio
-setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/03_gps")
-
-# importar
+# import gps data
 gps <- sf::read_sf("10Set_2019_casa.gpx", layer = "waypoints")
 ```
 
@@ -69,22 +43,6 @@ plot(gps[1], pch = 20, main = NA)
 class: inverse, middle, center
 
 # Dúvidas?
-
----
-
-background-image: url(img/geo_vector_sf_classes.png)
-background-size: 450px
-background-position: 50% 60%
-
-# 6.4 Tipos de dados vetoriais
-
----
-
-background-image: url(https://www.neonscience.org/sites/default/files/images/dc-spatial-vector/pnt_line_poly.png)
-background-size: 500px
-background-position: 50% 70%
-
-# 6.4 Tipos de dados vetoriais
 
 ---
 

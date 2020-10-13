@@ -31,10 +31,10 @@ background-position: 90% 85%
 # 6 Estrutura e manejo de dados vetoriais
 
 ## Tópicos
-1. Material para análise de dados geoespacias
-1. Vetor: pacote sf
+1. Pacote sf
 1. Importar dados vetoriais
 1. Tipos de dados vetoriais
+
 1. Estrutura de dados vetoriais
 1. Projeção de dados vetoriais
 1. Tabela de atributos
@@ -45,188 +45,13 @@ background-position: 90% 85%
 
 ---
 
-background-image: url(img/cover_analise_espacial_r.jpg)
-background-size: 250px
-background-position: 50% 65%
-
-# 6.1 Material
-
-## Livros
-
-### **Análise espacial com R (2019)**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://www.dropbox.com/s/blgtp2bmpdghol7/AnaliseEspacialComR.pdf?dl=0
-
----
-
-background-image: url(img/cover_geocompr.png)
-background-size: 230px
-background-position: 50% 65%
-
-# 6.1 Material
-
-## Livros
-
-### **Geocomputation with R (2019)**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://geocompr.robinlovelace.net/
-
----
-
-background-image: url(img/cover_intro_r_spatial_2ed.jpg)
-background-size: 230px
-background-position: 50% 65%
-
-# 6.1 Material
-
-## Livros
-
-### **An introduction to R for spatial analysis & mapping (2019)**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://bookdown.org/lexcomber/brunsdoncomber2e/
-
----
-
-background-image: url(img/cover_remote_sensing_and_gis.jpg)
-background-size: 230px
-background-position: 50% 60%
-
-# 6.1 Material
-
-## Livros
-
-### **Remote Sensing and GIS for Ecologists (2016)**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] http://book.ecosens.org/rsebook/
-
----
-
-background-image: url(img/cover_introduction_spatial_data_analysis.jpg)
-background-size: 230px
-background-position: 50% 60%
-
-# 6.1 Material
-
-## Livros
-
-### **An Introduction to Spatial Data Analysis (2020)**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] http://book.ecosens.org/gsbook/
-
----
-
-background-image: url(img/cover_geospatial_health_data.jpg)
-background-size: 220px
-background-position: 50% 60%
-
-# 6.1 Material
-
-## Livros
-
-### **Geospatial Health Data**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://www.paulamoraga.com/book-geospatial/
-
----
-
-background-image: url(img/cover_data_visualization_with_r.png)
-background-size: 230px
-background-position: 50% 65%
-
-# 6.1 Material
-
-## Livros
-
-### **Data Visualization with R (2019)**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://keen-swartz-3146c4.netlify.com/
-
----
-
-background-image: url(img/cover_fundamentals_of_data_visualization.png)
-background-size: 230px
-background-position: 50% 65%
-
-# 6.1 Material
-
-## Livros
-
-### **Fundamentals of data visualization (2019)**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://keen-swartz-3146c4.netlify.com/
-
----
-
-background-image: url(img/person_edzer_pebesma.jpg)
-background-size: 230px
-background-position: 50% 65%
-
-# 6.1 Material
-
-## Livros
-
-### **Spatial Data Science (2019) - Edzer Pebesma**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://keen-swartz-3146c4.netlify.com/
-
----
-
-background-image: url(img/cover_intro_gis.png)
-background-size: 280px
-background-position: 50% 75%
-
-# 6.1 Material
-
-## Apostilas
-
-### **Introduction to GIS: Manipulating and Mapping Geospatial Data in R (2019)**
-
-<br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://cdn2.hubspot.net/hubfs/2287011/Atlan%20GIS%20Course/All%20lessons.pdf
----
-
-background-image: url(img/person_robert_hijmans.jpg)
-background-size: 230px
-background-position: 50% 70%
-
-# 6.1 Material
-
-## Site
-
-### **Spatial Data Analysis and Modeling with R (2020)**
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] http://rspatial.org
-
----
-
 background-image: url(img/package_sf.gif)
 background-size: 300px
 background-position: 50% 70%
 
-# 6.2 Vetor: pacote sf
+# 6.1 Pacote sf
 
-## Pacote sf
+## sf
 
 ```{r eval=FALSE}
 # sf
@@ -240,9 +65,9 @@ library(sf)
 
 ---
 
-# 6.2 Vetor: pacote sf
+# 6.1 Pacote sf
 
-## **Pacote sf**
+## sf
 
 ### **Rápida importação e exportação** de dados
 
@@ -261,6 +86,22 @@ library(sf)
 --
 
 ### Os nomes das funções sf são relativamente **consistentes e intuitivos** (todos começam com `st_`)
+
+---
+
+background-image: url(img/geo_vector_sf_classes.png)
+background-size: 450px
+background-position: 50% 60%
+
+# 6.2 Tipos de dados vetoriais
+
+---
+
+background-image: url(https://www.neonscience.org/sites/default/files/images/dc-spatial-vector/pnt_line_poly.png)
+background-size: 500px
+background-position: 50% 70%
+
+# 6.2 Tipos de dados vetoriais
 
 ---
 
@@ -452,6 +293,48 @@ plot(sp_mun_2019[1], col = "gray", main = NA)
 # 6.3 Importar dados vetoriais
 
 ## Dados de pacotes: geobr
+```{r}
+# pernambuco municipios
+rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019)
+rc_2019
+```
+
+---
+
+# 6.3 Importar dados vetoriais
+
+## Dados de pacotes: geobr
+```{r fig.align='center', out.width='50%'}
+# plot
+plot(rc_2019[1], col = "gray", main = NA)
+```
+
+---
+
+# 6.3 Importar dados vetoriais
+
+## Dados de pacotes: geobr
+```{r}
+# pernambuco municipios
+af_2019 <- geobr::read_biomes(year = 2019)
+af_2019
+```
+
+---
+
+# 6.3 Importar dados vetoriais
+
+## Dados de pacotes: geobr
+```{r fig.align='center', out.width='50%'}
+# plot
+plot(rc_2019[1], col = "gray", main = NA)
+```
+
+---
+
+# 6.3 Importar dados vetoriais
+
+## Dados de pacotes: geobr
 
 <br><br>
 
@@ -497,7 +380,7 @@ sa
 # 6.3 Importar dados vetoriais
 
 ## Dados de pacotes: rnaturalearth
-```{r fig.align='center', out.width='40%'}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(sa[1], col = "gray", main = NA)
 ```
@@ -518,7 +401,7 @@ coastline
 # 6.3 Importar dados vetoriais
 
 ## Dados de pacotes: rnaturalearth
-```{r fig.align='center', out.width='50%'}
+```{r fig.align='center', out.width='60%'}
 # plot
 plot(coastline[1], col = "blue", main = NA)
 ```
@@ -528,14 +411,111 @@ plot(coastline[1], col = "blue", main = NA)
 # 6.3 Importar dados vetoriais
 
 ## Dados de uma planilha .csv
-```{r,message=FALSE}
+```{r}
 library(tidyverse)
 
-# diretorio
-setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/00_tabelas")
-
 # importar tabela
-si <- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
+si <- readr::read_csv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.csv"))
+```
+
+---
+
+# 6.3 Importar dados vetoriais
+
+## Add as duas colunas de `lon` e `lat`
+```{r}
+# .csv para .shp
+si_ve <- si %>% 
+  dplyr::mutate(lon = longitude, lat = latitude)
+si_ve
+```
+
+---
+
+# 6.3 Importar dados vetoriais
+
+## Transformar em vetor
+```{r}
+# .csv para .shp
+si_ve <- si %>% 
+  dplyr::mutate(lon = longitude, lat = latitude) %>% 
+  sf::st_as_sf(coords = c("lon", "lat"), crs = 4236)
+si_ve
+```
+
+---
+
+# 6.3 Importar dados vetoriais
+
+## Dados de uma planilha .csv
+```{r, fig.align='center', out.width='50%'}
+# plot
+plot(si_ve[1], pch = 20, main = NA)
+```
+
+---
+
+# 6.3 Importar dados vetoriais
+
+## Dados de GPS (.gpx)
+```{r,message=FALSE}
+# import gps data
+gps <- sf::read_sf("10Set_2019_casa.gpx", layer = "waypoints")
+gps
+```
+
+---
+
+# 6.3 Importar dados vetoriais
+
+## Dados de uma planilha .csv
+```{r, fig.align='center', out.width='60%'}
+# plot
+plot(gps[1], pch = 20, main = NA)
+```
+
+---
+
+# 6.5 Estrutura de dados vetoriais
+
+## Informações geográficas e da tabela de atributos
+```{r}
+# bairros de refice
+rec_bairros
+```
+
+---
+
+# 6.5 Estrutura de dados vetoriais
+
+## Informações geográficas e da tabela de atributos
+
+```{r}
+# extention
+sf::st_bbox(rec_bairros)
+```
+
+--
+
+```{r}
+# projection
+sf::st_crs(rec_bairros)
+```
+
+---
+
+# 6.6 Tabela de atributos
+
+## Acessar a tabela de atributos de um `sf`
+```{r}
+# acessar a tabela de atributos
+rec_bairros_tab <- sf::st_drop_geometry(rec_bairros)
+rec_bairros_tab
+```
+
+```{r}
+# classe
+class(rec_bairros_tab)
 ```
 
 ---

@@ -32,7 +32,7 @@ background-position: 90% 85%
 # 7 Estrutura e manejo de dados matriciais
 
 ## Tópicos
-1. Raster: pacote raster
+1. Pacote raster
 1. Importar dados matriciais
 1. Tipos de dados matriciais
 1. Estrutura de dados matriciais
@@ -40,7 +40,7 @@ background-position: 90% 85%
 1. Manipulando dados matriciais
 1. Operação geométricas de dados matriciais
 1. Operação espaciais de dados matriciais
-1. Vetor para raster: pacote fasterize
+1. Transformações de dados geoespaciais
 1. Exportar dados matriciais
 
 ---
