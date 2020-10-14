@@ -13,7 +13,7 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup}
+```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 ```

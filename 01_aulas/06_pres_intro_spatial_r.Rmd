@@ -13,9 +13,10 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup}
+```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+if(!require(emo)) devtools::install_github("hadley/emo")
 ```
 
 class: clear
@@ -35,8 +36,9 @@ background-position: 90% 85%
 1. Geometrias sf
 1. Classes sf
 1. Importar dados
-1. Estrutura de objetos sf
-1. Sistema de referência de coordenadas
+1. Converter dados sf
+1. Descrição de objetos sf
+1. Conversão do CRS
 1. Tabela de atributos
 1. Operações de atributos
 1. Operações geométricas
@@ -46,8 +48,8 @@ background-position: 90% 85%
 ---
 
 background-image: url(img/package_sf.gif)
-background-size: 300px
-background-position: 50% 70%
+background-size: 350px
+background-position: 50% 90%
 
 # 6.1 Pacote sf
 
@@ -62,8 +64,19 @@ install.packages("sf")
 library(sf)
 ```
 
+---
 
-<br><br><br><br><br><br><br><br><br><br>
+background-image: url(img/geo_sf_article.png)
+background-size: 500px
+background-position: 50% 60%
+
+# 6.1 Pacote sf
+
+## Simple Features for R: Standardized Support for Spatial Vector Data
+
+#### Edzer Pebesma
+
+<br><br><br><br><br><br><br><br><br><br><br>
 
 [*] https://journal.r-project.org/archive/2018/RJ-2018-009/RJ-2018-009.pdf
 
@@ -152,7 +165,7 @@ po
 
 ```{r fig.align='center', out.width='35%'}
 # vector - point
-plot(po, pch = 20, cex = 4, axes = TRUE)
+plot(po, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -170,7 +183,7 @@ po_mul
 
 ```{r fig.align='center', out.width='35%'}
 # matrix - multipoint
-plot(po_mul, pch = 20, cex = 4, axes = TRUE)
+plot(po_mul, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -188,7 +201,7 @@ lin
 
 ```{r fig.align='center', out.width='35%'}
 # matrix - multipoint
-plot(lin, lwd = 2, axes = TRUE)
+plot(lin, lwd = 2, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -206,7 +219,7 @@ pol
 
 ```{r fig.align='center', out.width='35%'}
 # list - polygon
-plot(pol, col = "gray", axes = TRUE)
+plot(pol, col = "gray", axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -255,7 +268,7 @@ sf::st_geometry_type(points_sfc)
 
 ### Plot
 ```{r fig.align='center', out.width='45%'}
-plot(points_sfc, pch = 20, cex = 4, axes = TRUE)
+plot(points_sfc, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -281,7 +294,7 @@ sf::st_geometry_type(po_pol_sfc)
 
 ### Plot
 ```{r fig.align='center', out.width='45%'}
-plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE)
+plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -293,8 +306,8 @@ plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE)
 ### Coordinate Reference Systems (CRS) - EPSG
 ```{r}
 # EPSG definition
-points_sfc_wgs <- st_sfc(point1, point2, crs = 4326)
-st_crs(points_sfc_wgs)
+points_sfc_wgs <- sf::st_sfc(point1, point2, crs = 4326)
+sf::st_crs(points_sfc_wgs)
 ```
 
 ---
@@ -306,8 +319,8 @@ st_crs(points_sfc_wgs)
 ### Coordinate Reference Systems (CRS) - proj4string
 ```{r}
 # EPSG definition
-points_sfc_wgs <- st_sfc(point1, point2, crs = "+proj=longlat +datum=WGS84 +no_defs")
-st_crs(points_sfc_wgs)
+points_sfc_wgs <- sf::st_sfc(point1, point2, crs = "+proj=longlat +datum=WGS84 +no_defs")
+sf::st_crs(points_sfc_wgs)
 ```
 
 ---
@@ -318,7 +331,7 @@ st_crs(points_sfc_wgs)
 
 ### Plot
 ```{r fig.align='center', out.width='45%'}
-plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE)
+plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -379,7 +392,7 @@ class(rc_sf)
 
 ### Plot
 ```{r fig.align='center', out.width='45%'}
-plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE) # rc_sf[1] - plotar a primeira coluna
+plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[1] - plotar a primeira coluna
 ```
 
 ---
@@ -390,7 +403,18 @@ plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE) # rc_sf[1] - plotar a primeira co
 
 ### Plot
 ```{r fig.align='center', out.width='45%'}
-plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE) # rc_sf[2] - plotar a segunda coluna
+plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[2] - plotar a segunda coluna
+```
+
+---
+
+# 6.3 Classes sf
+
+## A classe sf
+
+### Plot
+```{r fig.align='center', out.width='45%'}
+plot(rc_sf$geom, pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf$geom - plotar apenas a geometria
 ```
 
 ---
@@ -454,6 +478,12 @@ for(i in c(".dbf", ".prj", ".shp", ".shx")){
 
 ---
 
+class: inverse, center, middle
+
+# Importar dados preexistentes
+
+---
+
 # 6.4 Importar dados
 
 ## Dados preexistentes
@@ -469,7 +499,7 @@ rc_spr
 
 ## Dados preexistentes
 ```{r fig.align='center', out.width='50%'}
-plot(rc_spr[1], pch = 20, col = "blue", main = NA)
+plot(rc_spr$geom, pch = 20, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -488,8 +518,8 @@ rc_riv
 # 6.4 Importar dados
 
 ## Dados preexistentes
-```{r fig.align='center', fig.height = 4, out.width='80%'}
-plot(rc_riv[1], col = "steelblue", main = NA)
+```{r fig.align='center', out.width='50%'}
+plot(rc_riv$geom, col = "steelblue", main = NA, axes = TRUE, graticule = TRUE)
 ```
 ---
 
@@ -507,9 +537,69 @@ rc_use
 # 6.4 Importar dados
 
 ## Dados preexistentes
-```{r cache=TRUE, fig.align='center', fig.height = 4, out.width='80%'}
-plot(rc_use[1], col = "gray", main = NA)
+```{r fig.align='center', out.width='50%'}
+plot(rc_use$CLASSE_USO, col = c("blue", "orange", "gray30", "forestgreen", "green"), main = NA, axes = TRUE, graticule = TRUE)
 ```
+
+---
+
+class: inverse, center, middle
+
+# Importar dados de GPS
+
+---
+
+class: inverse, center, middle
+
+# Um agradecimento ao Rafael (Urucum), que gentilmente cedeu os dados `r icon::fa_grin_beam_sweat()`
+
+---
+
+# 6.4 Importar dados
+
+## Dados de GPS (.gpx)
+```{r}
+# import gps data
+gps_gpx <- sf::read_sf(here::here("03_dados", "vetor", "waypoints.gpx"), layer = "waypoints")
+gps_gpx
+```
+
+---
+
+# 6.4 Importar dados
+
+## Dados de uma planilha .csv
+```{r fig.align='center', out.width='60%'}
+# plot
+plot(gps_gpx$geom, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 6.4 Importar dados
+
+## Dados de GPS (.gpx)
+```{r}
+# import gps data
+gps_kml <- sf::read_sf(here::here("03_dados", "vetor", "waypoints.kml"))
+gps_kml
+```
+
+---
+
+# 6.4 Importar dados
+
+## Dados de uma planilha .csv
+```{r fig.align='center', out.width='60%'}
+# plot
+plot(gps_kml$geom, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+
+# Importar dados de pacotes
 
 ---
 
@@ -545,9 +635,9 @@ br_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', fig.height = 4, out.width='80%'}
+```{r fig.align='center', out.width='50%'}
 # plot
-plot(br_2019[1], col = "gray", main = NA)
+plot(br_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -567,9 +657,9 @@ br_1872
 
 ## Dados de pacotes: geobr
 
-```{r fig.align='center', fig.height = 4, out.width='80%'}
+```{r fig.align='center', out.width='60%'}
 # plot
-plot(br_1872[1], col = "gray", main = NA)
+plot(br_1872$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -588,9 +678,9 @@ sp_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', fig.height = 4, out.width='80%'}
+```{r fig.align='center', out.width='60%'}
 # plot
-plot(sp_2019[1], col = "gray", main = NA)
+plot(sp_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -609,9 +699,9 @@ sp_mun_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', fig.height = 4, out.width='80%'}
+```{r fig.align='center', out.width='60%'}
 # plot
-plot(sp_mun_2019[1], col = "gray", main = NA)
+plot(sp_mun_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -630,9 +720,9 @@ rc_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', fig.height = 4, out.width='80%'}
+```{r fig.align='center', out.width='50%'}
 # plot
-plot(rc_2019[1], col = "gray", main = NA)
+plot(rc_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -651,9 +741,9 @@ bi_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', fig.height = 4, out.width='80%'}
+```{r fig.align='center', out.width='50%'}
 # plot
-plot(bi_2019[1], col = "gray", main = NA)
+plot(bi_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -685,8 +775,8 @@ geobr::list_geobr()
 ---
 
 background-image: url(img/package_ropensci.png)
-background-size: 650px
-background-position: 50% 50%
+background-size: 600px
+background-position: 50% 60%
 
 # 6.4 Importar dados
 
@@ -709,7 +799,7 @@ library(rnaturalearth)
 ## Dados de pacotes: rnaturalearth
 ```{r warning=FALSE}
 # south america
-sa <- rnaturalearth::ne_countries(scale = "small", continent = "South America", returnclass = "sf", )
+sa <- rnaturalearth::ne_countries(scale = "small", continent = "South America", returnclass = "sf")
 sa
 ```
 
@@ -720,7 +810,7 @@ sa
 ## Dados de pacotes: rnaturalearth
 ```{r fig.align='center', fig.height = 4, out.width='80%'}
 # plot
-plot(sa[1], col = "gray", main = NA)
+plot(sa$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -741,14 +831,20 @@ coastline
 ## Dados de pacotes: rnaturalearth
 ```{r fig.align='center', fig.height = 4, out.width='80%'}
 # plot
-plot(coastline[1], col = "blue", main = NA)
+plot(coastline$geom, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
 
-# 6.4 Importar dados
+class: inverse, center, middle
 
-## Dados de uma planilha .csv
+# Importar dados de planilhas eletrônicas e converter em sf
+
+---
+
+# 6.5 Converter dados sf
+
+## Dados de uma planilha eletrônica
 ```{r}
 library(tidyverse)
 
@@ -758,7 +854,7 @@ si <- readr::read_csv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.csv"))
 
 ---
 
-# 6.4 Importar dados
+# 6.5 Converter dados sf
 
 ## Add as duas colunas de `lon` e `lat`
 ```{r}
@@ -770,9 +866,15 @@ si_ve
 
 ---
 
-# 6.4 Importar dados
+class: inverse, center, middle
 
-## Transformar em vetor
+# Converter dados de planilhas em sf
+
+---
+
+# 6.5 Converter dados sf
+
+## Converter dados de planilhas em sf
 ```{r}
 # .csv para .shp
 si_ve <- si %>% 
@@ -783,51 +885,96 @@ si_ve
 
 ---
 
-# 6.4 Importar dados
+# 6.5 Converter dados sf
 
-## Dados de uma planilha .csv
+## Converter dados de planilhas em sf
 ```{r, fig.align='center', out.width='50%'}
 # plot
-plot(si_ve[1], pch = 20, main = NA)
+plot(si_ve$geom, pch = 20, main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
 
-# 6.4 Importar dados
+class: inverse, center, middle
 
-## Dados de GPS (.gpx)
-```{r eval=FALSE}
-# import gps data
-gps <- sf::read_sf("10Set_2019_casa.gpx", layer = "waypoints")
-gps
+# Converter dados de sp em sf
+
+---
+
+background-image: url(img/geo_sp.png)
+background-size: 600px
+background-position: 50% 60%
+
+# 6.5 Converter dados sf
+
+## Tipos de objetos sp
+- SpatialPoints 
+- SpatialLines
+- SpatialPolygons
+- SpatialPointsDataFrame
+- SpatialLinesDataFrame
+- SpatialPolygonsDataFrame
+
+---
+
+# 6.5 Converter dados sf
+
+## sp
+```{r warning=FALSE}
+# countries
+co110_sp <- rnaturalearth::countries110
+co110_sp
 ```
 
 ---
 
-# 6.4 Importar dados
+# 6.5 Converter dados sf
 
-## Dados de uma planilha .csv
-```{r, eval=FALSE, fig.align='center', out.width='60%'}
+## Converter `sp` para `sf`
+```{r warning=FALSE}
+# countries
+co110_sf <- sf::st_as_sf(co110_sp)
+co110_sf
+```
+
+---
+
+# 6.5 Converter dados sf
+
+## Dados de pacotes: rnaturalearth
+```{r fig.align='center', fig.height = 4, out.width='80%'}
 # plot
-plot(gps[1], pch = 20, main = NA)
+plot(co110_sf$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
 
-# 6.5 Estrutura de dados vetoriais
+# 6.5 Converter dados sf
+
+## Converter `sf` para `sp`
+```{r warning=FALSE}
+# countries
+co110_sp <- sf::as_Spatial(co110_sf)
+co110_sp
+```
+
+---
+
+# 6.6 Descrição de objetos sf
 
 ## Informações geográficas e da tabela de atributos
 ```{r}
-# bairros de refice
+# rio claro 2019
 rc_2019
 ```
 
 ---
 
-# 6.5 Estrutura de dados vetoriais
+# 6.6 Descrição de objetos sf
 
-## Informações geográficas e da tabela de atributos
+## Informações geográficas
 
+### Bounding box
 ```{r}
 # extention
 sf::st_bbox(rc_2019)
@@ -835,25 +982,444 @@ sf::st_bbox(rc_2019)
 
 --
 
+### Coordinate reference system
 ```{r}
-# projection
+# coordinate reference system
 sf::st_crs(rc_2019)
 ```
 
 ---
 
-# 6.6 Tabela de atributos
+class: inverse, center, middle
+
+# Conversão do CRS local
+
+---
+
+# 6.7 Conversão do CRS
+
+## SIRGAS 2000 / UTM zone 23S -> WGS84 / UTM zone 23S
+```{r}
+rc_2019_utm_wgs84 <- sf::st_transform(rc_2019, crs = 32723)
+rc_2019_utm_wgs84
+```
+
+[*] https://epsg.io/32723
+
+---
+
+# 6.7 Conversão do CRS
+
+## SIRGAS 2000 / UTM zone 23S -> WGS84 / GCS
+```{r}
+rc_2019_gcs_wgs84 <- sf::st_transform(rc_2019, crs = 4326)
+rc_2019_gcs_wgs84
+```
+
+[*] https://epsg.io/4326
+
+---
+
+# 6.7 Conversão do CRS
+
+## SIRGAS 2000 / UTM zone 23S -> WGS84 / GCS
+```{r echo=FALSE, fig.align='center'}
+library(tidyverse)
+p1 <- ggplot() +
+  geom_sf(data = rc_2019_gcs_wgs84) +
+  coord_sf(datum = sf::st_crs(4326)) +
+  labs(x = "Longitude", y = "Latitude", title = "Geo - WGS84") + 
+  theme_bw() +
+  theme(panel.grid = element_line(size = .5, color = "black", linetype = 2))
+
+p2 <- ggplot() +
+  geom_sf(data = rc_2019) +
+  coord_sf(datum = sf::st_crs(32723)) +
+  labs(x = "x", y = "y", title = "UTM 23S - WGS84") + 
+  theme_bw() +
+  theme(panel.grid = element_line(size = .5, color = "black", linetype = 2))
+
+gridExtra::grid.arrange(p1, p2, nrow = 1)
+```
+
+---
+
+class: inverse, center, middle
+
+# Conversão do CRS global
+
+---
+
+# 6.7 Conversão do CRS
+```{r}
+co110_sf
+```
+
+---
+
+# 6.7 Conversão do CRS
+```{r fig.align='center'}
+plot(co110_sf$geom, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Projeção de Mollweide
+```{r}
+co110_sf_moll <- sf::st_transform(co110_sf, crs = "+proj=moll")
+co110_sf_moll
+```
+
+[*] https://epsg.io/54009
+
+---
+
+# 6.7 Conversão do CRS
+
+## Projeção de Mollweide
+```{r fig.align='center'}
+plot(co110_sf_moll$geom, graticule = TRUE)
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Projeção azimutal de Lambert
+```{r}
+co110_sf_lamb <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0")
+co110_sf_lamb
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Projeção de Mollweide
+```{r fig.align='center'}
+plot(co110_sf_lamb$geom, graticule = TRUE)
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Projeção azimutal de Lambert
+```{r}
+co110_sf_lamb <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-50 +lat_0=0")
+co110_sf_lamb
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Projeção de Mollweide
+```{r fig.align='center'}
+plot(co110_sf_lamb$geom, graticule = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+
+# Tabela de atributos
+
+---
+
+# 6.8 Tabela de atributos
 
 ## Acessar a tabela de atributos de um `sf`
 ```{r}
 # acessar a tabela de atributos
-rc_2019_tab <- sf::st_drop_geometry(rc_2019)
-rc_2019_tab
+rc_use_tab <- sf::st_drop_geometry(rc_use)
+rc_use_tab
 ```
 
 ```{r}
 # classe
-class(rc_2019_tab)
+class(rc_use_tab)
+```
+
+---
+
+# 6.9 Operações de atributos
+
+## Seleção de feições pela tabela de atributos
+```{r message=FALSE}
+# tidyverse
+library(tidyverse)
+
+# filtro da feicao
+rc_use_floresta <- rc_use %>% 
+  dplyr::filter(CLASSE_USO == "formação florestal")
+```
+
+--
+
+```{r echo=FALSE, fig.align='center', out.width='50%'}
+# plot
+plot( rc_use_floresta$geom, col = "forestgreen", main = NA, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 6.9 Operações de atributos
+
+## Acessar os dados da tabela para operações
+```{r}
+# rename
+rec_bairros_rename <- rec_bairros %>% 
+  dplyr::rename(bairros = EBAIRRNOME)
+rec_bairros_rename
+```
+
+---
+
+# 6.9 Operações de atributos
+
+## Funções do dplyr para manejo de feições
+
+`**1 filter()**`<br>
+`**2 distinc()**`<br>
+`**3 slice()**`<br>
+`**4 n_sample()**`<br>
+
+---
+
+# 6.9 Operações de atributos
+
+## Funções do dplyr para manejo de dados da tabela de atributos
+
+`**1 select()**`<br>
+`**2 pull()**`<br>
+`**3 rename()**`<br>
+`**4 mutate()**`<br>
+`**5 arrange()**`<br>
+`**6 summarise()**`<br>
+`**7 join()**`<br>
+
+---
+
+# 6.8 Operações geométricas
+
+## Simplification
+```{r}
+# simplification
+rec_bairros_simp <- sf::st_simplify(rec_bairros, dTolerance = 500)
+rec_bairros_simp
+```
+
+---
+
+# 6.8 Operações geométricas
+
+## Simplification
+```{r echo=FALSE, fig.align='center', out.width='50%'}
+# plot
+plot(rec_bairros[1], main = NA)
+```
+
+---
+
+# 6.8 Operações geométricas
+
+## Simplification
+```{r echo=FALSE, fig.align='center', out.width='50%'}
+# plot
+plot(rec_bairros_simp[1], main = NA)
+```
+
+---
+
+# 6.8 Operações geométricas
+
+## Centroides
+```{r}
+rec_bairros_cent <- sf::st_centroid(rec_bairros)
+rec_bairros_cent
+```
+
+---
+
+# 6.8 Operações geométricas
+
+## Centroides
+```{r echo=FALSE, fig.align='center', out.width='50%'}
+# plot
+plot(rec_bairros_cent[1], main = NA)
+```
+
+---
+
+# 6.8 Operações geométricas
+
+## Buffer
+```{r}
+rec_bairros_buf <- rec_bairros %>% 
+  dplyr::filter(EBAIRRNO_1 == "Caxangá") %>% 
+  sf::st_buffer(1000)
+rec_bairros_buf
+```
+
+---
+
+# 6.8 Operações geométricas
+
+## Buffer
+```{r echo=FALSE, fig.align='center', out.width='50%'}
+# plot
+plot(rec_bairros_buf$geom, main = NA)
+```
+
+---
+
+# 6.8 Operações geométricas
+
+## Uniao (Dissolve)
+```{r}
+rec_bairros_union <- sf::st_union(rec_bairros)
+rec_bairros_union
+```
+
+---
+
+# 6.8 Operações geométricas
+
+## Uniao (Dissolve)
+```{r echo=FALSE, fig.align='center', out.width='50%'}
+# plot
+plot(rec_bairros_union[1], main = NA)
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Intersecção
+```{r, warning=FALSE}
+rc_cover_caxanga <- rec_bairros %>% 
+  dplyr::filter(EBAIRRNO_1 == "Caxangá") %>% 
+  sf::st_intersection(rc_cover, .)
+rc_cover_caxanga
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Intersecção
+```{r echo=FALSE, fig.align='center', out.width='50%'}
+# plot
+plot(rc_cover_caxanga[1], main = NA)
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Pontos aleatórios
+```{r}
+rec_bairros_rp <- sf::st_sample(rec_bairros_union, 100)
+rec_bairros_rp
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Pontos aleatórios
+```{r echo=FALSE, fig.align='center', out.width='50%'}
+# plot
+plot(rec_bairros_rp, pch = 20, cex = 2, main = NA)
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Quadrículas
+```{r}
+rec_bairros_grid <- sf::st_make_grid(rec_bairros_union, cellsize = 1000) %>% 
+  sf::st_as_sf()
+rec_bairros_grid
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Quadrículas
+```{r eval=FALSE}
+# pacote
+library(tmap)
+
+# plot
+tm_shape(rec_bairros) +
+  tm_fill() +
+tm_shape(rec_bairros_grid) +
+  tm_borders()
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Quadrículas
+```{r echo=FALSE,message=FALSE,warning=FALSE, fig.align='center', out.width='60%'}
+# pacote
+library(tmap)
+
+# plot
+tm_shape(rec_bairros) +
+  tm_fill() +
+tm_shape(rec_bairros_grid) +
+  tm_borders()
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Contar pontos nas quadrículas
+```{r}
+# contagem por célula
+rec_bairros_grid_count <- rec_bairros_grid %>% 
+  dplyr::mutate(n = sf::st_intersects(rec_bairros_grid, rec_bairros_rp) %>% 
+                  lengths())
+rec_bairros_grid_count
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Contar pontos nas quadrículas
+```{r eval=FALSE}
+# map
+tm_shape(rec_bairros_grid_count) +
+  tm_polygons(col = "n") +
+tm_shape(rec_bairros_rp) +
+  tm_dots(size = .5, alpha = .75) +
+  tm_legend(legend.position = c("left", "bottom"))
+
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## Contar pontos nas quadrículas
+```{r echo=FALSE, message=FALSE,warning=FALSE, fig.align='center', out.width='60%'}
+# map
+tm_shape(rec_bairros_grid_count) +
+  tm_polygons(col = "n") +
+tm_shape(rec_bairros_rp) +
+  tm_dots(size = .5, alpha = .75) +
+  tm_legend(legend.position = c("left", "bottom"))
+
 ```
 
 ---

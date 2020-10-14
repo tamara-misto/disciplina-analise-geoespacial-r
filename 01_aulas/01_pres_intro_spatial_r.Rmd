@@ -13,7 +13,7 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup}
+```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 ```
@@ -857,7 +857,7 @@ git branch
 
 background-image: url(img/git_switch.png)
 background-size: 800px
-background-position: 50% 90%
+background-position: 50% 75%
 
 # 1.10 Ramificações
 

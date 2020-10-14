@@ -13,13 +13,14 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup}
+```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 ```
 
 class: clear
 background-image: url(img/package_xaringan.png)
+background-size: 600px
 
 ---
 
@@ -35,7 +36,7 @@ background-image: url(img/package_xaringan.png)
 
 background-image: url(img/gif_apontando.webp)
 background-size: 600px
-background-position: 50% 60%
+background-position: 50% 80%
 
 ---
 
@@ -341,29 +342,21 @@ background-position: 55% 70%, 90% 90%
 
 ---
 
-background-image: url(img/general_list.jpg)
-background-size: 200px
-background-position: 50% 95%
+background-image: url(img/general_list.jpg), url(img/general_ats.jpg)
+background-size: 180px,250px
+background-position: 90% 35%,50% 95%
 
 # Disciplina
 
 ## Avaliação
 
---
-
-### Serão **exercícios** simples com aplicações práticas
-
---
-
-### Todos devem enviar os exercícios pelo **GitHub**
-
---
-
-### A nota será pela **tentativa** e não pela **resolução em si**
-
---
-
-### **Resumo de 3 páginas** sobre os **conceitos e aplicações** da análise geoespacial em seu projeto de pesquisa
+### A avaliação será desenvolver um projeto do início ao fim: 
+- criar um repositório no GitHub
+- versionar
+- baixar e organizar conjuntos de dados
+- realizar análise de dados geoespaciais e estatísticos
+- apresentar esses resultados
+- usaremos os data papers e dados pata a Mata Atlântica
 
 ---
 

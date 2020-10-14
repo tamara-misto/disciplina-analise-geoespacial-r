@@ -22,10 +22,6 @@ class: center, middle, inverse, title-slide
 
 
 
-```r
-options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
-```
 
 class: clear
 background-image: url(img/geo_vector_sf_allison.png)
@@ -55,8 +51,8 @@ background-position: 90% 85%
 ---
 
 background-image: url(img/package_sf.gif)
-background-size: 300px
-background-position: 50% 70%
+background-size: 350px
+background-position: 50% 90%
 
 # 6.1 Pacote sf
 
@@ -73,8 +69,19 @@ install.packages("sf")
 library(sf)
 ```
 
+---
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+background-image: url(img/geo_sf_article.png)
+background-size: 500px
+background-position: 50% 60%
+
+# 6.1 Pacote sf
+
+## Simple Features for R: Standardized Support for Spatial Vector Data
+
+#### Edzer Pebesma
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://journal.r-project.org/archive/2018/RJ-2018-009/RJ-2018-009.pdf
 
@@ -674,7 +681,7 @@ rc_riv
 plot(rc_riv[1], col = "steelblue", main = NA)
 ```
 
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-34-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-34-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ---
 
 # 6.4 Importar dados
@@ -717,7 +724,7 @@ rc_use
 plot(rc_use[1], col = "gray", main = NA)
 ```
 
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-36-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-36-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -792,7 +799,7 @@ br_2019
 plot(br_2019[1], col = "gray", main = NA)
 ```
 
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-39-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-39-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -828,7 +835,7 @@ br_1872
 plot(br_1872[1], col = "gray", main = NA)
 ```
 
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-41-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-41-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -865,7 +872,7 @@ sp_2019
 plot(sp_2019[1], col = "gray", main = NA)
 ```
 
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-43-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-43-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -921,7 +928,7 @@ sp_mun_2019
 plot(sp_mun_2019[1], col = "gray", main = NA)
 ```
 
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-45-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-45-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -958,7 +965,7 @@ rc_2019
 plot(rc_2019[1], col = "gray", main = NA)
 ```
 
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-47-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-47-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -999,7 +1006,7 @@ bi_2019
 plot(bi_2019[1], col = "gray", main = NA)
 ```
 
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-49-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-49-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 

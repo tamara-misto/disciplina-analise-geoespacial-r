@@ -101,7 +101,7 @@ sudo apt install -y git
 ```
 
 **Instalar os pacotes no R** <br>
-Com o R e o RStudio instalados, baixe esse [script](https://github.com/mauriciovancine/disciplina-geoprocessamento/blob/master/02_scripts/script_install_packages.R) (scripts são roteiros que possuem comandos, como um rascunho). <br>
+Com o R e o RStudio instalados, baixe esse [script](https://github.com/mauriciovancine/disciplina-analise-geoespacial-r/blob/master/02_scripts/00_script_install_packages.R) (scripts são roteiros que possuem comandos, como um rascunho). <br>
 Abra o script (**00_script_install_r_packages.R**) no software RStudio e rode cada linha de comando para instalar os pacotes, necessário estar conectado à internet. <br>
 Para rodar as linhas, basta colocar o cursor na linha de código a ser executada e precionar: `Ctrl + Enter`, como mostra o gif abaixo:
 

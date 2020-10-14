@@ -13,7 +13,7 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup}
+```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
@@ -115,15 +115,25 @@ background-position: 50% 60%
 
 ---
 
-background-image: url(img/general_messy_data.png)
-background-size: 600px
+background-image: url(img/tidyverse_packages.png)
+background-size: 650px
 background-position: 50% 60%
+
+# 4.1 tidyverse
+
+## Pacotes e suas funções
+
+---
+
+background-image: url(img/general_messy_data.png)
+background-size: 700px
+background-position: 50% 70%
 
 # 4.1 tidyverse
 
 ## Objetivo: te ajudar na luta contra os dados
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 Fonte: [@ViviFabrien](https://twitter.com/ViviFabrien)
 
