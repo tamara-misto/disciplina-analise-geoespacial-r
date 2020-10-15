@@ -114,12 +114,13 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Geometrias sf (point, linestring, polygon, multipoint, multilinestring, multipolygon, geometrycollection)
 1. Classes sf (sfg, sfc, sf)
 1. Importar dados
-1. Estrutura de objetos sf
-1. Sistema de referência de coordenadas
+1. Converter dados sf
+1. Descrição de objetos sf
+1. Conversão do CRS
 1. Tabela de atributos
 1. Operações de atributos
-1. Operações geométricas
 1. Operações espaciais
+1. Operações geométricas
 1. Exportar dados
 
 ### 7 Estrutura e manejo de dados matriciais (raster) (quinta-sexta)

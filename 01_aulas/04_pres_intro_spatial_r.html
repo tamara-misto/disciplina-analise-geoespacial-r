@@ -159,19 +159,16 @@ background-position: 50% 60%
 
 ---
 
-background-image: url(img/tidyverse_article_tidy.png)
-background-size: 500px
-background-position: 50% 55%
+background-image: url(img/tidyverse_papers.png)
+background-size: 400px
+background-position: 50% 90%
 
-# 4.1 tidyverse
+# tidyverse
 
-### Tidy Data (2014) - *Journal of Statistics Software*
+## Artigos
+&gt; - Wickham, Hadley. ["Tidy data."](https://www.jstatsoft.org/article/view/v059i10) Journal of Statistical Software 59.10 (2014): 1-23.
 
-#### Hadley Wickham
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-[*] http://vita.had.co.nz/papers/tidy-data.pdf
+&gt; - Wickham, Hadley, et al. ["Welcome to the Tidyverse."](https://joss.theoj.org/papers/10.21105/joss.01686) Journal of Open Source Software 4.43 (2019): 1686.
 
 ---
 
@@ -467,7 +464,7 @@ class: inverse, center, middle
 &lt;br&gt;
 `prod(sort(sample(1:10, 10000, rep = TRUE)))`
 
-<div class="countdown" id="timer_5f8640a9" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f877b29" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -599,9 +596,9 @@ background-size: 700px
 
 &lt;br&gt;
 
-### - **Mudar o diretório**: tende à ser chato demais...
+### - **Mudar o diretório**: tende à ser chato demais (principalmente se é um código alheio)
 ### - **Fragilidade**: conectado exatamente a lugar e a momento (reprodutibilidade)
-### - **Subdiretóios**: facilita o trabalho de definir subpastas para importar ou exportar dados
+### - **Subdiretórios**: facilita importar ou exportar para subpastas (Lei do Mínimo Esforço)
 
 ---
 
@@ -2763,7 +2760,7 @@ class: inverse, center, middle
 # Exercício 10
 ### Combine as colunas `country`, `state`, `state_abbreviation`, `municipality`, `site`, em uma coluna chamada `local_total` separadas por `, (vírgula + espaço)`, atribuindo o resultado a um novo objeto, utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f864221" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f87796d" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -3950,7 +3947,7 @@ si_local$local_total
 
 # Exercício 11
 ### Quanto indivíduos por há por família nos locais amostrados? Apenas para as 1000 primeiras linhas da tabela `sp`
-<div class="countdown" id="timer_5f8641ef" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f877cac" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -5366,7 +5363,7 @@ class: inverse, center, middle
 
 ### Adicione essas novas colunas `alt_log, tem_log e pre_log`, que são a operação `log10` das colunas `altitude,	temperature e	precipitation` e atribua ao mesmo objeto `si` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f864249" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f877c7a" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5407,7 +5404,7 @@ si[, 25:28]
 
 ### Ordene os dados em forma decrescente pela coluna `altitude`, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f864274" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f877a70" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5452,7 +5449,7 @@ si_ar
 
 ###  Filtre as linhas com `altitude` maior que 1000 mm, `temperature` menor que 15 ºC e `precipitation` maior que 1000 mm, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f863f28" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f877a16" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5499,7 +5496,7 @@ si_fi
 
 ### Amostre 200 linhas aleatoriamente com número de espécies maior que 15 espécies, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f86420a" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f877bc0" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -6271,7 +6268,7 @@ lubridate::today()
 ```
 
 ```
-## [1] "2020-10-13"
+## [1] "2020-10-14"
 ```
 
 --
@@ -6285,7 +6282,7 @@ lubridate::now()
 ```
 
 ```
-## [1] "2020-10-13 20:57:59 -03"
+## [1] "2020-10-14 19:18:28 -03"
 ```
 
 quando eu preparava essa aula...
@@ -6303,7 +6300,7 @@ agora
 ```
 
 ```
-## [1] "2020-10-13 20:57:59 -03"
+## [1] "2020-10-14 19:18:28 -03"
 ```
 --
 
@@ -6631,7 +6628,7 @@ lubridate::with_tz(agora, tzone = "GMT")
 ```
 
 ```
-## [1] "2020-10-13 23:57:59 GMT"
+## [1] "2020-10-14 22:18:28 GMT"
 ```
 
 ```r
@@ -6639,7 +6636,7 @@ lubridate::with_tz(agora, tzone = "Europe/Stockholm")
 ```
 
 ```
-## [1] "2020-10-14 01:57:59 CEST"
+## [1] "2020-10-15 00:18:28 CEST"
 ```
 --
 &lt;br&gt;&lt;br&gt;
@@ -6650,7 +6647,7 @@ lubridate::force_tz(agora, tzone = "GMT")
 ```
 
 ```
-## [1] "2020-10-13 20:57:59 GMT"
+## [1] "2020-10-14 19:18:28 GMT"
 ```
 
 ---
@@ -6673,7 +6670,7 @@ r_interval
 ```
 
 ```
-## [1] 2011-11-30 UTC--2020-10-13 UTC
+## [1] 2011-11-30 UTC--2020-10-14 UTC
 ```
 
 ```r
@@ -6752,9 +6749,9 @@ reunioes
 ```
 
 ```
-##  [1] "2020-10-13" "2020-10-20" "2020-10-27" "2020-11-03" "2020-11-10"
-##  [6] "2020-11-17" "2020-11-24" "2020-12-01" "2020-12-08" "2020-12-15"
-## [11] "2020-12-22"
+##  [1] "2020-10-14" "2020-10-21" "2020-10-28" "2020-11-04" "2020-11-11"
+##  [6] "2020-11-18" "2020-11-25" "2020-12-02" "2020-12-09" "2020-12-16"
+## [11] "2020-12-23"
 ```
 
 ---
@@ -6772,7 +6769,7 @@ r_interval
 ```
 
 ```
-## [1] 2011-11-30 UTC--2020-10-13 UTC
+## [1] 2011-11-30 UTC--2020-10-14 UTC
 ```
 --
 
@@ -6782,7 +6779,7 @@ r_interval / lubridate::dyears(1)
 ```
 
 ```
-## [1] 8.870637
+## [1] 8.873374
 ```
 
 ```r
@@ -6790,7 +6787,7 @@ r_interval / lubridate::ddays(1)
 ```
 
 ```
-## [1] 3240
+## [1] 3241
 ```
 
 ---
@@ -6807,7 +6804,7 @@ lubridate::as.period(r_interval)
 ```
 
 ```
-## [1] "8y 10m 13d 0H 0M 0S"
+## [1] "8y 10m 14d 0H 0M 0S"
 ```
 --
 
@@ -6817,7 +6814,7 @@ lubridate::as.period(namoro_interval)
 ```
 
 ```
-## [1] "12y 3m 18d 0H 0M 0S"
+## [1] "12y 3m 19d 0H 0M 0S"
 ```
 
 ---

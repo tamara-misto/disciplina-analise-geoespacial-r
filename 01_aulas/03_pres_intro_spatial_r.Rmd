@@ -20,12 +20,12 @@ if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
 class: clear
-background-image: url(img/r_data_structure.png)
-background-size: 400px
+background-image: url(img/r_data_structures02.png)
+background-size: 700px
 
 ---
 
-background-image: url(img/r_data_structure.png)
+background-image: url(img/r_data_structures01.png)
 background-size: 400px
 background-position: 85% 90%
 
@@ -1114,6 +1114,12 @@ class: inverse, center, middle
 class: inverse, center, middle
 
 # Bora manejar isso tudo?
+
+---
+
+class: clear
+background-image: url(img/r_data_manipulation.png)
+background-size: 700px
 
 ---
 

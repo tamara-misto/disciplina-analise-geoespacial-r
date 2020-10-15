@@ -40,12 +40,13 @@ background-position: 90% 85%
 1. Geometrias sf
 1. Classes sf
 1. Importar dados
-1. Estrutura de objetos sf
-1. Sistema de referência de coordenadas
+1. Converter dados sf
+1. Descrição de objetos sf
+1. Conversão do CRS
 1. Tabela de atributos
 1. Operações de atributos
-1. Operações geométricas
 1. Operações espaciais
+1. Operações geométricas
 1. Exportar dados
 
 ---
@@ -72,18 +73,43 @@ library(sf)
 ---
 
 background-image: url(img/geo_sf_article.png)
-background-size: 500px
-background-position: 50% 60%
+background-size: 600px
+background-position: 50% 80%
 
 # 6.1 Pacote sf
 
-## Simple Features for R: Standardized Support for Spatial Vector Data
+## Artigo
+&gt; - Pebesma, Edzer. ["Simple Features for R: Standardized Support for Spatial Vector Data."](https://journal.r-project.org/archive/2018/RJ-2018-009/) The R Journal 10.01 (2018): 439-446.
 
-#### Edzer Pebesma
+---
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+background-image: url(img/geo_sf_deps.png)
+background-size: 700px
+background-position: 50% 80%
 
-[*] https://journal.r-project.org/archive/2018/RJ-2018-009/RJ-2018-009.pdf
+# 6.1 Pacote sf
+
+## Dependências de outros pacotes
+
+---
+
+background-image: url(img/geo_sf_methods.png)
+background-size: 700px
+background-position: 50% 80%
+
+# 6.1 Pacote sf
+
+## Métodos
+
+---
+
+background-image: url(img/geo_sf_functions.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 6.1 Pacote sf
+
+## Funções
 
 ---
 
@@ -111,9 +137,19 @@ background-position: 50% 60%
 
 ---
 
+background-image: url(img/geo_vector_data.png)
+background-size: 500px
+background-position: 45% 80%
+
+# 6.2 Tipos de geometrias sf
+
+## Tipos de dados geoespaciais vetoriais
+
+---
+
 background-image: url(img/geo_vector_sf_types.png)
-background-size: 450px
-background-position: 50% 60%
+background-size: 500px
+background-position: 50% 80%
 
 # 6.2 Tipos de geometrias sf
 
@@ -125,20 +161,25 @@ background-position: 50% 60%
 
 ## Simple feature geometries (sfg)
 
-### A classe `sfg` representa os diferentes tipos de geometrias no R: ponto, linha, polígono (e seus equivalentes ‘multi’) ou coleção de geometrias
+### A classe `sfg` representa os **diferentes tipos de geometrias** no R: ponto, linha, polígono (e seus equivalentes ‘multi’) ou coleção de geometrias
 
 --
 
-### Funções para criar geometrias da classe `sfg`:
+#### Funções para criar geometrias da classe `sfg`:
 
 
 ```r
+# simple
 sf::st_point()
 sf::st_linestring()
 sf::st_polygon()
+
+# multi
 sf::st_multipoint()
 sf::st_multilinestring()
 sf::st_multipolygon()
+
+# collections
 sf::st_geometrycollection()
 ```
 
@@ -150,11 +191,11 @@ sf::st_geometrycollection()
 
 ### Os objetos `sfg` podem ser criados a partir de três tipos de dados R base:
 
-&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
 
-#### 1. **vetor numérico**: um único ponto
-#### 2. **matriz**: um conjunto de pontos, onde cada linha representa um ponto, um multiponto ou uma linha
-#### 3. **lista**: uma coleção de objetos como matrizes, cadeias multilinha ou coleções de geometrias
+### 1. **vetor numérico**: um único ponto
+### 2. **matriz**: um conjunto de pontos, onde cada linha representa um ponto, um multiponto ou uma linha
+### 3. **lista**: uma coleção de objetos como matrizes, cadeias multilinha ou coleções de geometrias
 
 ---
 
@@ -172,11 +213,9 @@ po
 
 
 ```r
-# vector - point
-plot(po, pch = 20, cex = 4, axes = TRUE)
+# plot
+plot(po, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-5-1.png" width="35%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -194,11 +233,9 @@ po_mul
 
 
 ```r
-# matrix - multipoint
-plot(po_mul, pch = 20, cex = 4, axes = TRUE)
+# plot
+plot(po_mul, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-7-1.png" width="35%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -216,11 +253,9 @@ lin
 
 
 ```r
-# matrix - multipoint
-plot(lin, lwd = 2, axes = TRUE)
+# plot
+plot(lin, lwd = 2, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-9-1.png" width="35%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -238,11 +273,9 @@ pol
 
 
 ```r
-# list - polygon
-plot(pol, col = "gray", axes = TRUE)
+# plot
+plot(pol, col = "gray", axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-11-1.png" width="35%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -250,7 +283,7 @@ plot(pol, col = "gray", axes = TRUE)
 
 ## Simple feature columns (sfc)
 
-### Uma **lista de objetos** `sfg` que possui o **mesmo CSR** (Coordinate Reference System)
+### Uma **lista de objetos** `sfg` que possui o **mesmo CSR** (*Coordinate Reference System*)
 
 --
 
@@ -280,22 +313,9 @@ points_sfc &lt;- sf::st_sfc(point1, point2)
 points_sfc
 ```
 
-```
-## Geometry set for 2 features 
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 1 ymin: 2 xmax: 5 ymax: 3
-## CRS:            NA
-```
-
 
 ```r
 sf::st_geometry_type(points_sfc)
-```
-
-```
-## [1] POINT POINT
-## 18 Levels: GEOMETRY POINT LINESTRING POLYGON MULTIPOINT ... TRIANGLE
 ```
 
 ---
@@ -304,13 +324,10 @@ sf::st_geometry_type(points_sfc)
 
 ## Simple feature columns (sfc)
 
-### Plot
-
 ```r
-plot(points_sfc, pch = 20, cex = 4, axes = TRUE)
+# plot
+plot(points_sfc, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-15-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -324,22 +341,9 @@ po_pol_sfc &lt;- sf::st_sfc(po, pol)
 po_pol_sfc
 ```
 
-```
-## Geometry set for 2 features 
-## geometry type:  GEOMETRY
-## dimension:      XY
-## bbox:           xmin: 1 ymin: 1 xmax: 5 ymax: 5
-## CRS:            NA
-```
-
 
 ```r
 sf::st_geometry_type(po_pol_sfc)
-```
-
-```
-## [1] POINT   POLYGON
-## 18 Levels: GEOMETRY POINT LINESTRING POLYGON MULTIPOINT ... TRIANGLE
 ```
 
 ---
@@ -348,13 +352,10 @@ sf::st_geometry_type(po_pol_sfc)
 
 ## Simple feature columns (sfc)
 
-### Plot
-
 ```r
-plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE)
+# plot
+plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-18-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -366,32 +367,8 @@ plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE)
 
 ```r
 # EPSG definition
-points_sfc_wgs &lt;- st_sfc(point1, point2, crs = 4326)
-st_crs(points_sfc_wgs)
-```
-
-```
-## Coordinate Reference System:
-##   User input: EPSG:4326 
-##   wkt:
-## GEOGCRS["WGS 84",
-##     DATUM["World Geodetic System 1984",
-##         ELLIPSOID["WGS 84",6378137,298.257223563,
-##             LENGTHUNIT["metre",1]]],
-##     PRIMEM["Greenwich",0,
-##         ANGLEUNIT["degree",0.0174532925199433]],
-##     CS[ellipsoidal,2],
-##         AXIS["geodetic latitude (Lat)",north,
-##             ORDER[1],
-##             ANGLEUNIT["degree",0.0174532925199433]],
-##         AXIS["geodetic longitude (Lon)",east,
-##             ORDER[2],
-##             ANGLEUNIT["degree",0.0174532925199433]],
-##     USAGE[
-##         SCOPE["unknown"],
-##         AREA["World"],
-##         BBOX[-90,-180,90,180]],
-##     ID["EPSG",4326]]
+points_sfc_wgs &lt;- sf::st_sfc(point1, point2, crs = 4326)
+sf::st_crs(points_sfc_wgs)
 ```
 
 ---
@@ -404,31 +381,8 @@ st_crs(points_sfc_wgs)
 
 ```r
 # EPSG definition
-points_sfc_wgs &lt;- st_sfc(point1, point2, crs = "+proj=longlat +datum=WGS84 +no_defs")
-st_crs(points_sfc_wgs)
-```
-
-```
-## Coordinate Reference System:
-##   User input: +proj=longlat +datum=WGS84 +no_defs 
-##   wkt:
-## GEOGCRS["unknown",
-##     DATUM["World Geodetic System 1984",
-##         ELLIPSOID["WGS 84",6378137,298.257223563,
-##             LENGTHUNIT["metre",1]],
-##         ID["EPSG",6326]],
-##     PRIMEM["Greenwich",0,
-##         ANGLEUNIT["degree",0.0174532925199433],
-##         ID["EPSG",8901]],
-##     CS[ellipsoidal,2],
-##         AXIS["longitude",east,
-##             ORDER[1],
-##             ANGLEUNIT["degree",0.0174532925199433,
-##                 ID["EPSG",9122]]],
-##         AXIS["latitude",north,
-##             ORDER[2],
-##             ANGLEUNIT["degree",0.0174532925199433,
-##                 ID["EPSG",9122]]]]
+points_sfc_wgs &lt;- sf::st_sfc(point1, point2, crs = "+proj=longlat +datum=WGS84 +no_defs")
+sf::st_crs(points_sfc_wgs)
 ```
 
 ---
@@ -437,13 +391,10 @@ st_crs(points_sfc_wgs)
 
 ## Simple feature columns (sfc)
 
-### Plot
-
 ```r
-plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE)
+# plot
+plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-21-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -492,24 +443,21 @@ rc_sf &lt;- sf::st_sf(rc_attrib, geometry = rc_geom)  # sf object
 rc_sf
 ```
 
-```
-## Simple feature collection with 1 feature and 3 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: -47.57 ymin: -22.39 xmax: -47.57 ymax: -22.39
-## geographic CRS: WGS 84
-##        name temperature       date              geometry
-## 1 Rio Claro          19 2020-10-13 POINT (-47.57 -22.39)
-```
-
 ### As duas classes do objeto sf
 
 ```r
 class(rc_sf)
 ```
 
-```
-## [1] "sf"         "data.frame"
+---
+
+# 6.3 Classes sf
+
+## A classe sf
+
+```r
+# plot
+plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[1] - plotar a primeira coluna
 ```
 
 ---
@@ -518,13 +466,10 @@ class(rc_sf)
 
 ## A classe sf
 
-### Plot
-
 ```r
-plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE) # rc_sf[1] - plotar a primeira coluna
+# plot
+plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[2] - plotar a segunda coluna
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-25-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -532,13 +477,10 @@ plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE) # rc_sf[1] - plotar a primeira co
 
 ## A classe sf
 
-### Plot
-
 ```r
-plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE) # rc_sf[2] - plotar a segunda coluna
+# plot
+plot(rc_sf$geometry, pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf$geometry - plotar apenas a geometria
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-26-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -605,6 +547,12 @@ for(i in c(".dbf", ".prj", ".shp", ".shx")){
 
 ---
 
+class: inverse, center, middle
+
+# Importar dados preexistentes
+
+---
+
 # 6.4 Importar dados
 
 ## Dados preexistentes
@@ -615,26 +563,6 @@ rc_spr &lt;- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_NASCENTES.s
 rc_spr
 ```
 
-```
-## Simple feature collection with 1220 features and 5 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 217622.9 ymin: 7504132 xmax: 246367.4 ymax: 7537855
-## projected CRS:  SIRGAS 2000 / UTM zone 23S
-## First 10 features:
-##    GEOCODIGO MUNICIPIO UF CD_UF    HIDRO                 geometry
-## 1    3543907 RIO CLARO SP    35 nascente POINT (217622.9 7528315)
-## 2    3543907 RIO CLARO SP    35 nascente POINT (217836.5 7528103)
-## 3    3543907 RIO CLARO SP    35 nascente POINT (217988.9 7528203)
-## 4    3543907 RIO CLARO SP    35 nascente POINT (218288.9 7528237)
-## 5    3543907 RIO CLARO SP    35 nascente POINT (218346.6 7530583)
-## 6    3543907 RIO CLARO SP    35 nascente POINT (218393.1 7528031)
-## 7    3543907 RIO CLARO SP    35 nascente POINT (218508.3 7528470)
-## 8    3543907 RIO CLARO SP    35 nascente POINT (218535.4 7530642)
-## 9    3543907 RIO CLARO SP    35 nascente POINT (218583.5 7528215)
-## 10   3543907 RIO CLARO SP    35 nascente POINT (218760.1 7530258)
-```
-
 ---
 
 # 6.4 Importar dados
@@ -642,10 +570,9 @@ rc_spr
 ## Dados preexistentes
 
 ```r
-plot(rc_spr[1], pch = 20, col = "blue", main = NA)
+# plot
+plot(rc_spr$geometry, pch = 20, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-32-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -659,18 +586,6 @@ rc_riv &lt;- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_RIOS_SIMPLE
 rc_riv
 ```
 
-```
-## Simple feature collection with 1 feature and 6 fields
-## geometry type:  MULTILINESTRING
-## dimension:      XY
-## bbox:           xmin: 215155.3 ymin: 7504132 xmax: 246367.4 ymax: 7537978
-## projected CRS:  SIRGAS 2000 / UTM zone 23S
-##   GEOCODIGO MUNICIPIO UF CD_UF                  HIDRO COMP_KM
-## 1   3543907 RIO CLARO SP    35 curso d'água (0 - 10m) 1142.98
-##                         geometry
-## 1 MULTILINESTRING ((231815.7 ...
-```
-
 ---
 
 # 6.4 Importar dados
@@ -678,10 +593,9 @@ rc_riv
 ## Dados preexistentes
 
 ```r
-plot(rc_riv[1], col = "steelblue", main = NA)
+# plot
+plot(rc_riv$geometry, col = "steelblue", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-34-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ---
 
 # 6.4 Importar dados
@@ -694,26 +608,6 @@ rc_use &lt;- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_USO.shp"), 
 rc_use
 ```
 
-```
-## Simple feature collection with 5 features and 6 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: 215151.7 ymin: 7503723 xmax: 246582.4 ymax: 7537978
-## projected CRS:  SIRGAS 2000 / UTM zone 23S
-##   GEOCODIGO MUNICIPIO UF CD_UF         CLASSE_USO   AREA_HA
-## 1   3543907 RIO CLARO SP    35               água   357.027
-## 2   3543907 RIO CLARO SP    35   área antropizada 37297.800
-## 3   3543907 RIO CLARO SP    35     área edificada  5078.330
-## 4   3543907 RIO CLARO SP    35 formação florestal  7017.990
-## 5   3543907 RIO CLARO SP    35       silvicultura   138.173
-##                         geometry
-## 1 MULTIPOLYGON (((235487.6 75...
-## 2 MULTIPOLYGON (((232275 7504...
-## 3 MULTIPOLYGON (((233123.6 75...
-## 4 MULTIPOLYGON (((232355 7504...
-## 5 MULTIPOLYGON (((243052.1 75...
-```
-
 ---
 
 # 6.4 Importar dados
@@ -721,10 +615,73 @@ rc_use
 ## Dados preexistentes
 
 ```r
-plot(rc_use[1], col = "gray", main = NA)
+# plot
+plot(rc_use[5], col = c("blue", "orange", "gray30", "forestgreen", "green"), main = NA, axes = TRUE, graticule = TRUE)
 ```
 
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-36-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+---
+
+class: inverse, center, middle
+
+# Importar dados de GPS
+
+---
+
+class: inverse, center, middle
+
+# Um agradecimento ao Rafael (Urucum), que gentilmente cedeu os dados <i class="fas  fa-grin-beam-sweat "></i>
+
+---
+
+# 6.4 Importar dados
+
+## Dados de GPS (.gpx)
+
+```r
+# import gps data
+gps_gpx &lt;- sf::read_sf(here::here("03_dados", "vetor", "waypoints.gpx"), layer = "waypoints")
+gps_gpx
+```
+
+---
+
+# 6.4 Importar dados
+
+## Dados de GPS (.gpx)
+
+```r
+# plot
+plot(gps_gpx$geometry, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 6.4 Importar dados
+
+## Dados de GPS (.kml)
+
+```r
+# import gps data
+gps_kml &lt;- sf::read_sf(here::here("03_dados", "vetor", "waypoints.kml"))
+gps_kml
+```
+
+---
+
+# 6.4 Importar dados
+
+## Dados de GPS (.kml)
+
+```r
+# plot
+plot(gps_kml$geometry, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+
+# Importar dados de pacotes
 
 ---
 
@@ -735,6 +692,8 @@ background-position: 50% 70%
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
+
+### Instalar e carregar o pacote
 
 ```r
 install.packages("geobr")
@@ -757,37 +716,6 @@ br_2019 &lt;- geobr::read_country(year = 2019, showProgress = FALSE)
 br_2019
 ```
 
-```
-## Simple feature collection with 27 features and 5 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -73.99045 ymin: -33.75118 xmax: -28.84784 ymax: 5.271841
-## geographic CRS: SIRGAS 2000
-## First 10 features:
-##    code_state abbrev_state name_state code_region name_region
-## 1          11           RO   Rondônia           1       Norte
-## 2          12           AC       Acre           1       Norte
-## 3          13           AM   Amazônas           1       Norte
-## 4          14           RR    Roraima           1       Norte
-## 5          15           PA       Pará           1       Norte
-## 6          16           AP      Amapá           1       Norte
-## 7          17           TO  Tocantins           1       Norte
-## 8          21           MA   Maranhão           2    Nordeste
-## 9          22           PI      Piauí           2    Nordeste
-## 10         23           CE      Ceará           2    Nordeste
-##                              geom
-## 1  MULTIPOLYGON (((-65.3815 -1...
-## 2  MULTIPOLYGON (((-71.07772 -...
-## 3  MULTIPOLYGON (((-69.83766 -...
-## 4  MULTIPOLYGON (((-63.96008 2...
-## 5  MULTIPOLYGON (((-51.43248 -...
-## 6  MULTIPOLYGON (((-53.27918 2...
-## 7  MULTIPOLYGON (((-48.23163 -...
-## 8  MULTIPOLYGON (((-46.16128 -...
-## 9  MULTIPOLYGON (((-42.91539 -...
-## 10 MULTIPOLYGON (((-41.18292 -...
-```
-
 ---
 
 # 6.4 Importar dados
@@ -796,10 +724,8 @@ br_2019
 
 ```r
 # plot
-plot(br_2019[1], col = "gray", main = NA)
+plot(br_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-39-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -813,16 +739,6 @@ br_1872 &lt;- geobr::read_country(year = 1872, showProgress = FALSE)
 br_1872
 ```
 
-```
-## Simple feature collection with 1 feature and 0 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -73.80132 ymin: -33.74912 xmax: -34.79313 ymax: 5.271891
-## geographic CRS: SIRGAS 2000
-##                             geom
-## 1 MULTIPOLYGON (((-48.40975 -...
-```
-
 ---
 
 # 6.4 Importar dados
@@ -832,10 +748,8 @@ br_1872
 
 ```r
 # plot
-plot(br_1872[1], col = "gray", main = NA)
+plot(br_1872$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-41-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -849,18 +763,6 @@ sp_2019 &lt;- geobr::read_state(code_state = "SP", year = 2019, showProgress = F
 sp_2019
 ```
 
-```
-## Simple feature collection with 1 feature and 5 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -53.10986 ymin: -25.35794 xmax: -44.16137 ymax: -19.77989
-## geographic CRS: SIRGAS 2000
-##   code_state abbrev_state name_state code_region name_region
-## 1         35           SP  São Paulo           3     Sudeste
-##                             geom
-## 1 MULTIPOLYGON (((-48.03716 -...
-```
-
 ---
 
 # 6.4 Importar dados
@@ -869,10 +771,8 @@ sp_2019
 
 ```r
 # plot
-plot(sp_2019[1], col = "gray", main = NA)
+plot(sp_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-43-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -886,37 +786,6 @@ sp_mun_2019 &lt;- geobr::read_municipality(code_muni = "SP", year = 2019, showPr
 sp_mun_2019
 ```
 
-```
-## Simple feature collection with 645 features and 7 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -53.10986 ymin: -25.35794 xmax: -44.16137 ymax: -19.77966
-## geographic CRS: SIRGAS 2000
-## First 10 features:
-##    code_muni              name_muni code_state abbrev_state name_state
-## 1    3500105             Adamantina         35           SP  São Paulo
-## 2    3500204                 Adolfo         35           SP  São Paulo
-## 3    3500303                  Aguaí         35           SP  São Paulo
-## 4    3500402         Águas Da Prata         35           SP  São Paulo
-## 5    3500501       Águas De Lindóia         35           SP  São Paulo
-## 6    3500550 Águas De Santa Bárbara         35           SP  São Paulo
-## 7    3500600     Águas De São Pedro         35           SP  São Paulo
-## 8    3500709                 Agudos         35           SP  São Paulo
-## 9    3500758               Alambari         35           SP  São Paulo
-## 10   3500808      Alfredo Marcondes         35           SP  São Paulo
-##    code_region name_region                           geom
-## 1            3     Sudeste MULTIPOLYGON (((-51.17919 -...
-## 2            3     Sudeste MULTIPOLYGON (((-49.61249 -...
-## 3            3     Sudeste MULTIPOLYGON (((-47.21948 -...
-## 4            3     Sudeste MULTIPOLYGON (((-46.73076 -...
-## 5            3     Sudeste MULTIPOLYGON (((-46.66057 -...
-## 6            3     Sudeste MULTIPOLYGON (((-49.30905 -...
-## 7            3     Sudeste MULTIPOLYGON (((-47.87649 -...
-## 8            3     Sudeste MULTIPOLYGON (((-49.06121 -...
-## 9            3     Sudeste MULTIPOLYGON (((-47.95571 -...
-## 10           3     Sudeste MULTIPOLYGON (((-51.46862 -...
-```
-
 ---
 
 # 6.4 Importar dados
@@ -925,10 +794,8 @@ sp_mun_2019
 
 ```r
 # plot
-plot(sp_mun_2019[1], col = "gray", main = NA)
+plot(sp_mun_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-45-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -942,18 +809,6 @@ rc_2019 &lt;- geobr::read_municipality(code_muni = 3543907, year = 2019, showPro
 rc_2019
 ```
 
-```
-## Simple feature collection with 1 feature and 7 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -47.76536 ymin: -22.55203 xmax: -47.46188 ymax: -22.24368
-## geographic CRS: SIRGAS 2000
-##     code_muni name_muni code_state abbrev_state name_state code_region
-## 493   3543907 Rio Claro         35           SP  São Paulo           3
-##     name_region                           geom
-## 493     Sudeste MULTIPOLYGON (((-47.66303 -...
-```
-
 ---
 
 # 6.4 Importar dados
@@ -962,10 +817,8 @@ rc_2019
 
 ```r
 # plot
-plot(rc_2019[1], col = "gray", main = NA)
+plot(rc_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-47-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -979,22 +832,6 @@ bi_2019 &lt;- geobr::read_biomes(year = 2019, showProgress = FALSE)
 bi_2019
 ```
 
-```
-## Simple feature collection with 7 features and 3 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -73.98304 ymin: -34.95942 xmax: -28.84785 ymax: 7.053767
-## geographic CRS: SIRGAS 2000
-##         name_biome code_biome year                           geom
-## 1         Amazônia          1 2019 MULTIPOLYGON (((-44.08515 -...
-## 2         Caatinga          2 2019 MULTIPOLYGON (((-41.7408 -2...
-## 3          Cerrado          3 2019 MULTIPOLYGON (((-43.39009 -...
-## 4   Mata Atlântica          4 2019 MULTIPOLYGON (((-48.70814 -...
-## 5            Pampa          5 2019 MULTIPOLYGON (((-52.82472 -...
-## 6         Pantanal          6 2019 MULTIPOLYGON (((-57.75946 -...
-## 7 Sistema Costeiro         NA 2019 MULTIPOLYGON (((-44.64799 -...
-```
-
 ---
 
 # 6.4 Importar dados
@@ -1003,10 +840,8 @@ bi_2019
 
 ```r
 # plot
-plot(bi_2019[1], col = "gray", main = NA)
+plot(bi_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-49-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1035,34 +870,18 @@ plot(bi_2019[1], col = "gray", main = NA)
 geobr::list_geobr()
 ```
 
-```
-## # A tibble: 22 x 4
-##    `function`       geography             years                           source
-##    &lt;chr&gt;            &lt;chr&gt;                 &lt;chr&gt;                           &lt;chr&gt; 
-##  1 `read_country`   Country               1872, 1900, 1911, 1920, 1933, … IBGE  
-##  2 `read_region`    Region                2000, 2001, 2010, 2013, 2014, … IBGE  
-##  3 `read_state`     States                1872, 1900, 1911, 1920, 1933, … IBGE  
-##  4 `read_meso_regi… Meso region           2000, 2001, 2010, 2013, 2014, … IBGE  
-##  5 `read_micro_reg… Micro region          2000, 2001, 2010, 2013, 2014, … IBGE  
-##  6 `read_intermedi… Intermediate region   2017, 2019                      IBGE  
-##  7 `read_immediate… Immediate region      2017, 2019                      IBGE  
-##  8 `read_weighting… Census weighting are… 2010                            IBGE  
-##  9 `read_census_tr… Census tract (setor … 2000, 2010                      IBGE  
-## 10 `read_municipal… Municipality seats (… 1872, 1900, 1911, 1920, 1933, … IBGE  
-## # … with 12 more rows
-```
-
 ---
 
 background-image: url(img/package_ropensci.png)
-background-size: 650px
-background-position: 50% 50%
+background-size: 600px
+background-position: 50% 60%
 
 # 6.4 Importar dados
 
 ## Dados de pacotes: rnaturalearth
 
 ```r
+# package
 install.packages("rnaturalearth")
 library(rnaturalearth)
 ```
@@ -1081,138 +900,8 @@ library(rnaturalearth)
 
 ```r
 # south america
-sa &lt;- rnaturalearth::ne_countries(scale = "small", continent = "South America", returnclass = "sf", )
+sa &lt;- rnaturalearth::ne_countries(scale = "small", continent = "South America", returnclass = "sf")
 sa
-```
-
-```
-## Simple feature collection with 13 features and 63 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -81.41094 ymin: -55.61183 xmax: -34.72999 ymax: 12.4373
-## CRS:            +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
-## First 10 features:
-##     scalerank      featurecla labelrank     sovereignt sov_a3 adm0_dif level
-## 4           1 Admin-0 country         2      Argentina    ARG        0     2
-## 21          1 Admin-0 country         3        Bolivia    BOL        0     2
-## 22          1 Admin-0 country         2         Brazil    BRA        0     2
-## 29          1 Admin-0 country         2          Chile    CHL        0     2
-## 35          1 Admin-0 country         2       Colombia    COL        0     2
-## 46          1 Admin-0 country         3        Ecuador    ECU        0     2
-## 54          1 Admin-0 country         5 United Kingdom    GB1        1     2
-## 67          1 Admin-0 country         4         Guyana    GUY        0     2
-## 124         1 Admin-0 country         2           Peru    PER        0     2
-## 131         1 Admin-0 country         4       Paraguay    PRY        0     2
-##                  type            admin adm0_a3 geou_dif          geounit gu_a3
-## 4   Sovereign country        Argentina     ARG        0        Argentina   ARG
-## 21  Sovereign country          Bolivia     BOL        0          Bolivia   BOL
-## 22  Sovereign country           Brazil     BRA        0           Brazil   BRA
-## 29  Sovereign country            Chile     CHL        0            Chile   CHL
-## 35  Sovereign country         Colombia     COL        0         Colombia   COL
-## 46  Sovereign country          Ecuador     ECU        0          Ecuador   ECU
-## 54         Dependency Falkland Islands     FLK        0 Falkland Islands   FLK
-## 67  Sovereign country           Guyana     GUY        0           Guyana   GUY
-## 124 Sovereign country             Peru     PER        0             Peru   PER
-## 131 Sovereign country         Paraguay     PRY        0         Paraguay   PRY
-##     su_dif          subunit su_a3 brk_diff         name        name_long brk_a3
-## 4        0        Argentina   ARG        0    Argentina        Argentina    ARG
-## 21       0          Bolivia   BOL        0      Bolivia          Bolivia    BOL
-## 22       0           Brazil   BRA        0       Brazil           Brazil    BRA
-## 29       0            Chile   CHL        0        Chile            Chile    CHL
-## 35       0         Colombia   COL        0     Colombia         Colombia    COL
-## 46       0          Ecuador   ECU        0      Ecuador          Ecuador    ECU
-## 54       0 Falkland Islands   FLK        1 Falkland Is. Falkland Islands    B12
-## 67       0           Guyana   GUY        0       Guyana           Guyana    GUY
-## 124      0             Peru   PER        0         Peru             Peru    PER
-## 131      0         Paraguay   PRY        0     Paraguay         Paraguay    PRY
-##         brk_name brk_group   abbrev postal                       formal_en
-## 4      Argentina      &lt;NA&gt;     Arg.     AR              Argentine Republic
-## 21       Bolivia      &lt;NA&gt;  Bolivia     BO  Plurinational State of Bolivia
-## 22        Brazil      &lt;NA&gt;   Brazil     BR   Federative Republic of Brazil
-## 29         Chile      &lt;NA&gt;    Chile     CL               Republic of Chile
-## 35      Colombia      &lt;NA&gt;     Col.     CO            Republic of Colombia
-## 46       Ecuador      &lt;NA&gt;     Ecu.     EC             Republic of Ecuador
-## 54  Falkland Is.      &lt;NA&gt; Flk. Is.     FK                Falkland Islands
-## 67        Guyana      &lt;NA&gt;     Guy.     GY Co-operative Republic of Guyana
-## 124         Peru      &lt;NA&gt;     Peru     PE                Republic of Peru
-## 131     Paraguay      &lt;NA&gt;    Para.     PY            Republic of Paraguay
-##     formal_fr note_adm0                             note_brk        name_sort
-## 4        &lt;NA&gt;      &lt;NA&gt;                                 &lt;NA&gt;        Argentina
-## 21       &lt;NA&gt;      &lt;NA&gt;                                 &lt;NA&gt;          Bolivia
-## 22       &lt;NA&gt;      &lt;NA&gt;                                 &lt;NA&gt;           Brazil
-## 29       &lt;NA&gt;      &lt;NA&gt;                                 &lt;NA&gt;            Chile
-## 35       &lt;NA&gt;      &lt;NA&gt;                                 &lt;NA&gt;         Colombia
-## 46       &lt;NA&gt;      &lt;NA&gt;                                 &lt;NA&gt;          Ecuador
-## 54       &lt;NA&gt;      U.K. Admin. by U.K.; Claimed by Argentina Falkland Islands
-## 67       &lt;NA&gt;      &lt;NA&gt;                                 &lt;NA&gt;           Guyana
-## 124      &lt;NA&gt;      &lt;NA&gt;                                 &lt;NA&gt;             Peru
-## 131      &lt;NA&gt;      &lt;NA&gt;                                 &lt;NA&gt;         Paraguay
-##           name_alt mapcolor7 mapcolor8 mapcolor9 mapcolor13   pop_est
-## 4             &lt;NA&gt;         3         1         3         13  40913584
-## 21            &lt;NA&gt;         1         5         2          3   9775246
-## 22            &lt;NA&gt;         5         6         5          7 198739269
-## 29            &lt;NA&gt;         5         1         5          9  16601707
-## 35            &lt;NA&gt;         2         1         3          1  45644023
-## 46            &lt;NA&gt;         1         5         2         12  14573101
-## 54  Islas Malvinas         6         6         6          3      3140
-## 67            &lt;NA&gt;         3         1         4          8    772298
-## 124           &lt;NA&gt;         4         4         4         11  29546963
-## 131           &lt;NA&gt;         6         3         6          2   6995655
-##     gdp_md_est pop_year lastcensus gdp_year                    economy
-## 4     573900.0       NA       2010       NA    5. Emerging region: G20
-## 21     43270.0       NA       2001       NA    5. Emerging region: G20
-## 22   1993000.0       NA       2010       NA   3. Emerging region: BRIC
-## 29    244500.0       NA       2002       NA    5. Emerging region: G20
-## 35    395400.0       NA       2006       NA       6. Developing region
-## 46    107700.0       NA       2010       NA       6. Developing region
-## 54       105.1       NA         NA       NA 2. Developed region: nonG7
-## 67      2966.0       NA       2002       NA       6. Developing region
-## 124   247300.0       NA       2007       NA    5. Emerging region: G20
-## 131    28890.0       NA       2002       NA    5. Emerging region: G20
-##                 income_grp wikipedia fips_10 iso_a2 iso_a3 iso_n3 un_a3 wb_a2
-## 4   3. Upper middle income        NA    &lt;NA&gt;     AR    ARG    032   032    AR
-## 21  4. Lower middle income        NA    &lt;NA&gt;     BO    BOL    068   068    BO
-## 22  3. Upper middle income        NA    &lt;NA&gt;     BR    BRA    076   076    BR
-## 29  3. Upper middle income        NA    &lt;NA&gt;     CL    CHL    152   152    CL
-## 35  3. Upper middle income        NA    &lt;NA&gt;     CO    COL    170   170    CO
-## 46  3. Upper middle income        NA    &lt;NA&gt;     EC    ECU    218   218    EC
-## 54    1. High income: OECD        NA    &lt;NA&gt;     FK    FLK    238   238  &lt;NA&gt;
-## 67  4. Lower middle income        NA    &lt;NA&gt;     GY    GUY    328   328    GY
-## 124 3. Upper middle income        NA    &lt;NA&gt;     PE    PER    604   604    PE
-## 131 4. Lower middle income        NA    &lt;NA&gt;     PY    PRY    600   600    PY
-##     wb_a3 woe_id adm0_a3_is adm0_a3_us adm0_a3_un adm0_a3_wb     continent
-## 4     ARG     NA        ARG        ARG         NA         NA South America
-## 21    BOL     NA        BOL        BOL         NA         NA South America
-## 22    BRA     NA        BRA        BRA         NA         NA South America
-## 29    CHL     NA        CHL        CHL         NA         NA South America
-## 35    COL     NA        COL        COL         NA         NA South America
-## 46    ECU     NA        ECU        ECU         NA         NA South America
-## 54   &lt;NA&gt;     NA        FLK        FLK         NA         NA South America
-## 67    GUY     NA        GUY        GUY         NA         NA South America
-## 124   PER     NA        PER        PER         NA         NA South America
-## 131   PRY     NA        PRY        PRY         NA         NA South America
-##     region_un     subregion                 region_wb name_len long_len
-## 4    Americas South America Latin America &amp; Caribbean        9        9
-## 21   Americas South America Latin America &amp; Caribbean        7        7
-## 22   Americas South America Latin America &amp; Caribbean        6        6
-## 29   Americas South America Latin America &amp; Caribbean        5        5
-## 35   Americas South America Latin America &amp; Caribbean        8        8
-## 46   Americas South America Latin America &amp; Caribbean        7        7
-## 54   Americas South America Latin America &amp; Caribbean       12       16
-## 67   Americas South America Latin America &amp; Caribbean        6        6
-## 124  Americas South America Latin America &amp; Caribbean        4        4
-## 131  Americas South America Latin America &amp; Caribbean        8        8
-##     abbrev_len tiny homepart                       geometry
-## 4            4   NA        1 MULTIPOLYGON (((-65.5 -55.2...
-## 21           7   NA        1 MULTIPOLYGON (((-62.84647 -...
-## 22           6   NA        1 MULTIPOLYGON (((-57.62513 -...
-## 29           5   NA        1 MULTIPOLYGON (((-68.63401 -...
-## 35           4   NA        1 MULTIPOLYGON (((-75.37322 -...
-## 46           4   NA        1 MULTIPOLYGON (((-80.30256 -...
-## 54           8   NA       NA MULTIPOLYGON (((-61.2 -51.8...
-## 67           4   NA        1 MULTIPOLYGON (((-59.75828 8...
-## 124          4   NA        1 MULTIPOLYGON (((-69.59042 -...
-## 131          5   NA        1 MULTIPOLYGON (((-62.68506 -...
 ```
 
 ---
@@ -1223,10 +912,8 @@ sa
 
 ```r
 # plot
-plot(sa[1], col = "gray", main = NA)
+plot(sa$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-53-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1240,26 +927,6 @@ coastline &lt;- rnaturalearth::ne_coastline(scale = "small", returnclass = "sf")
 coastline
 ```
 
-```
-## Simple feature collection with 134 features and 2 fields
-## geometry type:  LINESTRING
-## dimension:      XY
-## bbox:           xmin: -180 ymin: -85.60904 xmax: 180 ymax: 83.64513
-## CRS:            +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
-## First 10 features:
-##   scalerank featurecla                       geometry
-## 0         1  Coastline LINESTRING (-163.7129 -78.5...
-## 1         0  Coastline LINESTRING (-6.197885 53.86...
-## 2         0  Coastline LINESTRING (141.0002 -2.600...
-## 3         0  Coastline LINESTRING (114.204 4.52587...
-## 4         1  Coastline LINESTRING (-93.61276 74.98...
-## 5         1  Coastline LINESTRING (-93.84 77.52, -...
-## 6         1  Coastline LINESTRING (-96.7544 78.765...
-## 7         0  Coastline LINESTRING (-88.15035 74.39...
-## 8         1  Coastline LINESTRING (-111.2644 78.15...
-## 9         1  Coastline LINESTRING (-110.9637 78.80...
-```
-
 ---
 
 # 6.4 Importar dados
@@ -1268,238 +935,714 @@ coastline
 
 ```r
 # plot
-plot(coastline[1], col = "blue", main = NA)
+plot(coastline$geometry, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-55-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# 6.4 Importar dados
+class: inverse, center, middle
 
-## Dados de uma planilha .csv
+# Importar dados de planilhas eletrônicas e converter em sf
+
+---
+
+# 6.5 Converter dados sf
+
+## Dados de uma planilha eletrônica
 
 ```r
+# package
 library(tidyverse)
 
 # importar tabela
 si &lt;- readr::read_csv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.csv"))
+si
 ```
 
 ---
 
-# 6.4 Importar dados
+# 6.5 Converter dados sf
 
 ## Add as duas colunas de `lon` e `lat`
 
 ```r
 # .csv para .shp
-si_ve &lt;- si %&gt;% 
-  dplyr::mutate(lon = longitude, lat = latitude)
-si_ve
-```
-
-```
-## # A tibble: 1,163 x 27
-##    id    reference_number species_number record sampled_habitat active_methods
-##    &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
-##  1 amp1…             1001             19 ab     fo,ll           as            
-##  2 amp1…             1002             16 co     fo,la,ll        as            
-##  3 amp1…             1002             14 co     fo,la,ll        as            
-##  4 amp1…             1002             13 co     fo,la,ll        as            
-##  5 amp1…             1003             30 co     fo,ll,br        as            
-##  6 amp1…             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;          
-##  7 amp1…             1005             23 co     sp              as            
-##  8 amp1…             1005             19 co     sp,la,sw        as,sb,tr      
-##  9 amp1…             1005             13 ab     fo              &lt;NA&gt;          
-## 10 amp1…             1006              1 ab     fo              &lt;NA&gt;          
-## # … with 1,153 more rows, and 21 more variables: passive_methods &lt;chr&gt;,
-## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;dbl&gt;,
-## #   year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,
-## #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
-## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
-## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,
-## #   precipitation &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;
+si &lt;- si %&gt;% 
+  dplyr::mutate(lon = longitude, lat = latitude, .before = 1)
+si
 ```
 
 ---
 
-# 6.4 Importar dados
+class: inverse, center, middle
 
-## Transformar em vetor
+# Converter dados de planilhas em sf
+
+---
+
+# 6.5 Converter dados sf
+
+## Converter dados de planilhas em sf
 
 ```r
 # .csv para .shp
 si_ve &lt;- si %&gt;% 
-  dplyr::mutate(lon = longitude, lat = latitude) %&gt;% 
   sf::st_as_sf(coords = c("lon", "lat"), crs = 4326)
 si_ve
 ```
 
-```
-## Simple feature collection with 1163 features and 25 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: -56.74194 ymin: -33.51083 xmax: -34.79667 ymax: -3.51525
-## geographic CRS: WGS 84
-## # A tibble: 1,163 x 26
-##    id    reference_number species_number record sampled_habitat active_methods
-##  * &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
-##  1 amp1…             1001             19 ab     fo,ll           as            
-##  2 amp1…             1002             16 co     fo,la,ll        as            
-##  3 amp1…             1002             14 co     fo,la,ll        as            
-##  4 amp1…             1002             13 co     fo,la,ll        as            
-##  5 amp1…             1003             30 co     fo,ll,br        as            
-##  6 amp1…             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;          
-##  7 amp1…             1005             23 co     sp              as            
-##  8 amp1…             1005             19 co     sp,la,sw        as,sb,tr      
-##  9 amp1…             1005             13 ab     fo              &lt;NA&gt;          
-## 10 amp1…             1006              1 ab     fo              &lt;NA&gt;          
-## # … with 1,153 more rows, and 20 more variables: passive_methods &lt;chr&gt;,
-## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;dbl&gt;,
-## #   year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,
-## #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
-## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
-## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,
-## #   precipitation &lt;dbl&gt;, geometry &lt;POINT [°]&gt;
-```
-
 ---
 
-# 6.4 Importar dados
+# 6.5 Converter dados sf
 
-## Dados de uma planilha .csv
+## Converter dados de planilhas em sf
 
 ```r
 # plot
-plot(si_ve[1], pch = 20, main = NA)
+plot(si_ve$geometry, pch = 20, main = NA, axes = TRUE, graticule = TRUE)
 ```
-
-&lt;img src="06_pres_intro_spatial_r_files/figure-html/unnamed-chunk-59-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# 6.4 Importar dados
+class: inverse, center, middle
 
-## Dados de GPS (.gpx)
+# Converter dados de sp em sf
+
+---
+
+background-image: url(img/geo_sp.png),url(img/geo_sp_dep.png)
+background-size: 250px,700px
+background-position: 90% 18%,50% 95%
+
+# 6.5 Converter dados sf
+
+## Tipos de objetos sp
+- SpatialPoints 
+- SpatialLines
+- SpatialPolygons
+- SpatialPointsDataFrame
+- SpatialLinesDataFrame
+- SpatialPolygonsDataFrame
+
+---
+
+# 6.5 Converter dados sf
+
+## sp
 
 ```r
-# import gps data
-gps &lt;- sf::read_sf("10Set_2019_casa.gpx", layer = "waypoints")
-gps
+# countries
+co110_sp &lt;- rnaturalearth::countries110
+co110_sp
 ```
 
 ---
 
-# 6.4 Importar dados
+# 6.5 Converter dados sf
 
-## Dados de uma planilha .csv
+## Converter `sp` para `sf`
+
+```r
+# countries
+co110_sf &lt;- sf::st_as_sf(co110_sp)
+co110_sf
+```
+
+---
+
+# 6.5 Converter dados sf
+
+## Dados de pacotes: rnaturalearth
 
 ```r
 # plot
-plot(gps[1], pch = 20, main = NA)
+plot(co110_sf$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
 
-# 6.5 Estrutura de dados vetoriais
+# 6.5 Converter dados sf
+
+## Converter `sf` para `sp`
+
+```r
+# countries
+co110_sp &lt;- sf::as_Spatial(co110_sf)
+co110_sp
+```
+
+---
+
+# 6.6 Descrição de objetos sf
 
 ## Informações geográficas e da tabela de atributos
 
 ```r
-# bairros de refice
+# rio claro 2019
 rc_2019
 ```
 
-```
-## Simple feature collection with 1 feature and 7 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -47.76536 ymin: -22.55203 xmax: -47.46188 ymax: -22.24368
-## geographic CRS: SIRGAS 2000
-##     code_muni name_muni code_state abbrev_state name_state code_region
-## 493   3543907 Rio Claro         35           SP  São Paulo           3
-##     name_region                           geom
-## 493     Sudeste MULTIPOLYGON (((-47.66303 -...
-```
-
 ---
 
-# 6.5 Estrutura de dados vetoriais
+# 6.6 Descrição de objetos sf
 
-## Informações geográficas e da tabela de atributos
+## Informações geográficas
 
+### Bounding box
 
 ```r
 # extention
 sf::st_bbox(rc_2019)
 ```
 
-```
-##      xmin      ymin      xmax      ymax 
-## -47.76536 -22.55203 -47.46188 -22.24368
-```
-
 --
 
+### Coordinate reference system
 
 ```r
-# projection
+# coordinate reference system
 sf::st_crs(rc_2019)
-```
-
-```
-## Coordinate Reference System:
-##   User input: SIRGAS 2000 
-##   wkt:
-## GEOGCRS["SIRGAS 2000",
-##     DATUM["Sistema de Referencia Geocentrico para las AmericaS 2000",
-##         ELLIPSOID["GRS 1980",6378137,298.257222101,
-##             LENGTHUNIT["metre",1]]],
-##     PRIMEM["Greenwich",0,
-##         ANGLEUNIT["degree",0.0174532925199433]],
-##     CS[ellipsoidal,2],
-##         AXIS["geodetic latitude (Lat)",north,
-##             ORDER[1],
-##             ANGLEUNIT["degree",0.0174532925199433]],
-##         AXIS["geodetic longitude (Lon)",east,
-##             ORDER[2],
-##             ANGLEUNIT["degree",0.0174532925199433]],
-##     USAGE[
-##         SCOPE["unknown"],
-##         AREA["Latin America - SIRGAS 2000 by country"],
-##         BBOX[-59.87,-122.19,32.72,-25.28]],
-##     ID["EPSG",4674]]
 ```
 
 ---
 
-# 6.6 Tabela de atributos
+class: inverse, center, middle
+
+# Conversão do CRS local
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS local
+
+### SIRGAS2000/UTM23S -&gt; WGS84/UTM zone 23S
+
+```r
+# convert datum
+rc_2019_utm_wgs84 &lt;- sf::st_transform(rc_2019, crs = 32723)
+rc_2019_utm_wgs84
+```
+
+[*] https://epsg.io/32723
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS local
+
+### SIRGAS2000/UTM23S -&gt; WGS84/GCS
+
+```r
+# utm to geographic
+rc_2019_gcs_wgs84 &lt;- sf::st_transform(rc_2019, crs = 4326)
+rc_2019_gcs_wgs84
+```
+
+[*] https://epsg.io/4326
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS local
+
+### Mapa
+
+
+---
+
+class: inverse, center, middle
+
+# Conversão do CRS global
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+```r
+# countries
+co110_sf
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+```r
+# plot
+plot(co110_sf$geometry, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Mollweide
+
+```r
+# mollweide projection
+co110_sf_moll &lt;- sf::st_transform(co110_sf, crs = "+proj=moll")
+co110_sf_moll
+```
+
+[*] https://epsg.io/54009
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Mollweide
+
+```r
+# plot
+plot(co110_sf_moll$geometry, graticule = TRUE)
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert
+
+```r
+# lambert projection
+co110_sf_lamb &lt;- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0")
+co110_sf_lamb
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert
+
+```r
+# plot
+plot(co110_sf_lamb$geometry, graticule = TRUE)
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert
+
+```r
+# lambert projection
+co110_sf_lamb &lt;- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-50 +lat_0=0")
+co110_sf_lamb
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert
+
+```r
+# plot
+plot(co110_sf_lamb$geometry, graticule = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+
+# Tabela de atributos
+
+---
+
+background-image: url(img/geo_vector_attribute_table.png)
+background-size: 550px
+background-position: 45% 80%
+
+# 6.8 Tabela de atributos
+
+## Relação entre a geometria e suas características
+
+---
+
+# 6.8 Tabela de atributos
 
 ## Acessar a tabela de atributos de um `sf`
 
 ```r
 # acessar a tabela de atributos
-rc_2019_tab &lt;- sf::st_drop_geometry(rc_2019)
-rc_2019_tab
-```
-
-```
-##     code_muni name_muni code_state abbrev_state name_state code_region
-## 493   3543907 Rio Claro         35           SP  São Paulo           3
-##     name_region
-## 493     Sudeste
+sp_mun_2019_tab &lt;- sf::st_drop_geometry(sp_mun_2019)
+sp_mun_2019_tab
 ```
 
 
 ```r
 # classe
-class(rc_2019_tab)
+class(sp_mun_2019_tab)
 ```
 
+---
+
+class: inverse, center, middle
+# Manejo e análise de dados vetoriais
+
+---
+
+# Manejo e análise de dados vetoriais
+
+## 6.9 Operações de atributos
+
+### **Dados de atributos** são **informações não espaciais** associadas a **dados geográficos** (geometria)
+
+### Operações:
+1. Subconjunto de atributos
+1. Agregação de atributos
+1. Junção de atrinutos 
+1. Criação de atributos
+
+---
+
+# Manejo e análise de dados vetoriais
+
+## 6.10 Operações espaciais
+1. Subconjunto espacial
+1. Relações topológica
+1. Associação espacial
+1. Junção não sobreposta
+1. Agregação espacial
+1. Relações de distância
+
+---
+
+# Manejo e análise de dados vetoriais
+## 6.11 Operações geométricas
+1. Simplificação
+1. Centroides
+1. Buffers
+1. Transformações afins
+1. Cortes
+1. União
+1. Transformações de tipo
+
+---
+
+class: inverse, center, middle
+
+# Operações de atributos
+
+---
+
+# 6.9 Operações de atributos
+
+## 1. Subconjunto de atributos
+
+```r
+# filtro da feicao
+sp_mun_2019_rc &lt;- sp_mun_2019 %&gt;% 
+  dplyr::filter(municipios == "Rio Claro")
+sp_mun_2019_rc
 ```
-## [1] "data.frame"
+
+---
+
+# 6.9 Operações de atributos
+
+## 1. Subconjunto de atributos
+
+```r
+# plot
+plot(sp_mun_2019_rc$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
+
+---
+
+# 6.9 Operações de atributos
+
+## 2. Agregação de atributos
+
+---
+
+# 6.9 Operações de atributos
+
+## 3. Junção de atrinutos 
+
+---
+
+# 6.9 Operações de atributos
+
+## 4. Criação de atributos
+
+---
+
+# 6.9 Operações de atributos
+
+## Funções do pacote dplyr para manejo de feições
+
+```r
+dplyr::filter()
+dplyr::distinc()
+dplyr::slice()
+dplyr::n_sample()
+```
+
+
+---
+
+# 6.9 Operações de atributos
+
+## Funções do dplyr para manejo de dados da tabela de atributos
+
+```r
+sf::select()
+sf::pull()
+sf::rename()
+sf::mutate()
+sf::arrange()
+sf::summarise()
+sf::join()
+```
+
+---
+
+class: inverse, center, middle
+
+# Operações espaciais
+
+---
+
+# 6.10 Operações espaciais
+
+## 1. Subconjunto espacial
+
+---
+
+# 6.10 Operações espaciais
+
+## 2. Relações topológica
+
+---
+
+# 6.10 Operações espaciais
+
+## 3. Associação espacial
+
+---
+
+# 6.10 Operações espaciais
+
+## 4. Junção não sobreposta
+
+---
+
+# 6.10 Operações espaciais
+
+## 5. Agregação espacial
+
+---
+
+# 6.10 Operações espaciais
+
+## 6. Relações de distância
+
+---
+
+# 6.10 Operações espaciais
+
+## Pontos aleatórios
+
+```r
+sp_mun_2019_rp &lt;- sf::st_sample(sp_mun_2019 %&gt;% sf::st_transform(crs = 32723), 1e4)
+sp_mun_2019_rp
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## Pontos aleatórios
+
+
+---
+
+# 6.10 Operações espaciais
+
+## Quadrículas
+
+```r
+sp_mun_2019_grid &lt;- sp_mun_2019 %&gt;% 
+  sf::st_transform(crs = 32723) %&gt;% 
+  sf::st_make_grid(cellsize = 50000) %&gt;% 
+  sf::st_as_sf()
+sp_mun_2019_grid
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## Quadrículas
+
+```r
+# plot
+plot(sp_mun_2019_rp, pch = 20, cex = .5, col = "steelblue", main = NA)
+plot(sp_mun_2019$geom %&gt;% sf::st_transform(crs = 32723), main = NA, add = TRUE)
+plot(sp_mun_2019_grid, col = adjustcolor("white", 0), add = TRUE)
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## Contar pontos nas quadrículas
+
+```r
+# contagem por célula
+sp_mun_2019_grid_count &lt;- sp_mun_2019_grid %&gt;% 
+  dplyr::mutate(n = sf::st_intersects(sp_mun_2019_grid, sp_mun_2019_rp) %&gt;% 
+                  lengths())
+sp_mun_2019_grid_count
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## Contar pontos nas quadrículas
+
+```r
+# map
+tm_shape(sp_mun_2019_grid_count) +
+  tm_polygons(col = "n") +
+tm_shape(sp_mun_2019_rp) +
+  tm_dots(size = .01, col = "steelblue", alpha = .75) +
+  tm_legend(legend.position = c("left", "bottom"))
+```
+
+---
+
+class: inverse, center, middle
+
+# Operações geométricas
+
+---
+
+# 6.11 Operações geométricas
+
+## 1. Simplification
+
+```r
+# simplification
+sp_mun_2019_simp &lt;- sf::st_simplify(sp_mun_2019, dTolerance = .07)
+sp_mun_2019_simp
+```
+
+---
+
+# 6.11 Operações geométricas
+
+## 1. Simplification
+
+
+---
+
+# 6.11 Operações geométricas
+
+## 1. Simplification
+
+
+---
+
+# 6.11 Operações geométricas
+
+## 2. Centroides
+
+```r
+sp_mun_2019_cent &lt;- sf::st_centroid(sp_mun_2019)
+sp_mun_2019_cent
+```
+
+---
+
+# 6.11 Operações geométricas
+
+## 2. Centroides
+
+
+---
+
+# 6.11 Operações geométricas
+
+## 3. Buffer
+
+```r
+sp_mun_2019_rc_buf &lt;- sp_mun_2019 %&gt;% 
+  dplyr::filter(municipios == "Rio Claro") %&gt;% 
+  sf::st_transform(crs = 32723) %&gt;% 
+  sf::st_buffer(dist = 1000)
+sp_mun_2019_rc_buf
+```
+
+---
+
+# 6.11 Operações geométricas
+
+## 3. Buffer
+
+
+---
+
+# 6.11 Operações geométricas
+
+## 4. Transformações afins
+
+
+---
+
+# 6.11 Operações geométricas
+
+## 5. Cortes
+---
+
+# 6.11 Operações geométricas
+
+## 6. União (Dissolve)
+
+```r
+sp_mun_2019_union &lt;- sf::st_union(sp_mun_2019)
+sp_mun_2019_union
+```
+
+---
+
+# 6.11 Operações geométricas
+
+## 6. União (Dissolve)
+
+
+---
+
+# 6.11 Operações geométricas
+
+## 7. Transformações de tipo
+
+---
+
+# 6.12 Exportar dados
 
 ---
 
