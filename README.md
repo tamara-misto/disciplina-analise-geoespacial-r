@@ -59,33 +59,12 @@ R, RStudio e git <br>
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/"
 sudo apt update
-sudo apt install -y r-base r-base-core r-recommended r-base-dev # r
-sudo apt install -y gdal-bin &&
-sudo apt install -y libgdal-dev && 
-sudo apt install -y libproj-dev && 
-sudo apt install -y libssl-dev && 
-sudo apt install -y libavfilter-dev &&
-sudo apt install -y xml2 && 
-sudo apt install -y libxml2-dev && 
-sudo apt install -y libgeos-dev && 
-sudo apt install -y libudunits2-dev && 
-sudo apt install -y gfortran-7 && 
-sudo apt install -y gcc-7 g++-7 && 
-sudo apt install -y libxml2-dev && 
-sudo apt install -y libssl-dev && 
-sudo apt install -y libcurl4-openssl-dev && 
-sudo apt install -y libv8-dev && 
-sudo apt install -y libprotobuf-dev && 
-sudo apt install -y libjq-dev && 
-sudo apt install -y protobuf-compiler && 
-sudo apt install -y libgmp3-dev && 
-sudo apt install -y libgtk2.0-dev && 
-sudo apt install -y xvfb && 
-sudo apt install -y xauth && 
-sudo apt install -y xfonts-base && 
-sudo apt install -y libxt-dev && 
-sudo apt install -y libgsl-dev && 
-sudo apt install -y libmagick++-dev
+sudo apt install -y r-base r-base-core r-recommended r-base-dev
+
+# r spatial
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt update
+sudo apt install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
 # rstudio
 wget -c https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.3.1093-amd64.deb

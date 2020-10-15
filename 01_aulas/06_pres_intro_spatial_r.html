@@ -31,91 +31,146 @@ background-size: 800px
 
 background-image: url(img/r_spatial.jpeg)
 background-size: 350px
-background-position: 90% 85%
+background-position: 80% 65%
 
 # 6 Estrutura e manejo de dados vetoriais
 
 ## Tópicos
-1. Pacote sf
+1. Pacotes
 1. Geometrias sf
 1. Classes sf
-1. Importar dados
-1. Converter dados sf
+1. Importar dados vetoriais
 1. Descrição de objetos sf
-1. Conversão do CRS
+1. Converter dados para sf
+1. Converter CRS
 1. Tabela de atributos
 1. Operações de atributos
 1. Operações espaciais
 1. Operações geométricas
-1. Exportar dados
+1. Exportar dados vetoriais
+
+---
+
+# 6 Estrutura e manejo de dados vetoriais
+
+## Script
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## .center[`script_aula_06.R`]
+
+---
+
+background-image: url(img/geo_sp_dep.png)
+background-size: 700px
+background-position: 50% 65%
+
+# 6.1 Pacotes
+
+## Pacote sp
+
+
+```r
+# sp
+install.packages("sp")
+library(sp)
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://github.com/edzer/sp/
 
 ---
 
 background-image: url(img/package_sf.gif)
 background-size: 350px
-background-position: 50% 90%
+background-position: 50% 70%
 
-# 6.1 Pacote sf
+# 6.1 Pacotes
 
-## sf
+## Pacote sf
 
 
 ```r
 # sf
 install.packages("sf")
-```
-
-
-```r
 library(sf)
 ```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://r-spatial.github.io/sf/
+
+---
+
+background-image: url(img/cheatsheet_sf.png)
+background-size: 500px
+background-position: 50% 60%
+
+# 6.1 Pacotes
+
+## Pacote sf
+
+### Cheatsheets
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://raw.githubusercontent.com/rstudio/cheatsheets/master/sf.pdf
 
 ---
 
 background-image: url(img/geo_sf_article.png)
-background-size: 600px
-background-position: 50% 80%
+background-size: 500px
+background-position: 50% 85%
 
-# 6.1 Pacote sf
+# 6.1 Pacotes
 
-## Artigo
+## Pacote sf
+
+### Artigo
 &gt; - Pebesma, Edzer. ["Simple Features for R: Standardized Support for Spatial Vector Data."](https://journal.r-project.org/archive/2018/RJ-2018-009/) The R Journal 10.01 (2018): 439-446.
 
 ---
 
 background-image: url(img/geo_sf_deps.png)
 background-size: 700px
-background-position: 50% 80%
+background-position: 50% 85%
 
-# 6.1 Pacote sf
+# 6.1 Pacotes
 
-## Dependências de outros pacotes
+## Pacote sf
+
+### Dependências de outros pacotes
 
 ---
 
 background-image: url(img/geo_sf_methods.png)
-background-size: 700px
+background-size: 600px
 background-position: 50% 80%
 
-# 6.1 Pacote sf
+# 6.1 Pacotes
 
-## Métodos
+## Pacote sf
+
+### Métodos
 
 ---
 
 background-image: url(img/geo_sf_functions.png)
-background-size: 800px
+background-size: 700px
 background-position: 50% 70%
 
-# 6.1 Pacote sf
+# 6.1 Pacotes
 
-## Funções
+## Pacote sf
+
+### Funções
 
 ---
 
-# 6.1 Pacote sf
+# 6.1 Pacotes
 
-## sf
+## Pacote sf
 
 ### **Rápida importação e exportação** de dados
 
@@ -189,7 +244,7 @@ sf::st_geometrycollection()
 
 ## Simple feature geometries (sfg)
 
-### Os objetos `sfg` podem ser criados a partir de três tipos de dados R base:
+### Os objetos `sfg` podem ser **criados** a partir de **três tipos de dados R base**:
 
 &lt;br&gt;
 
@@ -402,15 +457,15 @@ plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 
 ## A classe sf
 
-### A classe sf (simple features) são **data.frames** com **atributos espaciais** armazenados em uma coluna, geralmente chamada de **geometry** 
+### A classe sf (simple features) são *data.frames* com **atributos espaciais** armazenados em uma coluna, geralmente chamada de **geometry** 
 
 --
 
-### Essa **dualidade** é central para o conceito de **simple features**: na maioria das vezes, um sf pode **ser tratado e se comporta** como um data.frame 
+### Essa **dualidade** é central para o conceito de **simple features**: na maioria das vezes, um sf pode **ser tratado e se comporta** como um *data.frame *
 
 --
 
-### **Simple features** são, em essência, **data.frames** com uma **extensão espacial**
+### **Simple features** são, em essência, *data.frames* com uma **extensão espacial**
 
 ---
 
@@ -689,18 +744,16 @@ background-image: url(img/package_geobr02.png)
 background-size: 300px
 background-position: 50% 70%
 
-# 6.4 Importar dados
+# 6.4 Importar dadosf
 
 ## Dados de pacotes: geobr
-
-### Instalar e carregar o pacote
 
 ```r
 install.packages("geobr")
 library(geobr)
 ```
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://github.com/ipeaGIT/geobr
 
@@ -873,8 +926,8 @@ geobr::list_geobr()
 ---
 
 background-image: url(img/package_ropensci.png)
-background-size: 600px
-background-position: 50% 60%
+background-size: 500px
+background-position: 50% 55%
 
 # 6.4 Importar dados
 
@@ -886,7 +939,7 @@ install.packages("rnaturalearth")
 library(rnaturalearth)
 ```
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] http://www.naturalearthdata.com/ 
 
@@ -942,140 +995,13 @@ plot(coastline$geometry, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
 
 class: inverse, center, middle
 
-# Importar dados de planilhas eletrônicas e converter em sf
+# Descrição de objetos sf
 
 ---
 
-# 6.5 Converter dados sf
+# 6.5 Descrição de objetos sf
 
-## Dados de uma planilha eletrônica
-
-```r
-# package
-library(tidyverse)
-
-# importar tabela
-si &lt;- readr::read_csv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.csv"))
-si
-```
-
----
-
-# 6.5 Converter dados sf
-
-## Add as duas colunas de `lon` e `lat`
-
-```r
-# .csv para .shp
-si &lt;- si %&gt;% 
-  dplyr::mutate(lon = longitude, lat = latitude, .before = 1)
-si
-```
-
----
-
-class: inverse, center, middle
-
-# Converter dados de planilhas em sf
-
----
-
-# 6.5 Converter dados sf
-
-## Converter dados de planilhas em sf
-
-```r
-# .csv para .shp
-si_ve &lt;- si %&gt;% 
-  sf::st_as_sf(coords = c("lon", "lat"), crs = 4326)
-si_ve
-```
-
----
-
-# 6.5 Converter dados sf
-
-## Converter dados de planilhas em sf
-
-```r
-# plot
-plot(si_ve$geometry, pch = 20, main = NA, axes = TRUE, graticule = TRUE)
-```
-
----
-
-class: inverse, center, middle
-
-# Converter dados de sp em sf
-
----
-
-background-image: url(img/geo_sp.png),url(img/geo_sp_dep.png)
-background-size: 250px,700px
-background-position: 90% 18%,50% 95%
-
-# 6.5 Converter dados sf
-
-## Tipos de objetos sp
-- SpatialPoints 
-- SpatialLines
-- SpatialPolygons
-- SpatialPointsDataFrame
-- SpatialLinesDataFrame
-- SpatialPolygonsDataFrame
-
----
-
-# 6.5 Converter dados sf
-
-## sp
-
-```r
-# countries
-co110_sp &lt;- rnaturalearth::countries110
-co110_sp
-```
-
----
-
-# 6.5 Converter dados sf
-
-## Converter `sp` para `sf`
-
-```r
-# countries
-co110_sf &lt;- sf::st_as_sf(co110_sp)
-co110_sf
-```
-
----
-
-# 6.5 Converter dados sf
-
-## Dados de pacotes: rnaturalearth
-
-```r
-# plot
-plot(co110_sf$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-```
-
----
-
-# 6.5 Converter dados sf
-
-## Converter `sf` para `sp`
-
-```r
-# countries
-co110_sp &lt;- sf::as_Spatial(co110_sf)
-co110_sp
-```
-
----
-
-# 6.6 Descrição de objetos sf
-
-## Informações geográficas e da tabela de atributos
+## Informações geográficas e tabela de atributos
 
 ```r
 # rio claro 2019
@@ -1084,9 +1010,18 @@ rc_2019
 
 ---
 
-# 6.6 Descrição de objetos sf
+# 6.5 Descrição de objetos sf
 
 ## Informações geográficas
+
+### Geometry type
+
+```r
+# geometry
+sf::st_geometry_type(rc_2019)
+```
+
+--
 
 ### Bounding box
 
@@ -1106,9 +1041,162 @@ sf::st_crs(rc_2019)
 
 ---
 
+background-image: url(img/geo_vector_attribute_table.png)
+background-size: 450px
+background-position: 45% 80%
+
+# 6.5 Descrição de objetos sf
+
+## Tabela de atributos
+
+### Relação entre a geometria e suas características
+
+---
+
+# 6.5 Descrição de objetos sf
+
+## Tabela de atributos
+
+### Acessar a tabela de atributos de um `sf`
+
+```r
+# acessar a tabela de atributos
+sp_mun_2019_tab &lt;- sf::st_drop_geometry(sp_mun_2019)
+sp_mun_2019_tab
+```
+
+
+```r
+# classe
+class(sp_mun_2019_tab)
+```
+
+---
+
 class: inverse, center, middle
 
-# Conversão do CRS local
+# Importar dados de planilhas eletrônicas e converter em sf
+
+---
+
+# 6.6 Converter dados sf
+
+## Dados de uma planilha eletrônica
+
+```r
+# package
+library(tidyverse)
+
+# importar tabela
+si &lt;- readr::read_csv(here::here("03_dados", "ATLANTIC_AMPHIBIANS_sites.csv"))
+si
+```
+
+---
+
+# 6.6 Converter dados sf
+
+## Add as duas colunas de `lon` e `lat`
+
+```r
+# .csv para .shp
+si &lt;- si %&gt;% 
+  dplyr::mutate(lon = longitude, lat = latitude, .before = 1)
+si
+```
+
+---
+
+# 6.6 Converter dados sf
+
+## Converter dados de planilhas em sf
+
+```r
+# .csv para .shp
+si_ve &lt;- si %&gt;% 
+  sf::st_as_sf(coords = c("lon", "lat"), crs = 4326)
+si_ve
+```
+
+---
+
+# 6.6 Converter dados sf
+
+## Converter dados de planilhas em sf
+
+```r
+# plot
+plot(si_ve$geometry, pch = 20, main = NA, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+background-image: url(img/geo_sp.png),url(img/geo_sp_dep.png)
+background-size: 250px,700px
+background-position: 90% 18%,50% 95%
+
+# 6.6 Converter dados sf
+
+## Tipos de objetos `sp`
+- SpatialPoints 
+- SpatialLines
+- SpatialPolygons
+- SpatialPointsDataFrame
+- SpatialLinesDataFrame
+- SpatialPolygonsDataFrame
+
+---
+
+# 6.6 Converter dados sf
+
+## Dados `sp`
+
+```r
+# countries
+co110_sp &lt;- rnaturalearth::countries110
+co110_sp
+```
+
+---
+
+# 6.6 Converter dados sf
+
+## Converter `sp` para `sf`
+
+```r
+# countries
+co110_sf &lt;- sf::st_as_sf(co110_sp)
+co110_sf
+```
+
+---
+
+# 6.6 Converter dados sf
+
+## Converter `sf` para `sp`
+
+```r
+# plot
+plot(co110_sf$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 6.6 Converter dados sf
+
+## Converter `sf` para `sp`
+
+```r
+# countries
+co110_sp &lt;- sf::as_Spatial(co110_sf)
+co110_sp
+```
+
+---
+
+class: inverse, center, middle
+
+# Conversão do CRS
 
 ---
 
@@ -1150,12 +1238,6 @@ rc_2019_gcs_wgs84
 
 ### Mapa
 
-
----
-
-class: inverse, center, middle
-
-# Conversão do CRS global
 
 ---
 
@@ -1265,40 +1347,6 @@ plot(co110_sf_lamb$geometry, graticule = TRUE)
 ---
 
 class: inverse, center, middle
-
-# Tabela de atributos
-
----
-
-background-image: url(img/geo_vector_attribute_table.png)
-background-size: 550px
-background-position: 45% 80%
-
-# 6.8 Tabela de atributos
-
-## Relação entre a geometria e suas características
-
----
-
-# 6.8 Tabela de atributos
-
-## Acessar a tabela de atributos de um `sf`
-
-```r
-# acessar a tabela de atributos
-sp_mun_2019_tab &lt;- sf::st_drop_geometry(sp_mun_2019)
-sp_mun_2019_tab
-```
-
-
-```r
-# classe
-class(sp_mun_2019_tab)
-```
-
----
-
-class: inverse, center, middle
 # Manejo e análise de dados vetoriais
 
 ---
@@ -1307,37 +1355,47 @@ class: inverse, center, middle
 
 ## 6.9 Operações de atributos
 
-### **Dados de atributos** são **informações não espaciais** associadas a **dados geográficos** (geometria)
+### Modificação de objetos espaciais baseado em **informações não espaciais** associadas a dados geográficos
 
 ### Operações:
-1. Subconjunto de atributos
-1. Agregação de atributos
-1. Junção de atrinutos 
+1. Subset de atributos
+1. Join de atrinutos 
+1. Aggregation de atributos
 1. Criação de atributos
+1. Outros operações
 
 ---
 
 # Manejo e análise de dados vetoriais
 
 ## 6.10 Operações espaciais
-1. Subconjunto espacial
-1. Relações topológica
-1. Associação espacial
-1. Junção não sobreposta
-1. Agregação espacial
+
+### Modificação de objetos espaciais baseado na sua **localização e formato**
+
+### Operações:
+1. Subset espacial
+1. Relações topológicas
+1. Join espacial
+1. Join não-sobreposta
+1. Aggregation espacial
 1. Relações de distância
 
 ---
 
 # Manejo e análise de dados vetoriais
+
 ## 6.11 Operações geométricas
+
+### Modificação de objetos espaciais baseado em operações que mudam a **geometria do vetor**
+
+### Operações:
 1. Simplificação
 1. Centroides
 1. Buffers
 1. Transformações afins
 1. Cortes
 1. União
-1. Transformações de tipo
+1. Transformações geométricas
 
 ---
 
@@ -1349,12 +1407,12 @@ class: inverse, center, middle
 
 # 6.9 Operações de atributos
 
-## 1. Subconjunto de atributos
+## 1. Subset de atributos
 
 ```r
 # filtro da feicao
 sp_mun_2019_rc &lt;- sp_mun_2019 %&gt;% 
-  dplyr::filter(municipios == "Rio Claro")
+  dplyr::filter(name_muni == "Rio Claro")
 sp_mun_2019_rc
 ```
 
@@ -1362,7 +1420,7 @@ sp_mun_2019_rc
 
 # 6.9 Operações de atributos
 
-## 1. Subconjunto de atributos
+## 1. Subset de atributos
 
 ```r
 # plot
@@ -1373,13 +1431,65 @@ plot(sp_mun_2019_rc$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE
 
 # 6.9 Operações de atributos
 
-## 2. Agregação de atributos
+## 2. Junção de atrinutos 
+
+```r
+# download
+download.file(url = "ftp://ftp.ibge.gov.br/../Censos/Censo_Demografico_2010/resultados/total_populacao_sao_paulo.zip",
+              destfile = here::here("03_dados", "vetor", "total_populacao_sao_paulo.zip"), mode = "wb")
+```
+
+--
+
+
+```r
+# unzip
+unzip(here::here("03_dados", "vetor", "total_populacao_sao_paulo.zip"), exdir = here::here("03_dados", "vetor"))
+```
+
+--
+
+
+```r
+# import
+sp_cense &lt;- readxl::read_xls(here::here("03_dados", "vetor", "total_populacao_sao_paulo.xls")) %&gt;% 
+  dplyr::mutate(code_muni = as.numeric(`Código do município`))
+sp_cense
+```
 
 ---
 
 # 6.9 Operações de atributos
 
-## 3. Junção de atrinutos 
+## 2. Junção de atrinutos 
+
+```r
+sp_mun_2019_pop &lt;- dplyr::left_join(sp_mun_2019, sp_cense, by = "code_muni")
+sp_mun_2019_pop
+```
+
+---
+
+# 6.9 Operações de atributos
+
+## 3. Aggregation de atributos
+
+```r
+sp_mun_2019_total &lt;- sp_mun_2019_pop %&gt;% 
+  dplyr::group_by(name_state) %&gt;% 
+  dplyr::summarise(pop = sum(`Total da população 2010`))
+sp_mun_2019_total
+```
+
+---
+
+# 6.9 Operações de atributos
+
+## 3. Aggregation de atributos
+
+```r
+plot(sp_mun_2019_total[2], col = "gray", main = "")
+```
 
 ---
 
@@ -1387,11 +1497,49 @@ plot(sp_mun_2019_rc$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE
 
 ## 4. Criação de atributos
 
+```r
+sp_mun_2019_pop_diff &lt;- sp_mun_2019_pop %&gt;% 
+  dplyr::mutate(diff = `Total da população 2010` - `Total da população 2000`)
+sp_mun_2019_pop_diff
+```
+
 ---
 
 # 6.9 Operações de atributos
 
-## Funções do pacote dplyr para manejo de feições
+## 4. Criação de atributos
+
+```r
+plot(sp_mun_2019_pop_diff[17], main = "")
+```
+
+---
+
+# 6.9 Operações de atributos
+
+## 4. Criação de atributos
+
+```r
+sp_mun_2019_area &lt;- sp_mun_2019 %&gt;% 
+  dplyr::mutate(area = sf::st_area(sp_mun_2019)/1e6)
+sp_mun_2019_area
+```
+
+---
+
+# 6.9 Operações de atributos
+
+## 4. Criação de atributos
+
+```r
+plot(sp_mun_2019_area[9], main = "")
+```
+
+---
+
+# 6.9 Operações de atributos
+
+## 5. Outros operações: funções do `dplyr` para manejo de feições
 
 ```r
 dplyr::filter()
@@ -1400,21 +1548,21 @@ dplyr::slice()
 dplyr::n_sample()
 ```
 
-
 ---
 
 # 6.9 Operações de atributos
 
-## Funções do dplyr para manejo de dados da tabela de atributos
+## 5. Outros operações: funções do `dplyr` para manejo da tabela de atributos
 
 ```r
-sf::select()
-sf::pull()
-sf::rename()
-sf::mutate()
-sf::arrange()
-sf::summarise()
-sf::join()
+dplyr::select()
+dplyr::pull()
+dplyr::rename()
+dplyr::mutate()
+dplyr::arrange()
+dplyr::group_by()
+dplyr::summarise()
+dplyr::*_join()
 ```
 
 ---
@@ -1427,31 +1575,31 @@ class: inverse, center, middle
 
 # 6.10 Operações espaciais
 
-## 1. Subconjunto espacial
+## 1. Subset espacial
 
 ---
 
 # 6.10 Operações espaciais
 
-## 2. Relações topológica
+## 2. Relações topológicas
 
 ---
 
 # 6.10 Operações espaciais
 
-## 3. Associação espacial
+## 3. Join espacial
 
 ---
 
 # 6.10 Operações espaciais
 
-## 4. Junção não sobreposta
+## 4. Join não sobreposta
 
 ---
 
 # 6.10 Operações espaciais
 
-## 5. Agregação espacial
+## 5. Aggregation espacial
 
 ---
 
@@ -1513,8 +1661,7 @@ plot(sp_mun_2019_grid, col = adjustcolor("white", 0), add = TRUE)
 ```r
 # contagem por célula
 sp_mun_2019_grid_count &lt;- sp_mun_2019_grid %&gt;% 
-  dplyr::mutate(n = sf::st_intersects(sp_mun_2019_grid, sp_mun_2019_rp) %&gt;% 
-                  lengths())
+  dplyr::mutate(n = sf::st_intersects(sp_mun_2019_grid, sp_mun_2019_rp) %&gt;% lengths())
 sp_mun_2019_grid_count
 ```
 
@@ -1543,11 +1690,11 @@ class: inverse, center, middle
 
 # 6.11 Operações geométricas
 
-## 1. Simplification
+## 1. Simplificação
 
 ```r
 # simplification
-sp_mun_2019_simp &lt;- sf::st_simplify(sp_mun_2019, dTolerance = .07)
+sp_mun_2019_simp &lt;- sf::st_simplify(sp_mun_2019, dTolerance = .05)
 sp_mun_2019_simp
 ```
 
@@ -1555,14 +1702,7 @@ sp_mun_2019_simp
 
 # 6.11 Operações geométricas
 
-## 1. Simplification
-
-
----
-
-# 6.11 Operações geométricas
-
-## 1. Simplification
+## 1. Simplificação
 
 
 ---
@@ -1582,6 +1722,11 @@ sp_mun_2019_cent
 
 ## 2. Centroides
 
+```r
+# plot
+plot(sp_mun_2019$geom, main = NA)
+plot(sp_mun_2019_cent$geom, col = "red", pch = 20, main = NA, add = TRUE)
+```
 
 ---
 
@@ -1590,11 +1735,10 @@ sp_mun_2019_cent
 ## 3. Buffer
 
 ```r
-sp_mun_2019_rc_buf &lt;- sp_mun_2019 %&gt;% 
-  dplyr::filter(municipios == "Rio Claro") %&gt;% 
+sp_mun_2019_cent_buf &lt;- sp_mun_2019_cent %&gt;% 
   sf::st_transform(crs = 32723) %&gt;% 
   sf::st_buffer(dist = 1000)
-sp_mun_2019_rc_buf
+sp_mun_2019_cent_buf
 ```
 
 ---
@@ -1616,6 +1760,7 @@ sp_mun_2019_rc_buf
 # 6.11 Operações geométricas
 
 ## 5. Cortes
+
 ---
 
 # 6.11 Operações geométricas
@@ -1643,6 +1788,22 @@ sp_mun_2019_union
 ---
 
 # 6.12 Exportar dados
+
+## Exportar como shapefile
+
+```r
+sf::write_sf()
+```
+
+---
+
+# 6.12 Exportar dados
+
+## Exportar como geopackage
+
+```r
+sf::write_sf()
+```
 
 ---
 

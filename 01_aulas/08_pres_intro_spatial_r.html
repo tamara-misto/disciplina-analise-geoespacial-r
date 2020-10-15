@@ -1,24 +1,27 @@
----
-title: "Introdução à análise geoespacial com R <br><br><br>"
-subtitle: "8 Produção de mapas <br><br><br>"
-author: "Maurício H. Vancine <br> Milton C. Ribeiro"
-date: "23/10/2020"
-output:
-  xaringan::moon_reader:
-    css: [metropolis, metropolis-fonts]
-    lib_dir: libs
-    nature:
-      highlightStyle: rainbow
-      highlightLines: true
-      countIncrementalSlides: false
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introdução à análise geoespacial com R    </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maurício H. Vancine   Milton C. Ribeiro" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução à análise geoespacial com R <br><br><br>
+## 8 Produção de mapas <br><br><br>
+### Maurício H. Vancine <br> Milton C. Ribeiro
+### 23/10/2020
+
 ---
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(fig.retina = 3, eval = FALSE, warning = FALSE, message = FALSE)
-if(!require(tidyverse)) devtools::install_github("tidyverse")
-if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
-```
+
+
 
 class: clear
 background-image: url(img/package_ggplot2.png),url(img/package_tmap.png)
@@ -51,7 +54,7 @@ background-position: 45% 70%, 90% 90%
 
 ## Script
 
-<br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ## .center[`script_aula_08.R`]
 
@@ -61,7 +64,7 @@ background-position: 45% 70%, 90% 90%
 
 ## **Importância dos gráficos**
 
-<br><br>
+&lt;br&gt;&lt;br&gt;
 
 ### Melhor forma de **apresentar** e **discutir** seus dados
 
@@ -112,7 +115,8 @@ background-position: 50% 90%
 ---
 
 # Importar dados para gráficos
-```{r, warning=FALSE, message=FALSE, eval=FALSE}
+
+```r
 # package
 library(tidyverse)
 
@@ -120,17 +124,14 @@ library(tidyverse)
 setwd("/home/mude/data/github/minicurso-tidyverse/03_dados")
 
 # importar
-da <- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
+da &lt;- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
 da
 
 # verificar
 dplyr::glimpse(da)
 ```
 
-```{r, include = FALSE}
-library(tidyverse)
-da <- read_csv("/home/mude/data/github/minicurso-tidyverse/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
-```
+
 
 ---
 
@@ -138,19 +139,19 @@ da <- read_csv("/home/mude/data/github/minicurso-tidyverse/03_dados/ATLANTIC_AMP
 
 ## Atualmente, há **três principais pacotes** para gerar **gráficos gerais** no R:
 
-<br>
+&lt;br&gt;
 
 --
 
 #### **1 graphics**: simples, porém útil para visualizações rápidas de quase todos os formatos de arquivos `plot()`
 
-<br>
+&lt;br&gt;
 
 --
 
 #### **2 ggplot2**: complexos, demandam mais tempo para realização, mas ficam muito bons `ggplot()`
 
-<br>
+&lt;br&gt;
 
 --
 
@@ -183,14 +184,14 @@ background-position: 85% 85%
 
 ### Possui funções como:
 
-`plot()`<br>
-`hist()`<br>
-`barplot()`<br>
-`boxplot()`<br>
-`abline()`<br>
-`points()`<br>
-`lines()`<br>
-`polygon()`<br>
+`plot()`&lt;br&gt;
+`hist()`&lt;br&gt;
+`barplot()`&lt;br&gt;
+`boxplot()`&lt;br&gt;
+`abline()`&lt;br&gt;
+`points()`&lt;br&gt;
+`lines()`&lt;br&gt;
+`polygon()`&lt;br&gt;
 
 ---
 
@@ -198,7 +199,8 @@ background-position: 85% 85%
 
 ## **graphics**
 
-```{r, warning=FALSE, message=FALSE, fig.align="center", out.width = "50%"}
+
+```r
 # graphics
 plot(species_number ~ effort_months, data = da)
 ```
@@ -220,7 +222,7 @@ background-position: 50% 50%
 
 ## Data Visualization Cheatsheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
 
@@ -244,13 +246,13 @@ background-position: 85% 85%
 
 ### Estruturado dessa forma:
 
-`ggplot() +`<br>
-`aes() +`<br>
-`geom_() +`<br>
-`facet_() +`<br>
-`stats_() +`<br>
-`coord_() +`<br>
-`theme_()`<br>
+`ggplot() +`&lt;br&gt;
+`aes() +`&lt;br&gt;
+`geom_() +`&lt;br&gt;
+`facet_() +`&lt;br&gt;
+`stats_() +`&lt;br&gt;
+`coord_() +`&lt;br&gt;
+`theme_()`&lt;br&gt;
 
 ---
 
@@ -268,7 +270,8 @@ background-position: 50% 70%
 
 ## **ggplot2**
 
-```{r, warning=FALSE, message=FALSE, fig.align="center", out.width = "45%"}
+
+```r
 # ggplot2
 library(ggplot2)
 ggplot(data = da) + aes(effort_months, species_number) + geom_point()
@@ -301,12 +304,12 @@ background-position: 85% 85%
 
 ### Funções:
 
-`gghistogram()`<br>
-`ggdensity()`<br>
-`ggboxplot()`<br>
-`ggviolin()`<br>
-`ggbarplot()`<br>
-`ggscatter()`<br>
+`gghistogram()`&lt;br&gt;
+`ggdensity()`&lt;br&gt;
+`ggboxplot()`&lt;br&gt;
+`ggviolin()`&lt;br&gt;
+`ggbarplot()`&lt;br&gt;
+`ggscatter()`&lt;br&gt;
 
 ---
 
@@ -314,7 +317,8 @@ background-position: 85% 85%
 
 ## **ggpubr**
 
-```{r, warning=FALSE, message=FALSE, fig.align="center", out.width = "50%"}
+
+```r
 library(ggpubr)
 ggscatter(da, x = "effort_months", y = "species_number")
 ```
@@ -331,7 +335,7 @@ background-position: 50% 70%
 
 ### O idealizador e mantenedor do pacote **ggplot2** foi de novo o **Hadley Wickham**
 
-<br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] http://hadley.nz/
 
@@ -347,7 +351,7 @@ background-position: 50% 63%
 
 ### ggplot2 (2009, 2016)
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://ggplot2.tidyverse.org/
 
@@ -363,7 +367,7 @@ background-position: 50% 63%
 
 ### R Graphics Cookbook (2018)
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] http://www.cookbook-r.com/Graphs/
 
@@ -379,7 +383,7 @@ background-position: 50% 70%
 
 ### R for Data Science (2017)
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://r4ds.had.co.nz/
 
@@ -395,7 +399,7 @@ background-position: 50% 65%
 
 ### Data Visualization with R (2018)
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://rkabacoff.github.io/datavis/
 
@@ -411,7 +415,7 @@ background-position: 50% 63%
 
 ### Fundamentals of Data Visualization (2019)
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://serialmentor.com/dataviz/
 
@@ -427,7 +431,7 @@ background-position: 50% 60%
 
 ### ggplot2: Reference
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://ggplot2.tidyverse.org/reference/
 
@@ -443,7 +447,7 @@ background-position: 50% 55%
 
 ### R Graph Gallery
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://www.r-graph-gallery.com/
 
@@ -459,7 +463,7 @@ background-position: 50% 60%
 
 ### from Data to Viz
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://www.data-to-viz.com/
 
@@ -475,7 +479,7 @@ background-position: 50% 60%
 
 ### Statistical tools for high-throughput data analysis (STHDA)
 
-<br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] http://www.sthda.com/english/
 
@@ -483,7 +487,7 @@ background-position: 50% 60%
 
 # Script para essa live
 
-<br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ### .center[`https://gitlab.com/geocastbrasil/liver/-/blob/master/werlive_02/werlive_02.R`]
 
@@ -502,7 +506,8 @@ background-position: 10% 85%,50% 85%,90% 85%
 # 2 Pacotes a serem usados
 
 ## Instalar e carregar pacotes
-```{r,,eval=FALSE}
+
+```r
 # packages
 library(geobr) # ibge limits
 library(sf) # vector
@@ -528,7 +533,8 @@ Comentários **não são lidos** pelo R e **descrevem informações**
 
 ### Cabeçalho
 
-```{r}
+
+```r
 #' ---
 #' title: vetores e mapas no r
 #' author: mauricio vancine
@@ -540,7 +546,8 @@ Comentários **não são lidos** pelo R e **descrevem informações**
 
 ### Informações sobre os comandos
 
-```{r}
+
+```r
 ## comentarios
 # o r nao le o codigo depois do # (hash)
 
@@ -581,7 +588,8 @@ Endereço da pasta onde o R irá **importar e exportar** os dados
 
 ### **Windows: inverter as barras ("\" por "/")!**
 
-```{r,,eval=FALSE}
+
+```r
 ## diretorio de trabalho
 # pasta onde o r ira importar e exportar os arquivos
 
@@ -589,7 +597,8 @@ Endereço da pasta onde o R irá **importar e exportar** os dados
 setwd("/home/mude/data/gitlab/liver/werlive_02/data")
 ```
 --
-```{r,,eval=FALSE}
+
+```r
 # verificar o diretorio
 getwd()
 ```
@@ -626,7 +635,7 @@ background-position: 50% 90%
 
 Em 2015, a FBDS deu início ao *Projeto de Mapeamento em Alta Resoluçăo dos Biomas Brasileiros*, que vem produzindo dados primários de uso e cobertura do solo, hidrografia e Áreas de Preservaçăo Permanente (APP) em resoluçăo de 5 metros. O mapeamento foi concluído para mais de 4 mil municípios dos biomas *Mata Atlântica e Cerrado*
 
-site: https://www.fbds.org.br/<br>
+site: https://www.fbds.org.br/&lt;br&gt;
 repositório: http://geo.fbds.org.br/
 
 ---
@@ -634,7 +643,8 @@ repositório: http://geo.fbds.org.br/
 # 4 Carregar dados vetoriais
 
 ## Download de dados pelo R
-```{r,,eval=FALSE}
+
+```r
 # polygons - land use
 download.file(url = "http://geo.fbds.org.br/SP/RIO_CLARO/USO/SP_3543907_USO.dbf", 
               destfile = "SP_3543907_USO.dbf")
@@ -679,10 +689,10 @@ background-position: 90% 90%
 
 ### Funções padronizadas:
 
-`st_*()`<br>
+`st_*()`&lt;br&gt;
 `gdal_*()`
 
-<br><br>
+&lt;br&gt;&lt;br&gt;
 
 Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
@@ -691,36 +701,30 @@ Fonte: [@allison_horst](https://twitter.com/allison_horst)
 # 4 Carregar dados vetoriais
 
 ## Importar dados 
-```{r,,eval=FALSE}
+
+```r
 # land use
-polygons_land_use <- sf::st_read("SP_3543907_USO.shp") # pode demorar
+polygons_land_use &lt;- sf::st_read("SP_3543907_USO.shp") # pode demorar
 polygons_land_use
 plot(polygons_land_use$geometry)
 ```
 
-```{r,,echo=FALSE,message=FALSE,results='hide',fig.align='center',out.width='50%'}
-# land use
-polygons_land_use <- sf::st_read("data/SP_3543907_USO.shp")
-plot(polygons_land_use$geometry)
-```
+
 
 ---
 
 # 4 Carregar dados vetoriais
 
 ## Importar dados do pacote `geobr`
-```{r,,eval=FALSE,warning=FALSE,message=FALSE}
+
+```r
 # rio claro limit
-rio_claro_limit <- geobr::read_municipality(code_muni = 3543907, year = 2015)
+rio_claro_limit &lt;- geobr::read_municipality(code_muni = 3543907, year = 2015)
 rio_claro_limit
 plot(rio_claro_limit$geom)
 ```
 
-```{r,,echo=FALSE,message=FALSE,results='hide',fig.align='center',out.width='50%'}
-# rio claro limit
-rio_claro_limit <- geobr::read_municipality(code_muni = 3543907, year = 2015)
-plot(rio_claro_limit$geom)
-```
+
 
 ---
 
@@ -755,13 +759,13 @@ background-position: 95% 80%
 
 ### Estruturado dessa forma:
 
-`ggplot() +`<br>
-`aes() +`<br>
-`geom_() +`<br>
-`facet_() +`<br>
-`stats_() +`<br>
-`coord_() +`<br>
-`theme_()`<br>
+`ggplot() +`&lt;br&gt;
+`aes() +`&lt;br&gt;
+`geom_() +`&lt;br&gt;
+`facet_() +`&lt;br&gt;
+`stats_() +`&lt;br&gt;
+`coord_() +`&lt;br&gt;
+`theme_()`&lt;br&gt;
 
 Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
@@ -777,7 +781,7 @@ background-position: 7% 55%,85% 55%
 
 O pacote `ggplot2` implementa uma adaptação da **gramática dos gráficos** em "layers"
 
-<br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 Fonte: https://medium.com/tdebeus/think-about-the-grammar-of-graphics-when-improving-your-graphs-18e3744d8d18
 
@@ -791,7 +795,7 @@ background-position: 50% 45%
 
 ## **ggplot2**
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 Fonte: https://medium.com/tdebeus/think-about-the-grammar-of-graphics-when-improving-your-graphs-18e3744d8d18
 
@@ -800,7 +804,8 @@ Fonte: https://medium.com/tdebeus/think-about-the-grammar-of-graphics-when-impro
 # 5 Mapas usando ggplot2
 
 ### Mapa do limite de Rio Claro/SP
-```{r,,fig.align='center',out.width='45%'}
+
+```r
 # rio claro limit
 ggplot() +
   geom_sf(data = rio_claro_limit)
@@ -811,7 +816,8 @@ ggplot() +
 # 5 Mapas usando ggplot2
 
 ### Mapa do limite de Rio Claro/SP - cor e preenchimento
-```{r,,fig.align='center',out.width='45%'}
+
+```r
 # rio claro limit color and fill
 ggplot() +
   geom_sf(data = rio_claro_limit, color = "black", fill = NA)
@@ -822,7 +828,8 @@ ggplot() +
 # 5 Mapas usando ggplot2
 
 ### Limite e uso e cobertura da terra
-```{r,,fig.align='center',out.width='45%'}
+
+```r
 # rio claro limit fill + land use
 ggplot() +
   geom_sf(data = rio_claro_limit, color = "black", fill = NA) +
@@ -834,7 +841,8 @@ ggplot() +
 # 5 Mapas usando ggplot2
 
 ### Limite e uso e cobertura da terra com cores
-```{r,,fig.align='center',out.width='45%'}
+
+```r
 # rio claro limit fill + land use with colors
 ggplot() +
   geom_sf(data = rio_claro_limit, color = "black", fill = NA) +
@@ -846,7 +854,8 @@ ggplot() +
 # 5 Mapas usando ggplot2
 
 ### Limite e uso e cobertura da terra com cores (inverter)
-```{r,,fig.align='center',out.width='45%'}
+
+```r
 # land use with colors + rio claro limit fill
 ggplot() +
   geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
@@ -858,7 +867,8 @@ ggplot() +
 # 5 Mapas usando ggplot2
 
 ### Definir cores para as classes
-```{r,,fig.align='center',out.width='45%'}
+
+```r
 # land use and choose colors + rio claro limit fill 
 ggplot() +
   geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
@@ -871,7 +881,8 @@ ggplot() +
 # 5 Mapas usando ggplot2
 
 ### Mudar o CRS (Sistema de Coordenadas)
-```{r,,fig.align='center',out.width='40%'}
+
+```r
 # land use and choose colors + rio claro limit fill + coords
 ggplot() +
   geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
@@ -885,7 +896,8 @@ ggplot() +
 # 5 Mapas usando ggplot2
 
 ### Mudar o tema
-```{r,,fig.align='center',out.width='35%'}
+
+```r
 # land use and choose colors + rio claro limit fill + coords + themes
 ggplot() +
   geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
@@ -900,7 +912,8 @@ ggplot() +
 # 5 Mapas usando ggplot2
 
 ### Adicionar barra de escala e norte
-```{r,,eval=FALSE}
+
+```r
 # land use and choose colors + rio claro limit fill + coords + themes + scalebar + north
 ggplot() +
   geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
@@ -919,26 +932,15 @@ ggplot() +
 # 5 Mapas usando ggplot2
 
 ### Adicionar barra de escala e norte
-```{r,,echo=FALSE,fig.align='center',out.width='65%'}
-# land use and choose colors + rio claro limit fill + coords + themes + scalebar + north
-ggplot() +
-  geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
-  geom_sf(data = rio_claro_limit, color = "black", fill = NA) +
-  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green")) +
-  coord_sf(datum = sf::st_crs(polygons_land_use)) +
-  theme_bw() +
-  annotation_scale(location = "br", width_hint = .3) +
-  annotation_north_arrow(location = "br", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.8, "cm"),
-                         style = north_arrow_fancy_orienteering)
-```
+
 
 ---
 
 # 5 Mapas usando ggplot2
 
 ### Exportar
-```{r,,eval=FALSE}
+
+```r
 # export
 ggsave(filename = "map_rio_claro_land_use.png",
        path = "/home/mude/data/gitlab/liver/werlive_02/data",
@@ -964,7 +966,7 @@ background-position: 50% 50%
 
 ## Simple Features (sf) Cheat Sheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://github.com/rstudio/cheatsheets/raw/master/sf.pdf
 
@@ -978,7 +980,7 @@ background-position: 50% 50%
 
 ## Data Visualization Cheatsheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
 
@@ -994,7 +996,7 @@ background-position: 50% 63%
 
 ### ggplot2 (2009, 2016)
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://ggplot2.tidyverse.org/
 
@@ -1007,7 +1009,8 @@ class: clear, inverse, center, middle
 # 6.11 Elaboração de mapas vetoriais
 
 ## ggplot2
-```{r eval=FALSE}
+
+```r
 # pacote
 library(tidyverse)
 library(ggspatial)
@@ -1027,27 +1030,15 @@ ggplot(data = rec_bairros_geo) +
 # 6.11 Elaboração de mapas vetoriais
 
 ## ggplot2
-```{r echo=FALSE,warning=FALSE,message=FALSE,fig.align='center',out.width='60%'}
-# pacote
-library(tidyverse)
-library(ggspatial)
 
-# map
-ggplot(data = rec_bairros_geo) +
-  geom_sf(col = "black", fill = "gray") +
-  theme_bw() +
-  annotation_scale(location = "bl", width_hint = .3) +
-  annotation_north_arrow(location = "bl", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.8, "cm"),
-                         style = north_arrow_fancy_orienteering)
-```
 
 ---
 
 # 6.11 Elaboração de mapas vetoriais
 
 ## ggplot2
-```{r eval=FALSE}
+
+```r
 ggplot(data = rec_bairros_geo) +
   geom_sf(aes(fill = EBAIRRNO_1), col = "gray") +
   scale_fill_viridis_d() +
@@ -1064,24 +1055,15 @@ ggplot(data = rec_bairros_geo) +
 # 6.11 Elaboração de mapas vetoriais
 
 ## ggplot2
-```{r echo=FALSE,warning=FALSE,message=FALSE,fig.align='center',out.width='60%'}
-ggplot(data = rec_bairros_geo) +
-  geom_sf(aes(fill = EBAIRRNO_1), col = "gray") +
-  scale_fill_viridis_d() +
-  theme_bw() +
-  annotation_scale(location = "bl", width_hint = .3) +
-  annotation_north_arrow(location = "bl", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.8, "cm"),
-                         style = north_arrow_fancy_orienteering) +
-  theme(legend.position = "none")
-```
+
 
 ---
 
 # 6.11 Elaboração de mapas vetoriais
 
 ## ggplot2
-```{r eval=FALSE}
+
+```r
 # map
 ggplot(data = rc_cover) +
   geom_sf(aes(fill = CLASSE_USO), col = NA) +
@@ -1100,31 +1082,20 @@ ggplot(data = rc_cover) +
 # 6.11 Elaboração de mapas vetoriais
 
 ## ggplot2
-```{r echo=FALSE,warning=FALSE,message=FALSE,fig.align='center',out.width='60%'}
-# map
-ggplot(data = rc_cover) +
-  geom_sf(aes(fill = CLASSE_USO), col = NA) +
-  geom_sf(data = rec_bairros, col = "black", fill = NA) +
-  scale_fill_manual(values = c("blue", "orange", "gray", "forestgreen")) +
-  theme_bw() +
-  annotation_scale(location = "bl", width_hint = .3) +
-  annotation_north_arrow(location = "bl", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.8, "cm"),
-                         style = north_arrow_fancy_orienteering) +
-  theme(legend.position = "none")
-```
+
 
 ---
 
 # 6.11 Elaboração de mapas vetoriais
 
 ## tmap
-```{r,eval = FALSE}
+
+```r
 # package
 library(tmap)
 
 # map
-rec_bairros_map <- tm_shape(rec_bairros) +
+rec_bairros_map &lt;- tm_shape(rec_bairros) +
   tm_polygons() +
   tm_grid(lwd = 0.1, labels.inside.frame = FALSE) +
   tm_compass(type = "8star", position = c("right", "top")) +
@@ -1142,23 +1113,17 @@ tmap_save(rec_bairros_map, "map_recife_bairros.png")
 # 6.11 Elaboração de mapas vetoriais
 
 ## tmap
-```{r echo=FALSE,warning=FALSE,message=FALSE,fig.align='center',out.width='60%'}
-# map
-tm_shape(rec_bairros) +
-  tm_polygons() +
-  tm_grid(lwd = 0.1, labels.inside.frame = FALSE) +
-  tm_compass(type = "8star", position = c("right", "top")) +
-  tm_scale_bar(breaks = c(0, 1, 2), text.size = 1)
-```
+
 
 ---
 
 # 6.11 Elaboração de mapas vetoriais
 
 ## tmap
-```{r,eval = FALSE}
+
+```r
 # map
-rc_cover_map <- tm_shape(rc_cover) +
+rc_cover_map &lt;- tm_shape(rc_cover) +
   tm_fill(col = "CLASSE_USO", palette = c("blue", "orange", "gray", "forestgreen"),
               style = "cat", title = "Classes") +
   tm_shape(rec_bairros) +
@@ -1179,24 +1144,15 @@ tmap_save(rc_cover_map, "map_recife_uso.png")
 # 6.11 Elaboração de mapas vetoriais
 
 ## tmap
-```{r echo=FALSE,warning=FALSE,message=FALSE,fig.align='center',out.width='60%'}
-# map
-tm_shape(rc_cover) +
-  tm_fill(col = "CLASSE_USO", palette = c("blue", "orange", "gray", "forestgreen"),
-              style = "cat", title = "Classes") +
-  tm_shape(rec_bairros) +
-  tm_borders(col = "black") +
-  tm_grid(lwd = 0.1, labels.inside.frame = FALSE) +
-  tm_compass(type = "8star", position = c("right", "top")) +
-  tm_scale_bar(breaks = c(0, 1, 2), text.size = 1)
-```
+
 
 ---
 
 # 8.21 Elaboração de mapas matriciais
 
 ## ggplot2
-```{r,eval=FALSE}
+
+```r
 # map
 ggplot(data = rec_uso) +
   geom_sf(aes(fill = CLASSE_USO), col = NA) +
@@ -1214,30 +1170,20 @@ ggplot(data = rec_uso) +
 # 8.21 Elaboração de mapas matriciais
 
 ## ggplot2
-```{r,echo=FALSE,warning=FALSE,message=FALSE,fig.align='center',out.width='70%'}
-# map
-ggplot(data = rec_uso) +
-  geom_sf(aes(fill = CLASSE_USO), col = NA) +
-  scale_fill_manual(values = c("blue", "orange", "gray", "forestgreen")) +
-  theme_bw() +
-  annotation_scale(location = "bl", width_hint = .3) +
-  annotation_north_arrow(location = "bl", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.8, "cm"),
-                         style = north_arrow_fancy_orienteering) +
-  theme(legend.position = "none")
-```
+
 
 ---
 
 # 8.21 Elaboração de mapas matriciais
 
 ## tmap
-```{r,eval = FALSE}
+
+```r
 # package
 library(tmap)
 
 # map
-rec_bairros_map <- tm_shape(rec_bairros) +
+rec_bairros_map &lt;- tm_shape(rec_bairros) +
   tm_polygons() +
   tm_grid(lwd = 0.1, labels.inside.frame = FALSE) +
   tm_compass(type = "8star", position = c("right", "top")) +
@@ -1255,36 +1201,152 @@ tmap_save(rec_bairros_map, "map_recife_bairros.png")
 # 8.21 Elaboração de mapas matriciais
 
 ## tmap
-```{r,echo=FALSE,warning=FALSE,message=FALSE,fig.align='center',out.width='70%'}
-# map
-tm_shape(rec_bairros) +
-  tm_polygons() +
-  tm_grid(lwd = 0.1, labels.inside.frame = FALSE) +
-  tm_compass(type = "8star", position = c("right", "top")) +
-  tm_scale_bar(breaks = c(0, 1, 2), text.size = 1)
-```
+
 
 ---
 
 class: clear, middle
 
-<br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ## Maurício Vancine
 
-<br>
+&lt;br&gt;
 
 Contatos:
 
-<br>
-`r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
-<br>
-`r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)
-<br>
-`r icon::fa_github(colour = "#0000ee")` [mauriciovancine](https://mauriciovancine.netlify.com/)
-<br>
-`r icon::fa_link(colour = "#0000ee")` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
+&lt;br&gt;
+<i class="fas  fa-envelope " style="color:#0000ee;"></i> [mauricio.vancine@gmail.com]()
+&lt;br&gt;
+<i class="fab  fa-twitter " style="color:#0000ee;"></i> [@mauriciovancine](https://twitter.com/mauriciovancine)
+&lt;br&gt;
+<i class="fab  fa-github " style="color:#0000ee;"></i> [mauriciovancine](https://mauriciovancine.netlify.com/)
+&lt;br&gt;
+<i class="fas  fa-link " style="color:#0000ee;"></i> [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
 
-<br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "rainbow",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

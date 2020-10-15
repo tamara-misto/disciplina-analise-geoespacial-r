@@ -4,6 +4,9 @@
 #' date: 2020-10-19
 #' ---
 
+# github packages ----------------------------------------------------------
+if(!require(devtools)) install.packages("devtools", dep = TRUE)
+
 # data manipulation and visualization -------------------------------------
 # manipulation and visualization
 if(!require(tidyverse)) install.packages("tidyverse", dep = TRUE)

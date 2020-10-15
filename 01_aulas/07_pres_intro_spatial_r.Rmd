@@ -13,51 +13,102 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup}
+```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, eval=FALSE, warning = FALSE, message = FALSE)
 ```
 
 class: clear
-background-image: url(img/raster.jpeg)
-background-size: 400px
-background-position: 90% 85%
+background-image: url(img/geo_raster_wd.png)
+background-size: 800px
 
 ---
 
 background-image: url(img/r_spatial.jpeg)
 background-size: 350px
-background-position: 90% 85%
+background-position: 80% 65%
 
-# 7 Estrutura e manejo de dados matriciais
+# 7 Estrutura e manejo de dados raster
 
 ## Tópicos
-1. Pacote raster
+1. Pacotes
 1. Classes raster
-1. Importar dados
-1. Estrutura de objetos raster
-1. Sistema de referência de coordenadas
+1. Importar dados matriciais
+1. Descrição de objetos raster
+1. Converter CRS
 1. Manejo de dados
 1. Operação geométricas
 1. Operação espaciais
-1. Conversões
-1. Exportar dados
+1. Interações raster-vetor
+1. Conversões raster-vetor
+1. Exportar dados matriciais
 
 ---
 
-background-image: url(https://geocompr.robinlovelace.net/figures/raster-intro-plot-1.png)
-background-size: 300px
-background-position: 50% 70%
+# 7 Estrutura e manejo de dados raster
 
-# 7.1 Raster: pacote raster
+## Script
+
+<br><br><br><br><br><br>
+
+## .center[`script_aula_07.R`]
+
+---
+
+background-image: url(img/geo_raster_plot.png)
+background-size: 800px
+background-position: 50% 100%
+
+# 7.1 Pacotes
 
 ## Pacote raster
 ```{r,eval=FALSE}
 # raster
-install.packages("rgdal")
 install.packages("raster")
 library(raster)
 ```
+
+<br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://rspatial.org/raster/
+
+---
+
+background-image: url(img/geo_raster_plot.png)
+background-size: 800px
+background-position: 50% 100%
+
+# 7.1 Pacotes
+
+## Pacote terra
+```{r,eval=FALSE}
+# raster
+install.packages("terra")
+library(terra)
+```
+
+<br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://rspatial.org/terra/
+
+---
+
+background-image: url(img/geo_raster_stars.png)
+background-size: 500px
+background-position: 50% 70%
+
+# 7.1 Pacotes
+
+## Pacote stars
+```{r,eval=FALSE}
+# raster
+install.packages("stars")
+library(stars)
+```
+
+<br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://r-spatial.github.io/stars/
 
 ---
 

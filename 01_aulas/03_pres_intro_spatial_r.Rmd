@@ -46,6 +46,7 @@ background-position: 85% 90%
 ---
 
 # 3 Estrutura e manejo de dados
+
 ## Script
 
 <br><br><br><br><br><br>
