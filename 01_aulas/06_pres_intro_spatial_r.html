@@ -1208,7 +1208,7 @@ class: inverse, center, middle
 
 ```r
 # convert datum
-rc_2019_utm_wgs84 &lt;- sf::st_transform(rc_2019, crs = 32723)
+rc_2019_utm_wgs84 &lt;- sf::st_transform(sp_mun_2019, crs = 32723)
 rc_2019_utm_wgs84
 ```
 
@@ -1411,9 +1411,9 @@ class: inverse, center, middle
 
 ```r
 # filtro da feicao
-sp_mun_2019_rc &lt;- sp_mun_2019 %&gt;% 
-  dplyr::filter(name_muni == "Rio Claro")
-sp_mun_2019_rc
+rc_use_forest &lt;- rc_use %&gt;% 
+  dplyr::filter(CLASSE_USO == "formação florestal")
+rc_use_forest
 ```
 
 ---
@@ -1424,48 +1424,30 @@ sp_mun_2019_rc
 
 ```r
 # plot
-plot(sp_mun_2019_rc$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geometry, col = "forestgreen", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
 
 # 6.9 Operações de atributos
 
-## 2. Junção de atrinutos 
+## 2. Join de atrinutos 
 
 ```r
-# download
-download.file(url = "ftp://ftp.ibge.gov.br/../Censos/Censo_Demografico_2010/resultados/total_populacao_sao_paulo.zip",
-              destfile = here::here("03_dados", "vetor", "total_populacao_sao_paulo.zip"), mode = "wb")
-```
-
---
-
-
-```r
-# unzip
-unzip(here::here("03_dados", "vetor", "total_populacao_sao_paulo.zip"), exdir = here::here("03_dados", "vetor"))
-```
-
---
-
-
-```r
-# import
-sp_cense &lt;- readxl::read_xls(here::here("03_dados", "vetor", "total_populacao_sao_paulo.xls")) %&gt;% 
-  dplyr::mutate(code_muni = as.numeric(`Código do município`))
-sp_cense
+da_class &lt;- tibble::tibble(CLASSE_USO = rc_use$CLASSE_USO, 
+                           classe = c("agua", "antropico", "edificado", "floresta", "silvicultura"))
+da_class
 ```
 
 ---
 
 # 6.9 Operações de atributos
 
-## 2. Junção de atrinutos 
+## 2. Join de atrinutos 
 
 ```r
-sp_mun_2019_pop &lt;- dplyr::left_join(sp_mun_2019, sp_cense, by = "code_muni")
-sp_mun_2019_pop
+rc_use_class &lt;- dplyr::left_join(rc_use, da_class, by = "CLASSE_USO")
+rc_use_class
 ```
 
 ---
@@ -1475,10 +1457,10 @@ sp_mun_2019_pop
 ## 3. Aggregation de atributos
 
 ```r
-sp_mun_2019_total &lt;- sp_mun_2019_pop %&gt;% 
-  dplyr::group_by(name_state) %&gt;% 
-  dplyr::summarise(pop = sum(`Total da população 2010`))
-sp_mun_2019_total
+rc_spr_n &lt;- rc_spr %&gt;% 
+  dplyr::group_by(MUNICIPIO, HIDRO) %&gt;% 
+  dplyr::summarise(n = n())
+rc_spr_n
 ```
 
 ---
@@ -1488,7 +1470,7 @@ sp_mun_2019_total
 ## 3. Aggregation de atributos
 
 ```r
-plot(sp_mun_2019_total[2], col = "gray", main = "")
+plot(rc_spr_n$geometry, pch = 20, col = "blue", main = "")
 ```
 
 ---
@@ -1498,9 +1480,10 @@ plot(sp_mun_2019_total[2], col = "gray", main = "")
 ## 4. Criação de atributos
 
 ```r
-sp_mun_2019_pop_diff &lt;- sp_mun_2019_pop %&gt;% 
-  dplyr::mutate(diff = `Total da população 2010` - `Total da população 2000`)
-sp_mun_2019_pop_diff
+rc_use_use_area &lt;- rc_use %&gt;% 
+  dplyr::mutate(classe_area = paste0(CLASSE_USO, " (", AREA_HA, " ha)")) %&gt;% 
+  sf::st_drop_geometry()
+rc_use_use_area
 ```
 
 ---
@@ -1510,29 +1493,11 @@ sp_mun_2019_pop_diff
 ## 4. Criação de atributos
 
 ```r
-plot(sp_mun_2019_pop_diff[17], main = "")
-```
-
----
-
-# 6.9 Operações de atributos
-
-## 4. Criação de atributos
-
-```r
-sp_mun_2019_area &lt;- sp_mun_2019 %&gt;% 
-  dplyr::mutate(area = sf::st_area(sp_mun_2019)/1e6)
-sp_mun_2019_area
-```
-
----
-
-# 6.9 Operações de atributos
-
-## 4. Criação de atributos
-
-```r
-plot(sp_mun_2019_area[9], main = "")
+rc_use_area &lt;- rc_use %&gt;% 
+  dplyr::mutate(area_m2 = sf::st_area(rc_use),
+                area_ha = sf::st_area(rc_use)/1e4) %&gt;% 
+  sf::st_drop_geometry()
+rc_use_area
 ```
 
 ---

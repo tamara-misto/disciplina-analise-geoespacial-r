@@ -1126,29 +1126,14 @@ class: inverse, center, middle
 
 ## Converter CRS local
 
-### SIRGAS2000/UTM23S -> WGS84/UTM zone 23S
+### SIRGAS2000/GCS -> SIRGAS2000/UTM23S
 ```{r}
-# convert datum
-rc_2019_utm_wgs84 <- sf::st_transform(sp_mun_2019, crs = 32723)
-rc_2019_utm_wgs84
+# convert coordinates system
+rc_2019_sirgas2000_utm23s <- sf::st_transform(rc_2019, crs = 31983)
+rc_2019_sirgas2000_utm23s
 ```
 
-[*] https://epsg.io/32723
-
----
-
-# 6.7 Conversão do CRS
-
-## Converter CRS local
-
-### SIRGAS2000/UTM23S -> WGS84/GCS
-```{r}
-# utm to geographic
-rc_2019_gcs_wgs84 <- sf::st_transform(rc_2019, crs = 4326)
-rc_2019_gcs_wgs84
-```
-
-[*] https://epsg.io/4326
+[*] https://epsg.io/31983
 
 ---
 
@@ -1160,9 +1145,9 @@ rc_2019_gcs_wgs84
 ```{r echo=FALSE, fig.align='center', fig.height=4, out.width='100%'}
 library(tidyverse)
 p1 <- ggplot() +
-  geom_sf(data = rc_2019_gcs_wgs84) +
-  coord_sf(datum = sf::st_crs(4326)) +
-  labs(x = "Longitude", y = "Latitude", title = "Geo - WGS84") + 
+  geom_sf(data = rc_2019) +
+  coord_sf(datum = sf::st_crs(4674)) +
+  labs(x = "Longitude", y = "Latitude", title = "SIRGAS2000/GCS") + 
   theme_bw() +
   theme(axis.text.x = element_text(size = 7),
         axis.text.y = element_text(size = 7, angle = 90, hjust = .5),
@@ -1170,15 +1155,45 @@ p1 <- ggplot() +
 
 p2 <- ggplot() +
   geom_sf(data = rc_2019) +
-  coord_sf(datum = sf::st_crs(32723)) +
-  labs(x = "x", y = "y", title = "UTM 23S - SIRGAS 2000") + 
+  coord_sf(datum = sf::st_crs(31983)) +
+  labs(x = "X", y = "Y", title = "SIRGAS2000/UTM23S") + 
   theme_bw() +
   theme(axis.text.x = element_text(size = 7),
         axis.text.y = element_text(size = 7, angle = 90, hjust = .5),
         panel.grid = element_line(size = .3, color = "black", linetype = 2))
 
-gridExtra::grid.arrange(p2, p1, nrow = 1)
+gridExtra::grid.arrange(p1, p2, nrow = 1)
 ```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS local
+
+### SIRGAS2000/GCS -> WGS84/UTM23S
+```{r}
+# convert datum and coordinates system
+rc_2019_wgs84_utm23s <- sf::st_transform(rc_2019, crs = 32723)
+rc_2019_wgs84_utm23s
+```
+
+[*] https://epsg.io/32723
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS local
+
+### SIRGAS2000/GCS -> WGS84/GCS
+```{r}
+# convert datum
+rc_2019_wgs84_gcs <- sf::st_transform(rc_2019, crs = 4326)
+rc_2019_wgs84_gcs
+```
+
+[*] https://epsg.io/4326
 
 ---
 
@@ -1299,45 +1314,6 @@ class: inverse, center, middle
 
 ---
 
-# Manejo e análise de dados vetoriais
-
-## 6.10 Operações espaciais
-
-### Modificação de objetos espaciais baseado na sua **localização e formato**
-
-### Operações:
-1. Subset espacial
-1. Relações topológicas
-1. Join espacial
-1. Join não-sobreposta
-1. Aggregation espacial
-1. Relações de distância
-
----
-
-# Manejo e análise de dados vetoriais
-
-## 6.11 Operações geométricas
-
-### Modificação de objetos espaciais baseado em operações que mudam a **geometria do vetor**
-
-### Operações:
-1. Simplificação
-1. Centroides
-1. Buffers
-1. Transformações afins
-1. Cortes
-1. União
-1. Transformações geométricas
-
----
-
-class: inverse, center, middle
-
-# Operações de atributos
-
----
-
 # 6.9 Operações de atributos
 
 ## 1. Subset de atributos
@@ -1355,7 +1331,8 @@ rc_use_forest
 ## 1. Subset de atributos
 ```{r fig.align='center', out.width='50%'}
 # plot
-plot(rc_use_forest$geometry, col = "forestgreen", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
 ```
 
 ---
@@ -1375,7 +1352,8 @@ da_class
 
 ## 2. Join de atrinutos 
 ```{r}
-rc_use_class <- dplyr::left_join(rc_use, da_class, by = "CLASSE_USO")
+rc_use_class <- dplyr::left_join(rc_use, da_class, by = "CLASSE_USO") %>% 
+  sf::st_drop_geometry()
 rc_use_class
 ```
 
@@ -1397,7 +1375,8 @@ rc_spr_n
 
 ## 3. Aggregation de atributos
 ```{r}
-plot(rc_spr_n$geometry, pch = 20, col = "blue", main = "")
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_n$geometry, pch = 20, col = "blue", add = TRUE)
 ```
 
 ---
@@ -1435,6 +1414,8 @@ dplyr::filter()
 dplyr::distinc()
 dplyr::slice()
 dplyr::n_sample()
+dplyr::group_by()
+dplyr::summarise()
 ```
 
 ---
@@ -1448,130 +1429,326 @@ dplyr::pull()
 dplyr::rename()
 dplyr::mutate()
 dplyr::arrange()
-dplyr::group_by()
-dplyr::summarise()
 dplyr::*_join()
 ```
 
 ---
 
-class: inverse, center, middle
+# Manejo e análise de dados vetoriais
 
-# Operações espaciais
+## 6.10 Operações espaciais
+
+### Modificação de objetos espaciais baseado na sua **localização e formato**
+
+### Operações:
+1. Subset espacial
+1. Join espacial
+1. Pontos aleatórios
+1. Quadrículas
+1. Hexágonos
 
 ---
 
 # 6.10 Operações espaciais
 
 ## 1. Subset espacial
-
----
-
-# 6.10 Operações espaciais
-
-## 2. Relações topológicas
-
----
-
-# 6.10 Operações espaciais
-
-## 3. Join espacial
-
----
-
-# 6.10 Operações espaciais
-
-## 4. Join não sobreposta
-
----
-
-# 6.10 Operações espaciais
-
-## 5. Aggregation espacial
-
----
-
-# 6.10 Operações espaciais
-
-## 6. Relações de distância
-
----
-
-# 6.10 Operações espaciais
-
-## Pontos aleatórios
 ```{r}
-sp_mun_2019_rp <- sf::st_sample(sp_mun_2019 %>% sf::st_transform(crs = 32723), 1e4)
-sp_mun_2019_rp
+sf::st_intersects(x = rc_spr, y = rc_use_forest)
 ```
 
 ---
 
 # 6.10 Operações espaciais
 
-## Pontos aleatórios
+## 1. Subset espacial
+```{r}
+sf::st_intersects(x = rc_spr, y = rc_use_forest, sparse = FALSE)
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 1. Subset espacial - dentro
+```{r}
+rc_spr_forest <- rc_spr %>% 
+  dplyr::filter(sf::st_intersects(x = ., y = rc_use_forest, sparse = FALSE))
+rc_spr_forest
+```
+
+# 6.10 Operações espaciais
+
+## 1. Subset espacial - fora
+```{r}
+rc_spr_forest_out <- rc_spr %>% 
+  dplyr::filter(!sf::st_intersects(x = ., y = rc_use_forest, sparse = FALSE))
+rc_spr_forest_out
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 1. Subset espacial [] - dentro
+```{r}
+rc_spr_forest <- rc_spr[rc_use_forest, ]
+rc_spr_forest
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 1. Subset espacial
+```{r}
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
+plot(rc_spr_forest$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 1. Subset espacial [] - fora
+```{r}
+rc_spr_forest_out <- rc_spr[is.na(rc_use_forest), ]
+rc_spr_forest_out
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 1. Subset espacial
+```{r}
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
+plot(rc_spr_forest_out$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 2. Join espacial
+```{r}
+rc_spr_use <- rc_spr %>% 
+  sf::st_join(x = ., y = rc_use)
+rc_spr_use
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 2. Join espacial
+```{r}
+rc_spr_use %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::count(CLASSE_USO)
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 2. Join de atributos
+```{r}
+col <- tibble::tibble(CLASSE_USO = c("água", "área antropizada", "área edificada", "formação florestal", "silvicultura"),
+                      color = c("blue", "orange", "gray30", "forestgreen", "green"))
+col
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 2. Join de atributos
+```{r}
+rc_spr_use <- dplyr::left_join(rc_spr_use, col, by = "CLASSE_USO")
+rc_spr_use
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 2. Join espacial
+```{r}
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_use[10], col = rc_spr_use$color, pch = 20, add = TRUE)
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 3. Pontos aleatórios
+```{r}
+rc_2019_sirgas2000_utm23s_rp <- sf::st_sample(rc_2019_sirgas2000_utm23s, 1e3)
+rc_2019_sirgas2000_utm23s_rp
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 3. Pontos aleatórios
 ```{r echo=FALSE, fig.align='center', out.width='50%'}
 # plot
-plot(sp_mun_2019$geom, main = NA, axes = TRUE, graticule = TRUE)
-plot(sp_mun_2019_rp, pch = 20, cex = .5, col = "steelblue", main = NA, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_rp, pch = 20, cex = .5, col = "red", add = TRUE)
 ```
 
 ---
 
 # 6.10 Operações espaciais
 
-## Quadrículas
+## 3. Pontos aleatórios
 ```{r}
-sp_mun_2019_grid <- sp_mun_2019 %>% 
-  sf::st_transform(crs = 32723) %>% 
-  sf::st_make_grid(cellsize = 50000) %>% 
-  sf::st_as_sf()
-sp_mun_2019_grid
+rc_use_forest_rp <- sf::st_sample(rc_use_forest, 1e3)
+rc_use_forest_rp
 ```
 
 ---
 
 # 6.10 Operações espaciais
 
-## Quadrículas
+## 3. Pontos aleatórios
+```{r echo=FALSE, fig.align='center', out.width='50%'}
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geom, col = "forestgreen", add = TRUE)
+plot(rc_use_forest_rp, pch = 20, cex = .5, col = "red", add = TRUE)
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 4. Quadrículas
+```{r}
+rc_2019_sirgas2000_utm23s_grid <- rc_2019_sirgas2000_utm23s %>% 
+  sf::st_make_grid(cellsize = 2000) %>% 
+  sf::st_as_sf()
+rc_2019_sirgas2000_utm23s_grid
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 4. Quadrículas
 ```{r}
 # plot
-plot(sp_mun_2019_rp, pch = 20, cex = .5, col = "steelblue", main = NA)
-plot(sp_mun_2019$geom %>% sf::st_transform(crs = 32723), main = NA, add = TRUE)
-plot(sp_mun_2019_grid, col = adjustcolor("white", 0), add = TRUE)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
 ```
 
 ---
 
 # 6.10 Operações espaciais
 
-## Contar pontos nas quadrículas
+## 4. Quadrículas
 ```{r}
-# contagem por célula
-sp_mun_2019_grid_count <- sp_mun_2019_grid %>% 
-  dplyr::mutate(n = sf::st_intersects(sp_mun_2019_grid, sp_mun_2019_rp) %>% lengths())
-sp_mun_2019_grid_count
+rc_2019_sirgas2000_utm23s_grid_in <- rc_2019_sirgas2000_utm23s_grid[rc_2019_sirgas2000_utm23s]
+rc_2019_sirgas2000_utm23s_grid_in
 ```
 
 ---
 
 # 6.10 Operações espaciais
 
-## Contar pontos nas quadrículas
+## 4. Quadrículas
+```{r}
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid_in, col = adjustcolor("red", .1), add = TRUE)
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 4. Quadrículas
+```{r}
+# spring by cell
+rc_2019_sirgas2000_utm23s_grid_in_spr_count <- rc_2019_sirgas2000_utm23s_grid_in %>% 
+  dplyr::mutate(n = sf::st_intersects(x = ., rc_spr) %>% lengths())
+rc_2019_sirgas2000_utm23s_grid_in_spr_count
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 4. Quadrículas
 ```{r}
 # map
-tm_shape(sp_mun_2019_grid_count) +
-  tm_polygons(col = "n") +
-tm_shape(sp_mun_2019_rp) +
-  tm_dots(size = .01, col = "steelblue", alpha = .75) +
-  tm_legend(legend.position = c("left", "bottom"))
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count, add = TRUE)
 ```
 
 ---
 
-class: inverse, center, middle
+# 6.10 Operações espaciais
 
-# Operações geométricas
+## 5. Hexágonos
+```{r}
+rc_2019_sirgas2000_utm23s_hex <- rc_2019_sirgas2000_utm23s %>% 
+  sf::st_make_grid(cellsize = 2000, square = FALSE) %>% 
+  sf::st_as_sf()
+rc_2019_sirgas2000_utm23s_hex
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 5. Hexágonos
+```{r}
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 5. Hexágonos
+```{r}
+# spring by hexagon
+rc_2019_sirgas2000_utm23s_hex_spr_count <- rc_2019_sirgas2000_utm23s_hex %>% 
+  dplyr::mutate(n = sf::st_intersects(x = ., rc_spr) %>% lengths())
+rc_2019_sirgas2000_utm23s_hex_spr_count
+```
+
+---
+
+# 6.10 Operações espaciais
+
+## 4. Quadrículas
+```{r}
+# map
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex_spr_count, add = TRUE)
+```
+
+---
+
+# Manejo e análise de dados vetoriais
+
+## 6.11 Operações geométricas
+
+### Modificação de objetos espaciais baseado em operações que mudam a **geometria do vetor**
+
+### Operações:
+1. Simplificação
+1. Centroides
+1. Buffers
+1. União
 
 ---
 
@@ -1580,8 +1757,8 @@ class: inverse, center, middle
 ## 1. Simplificação
 ```{r}
 # simplification
-sp_mun_2019_simp <- sf::st_simplify(sp_mun_2019, dTolerance = .05)
-sp_mun_2019_simp
+rc_riv_simp <- sf::st_simplify(rc_riv, dTolerance = 1e4)
+rc_riv_simp
 ```
 
 ---
@@ -1591,7 +1768,9 @@ sp_mun_2019_simp
 ## 1. Simplificação
 ```{r echo=FALSE, fig.align='center', out.width='50%'}
 # plot
-plot(sp_mun_2019_simp$geom, col = "gray", main = NA)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_riv$geometry, col = "steelblue", add = TRUE)
+plot(rc_riv_simp$geometry, col = "red", add = TRUE)
 ```
 
 ---
@@ -1600,8 +1779,8 @@ plot(sp_mun_2019_simp$geom, col = "gray", main = NA)
 
 ## 2. Centroides
 ```{r}
-sp_mun_2019_cent <- sf::st_centroid(sp_mun_2019)
-sp_mun_2019_cent
+rc_2019_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s)
+rc_2019_cent
 ```
 
 ---
@@ -1611,8 +1790,31 @@ sp_mun_2019_cent
 ## 2. Centroides
 ```{r fig.align='center', out.width='50%'}
 # plot
-plot(sp_mun_2019$geom, main = NA)
-plot(sp_mun_2019_cent$geom, col = "red", pch = 20, main = NA, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_cent, col = "red", pch = 20, add = TRUE)
+```
+
+
+---
+
+# 6.11 Operações geométricas
+
+## 2. Centroides
+```{r}
+rc_2019_sirgas2000_utm23s_grid_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s_grid)
+rc_2019_sirgas2000_utm23s_grid_cent
+```
+
+---
+
+# 6.11 Operações geométricas
+
+## 2. Centroides
+```{r fig.align='center', out.width='50%'}
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid_cent, col = "red", pch = 20, add = TRUE)
 ```
 
 ---
@@ -1621,10 +1823,9 @@ plot(sp_mun_2019_cent$geom, col = "red", pch = 20, main = NA, add = TRUE)
 
 ## 3. Buffer
 ```{r}
-sp_mun_2019_cent_buf <- sp_mun_2019_cent %>% 
-  sf::st_transform(crs = 32723) %>% 
-  sf::st_buffer(dist = 1000)
-sp_mun_2019_cent_buf
+rc_spr_forest_buf <- rc_spr_forest %>% 
+  sf::st_buffer(dist = 500)
+rc_spr_forest_buf
 ```
 
 ---
@@ -1634,49 +1835,30 @@ sp_mun_2019_cent_buf
 ## 3. Buffer
 ```{r echo=FALSE, fig.align='center', out.width='50%'}
 # plot
-plot(sp_mun_2019$geom, main = NA)
-plot(sp_mun_2019_cent$geom, col = "red", pch = 20, main = NA, add = TRUE)
-plot(sp_mun_2019_cent_buf$geom, col = "gray", main = NA, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_forest$geom, pch = 20, cex = .5, col = "blue", add = TRUE)
+plot(rc_spr_forest_buf$geom, col = adjustcolor("white", 0), add = TRUE)
 ```
 
 ---
 
 # 6.11 Operações geométricas
 
-## 4. Transformações afins
-
-
----
-
-# 6.11 Operações geométricas
-
-## 5. Cortes
-
----
-
-# 6.11 Operações geométricas
-
-## 6. União (Dissolve)
+## 4. União (Dissolve)
 ```{r}
-sp_mun_2019_union <- sf::st_union(sp_mun_2019)
-sp_mun_2019_union
+rc_uso_union <- sf::st_union(rc_use)
+rc_uso_union
 ```
 
 ---
 
 # 6.11 Operações geométricas
 
-## 6. União (Dissolve)
+## 4. União (Dissolve)
 ```{r echo=FALSE, fig.align='center', out.width='50%'}
 # plot
 plot(sp_mun_2019_union[1], main = NA, axes = TRUE, graticule = TRUE)
 ```
-
----
-
-# 6.11 Operações geométricas
-
-## 7. Transformações de tipo
 
 ---
 
