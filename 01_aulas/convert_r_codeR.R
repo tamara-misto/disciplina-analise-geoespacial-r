@@ -5,15 +5,13 @@
 #' ---
 
 # packages
-library(pagedown)
-library(xaringan)
-library(tidyverse)
+library(knitr)
 
 # directory
 setwd("01_aulas")
 dir(pattern = ".Rmd")
 
 # convert rmarkdown
-purrr::map(dir(pattern = ".Rmd")[3], pagedown::chrome_print, timeout = 2000)
+purrr::map(dir(pattern = ".Rmd"), knitr::purl)
 
 # end ---------------------------------------------------------------------

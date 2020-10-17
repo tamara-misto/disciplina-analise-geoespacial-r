@@ -110,18 +110,17 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Material para análise de dados geoespacias
 
 ### 6 Estrutura e manejo de dados vetoriais (quarta-quinta)
-1. Pacote sf
+1. Pacotes (sp e sf)
 1. Geometrias sf (point, linestring, polygon, multipoint, multilinestring, multipolygon, geometrycollection)
 1. Classes sf (sfg, sfc, sf)
-1. Importar dados
-1. Converter dados sf
+1. Importar dados vetoriais
 1. Descrição de objetos sf
-1. Conversão do CRS
-1. Tabela de atributos
+1. Converter dados para sf
+1. Converter CRS
 1. Operações de atributos
 1. Operações espaciais
 1. Operações geométricas
-1. Exportar dados
+1. Exportar dados vetoriais
 
 ### 7 Estrutura e manejo de dados matriciais (raster) (quinta-sexta)
 1. Pacote raster
