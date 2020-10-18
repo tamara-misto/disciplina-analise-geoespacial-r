@@ -51,9 +51,9 @@ background-position: 45% 70%, 90% 90%
 
 ## Script
 
-<br><br><br><br><br><br>
+<br><br><br><br>
 
-## .center[`script_aula_08.R`]
+## .center[`08_script_intro_geocomp_r.R`]
 
 ---
 

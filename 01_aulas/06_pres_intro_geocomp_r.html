@@ -14,7 +14,7 @@
 class: center, middle, inverse, title-slide
 
 # Introdução à análise geoespacial com R <br><br><br>
-## 6 Estrutura e manejo de dados vetoriais <br><br><br>
+## 6 Estrutura e manipulação de dados vetoriais <br><br><br>
 ### Maurício H. Vancine <br> Milton C. Ribeiro
 ### 22/10/2020
 
@@ -33,7 +33,7 @@ background-image: url(img/r_spatial.jpeg)
 background-size: 350px
 background-position: 80% 65%
 
-# 6 Estrutura e manejo de dados vetoriais
+# 6 Estrutura e manipulação de dados vetoriais
 
 ## Tópicos
 1. Pacotes
@@ -50,13 +50,13 @@ background-position: 80% 65%
 
 ---
 
-# 6 Estrutura e manejo de dados vetoriais
+# 6 Estrutura e manipulação de dados vetoriais
 
 ## Script
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-## .center[`script_aula_06.R`]
+## .center[`06_script_intro_geocomp_r.R`]
 
 ---
 
@@ -179,7 +179,7 @@ background-position: 50% 70%
 
 --
 
-### Objetos `sf` podem ser tratados como `data frames` (`tibbles`) na maioria das **operações de manejo**
+### Objetos `sf` podem ser tratados como `data frames` (`tibbles`) na maioria das **operações de manipulação**
 
 --
 
@@ -566,6 +566,9 @@ dir.create(here::here("03_dados", "vetor"))
 ### Download de **pontos de nascentes** para Rio Claro/SP
 
 ```r
+# increase time to download
+options(timeout = 600)
+
 # download lines
 for(i in c(".dbf", ".prj", ".shp", ".shx")){
   download.file(url = paste0("http://geo.fbds.org.br/SP/RIO_CLARO/HIDROGRAFIA/SP_3543907_NASCENTES", i),
@@ -1234,6 +1237,7 @@ rc_2019_wgs84_utm23s
 ```
 
 [*] https://epsg.io/32723
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/transverse-mercator.htm
 
 ---
 
@@ -1279,7 +1283,7 @@ plot(co110_sf$geometry, col = "gray", axes = TRUE, graticule = TRUE)
 
 ## Converter CRS global
 
-### Projeção de Mollweide
+### Projeção de Mollweide: preserva as relações de área
 
 ```r
 # mollweide projection
@@ -1288,6 +1292,7 @@ co110_sf_moll
 ```
 
 [*] https://epsg.io/54009
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/mollweide.htm
 
 ---
 
@@ -1308,12 +1313,102 @@ plot(co110_sf_moll$geometry, col = "gray", graticule = TRUE)
 
 ## Converter CRS global
 
-### Projeção azimutal de Lambert
+### Projeção de Winkel Tripel: mínimo de distorção para área, direção e distância
+
+```r
+# mollweide projection
+co110_sf_wintri &lt;- lwgeom::st_transform_proj(co110_sf, crs = "+proj=wintri")
+co110_sf_wintri
+```
+
+[*] https://epsg.io/54009
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/winkel-tripel.htm
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Winkel Tripel
+
+```r
+# plot
+plot(co110_sf_wintri$geometry, col = "gray", graticule = TRUE)
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Eckert IV: presenva a área e com meridianos elípticos
+
+```r
+# mollweide projection
+co110_sf_eck4 &lt;- lwgeom::st_transform_proj(co110_sf, crs = "+proj=eck4")
+co110_sf_eck4
+```
+
+[*] https://epsg.io/54012
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/winkel-tripel.htm
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Eckert IV
+
+```r
+# plot
+plot(co110_sf_eck4$geometry, col = "gray", graticule = TRUE)
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert: preserva os tamanhos relativos e senso de direção a partir do centro
 
 ```r
 # lambert projection
-co110_sf_lamb &lt;- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0")
-co110_sf_lamb
+co110_sf_laea1 &lt;- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0")
+co110_sf_laea1
+```
+
+[*] 
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/lambert-azimuthal-equal-area.htm
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert
+
+```r
+# plot
+plot(co110_sf_laea1$geometry, col = "gray", graticule = TRUE)
+```
+
+---
+
+# 6.7 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert: preserva os tamanhos relativos e senso de direção a partir do centro
+
+```r
+# lambert projection
+co110_sf_laea2 &lt;- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-50 +lat_0=0")
+co110_sf_laea2
 ```
 
 ---
@@ -1326,40 +1421,13 @@ co110_sf_lamb
 
 ```r
 # plot
-plot(co110_sf_lamb$geometry, col = "gray", graticule = TRUE)
-```
-
----
-
-# 6.7 Conversão do CRS
-
-## Converter CRS global
-
-### Projeção azimutal de Lambert
-
-```r
-# lambert projection
-co110_sf_lamb &lt;- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-50 +lat_0=0")
-co110_sf_lamb
-```
-
----
-
-# 6.7 Conversão do CRS
-
-## Converter CRS global
-
-### Projeção azimutal de Lambert
-
-```r
-# plot
-plot(co110_sf_lamb$geometry, col = "gray", graticule = TRUE)
+plot(co110_sf_laea2$geometry, col = "gray", graticule = TRUE)
 ```
 
 ---
 
 class: inverse, center, middle
-# Manejo e análise de dados vetoriais
+# manipulação e análise de dados vetoriais
 
 ---
 
@@ -1484,7 +1552,7 @@ rc_use_area
 
 # 6.8 Operações de atributos
 
-## 5. Outros operações: funções do `dplyr` para manejo de feições
+## 5. Outros operações: funções do `dplyr` para manipulação de feições
 
 ```r
 dplyr::filter()
@@ -1499,7 +1567,7 @@ dplyr::summarise()
 
 # 6.8 Operações de atributos
 
-## 5. Outros operações: funções do `dplyr` para manejo da tabela de atributos
+## 5. Outros operações: funções do `dplyr` para manipulação da tabela de atributos
 
 ```r
 dplyr::select()
@@ -1587,7 +1655,7 @@ rc_spr_forest
 
 # 6.9 Operações espaciais
 
-## 1. Subset espacial
+## 1. Subset espacial []
 
 ```r
 # plot
@@ -1612,7 +1680,7 @@ rc_spr_forest_out
 
 # 6.9 Operações espaciais
 
-## 1. Subset espacial
+## 1. Subset espacial []
 
 ```r
 # plot

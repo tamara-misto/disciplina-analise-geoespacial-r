@@ -1,11 +1,10 @@
-# -------------------------------------------------------------------------
-# aula 4 - introducao ao tidyverse
+#' ---
+#' title: aula 04 introducao ao tidyverse
+#' author: mauricio vancine
+#' date: 2020-10-20
+#' ---
 
-# mauricio vancine
-# 30-09-2019
-# -------------------------------------------------------------------------
-
-# topicos -----------------------------------------------------------------  
+# topics ------------------------------------------------------------------
 # 4.1 tidyverse
 # 4.2 magrittr (pipe - %>%)
 # 4.3 readr
@@ -15,7 +14,8 @@
 # 4.7 dplyr
 # 4.8 stringr
 # 4.9 forcats
-# 4.10 purrr
+# 4.10 lubridate
+# 4.11 purrr
 
 # 4.1 tidyverse -----------------------------------------------------------
 # instalar o pacote
@@ -23,6 +23,9 @@ install.packages("tidyverse")
 
 # carregar o pacote
 library(tidyverse)
+
+# list all packages in the tidyverse 
+tidyverse::tidyverse_packages(include_self = TRUE)
 
 # 4.2 magrittr (pipe - %>%) -----------------------------------------------
 # sem pipe
@@ -34,63 +37,77 @@ sqrt(sum(1:100))
   sqrt()
 
 # fixar amostragem
-set.seed(1)
+set.seed(42)
 
 # sem pipe
-ve <- sum(sqrt(sort(log10(rpois(100, 5)))))
+ve <- sum(sqrt(sort(log10(rpois(100, 10)))))
 ve
 
 # com pipe
-ve <- rpois(100, 5) %>% 
+ve <- rpois(100, 10) %>% 
   log10() %>%
   sort() %>% 
   sqrt() %>% 
   sum()
 ve  
 
+# exercicio 09 ------------------------------------------------------------
+
+
 # 4.3 readr ---------------------------------------------------------------
-# diretorio
-setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/00_tabelas")
+# install
+install.packages("here")
+
+# load
+library(here)
+
+# confer
+here::here()
+
+# create a .here file
+# here::set_here()
 
 # formato .csv
 # import sites
-si <- read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
+si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
 si
 
-# import species
-sp <- read_csv("ATLANTIC_AMPHIBIANS_species.csv")
-sp
+# import sites
+si <- readr::read_csv("./03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv")
+si
 
 # formato .txt
 # import sites
-si <- read_table2("ATLANTIC_AMPHIBIANS_sites.txt")
+si <- readr::read_tsv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.txt"))
 si
 
-# import species
-sp <- read_table2("ATLANTIC_AMPHIBIANS_species.txt")
-sp
-
 # 4.4 readxl e writexl ----------------------------------------------------
-# packages
+# import .xlsx
 install.packages("readxl")
 library("readxl")
 
+# export .xlsx
 install.packages("writexl")
 library("writexl")
 
 # import sites
-si <- read_xlsx("ATLANTIC_AMPHIBIANS_sites.xlsx")
+si <- readxl::read_xlsx(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
+                        sheet = 1)
+si
+
+# import sites
+si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
 si
 
 # import species
-sp <- read_xlsx("ATLANTIC_AMPHIBIANS_species.xlsx")
+sp <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"))
 sp
 
 # 4.5 tibble --------------------------------------------------------------
-# view the data
+# view the sites data
 glimpse(si)
 
-# view the data
+# view the species data
 glimpse(sp)
 
 # tibble vs data.frame
@@ -126,59 +143,90 @@ tb$c
 # 6 gather(): wide para long
   
 # 1 unite
-# unir as colunas latirude e longitude separadas por uma vírgula
+# sem pipes
+si_unite <- tidyr::unite(si, "lat_lon", latitude:longitude, sep = ",")
+si_unite$lat_lon
+
+# com pipes
 si_unite <- si %>% 
-  unite("lat_lon", latitude:longitude, sep = ",")
+  tidyr::unite("lat_lon", latitude:longitude, sep = ",")
 si_unite$lat_lon
   
 # 2 separate
 # separar os dados de "period" em quatro colunas dos seus valores
 si_separate <- si %>% 
-  separate("period", c("mo", "da", "tw", "ni"), remove = FALSE)
+  tidyr::separate("period", c("mo", "da", "tw", "ni"), remove = FALSE)
 si_separate[, c(1, 9:13)]
 
-# 3 drop_na()
+# 3 separate_rows()
+# Separar os dados de "period" na mesma coluna e repetindo os valores
+si_separate_row <- si %>% 
+  tidyr::separate_rows("period")
+si_separate_row[, c(1, 9:13)]
+
+# 4 drop_na()
 # remove as linhas com NA de todas as colunas
 si_drop_na <- si %>% 
-  drop_na()
+  tidyr::drop_na()
 si_drop_na
 
-# remove as linhas com NA da coluna "year_start"
+# remove as linhas com NA da coluna "active_methods"
 si_drop_na <- si %>% 
-  drop_na(year_start)
+  tidyr::drop_na(active_methods)
 si_drop_na
 
-# 4 replace_na()
-# substituir os NAs da coluna "year_start" por 0 
+# 5 replace_na()
+# Substituir os NAs da coluna "active_methods" por 0 
 si_replace_na <- si %>% 
-  replace_na(list(year_start = 0))
+  tidyr::replace_na(list(active_methods = 0))
 si_replace_na
 
-# 5 spread () 
-# long para wide
-# 1. key: variavel categorica que ira definir os nomes das colunas
-# 2. value: variavel numerica que ira preencher os dados
+# 6 pivot_wider():  long para wide
 
-si_spread <- si[, c("id", "record", "species_number")] %>% 
-  spread(key = record, value = species_number, fill = 0)
-si_spread
+# 1. id_cols: variavel id
+# 2. names_from: variavel categorica que ira definir os nomes das colunas
+# 3. values_from: variavel numerica que ira preencher os dados
+# 4. values_fill: valor para preencher os NAs
 
-si_spread <- si[, c("id", "record", "species_number")] %>% 
-  spread(key = state_abbreviation, value = species_number, fill = 0)
-si_spread
+# sites
+si[, c("id", "record", "species_number")]
 
-sp_spread <- sp[1:1000, c("id", "species", "individuals")] %>% 
-  spread(key = species, value = individuals, fill = 0)
-sp_spread
+si_wide <- si %>% 
+  tidyr::pivot_wider(id_cols = id, 
+                     names_from = state_abbreviation,
+                     values_from = species_number, 
+                     values_fill = list(species_number = 0))
+si_wide
 
-# 6 gather()
-# wide para long
-# 1. key: variavel categorica que ira definir os nomes das colunas
-# 2. value: variavel numerica que ira preencher os dados
+# species
+sp[1:1000, c("id", "species", "individuals")]
 
-si_gather <- si_spread %>% 
-  gather(key = record, value = species_number, -id)
-si_gather
+sp_wide <- sp[1:1000, ] %>% 
+  tidyr::replace_na(list(individuals = 0)) %>% 
+  tidyr::pivot_wider(id_cols = id, 
+                     names_from = species, 
+                     values_from = individuals, 
+                     values_fill = list(individuals = 0))
+sp_wide
+
+# 7 pivot_longer(): wide para long
+
+# 1. cols: coluna do id
+# 2. names_to: nome da coluna que receberá os nomes
+# 3. values_to: nome da coluna que receberá os valores
+
+si_long <- si_wide %>% 
+  tidyr::pivot_longer(cols = -id, 
+                      names_to = "record", 
+                      values_to = "species_number")
+si_long
+
+# exercicio 10 ------------------------------------------------------------
+
+
+# exercicio 11 ------------------------------------------------------------
+
+
 
 # 4.7 dplyr ---------------------------------------------------------------
 # funcoes
@@ -188,11 +236,11 @@ si_gather
 # 4 mutate(): adiciona novas colunas ou adiciona resultados em colunas existentes
 # 5 arrange(): reordenar as linhas com base nos valores de colunas
 # 6 filter(): seleciona linhas com base em valores
-# 7 distinc(): remove linhas com valores repetidos com base nos valores de colunas
+# 7 distinct(): remove linhas com valores repetidos com base nos valores de colunas
 # 8 slice(): seleciona linhas pelos numeros
 # 9 n_sample(): amostragem aleatoria de linhas
 # 10 summarise(): agrega ou resume os dados atraves de funcoes, podendo considerar valores das colunas
-# 11 join(): junta dados de duas tabelas atraves de uma coluna chave
+# 11 *_join(): junta dados de duas tabelas atraves de uma coluna chave
 
 
 # 1 select
@@ -229,7 +277,7 @@ si_rename
 # 4 mutate
 si_mutate <- si %>% 
   mutate(record_factor = as.factor(record))
-si_mutate
+si_mutate$record_factor
 
 # 5 arrange
 si_arrange <- si %>% 
@@ -258,15 +306,19 @@ si_filter <- si %>%
 si_filter
 
 si_filter <- si %>% 
-  filter(is.na(active_methods) & is.na(passive_methods))
+  dplyr::filter(!is.na(passive_methods))
 si_filter
 
 si_filter <- si %>% 
-  filter(species_number > 5 & state_abbreviation == "BR-PE") 
+  filter(!is.na(active_methods) & !is.na(passive_methods))
 si_filter
 
 si_filter <- si %>% 
-  filter(species_number > 5 | state_abbreviation == "BR-PE")
+  filter(species_number > 5 & state_abbreviation == "BR-SP") 
+si_filter
+
+si_filter <- si %>% 
+  filter(species_number > 5 | state_abbreviation == "BR-SP")
 si_filter
 
 # 7 distinct
@@ -290,12 +342,14 @@ si_sample_n
 
 # 10 summarise
 si_summarise <- si %>% 
-  summarise(mean_sp = mean(species_number), sd_sp = sd(species_number))
+  summarise(mean_sp = mean(species_number), 
+            sd_sp = sd(species_number))
 si_summarise
 
 si_summarise_group <- si %>% 
   group_by(country) %>% 
-  summarise(mean_sp = mean(species_number), sd_sp = sd(species_number))
+  summarise(mean_sp = mean(species_number), 
+            sd_sp = sd(species_number))
 si_summarise_group
 
 # 11 join
@@ -308,6 +362,13 @@ sp_join <- sp %>%
 sp_join
 
 colnames(sp_join)
+
+# sufixos _at(), _if(), _all(): realiza operações dependente de confições
+sp_wide_rename <- sp_wide %>% 
+  dplyr::rename_at(vars(contains(" ")), 
+                   list(~stringr::stringr::str_replace_all(., " ", "_"))) %>% 
+  dplyr::rename_all(list(~stringr::stringr::str_to_lower(.)))
+sp_wide_rename
 
 #  manipular os dados de forma mais simples
 da <- si %>% 
@@ -334,65 +395,243 @@ da <- si %>%
   arrange(nsp_state_abb)
 da
 
+
+# exercicio 12 ------------------------------------------------------------
+
+
+
+# exercicio 13 ------------------------------------------------------------
+
+
+
+# exercicio 14 ------------------------------------------------------------
+
+
+
+# exercicio 15 ------------------------------------------------------------
+
+
 # 4.8 stringr -------------------------------------------------------------
 # comprimento
-str_length("abc")
+stringr::str_length("abc")
 
-# substituicao
-str_sub("abc", 3)
+# extrai
+stringr::str_sub("abc", 3)
 
 # inserir espaco em branco
-str_pad("abc", width = 4, side = "left")
-str_pad("abc", width = 4, side = "right")
+stringr::str_pad("abc", width = 4, side = "left")
+stringr::str_pad("abc", width = 4, side = "right")
 
 # remover espaco em branco do comeco, final ou ambos
-str_trim(" abc ")
+stringr::str_trim(" abc ")
 
 # minusculas e maiusculas
-str_to_upper("abc")
-str_to_title("abc")
-str_to_title("aBc")
+stringr::str_to_upper("abc")
+stringr::str_to_title("abc")
+stringr::str_to_title("aBc")
 
-# ordenarcao
+# ordenacao
 le <- sample(letters, 26, rep = TRUE)
 le
 
-str_sort(le)
-str_sort(le, dec = TRUE)
+stringr::str_sort(le)
+stringr::str_sort(le, dec = TRUE)
 
 # extrair
-str_extract("abc", "b")
+stringr::str_extract("abc", "b")
 
 # substituir
-str_replace("abc", "a", "y")
+stringr::str_replace("abc", "a", "y")
 
 # separacao
-str_split("a-b-c", "-")
+stringr::str_split("a-b-c", "-")
 
 # 4.9 forcats -------------------------------------------------------------
 # fixar amostragem
-set.seed(1)
+set.seed(42)
 
-# criar um fator
-fa <- factor(sample(c("alto", "medio", "baixo"), 30, rep = TRUE))
+# as_factor(): cria fatores
+fa <- sample(c("alto", "medio", "baixo"), 30, rep = TRUE) %>% 
+  forcats::as_factor()
 fa
 
-# fct_relevel: reordena os levels de forma simples
-fa_or <- fa %>% 
-  fct_relevel(c("baixo", "medio", "alto"))
-fa_or
+# fct_recode(): muda o nome dos níveis
+fa_recode <- fa %>% 
+  forcats::fct_recode(a = "alto", m = "medio", b = "baixo")
+fa_recode
 
-# 4.10 purrr --------------------------------------------------------------
-# calcular a media para varaos colunas
+# fct_rev(): inverte os niveis
+fa_rev <- fa_recode %>% 
+  forcats::fct_rev()
+fa_rev
+
+# fct_relevel(): especifica a classificacao de um nivel
+fa_relevel <- fa_recode %>% 
+  forcats::fct_relevel(c("a", "m", "b"))
+fa_relevel
+
+# fct_inorder(): ordem em que aparece
+fa_inorder <- fa_recode %>% 
+  forcats::fct_inorder()
+fa_inorder
+
+# fct_infreq: ordem (decrescente) de frequencia
+fa_infreq <- fa_recode %>% 
+  forcats::fct_infreq()
+fa_infreq
+
+# fct_lump(): agregacao de niveis raros em um nivel
+fa_lump <- fa_recode %>% 
+  forcats::fct_lump()
+fa_lump
+
+# 4.10 lubridate ----------------------------------------------------------
+# install
+install.packages("lubridate")
+
+# load
+library(lubridate)
+
+# string
+data_string <- "2020-04-24"
+data_string
+class(data_string)
+
+# criar um objeto com a classe data
+data_date <- lubridate::date(data_string)
+data_date
+class(data_date)
+
+# criar um objeto com a classe data
+data_date <- lubridate::as_date(data_string)
+data_date
+class(data_date)
+
+# string
+data_string <- "20-10-2020"
+data_string
+class(data_string)
+
+# criar um objeto com a classe data
+data_date <- lubridate::dmy(data_string)
+data_date
+class(data_date)
+
+# formatos
+lubridate::dmy(20102020)
+lubridate::dmy("20102020")
+lubridate::dmy("20/10/2020")
+lubridate::dmy("20.10.2020")
+
+# especificar horarios
+lubridate::dmy_h(2010202020)
+lubridate::dmy_hm(201020202035)
+lubridate::dmy_hms(20102020203535)
+
+# criar
+data <- lubridate::dmy_hms(20102020203535)
+data
+
+# extrair
+lubridate::second(data)
+lubridate::day(data)
+lubridate::month(data)
+lubridate::wday(data)
+lubridate::wday(data, label = TRUE)
+
+# inlcuir
+lubridate::hour(data) <- 13
+data
+
+# extrair a data no instante da execucao
+lubridate::today() 
+
+# extrair a data e horario no instante da execucao
+lubridate::now()
+
+# agora
+agora <- lubridate::ymd_hms(lubridate::now(), tz = "America/Sao_Paulo")
+agora
+
+# verificar os tz
+OlsonNames()
+
+# que horas sao em...
+lubridate::with_tz(agora, tzone = "GMT")
+lubridate::with_tz(agora, tzone = "Europe/Stockholm")  
+
+# altera o fuso sem mudar a hora
+lubridate::force_tz(agora, tzone = "GMT")
+
+# datas
+inicio_r <- lubridate::dmy("30-11-2011")
+inicio_r
+
+hoje_r <- lubridate::today()
+hoje_r
+
+# intervalo
+r_interval <- lubridate::interval(inicio_r, hoje_r)
+r_interval
+class(r_interval)
+
+# outra forma de definir um intervalo: o operador %--%
+r_interval <- lubridate::dmy("30-11-2011") %--% lubridate::today() 
+namoro_interval <- lubridate::dmy("25-06-2008") %--% lubridate::today()   
+
+# verificar sobreposicao
+lubridate::int_overlaps(r_interval, namoro_interval)
+
+# somando datas
+inicio_r + lubridate::ddays(1)
+inicio_r + lubridate::dyears(1)
+
+# criando datas recorrentes
+reunioes <- lubridate::today() + lubridate::weeks(0:10)
+reunioes
+
+# duracao de um intervalo 
+r_interval <- inicio_r %--% lubridate::today()
+r_interval
+
+# transformacoes
+r_interval / lubridate::dyears(1)
+r_interval / lubridate::ddays(1)
+
+# total do periodo estudando r
+lubridate::as.period(r_interval)
+
+# tempo de namoro
+lubridate::as.period(namoro_interval)
+
+# 4.11 purrr --------------------------------------------------------------
+# lista
+x <- list(1:5, c(4, 5, 7), c(98, 34, -10), c(2, 2, 2, 2, 2))
+x
+
+purrr::map(x, sum)
+purrr::map_dbl(x, sum)
+purrr::map_chr(x, paste, collapse = " ")
+
+x <- list(3, 5, 0, 1)
+y <- list(3, 5, 0, 1)
+
+purrr::map2_dbl(x, y, prod)
+
+x <- list(3, 5, 0, 1)
+y <- list(3, 5, 0, 1)
+z <- list(3, 5, 0, 1)
+
+purrr::pmap_dbl(list(x, y, z), prod)
+
 mean_var <- si %>% 
-  select(species_number, altitude) %>% 
-  map_dbl(mean)
+  dplyr::select(species_number, altitude) %>% 
+  purrr::map_dbl(mean)
 mean_var
 
-# calcular o desvio padrao para varias colunas
-mean_var <- si %>% 
-  select(species_number, altitude) %>% 
-  map_dbl(sd)
-mean_var
+sd_var <- si %>% 
+  dplyr::select(species_number, altitude) %>% 
+  purrr::map_dbl(sd)
+sd_var
 
 # end ---------------------------------------------------------------------

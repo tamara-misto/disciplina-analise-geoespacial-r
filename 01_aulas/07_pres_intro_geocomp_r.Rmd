@@ -16,6 +16,11 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(fig.retina = 3, eval=FALSE, warning = FALSE, message = FALSE)
+if(!require(raster)) install.packages("raster")
+if(!require(sf)) install.packages("sf")
+if(!require(tidyverse)) install.packages("tidyverse")
+if(!require(geobr)) install.packages("geobr")
+if(!require(rnaturalearth)) install.packages("rnaturalearth")
 ```
 
 class: clear
@@ -32,13 +37,14 @@ background-position: 80% 65%
 
 ## Tópicos
 1. Pacotes
+1. Dados raster
 1. Classes raster
 1. Importar dados matriciais
 1. Descrição de objetos raster
 1. Converter CRS
-1. Manejo de dados
-1. Operação geométricas
+1. Manipulação de dados raster
 1. Operação espaciais
+1. Operação geométricas
 1. Interações raster-vetor
 1. Conversões raster-vetor
 1. Exportar dados matriciais
@@ -51,18 +57,18 @@ background-position: 80% 65%
 
 <br><br><br><br><br><br>
 
-## .center[`script_aula_07.R`]
+## .center[`07_script_intro_geocomp_r.R`]
 
 ---
 
-background-image: url(img/geo_raster_plot.png)
-background-size: 800px
-background-position: 50% 100%
+background-image: url(img/geo_raster_package.png)
+background-size: 650px
+background-position: 50% 70%
 
 # 7.1 Pacotes
 
 ## Pacote raster
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # raster
 install.packages("raster")
 library(raster)
@@ -70,18 +76,18 @@ library(raster)
 
 <br><br><br><br><br><br><br><br><br><br><br>
 
-[*] https://rspatial.org/raster/
+[*] https://rspatial.org/raster/pkg/
 
 ---
 
-background-image: url(img/geo_raster_plot.png)
-background-size: 800px
-background-position: 50% 100%
+background-image: url(img/geo_terra_package.png)
+background-size: 650px
+background-position: 50% 70%
 
 # 7.1 Pacotes
 
 ## Pacote terra
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # raster
 install.packages("terra")
 library(terra)
@@ -89,7 +95,7 @@ library(terra)
 
 <br><br><br><br><br><br><br><br><br><br><br>
 
-[*] https://rspatial.org/terra/
+[*] https://rspatial.org/terra/pkg/
 
 ---
 
@@ -100,7 +106,7 @@ background-position: 50% 70%
 # 7.1 Pacotes
 
 ## Pacote stars
-```{r,eval=FALSE}
+```{r eval=FALSE}
 # raster
 install.packages("stars")
 library(stars)
@@ -112,213 +118,629 @@ library(stars)
 
 ---
 
-# 7.2 Importar dados matriciais
+background-image: url(img/geo_raster.png)
+background-size: 500px
+background-position: 50% 90%
 
-## download raster
-```{r,eval=FALSE}
-# directory
-setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
+# 7.2 Dados raster
 
-# download
-download.file(url = "http://biogeo.ucdavis.edu/data/worldclim/v2.0/tif/base/wc2.0_10m_bio.zip",
-              destfile = "wc2.0_10m_bio.zip")
-
-# unzip
-unzip("wc2.0_10m_bio.zip")
-```
+## Raster ou Gride ou Dado Matricial (matriz)
 
 ---
 
-# 7.2 Importar dados matriciais
-## import raster
-```{r,eval=FALSE}
-# pacote
-library(raster)
-
-# diretorio
-setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
-
-# import raster
-ra <- raster::raster("wc2.0_bio_10m_01.tif")
-ra
-
-# map
-raster::plot(ra)
-```
-
----
-
-# 7.2 Importar dados matriciais
-## import raster
-```{r,warning=FALSE, message=FALSE, fig.align='center', out.width='50%'}
-# pacote
-library(raster)
-
-# diretorio
-setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
-
-# import raster
-ra <- raster::raster("wc2.0_bio_10m_01.tif")
-ra
-
-# map
-raster::plot(ra)
-```
-
----
-
-background-image: url(https://geocompr.robinlovelace.net/figures/raster-intro-plot2-1.png)
-background-size: 300px
+background-image: url(img/geo_raster_cont_cat.png)
+background-size: 700px
 background-position: 50% 70%
 
-# 7.3 Tipos de dados matriciais
+# 7.2 Dados raster
+
+## Tipos de dados: contínuos ou categóricos
 
 ---
 
-background-image: url(https://www.neonscience.org/sites/default/files/images/dc-spatial-raster/single_multi_raster.png)
-background-size: 300px
+background-image: url(img/geo_raster_plot.png)
+background-size: 800px
 background-position: 50% 70%
 
-# 7.3 Tipos de dados matriciais
+# 7.2 Dados raster
+
+## Valores
 
 ---
 
-# 7.2 Importar dados matriciais
-## import raster
+background-image: url(img/geo_raster_single_multi_raster.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 7.3 Classes raster
+
+## RasterLayer, RasterStack ou RasterBrick
+
+---
+
+background-image: url(img/geo_raster_single_raster.png)
+background-size: 350px
+background-position: 50% 80%
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+
+---
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
 ```{r}
-# listar arquivos
-fi <- dir(pattern = ".tif")
-fi
-```
-
-```{r,echo=FALSE}
-# pacote
-library(raster)
-
-# diretorio
-setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
-
-# listar arquivos
-fi <- dir(pattern = ".tif")
-fi
+# volcano
+volcano
 ```
 
 ---
 
-# 7.2 Importar dados matriciais
-## import raster
+# 7.3 Classes raster
 
-```{r,eval=FALSE}
-# import raster
-st <- raster::stack(fi)
-st
-```
+## RasterLayer
 
-```{r,echo=FALSE}
-# pacote
-library(raster)
-
-# diretorio
-setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
-
-# listar arquivos
-fi <- dir(pattern = ".tif")
-fi
-
-# import raster
-st <- raster::stack(fi)
-st
-```
-
----
-
-# 7.2 Importar dados matriciais
-## import raster
-
-```{r,eval=FALSE}
-# map
-raster::plot(st)
-```
-
----
-
-# 7.2 Importar dados matriciais
-## import raster
-
-```{r,echo=FALSE}
-# pacote
-library(raster)
-
-# diretorio
-setwd("/home/mude/data/github/disciplina-geoprocessamento/03_dados/02_raster")
-
-# listar arquivos
-fi <- dir(pattern = ".tif")
-fi
-
-# import raster
-st <- raster::stack(fi)
-st
-
-# map
-raster::plot(st)
-```
-
-
----
-
-# 7.4 Estrutura de dados matriciais
-### Número de linhas
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
 ```{r}
-nrow(ra)
+# rasterlayer
+ra_lay <- raster::raster(volcano)
+ra_lay
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+```{r}
+# plot
+raster::plot(ra_lay)
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+```{r}
+# plot
+raster::plot(ra_lay, col = viridis::viridis(10))
+```
+
+---
+
+background-image: url(img/geo_raster_multi_raster.png)
+background-size: 350px
+background-position: 50% 90%
+
+# 7.3 Classes raster
+
+## RasterStack
+
+### A classe **RasterStack** é uma lista de objetos **RasterLayer** com a mesma extensão e resolução, representando **várias variáveis**
+
+---
+
+# 7.3 Classes raster
+
+## RasterStack
+```{r}
+# stack
+set.seed(42)
+ra_sta <- raster::stack(raster::raster(volcano), 
+                        raster::raster(matrix(rnorm(5307), nrow = 87)),
+                        raster::raster(matrix(rbinom(5307, 1, .5), nrow = 87)))
+ra_sta
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterStack
+```{r}
+# plot
+raster::plot(ra_sta, col = viridis::viridis(10))
+```
+
+---
+
+background-image: url(img/geo_raster_multi_raster.png)
+background-size: 350px
+background-position: 50% 90%
+
+# 7.3 Classes raster
+
+## RasterBrick
+
+### A classe **RasterBrick** também é uma lista de objetos **RasterLayer** com a mesma extensão e resolução
+
+---
+
+background-image: url(img/geo_raster_brick.jpg)
+background-size: 600px
+background-position: 50% 90%
+
+# 7.3 Classes raster
+
+## RasterBrick
+
+### A principal diferença entre **RasterBrick** e **RasterStack** é que um **RasterBrick** é vinculado a um **único arquivo (multicamadas)**
+
+---
+
+# 7.3 Classes raster
+
+## RasterBrick
+```{r}
+# brick
+set.seed(42)
+ra_bri <- raster::brick(raster::raster(volcano), 
+                        raster::raster(matrix(rnorm(5307), nrow = 87)),
+                        raster::raster(matrix(rbinom(5307, 1, .5), nrow = 87)))
+ra_bri
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterBrick
+```{r}
+# plot
+raster::plot(ra_bri, col = viridis::viridis(10))
+```
+
+---
+
+class: inverse, middle, center
+
+# Importar dados raster
+
+---
+
+class: inverse, middle, center
+
+# Dados de elevação
+
+---
+
+background-image: url(img/geo_raster_dem01.png), url(img/geo_raster_dem02.png)
+background-size: 340px,350px
+background-position: 10% 90%,85% 90%
+
+# 7.4 Importar dados matriciais
+
+## Dados de elevação
+
+### Modelo Digital de Elevação (DEM) ou Superfície (DSM)
+
+---
+
+background-image: url(img/geo_raster_srtm01.png), url(img/geo_raster_srtm02.png), url(img/geo_raster_srtm03.png)
+background-size: 400px,200px,320px
+background-position: 10% 90%,65% 45%, 95% 85%
+
+# 7.4 Importar dados matriciais
+
+## Dados de elevação
+
+### SRTM
+
+> - Farr, Tom G. et al. ["The Shuttle Radar Topography Mission."](https://doi.org/10.1002/joc.5086) Reviews of Geophysics 45.2 (2007): 1.
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Dados de elevação (SRTM)
+
+### Download
+
+### Criar um diretório
+```{r eval=FALSE}
+# create directory
+dir.create(here::here("03_dados", "raster"))
 ```
 
 --
 
-### Número de colunas
-```{r}
-ncol(ra)
+### Download de dados de elevação
+```{r eval=FALSE}
+# increase time to download
+options(timeout = 600)
+
+# download
+raster::getData(name = "SRTM", lon = -47, lat = -23, 
+                path = here::here("03_dados", "raster"))
 ```
 
-### Número de linhas
+[*] http://srtm.csi.cgiar.org/download
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### RasterLayer
+```{r eval=TRUE}
+# import raster
+ra <- raster::raster(here::here("03_dados", "raster", "srtm_27_17.tif"))
+ra
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### RasterLayer
 ```{r}
+# plot
+raster::plot(ra, col = viridis::viridis(10))
+```
+
+---
+
+class: inverse, middle, center
+
+# Dados bioclimáticos
+
+---
+
+background-image: url(img/geo_raster_wc_artigo.png)
+background-size: 600px
+background-position: 50% 90%
+
+# 7.4 Importar dados matriciais
+
+## O que é o WorldClim?
+- Principal bases de **dados climáticos** para o mundo
+- Dados temporais de **temperatura e precipitação**
+- Construído à partir de dados de **estações meteorológicas, interpolação e topografia**
+- Principal forma de uso: **variáveis bioclimáticas**
+
+> - Fick, Stephen E., Hijmans, Robert J. ["WorldClim 2: new 1‐km spatial resolution climate surfaces for global land areas."](https://doi.org/10.1002/joc.5086) International Journal of Climatology 37.12 (2017): 4302.
+
+---
+
+background-image: url(img/geo_raster_wc_mapas.png)
+background-size: 400px
+background-position: 50% 75%
+
+# 7.4 Importar dados matriciais
+
+## Estações meteorológicas
+
+---
+
+background-image: url(img/geo_raster_wc_method.png)
+background-size: 600px
+background-position: 50% 60%
+
+# 7.4 Importar dados matriciais
+
+## Interpolação
+
+---
+
+background-image: url(img/geo_raster_wc_interpolation.png)
+background-size: 450px
+background-position: 50% 65%
+
+# 7.4 Importar dados matriciais
+
+## Interpolação
+
+---
+
+background-image: url(img/geo_raster_bioclim.png)
+background-size: 550px
+background-position: 50% 90%
+
+# 7.4 Importar dados matriciais
+
+## Variáveis Bioclimáticas
+
+- São **19 variáveis** relacionadas com a **biologia das organismos**
+
+- Combinações temporais de **temperatura (BIO01-BIO11)** e **precipitação (BIO12-BIO19)**
+
+---
+
+background-image: url(img/geo_raster_bio01.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 7.4 Importar dados matriciais
+
+## Variáveis Bioclimáticas
+
+### BIO01: Temperatura média anual (º C)
+
+---
+
+background-image: url(img/geo_raster_merraclim.jpg)
+background-size: 800px
+background-position: 50% 75%
+
+# 7.4 Importar dados matriciais
+
+## Variáveis Bioclimáticas
+
+### Disponível em **várias resoluções** e **períodos (passado, presente e futuro)**
+
+---
+
+background-image: url(img/geo_raster_worldclim.png)
+background-size: 800px
+background-position: 50% 55%
+
+# 7.4 Importar dados matriciais
+
+## Site
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://www.worldclim.org/
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Download
+### Download de dados bioclimáticos
+```{r eval=FALSE}
+# download
+download.file(url = "https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip",
+              destfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"), mode = "wb")
+```
+
+--
+
+### Unzip
+```{r eval=FALSE}
+# unzip
+unzip(zipfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"))
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar várias camadas
+
+### Listar arquivos
+```{r eval=TRUE}
+# list files
+fi <- dir(path = here::here("03_dados", "raster"), pattern = "wc") %>% 
+  grep(".tif", ., value = TRUE)
+fi
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar várias camadas
+
+### RasterStack
+```{r eval=TRUE}
+# import stack
+st <- raster::stack(here::here("03_dados", "raster", fi))
+st
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar várias camadas
+
+### RasterStack
+```{r eval=FALSE}
+# map
+raster::plot(st[[1:2]], col = viridis::viridis(10))
+```
+
+---
+
+class: inverse, center, middle
+# Objeto raster
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+```{r eval=TRUE}
+ra
+```
+
+- *class*: classe raster do objeto
+- *dimensions*: número de linhas, colunas, células e camadas
+- *resolution*: largura e altura da célula
+- *extent*: coordenadas mínimas e máximas da longitude e latitude
+- *crs*: Sistema de Referência de Coordenadas
+- *source*: fonte dos dados (memória ou disco)
+- *names*: nome das camadas
+- *values*: valores máximos e mínimos das células
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+#### Classe
+```{r eval=TRUE}
+class(ra)
+```
+--
+#### Dimensões
+```{r eval=TRUE}
+dim(ra)
+```
+--
+#### Número de camadas
+```{r eval=TRUE}
+nlayers(ra)
+```
+
+---
+
+background-image: url(img/geo_raster.png)
+background-size: 450px
+background-position: 50% 90%
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Número de linhas, colunas e células
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+#### Número de linhas
+```{r eval=TRUE}
+nrow(ra)
+```
+--
+#### Número de colunas
+```{r eval=TRUE}
+ncol(ra)
+```
+--
+#### Número de células
+```{r eval=TRUE}
 ncell(ra)
 ```
 
 ---
 
-# 7.4 Estrutura de dados matriciais
+background-image: url(img/geo_raster_resolution.png)
+background-size: 650px
+background-position: 50% 80%
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
 ### Resolução
-```{r}
-# resolucao
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Resolução
+```{r eval=TRUE}
+# raster resolution
 res(ra)
 ```
-
 --
-
-### Extenção
-```{r}
-extent(ra)
-```
-
---
-
-### Projeção
-```{r}
-# projecao
-projection(ra)
+```{r eval=TRUE}
+# stack resolution
+res(st)
 ```
 
 ---
 
-# 7.4 Estrutura de dados matriciais
-### names
-```{r}
-# names
-names(ra)
+background-image: url(img/geo_raster_extent.png)
+background-size: 600px
+background-position: 50% 90%
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Extenção
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Extenção
+```{r eval = TRUE}
+# raster extent
+extent(ra)
+```
+--
+```{r eval = TRUE}
+# stack extent
+extent(st)
 ```
 
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Projeção
+```{r eval=TRUE}
+# projection
+projection(ra)
+```
 --
+```{r eval=TRUE}
+# projection
+projection(st)
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### names
+```{r eval=TRUE}
+# raster names
+names(ra)
+```
+--
+```{r eval=TRUE}
+# stack names
+names(st)
+```
+
+---
+
+background-image: url(img/geo_raster_values.gif)
+background-size: 650px
+background-position: 50% 90%
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
 
 ### Valores
 ```{r}
@@ -327,7 +749,265 @@ values(ra)
 
 ---
 
-# 8.16 Manipulando dados matriciais
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+```{r}
+ra[]
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+```{r}
+values(st)
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+```{r}
+st[]
+```
+
+---
+
+class: inverse, center, middle
+
+# Conversão do CRS
+
+---
+
+background-image: url(img/geo_raster_reprojection.png)
+background-size: 550px
+background-position: 50% 70%
+
+# 7.6 Conversão do CRS
+
+## Reprojeção
+
+---
+
+background-image: url(img/geo_raster_crs.png)
+background-size: 800px
+background-position: 50% 90%
+
+# 7.6 Conversão do CRS
+
+## Reprojeção
+1. Reprojeção vetorial de centróides celulares (muda a **posição e tamanho** do pixel)
+1. Cálculo de novos valores dos pixels por meio de reamostragem (muda o **valor** do pixel)
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local
+
+### WGS84/GCS -> SIRGAS2000/UTM23S (proj4string)
+```{r}
+ra
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local
+
+### WGS84/GCS -> SIRGAS2000/UTM23S (proj4string)
+```{r}
+# proj4string utm 23 s
+utm23 <- "+proj=utm +zone=23 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+utm23
+```
+--
+```{r}
+# reprojection
+ra_utm23 <- raster::projectRaster(ra, crs = utm23, res = 90, method = "bilinear")
+ra_utm23
+```
+
+[*] https://epsg.io/31983
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/transverse-mercator.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local
+
+### WGS84/GCS -> SIRGAS2000/UTM23S (proj4string)
+```{r}
+# plot
+plot(ra_utm23, col = viridis::viridis(10))
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+```{r}
+# WGS84/GCS
+st$wc2.1_10m_bio_1
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Mollweide: preserva as relações de área
+```{r}
+# proj4string mollweide
+moll <- "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+moll
+```
+--
+```{r}
+# reprojection
+bio01_moll <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = moll, res = 25e3, method = "bilinear")
+bio01_moll
+```
+
+[*] https://epsg.io/54009
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/mollweide.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Mollweide
+```{r}
+# plot
+plot(bio01_moll, col = viridis::viridis(10))
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Winkel Tripel: mínimo de distorção para área, direção e distância
+```{r}
+# proj4string winkel tripel
+wintri <- "+proj=wintri +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+wintri
+```
+--
+```{r}
+# reprojection
+bio01_wintri <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = wintri, res = 25e3, method = "bilinear")
+bio01_wintri
+```
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/winkel-tripel.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Winkel Tripel
+```{r}
+# plot
+plot(bio01_wintri, col = viridis::viridis(10))
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Eckert IV: presenva a área e com meridianos elípticos
+```{r}
+# proj4string eckert iv
+eck4 <- "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+eck4
+```
+--
+```{r}
+# reprojection
+bio01_eck4 <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = eck4, res = 25e3, method = "bilinear")
+bio01_eck4
+```
+
+[*] https://epsg.io/54012
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/eckert-iv.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Eckert IV
+```{r}
+# plot
+plot(bio01_eck4, col = viridis::viridis(10))
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert: preserva os tamanhos relativos e senso de direção a partir do centro
+```{r}
+# proj4string lambert 
+laea <- "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0"
+laea
+```
+--
+```{r}
+# reprojection
+bio01_laea <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = laea, res = 25e3, method = "bilinear")
+bio01_laea
+```
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/lambert-azimuthal-equal-area.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert
+```{r}
+# plot
+plot(bio01_laea, col = viridis::viridis(10))
+```
+
+---
+
+class: inverse, center, middle
+# Manipulação de raster
+
+---
+
+# 7.7 Manipulação de dados raster
 ## Seleção de raster
 ```{r}
 # map
@@ -336,7 +1016,8 @@ raster::plot(st[[1:5]])
 
 ---
 
-# 8.16 Manipulando dados matriciais
+# 7.7 Manipulação de dados raster
+
 ## Seleção de raster
 ```{r}
 # map
@@ -345,7 +1026,7 @@ raster::plot(st$wc2.0_bio_10m_01 )
 
 ---
 
-# 8.16 Manipulando dados matriciais
+# 7.7 Manipulação de dados raster
 ## Álgebra de raster
 ```{r}
 # calculadora de raster
@@ -362,7 +1043,7 @@ raster::plot(ra_15)
 
 ---
 
-# 8.16 Manipulando dados matriciais
+# 7.7 Manipulação de dados raster
 ## Álgebra de raster
 ```{r}
 # calculadora de raster

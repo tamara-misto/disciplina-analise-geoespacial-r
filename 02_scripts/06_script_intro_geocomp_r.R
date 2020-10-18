@@ -1,8 +1,21 @@
 #' ---
-#' title: aula 06 Estrutura e manejo de dados vetoriais 
+#' title: aula 06 - estrutura e manejo de dados vetoriais 
 #' author: mauricio vancine
 #' date: 2020-10-20
 #' ---
+
+# topics ------------------------------------------------------------------
+# 6.1 pacotes
+# 6.2 geometrias sf
+# 6.3 classes sf
+# 6.4 importar dados vetoriais
+# 6.5 descricao de objetos sf
+# 6.6 converter dados para sf
+# 6.7 converter crs
+# 6.8 operacoes de atributos
+# 6.9 operacoes espaciais
+# 6.10 operacoes geometricas
+# 6.11 exportar dados vetoriais
 
 # 6.1 packages ----------------------------------------------------------------
 library(sp)
@@ -321,19 +334,33 @@ co110_sf_moll
 # plot
 plot(co110_sf_moll$geometry, col = "gray", graticule = TRUE)
 
-# lambert projection
-co110_sf_lamb <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0")
-co110_sf_lamb
+# winkel tripel projection
+co110_sf_wintri <- lwgeom::st_transform_proj(co110_sf, crs = "+proj=wintri")
+co110_sf_wintri
 
 # plot
-plot(co110_sf_lamb$geometry, col = "gray", graticule = TRUE)
+plot(co110_sf_wintri$geometry, col = "gray")
 
-# lambert projection
-co110_sf_lamb <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-50 +lat_0=0")
-co110_sf_lamb
+# eckert iv projection
+co110_sf_eck4 <- sf::st_transform(co110_sf, crs = "+proj=eck4")
+co110_sf_eck4
 
 # plot
-plot(co110_sf_lamb$geometry, col = "gray", graticule = TRUE)
+plot(co110_sf_eck4$geometry, col = "gray", graticule = TRUE)
+
+# lambert projection
+co110_sf_laea1 <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0")
+co110_sf_laea1
+
+# plot
+plot(co110_sf_laea1$geometry, col = "gray", graticule = TRUE)
+
+# lambert projection
+co110_sf_laea2 <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-50 +lat_0=0")
+co110_sf_laea2
+
+# plot
+plot(co110_sf_laea2$geometry, col = "gray", graticule = TRUE)
 
 # 6.8 operacoes de atributos ----------------------------------------------
 # 1. attribute subsetting

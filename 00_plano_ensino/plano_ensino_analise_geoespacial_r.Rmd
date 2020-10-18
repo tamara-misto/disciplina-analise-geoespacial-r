@@ -31,7 +31,7 @@ Exercícios-atividades assistidas remotamente: 26/10 – 30/10 (30 horas)
 https://github.com/mauriciovancine/disciplina-analise-geoespacial-r
 
 ### Resumo
-A disciplina oferecerá os principais conceitos teórico-práticos introdutórios de análises geoespaciais aplicado à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, Git e GitHub, (2) introdução e funcionamento da linguagem R e do software RStudio, (3) estrutura e manejo de dados na linguagem R, (4) funcionamento do tidyverse, (5) estrutura e fonte de dados geoespaciais, (6) manejo dados geoespaciais (vetor), (7) manejo dados geoespaciais (raster) e, (8) produção de mapas. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teóricas-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de exercícios práticos, que serão aplicados remotamente como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que os alunos adquiram conceitos gerais da estrutura e manipulação de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas ao geoprocessamento utilizando a linguagem R.
+A disciplina oferecerá os principais conceitos teórico-práticos introdutórios de análises geoespaciais aplicado à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, Git e GitHub, (2) introdução e funcionamento da linguagem R e do software RStudio, (3) estrutura e manipulação de dados na linguagem R, (4) funcionamento do tidyverse, (5) estrutura e fonte de dados geoespaciais, (6) manipulação dados geoespaciais (vetor), (7) manipulação dados geoespaciais (raster) e, (8) produção de mapas. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teóricas-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de exercícios práticos, que serão aplicados remotamente como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que os alunos adquiram conceitos gerais da estrutura e manipulação de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas ao geoprocessamento utilizando a linguagem R.
 
 ### Conteúdo
 
@@ -67,12 +67,12 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Citações
 1. Principais erros
 
-### 3 Estrutura e manejo de dados na linguagem R (segunda)
+### 3 Estrutura e manipulação de dados na linguagem R (segunda)
 1. Atributos dos objetos
 1. Modos dos objetos (numeric, character e logical)
 1. Estrutura dos objetos (vector, factor, matrix, data frame e list)
-1. Manejo de dados unidimensionais
-1. Manejo de dados bidimensionais
+1. manipulação de dados unidimensionais
+1. manipulação de dados bidimensionais
 1. Valores faltantes e especiais
 1. Diretório de trabalho
 1. Importar dados
@@ -81,12 +81,12 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 
 ### 4 Introdução ao tidyverse (terça)
 1. tidyverse
-1. readr
-1. readxl
-1. tibble
 1. magrittr (pipe - %>%)
-1. dplyr
+1. readr
+1. readxl e writexl
+1. tibble
 1. tidyr
+1. dplyr
 1. stringr
 1. forcats
 1. lubridate
@@ -109,7 +109,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Repositórios de dados geoespaciais (IBGE, FBDS, MapBiomas, GeoBank, GADM, Natural Earth, USGS, SRTM, WorldClim, EarthEnv)
 1. Material para análise de dados geoespacias
 
-### 6 Estrutura e manejo de dados vetoriais (quarta-quinta)
+### 6 Estrutura e manipulação de dados vetoriais (quarta-quinta)
 1. Pacotes (sp e sf)
 1. Geometrias sf (point, linestring, polygon, multipoint, multilinestring, multipolygon, geometrycollection)
 1. Classes sf (sfg, sfc, sf)
@@ -122,17 +122,19 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Operações geométricas
 1. Exportar dados vetoriais
 
-### 7 Estrutura e manejo de dados matriciais (raster) (quinta-sexta)
-1. Pacote raster
-1. Classes raster (raster, brick, stack)
-1. Importar dados
-1. Estrutura de objetos raster
-1. Sistema de referência de coordenadas
-1. Manejo de dados
-1. Operação geométricas
+### 7 Estrutura e manipulação de dados matriciais (raster) (quinta-sexta)
+1. Pacotes (raster, terra, e stars)
+1. Dados raster
+1. Classes raster (RasterLayer, RasterStack, RasterBrick)
+1. Importar dados matriciais
+1. Descrição de objetos raster
+1. Converter CRS
+1. Manipulação de dados raster
 1. Operação espaciais
-1. Conversões (rasterização e vetorização)
-1. Exportar dados
+1. Operação geométricas
+1. Interações raster-vetor
+1. Conversões raster-vetor
+1. Exportar dados matriciais
 
 ### 8 Produção de mapas (sexta)
 1. Elementos de um mapa

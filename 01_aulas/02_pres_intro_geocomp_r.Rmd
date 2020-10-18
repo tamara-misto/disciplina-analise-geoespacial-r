@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, eval = FALSE, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
@@ -67,7 +67,7 @@ O [Manual do R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) de
 --
 
 <br>
-O R é uma **linguagem de programação livre** (*open source*), direcionada ao **manejo, análise e visualização de dados**, com diversas **expansões** (*pacotes*) para o uso de **dados com formatos específicos** (**Maurício Vancine**)
+O R é uma **linguagem de programação livre** (*open source*), direcionada ao **manipulação, análise e visualização de dados**, com diversas **expansões** (*pacotes*) para o uso de **dados com formatos específicos** (**Maurício Vancine**)
 
 ---
 
@@ -127,7 +127,7 @@ background-position: 80% 80%
 
 ## Histórico - Linguagem S
 
-### John M. Chambers (Universidade de Stanford, CA, EUA)
+### John M. Chambers (Stanford University, CA, EUA)
 
 - Old S (1976-1987)
 - New S (1988-1997)
@@ -139,13 +139,13 @@ background-position: 80% 80%
 
 background-image: url(img/person_gentleman_ihaka.jpg)
 background-size: 350px
-background-position: 80% 80%
+background-position: 85% 50%
 
 # 2.1 Linguagem R
 
 ## Histórico - Linguagem R
 
-### Robert Gentleman e Ross Ihaka (Universidade de Aucland, NZ)
+### Robert Gentleman e Ross Ihaka (Auckland University, NZ)
 
 #### Versões
 - Desenvolvimento (1997-2000)
@@ -154,9 +154,11 @@ background-position: 80% 80%
 - Versão 3 (2013-2020)
 - Versão 4 (2020-????)
 
-#### API
+#### IDE (*Integrated Development Environment*)
 - Interface: RStudio (2011-atual)
 - Atualmente: **R Core Team**
+
+<br>
 
 [*] http://vita.had.co.nz/papers/r-s.pdf
 
@@ -188,7 +190,7 @@ background-position: 50% 70%
 
 class: inverse, center, middle
 
-# Não confundir a **Linguagem R** com o IDE **RStudio**
+# Não confundir a **Linguagem R** com o **IDE RStudio**
 
 ---
 
@@ -235,7 +237,7 @@ class: inverse, center, middle
 
 background-image: url(img/r_markdown_output_formats.png)
 background-size: 350px
-background-position: 90% 80%
+background-position: 90% 85%
 
 ## R Markdown
 - Textos em HTML, PDF, Word, ODT, Markdown
@@ -249,7 +251,7 @@ background-position: 90% 80%
 
 class: inverse, center, middle
 
-# Há uns 10 anos, um nome tem se destacado no avanço da linguagem R, na parte de *manejo, visualização e análise de dados* (tidyverse e tidymodels)
+# Há uns 10 anos, um nome tem se destacado no avanço da linguagem R, na parte de *manipulação, visualização e análise de dados* (tidyverse e tidymodels)
 
 ---
 
@@ -526,15 +528,20 @@ background-size:700px
 
 ---
 
+background-image: url(img/general_directory.png)
+background-size: 300px
+background-position: 70% 80%
+
 # Vamos padronizar:
 
-### Pasta do diretório `/disciplina-analise-geoespacial/`:
+### Pasta do diretório `~/disciplina-analise-geoespacial/`:
+
+<br><br>
 
 ### 00_plano_ensino
 ### 01_aulas
 ### **02_scripts**
 ### 03_dados
-### 04_exercicios
 
 ---
 
@@ -560,7 +567,7 @@ background-size:700px
 
 <br><br><br><br><br><br><br><br>
 
-## .center[`script_aula_02.R`]
+## .center[`02_script_intro_geocomp_r.R`]
 
 ---
 
@@ -614,7 +621,7 @@ class: inverse, center, middle
 #' ---
 #' title: aula 02 - funcionamento linguagem r
 #' author: seu nome
-#' date: 19-10-2020
+#' date: 2020-10-19
 #' ---
 ```
 
@@ -632,7 +639,7 @@ class: inverse, center, middle
 ---
 
 background-image: url(img/cover_clean_code.png)
-background-size: 350px
+background-size: 400px
 background-position: 90% 60%
 
 # Organização dos scripts
@@ -1499,8 +1506,8 @@ background-position: 85% 100%
 ## Exemplos:
 
 ### **vegan** – análises de comunidades
-### **sf** – manejo de vetores
-### **raster** – manejo de rasters
+### **sf** – manipulação de vetores
+### **raster** – manipulação de rasters
 ### **ggplot2** – gráficos
 ### **bblme** – seleção de modelos (AIC)
 ### **tidyverse** – data science
@@ -1622,14 +1629,6 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/rstudio_script.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 2.13 Ambiente (environment)
-
----
-
 # 2.13 Ambiente (environment)
 ### Listar todos os objetos criados
 ```{r}
@@ -1665,6 +1664,8 @@ background-position: 50% 78%
 # exportar objetos
 save.image("meus_objetos.RData")
 ```
+
+<br><br>
 
 --
 

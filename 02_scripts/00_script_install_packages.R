@@ -26,13 +26,18 @@ if(!require(geobr)) install.packages("geobr")
 if(!require(rnaturalearth)) install.packages("rnaturalearth", dep = TRUE)
 if(!require(sf)) install.packages("sf", dep = TRUE)
 
-# manipulation and visualization
+# raster
 if(!require(raster)) install.packages("raster", dep = TRUE)
-if(!require(rgdal)) install.packages("rgdal", dep = TRUE)
-if(!require(wesanderson)) install.packages("wesanderson")
+
+# projection
+if(!require(lwgeom)) install.packages("lwgeom", dep = TRUE)
 
 # maps
 if(!require(ggspatial)) install.packages("ggspatial", dep = TRUE)
 if(!require(tmap)) install.packages("tmap", dep = TRUE)
+if(!require(viridis)) install.packages("viridis", dep = TRUE)
+if(!require(RColorBrewer)) install.packages("RColorBrewer", dep = TRUE)
+if(!require(cptcity)) install.packages("cptcity", dep = TRUE)
+if(!require(wesanderson)) install.packages("wesanderson")
 
 # end ---------------------------------------------------------------------

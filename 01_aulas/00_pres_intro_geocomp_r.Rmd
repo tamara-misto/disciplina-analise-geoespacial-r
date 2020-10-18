@@ -211,12 +211,12 @@ background-position: 85% 95%
 
 ## Conteúdo
 
-### 3 Estrutura e manejo de dados na linguagem R (segunda)
+### 3 Estrutura e manipulação de dados na linguagem R (segunda)
 1. Atributo dos objetos
 1. Modo dos objetos (numeric, character e logical)
 1. Estrutura dos objetos (vector, factor, matrix, data frame e list)
-1. Manejo de dados unidimensionais
-1. Manejo de dados bidimensionais
+1. manipulação de dados unidimensionais
+1. manipulação de dados bidimensionais
 1. Valores faltantes e especiais
 1. Diretório de trabalho
 1. Importar dados
@@ -235,12 +235,12 @@ background-position: 85% 85%
 
 ### 4 Introdução ao tidyverse (terça)
 1. tidyverse
-1. readr
-1. readxl
-1. tibble
 1. magrittr (pipe - %>%)
-1. dplyr
+1. readr
+1. readxl e writexl
+1. tibble
 1. tidyr
+1. dplyr
 1. stringr
 1. forcats
 1. lubridate
@@ -283,7 +283,7 @@ background-position: 90% 85%
 
 ## Conteúdo
 
-### 6 Estrutura e manejo de dados vetoriais (quarta)
+### 6 Estrutura e manipulação de dados vetoriais (quarta)
 1. Pacotes
 1. Geometrias sf
 1. Classes sf
@@ -306,17 +306,19 @@ background-position: 90% 85%
 
 ## Conteúdo
 
-### 7 Estrutura e manejo de dados matriciais (quinta)
-1. Pacote raster
+### 7 Estrutura e manipulação de dados matriciais (quinta)
+1. Pacotes
+1. Dados raster
 1. Classes raster
-1. Importar dados
-1. Estrutura de objetos raster
-1. Sistema de referência de coordenadas
-1. Manejo de dados
-1. Operação geométricas
+1. Importar dados matriciais
+1. Descrição de objetos raster
+1. Converter CRS
+1. Manipulação de dados raster
 1. Operação espaciais
-1. Conversões
-1. Exportar dados
+1. Operação geométricas
+1. Interações raster-vetor
+1. Conversões raster-vetor
+1. Exportar dados matriciais
 
 ---
 
