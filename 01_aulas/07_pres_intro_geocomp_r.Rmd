@@ -55,7 +55,7 @@ background-position: 80% 65%
 
 ## Script
 
-<br><br><br><br><br><br>
+<br><br><br><br>
 
 ## .center[`07_script_intro_geocomp_r.R`]
 
@@ -713,7 +713,7 @@ projection(st)
 
 ## Informações
 
-### names
+### Nomes
 ```{r eval=TRUE}
 # raster names
 names(ra)
@@ -744,6 +744,17 @@ background-position: 50% 90%
 
 ### Valores
 ```{r}
+getValues(ra)
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+```{r}
 values(ra)
 ```
 
@@ -756,6 +767,17 @@ values(ra)
 ### Valores
 ```{r}
 ra[]
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+```{r}
+getValues(st)
 ```
 
 ---
@@ -859,9 +881,23 @@ plot(ra_utm23, col = viridis::viridis(10))
 # 7.6 Conversão do CRS
 
 ## Converter CRS global
+
+### Datum WGS84 e coordenadas geográficas
 ```{r}
 # WGS84/GCS
 st$wc2.1_10m_bio_1
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Datum WGS84 e coordenadas geográficas
+```{r}
+# plot
+plot(st$wc2.1_10m_bio_1, col = viridis::viridis(10))
 ```
 
 ---

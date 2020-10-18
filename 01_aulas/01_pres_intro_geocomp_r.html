@@ -1,22 +1,27 @@
----
-title: "Introdução à análise geoespacial com R <br><br><br>"
-subtitle: "1 Controle de versão, Git e GitHub <br><br><br>"
-author: "Maurício H. Vancine <br> Milton C. Ribeiro"
-date: "19/10/2020"
-output:
-  xaringan::moon_reader:
-    css: [metropolis, metropolis-fonts]
-    lib_dir: libs
-    nature:
-      highlightStyle: rainbow
-      highlightLines: true
-      countIncrementalSlides: false
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introdução à análise geoespacial com R    </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maurício H. Vancine   Milton C. Ribeiro" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução à análise geoespacial com R <br><br><br>
+## 1 Controle de versão, Git e GitHub <br><br><br>
+### Maurício H. Vancine <br> Milton C. Ribeiro
+### 19/10/2020
+
 ---
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
-```
+
+
 
 class: clear
 background-image: url(img/github_octoca.jpg)
@@ -67,7 +72,7 @@ background-position: 50% 70%
 
 # 1.1 Verificar os notebooks
 
-## R (>4.0.x)
+## R (&gt;4.0.x)
 
 ### https://www.r-project.org/
 
@@ -79,7 +84,7 @@ background-position: 50% 60%
 
 # 1.1 Verificar os notebooks
 
-## RStudio (>1.3.x)
+## RStudio (&gt;1.3.x)
 
 ### https://www.rstudio.com/
 
@@ -91,7 +96,7 @@ background-position: 50% 60%
 
 # 1.1 Verificar os notebooks
 
-## git (>2.28)
+## git (&gt;2.28)
 
 ### https://git-scm.com/
 
@@ -182,7 +187,7 @@ background-position: 50% 90%
 # 1.4 GitHub
 
 ## Vamos **criar uma conta** no **GitHub** (caso não possuam)
-<br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 ##.center[https://github.com]
 
 ---
@@ -191,11 +196,11 @@ background-position: 50% 90%
 
 ## **Salvem ou recuperem essas informações!!!**
 
-<br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ## **username**: mauriciovancine
 ## **email**: mauricio.vancine@gmail.com
-## **senha**: !@#$%¨&*+
+## **senha**: !@#$%¨&amp;*+
 
 ---
 
@@ -237,7 +242,7 @@ background-position: 50% 80%
 
 ## Forken o repositório da disciplina
 
-<br>
+&lt;br&gt;
 
 .center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
 
@@ -251,7 +256,7 @@ background-position: 50% 90%
 
 ## Forken o repositório da disciplina
 
-<br>
+&lt;br&gt;
 
 .center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
 
@@ -295,7 +300,8 @@ background-position: 50% 90%
 
 ## **Criem uma pasta** chamada `github` no PC de vocês
 
-```{r eval=FALSE}
+
+```r
 ".                               # raiz"
 "    ├── home/                   # home"
 "        ├── data/               # dados" 
@@ -364,7 +370,7 @@ background-position: 50% 100%
 
 ## Indicar o caminho do git para o RStudio
 
-- `Tools > Globla Options > Git/SVN`
+- `Tools &gt; Globla Options &gt; Git/SVN`
 
 ---
 
@@ -405,7 +411,7 @@ background-position: 50% 80%
 
 ## No GitHub
 
-- `Perfil > Settings > SSH and GPG keys > New SSH key`
+- `Perfil &gt; Settings &gt; SSH and GPG keys &gt; New SSH key`
 
 ---
 
@@ -437,7 +443,7 @@ background-position: 50% 80%
 
 ## Criar um **Projeto R** com controle de versão
 
-`File > New Project > Version Control`
+`File &gt; New Project &gt; Version Control`
 
 ---
 
@@ -477,9 +483,10 @@ background-position: 50% 90%
 
 ### Na aba **Terminal** do RStudio, digite:
 
-<br>
+&lt;br&gt;
 
-```{bash eval=FALSE}
+
+```bash
 # terminal
 git clone https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
 ```
@@ -506,9 +513,10 @@ background-position: 50% 80%
 
 ## Precisamos **definir as configurações** do git
 
-<br>
+&lt;br&gt;
 
-```{bash eval=FALSE}
+
+```bash
 # terminal
 git config --list
 git config --global user.name "meu nome"
@@ -594,7 +602,8 @@ background-position: 50% 70%
 
 ## **status**: **mostra** o status do repositório
 
-```{bash eval=FALSE}
+
+```bash
 git status
 ```
 
@@ -608,7 +617,8 @@ background-position: 50% 80%
 
 ## Usando a aba **Terminal** do RStudio
 
-```{bash eval=FALSE}
+
+```bash
 # terminal
 touch teste.txt
 ```
@@ -623,12 +633,14 @@ background-position: 50% 90%
 
 ## **status**: **mostra** o status do repositório
 
-```{bash eval=FALSE}
+
+```bash
 git status
 ```
-```{bash}
+
+```bash
 ## Untracked files:
-##   (use "git add <file>..." to include in what will be committed)
+##   (use "git add &lt;file&gt;..." to include in what will be committed)
 ##     ../teste.txt
 ## 
 ## no changes added to commit (use "git add" and/or "git commit -a")
@@ -644,11 +656,13 @@ background-position: 50% 90%
 
 ## **add**: **adiciona** mudanças após edições (staging area)
 
-```{bash eval=FALSE}
+
+```bash
 # terminal
 git add -Av
 ```
-```{bash eval=FALSE}
+
+```bash
 ## add 'teste.txt'
 ```
 
@@ -662,12 +676,14 @@ background-position: 50% 90%
 
 ## **status**: **mostra** o status do repositório
 
-```{bash eval=FALSE}
+
+```bash
 git status
 ```
-```{bash}
+
+```bash
 ## Changes to be committed:
-##   (use "git restore --staged <file>..." to unstage)
+##   (use "git restore --staged &lt;file&gt;..." to unstage)
 ##         new file:   teste.txt
 ```
 
@@ -681,7 +697,8 @@ background-position: 50% 80%
 
 ## Usando a aba **Files** do RStudio abra e edite o arquivo **teste.txt**, inserindo:
 
-```{bash eval=FALSE}
+
+```bash
 Acabo de inserir um edição ao meu arquivo teste.txt
 ```
 
@@ -695,13 +712,15 @@ background-position: 50% 90%
 
 ## **status**: **mostra** o status do repositório
 
-```{bash eval=FALSE}
+
+```bash
 git status
 ```
-```{bash}
+
+```bash
 ## Changes not staged for commit:
-##   (use "git add <file>..." to update what will be committed)
-##   (use "git restore <file>..." to discard changes in working directory)
+##   (use "git add &lt;file&gt;..." to update what will be committed)
+##   (use "git restore &lt;file&gt;..." to discard changes in working directory)
 ##         modified:   teste.txt
 ```
 
@@ -715,11 +734,13 @@ background-position: 50% 90%
 
 ## **add**: **adiciona** mudanças após edições (staging area)
 
-```{bash eval=FALSE}
+
+```bash
 # terminal
 git add -Av
 ```
-```{bash eval=FALSE}
+
+```bash
 ## add 'teste.txt'
 ```
 
@@ -733,12 +754,14 @@ background-position: 50% 90%
 
 ## **status**: **mostra** o status do repositório
 
-```{bash eval=FALSE}
+
+```bash
 git status
 ```
-```{bash}
+
+```bash
 ## Changes to be committed:
-##   (use "git restore --staged <file>..." to unstage)
+##   (use "git restore --staged &lt;file&gt;..." to unstage)
 ##         new file:   teste.txt
 ```
 
@@ -752,10 +775,12 @@ background-position: 50% 93%
 
 ## **commit**: **armazena as mudanças** com uma **descrição**, nova **versão do repositório** (repository)
 
-```{bash eval=FALSE}
+
+```bash
 git commit -m "2020-10-19 add teste.txt"
 ```
-```{bash}
+
+```bash
 ## [master 06211a1] 2020-10-19 add teste.txt
 ##  1 file changed, 1 insertion(+)
 ##  create mode 100644 teste.txt
@@ -785,12 +810,14 @@ background-position: 50% 90%
 
 ## **status**: **mostra** o estatus do repositório
 
-```{bash eval=FALSE}
+
+```bash
 git status
 ```
-```{bash}
+
+```bash
 ## Changes to be committed:
-##   (use "git restore --staged <file>..." to unstage)
+##   (use "git restore --staged &lt;file&gt;..." to unstage)
 ##         new file:   teste.txt
 ```
 
@@ -804,12 +831,14 @@ background-position: 50% 90%
 
 ## **log**: **registro** de todo o histórico de commits (tags)
 
-```{bash eval=FALSE}
+
+```bash
 git log
 ```
-```{bash}
+
+```bash
 ## Changes to be committed:
-##   (use "git restore --staged <file>..." to unstage)
+##   (use "git restore --staged &lt;file&gt;..." to unstage)
 ##         new file:   teste.txt
 ```
 
@@ -839,10 +868,12 @@ background-position: 50% 90%
 
 ## **branch**: **listar** os branchs e **verificar** o branch de edição
 
-```{bash eval=FALSE}
+
+```bash
 git branch
 ```
-```{bash}
+
+```bash
 ## * master
 ```
 
@@ -856,7 +887,8 @@ background-position: 50% 90%
 
 ## **branch**: **criar** uma ramificação
 
-```{bash eval=FALSE}
+
+```bash
 git branch branch-1
 ```
 
@@ -870,10 +902,12 @@ background-position: 50% 90%
 
 ## **branch**: **listar** os branchs e **verificar** o branch de edição
 
-```{bash eval=FALSE}
+
+```bash
 git branch
 ```
-```{bash}
+
+```bash
 ## branch-1
 ## * master
 ```
@@ -888,7 +922,8 @@ background-position: 50% 75%
 
 ## **switch**: **troca a raficação** de edição
 
-```{bash eval=FALSE}
+
+```bash
 git switch branch-1
 ```
 
@@ -902,10 +937,12 @@ background-position: 50% 90%
 
 ## **branch**: **listar** os branchs e **verificar** o branch de edição
 
-```{bash eval=FALSE}
+
+```bash
 git branch
 ```
-```{bash}
+
+```bash
 ## * branch-1
 ##  master
 ```
@@ -920,7 +957,8 @@ background-position: 50% 80%
 
 ## Usando a aba **Terminal** do RStudio
 
-```{bash eval=FALSE}
+
+```bash
 # terminal
 touch teste_branch1.txt
 git add -Av
@@ -937,7 +975,8 @@ background-position: 50% 70%
 
 ## **switch**: **troca a raficação** de edição
 
-```{bash eval=FALSE}
+
+```bash
 git switch master
 ```
 
@@ -961,10 +1000,12 @@ background-position: 50% 90%
 
 ## **merge**: **mescla** as **linhas de desenvolvimento independentes** em um **único branch**
 
-```{bash eval=FALSE}
+
+```bash
 git merge branch-1
 ```
-```{bash eval=FALSE}
+
+```bash
 ## teste_branch1.txt                     |   0
 ```
 
@@ -1020,10 +1061,12 @@ background-position: 50% 90%
 
 ## **push**: **empurrar** uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
 
-```{bash eval=FALSE}
+
+```bash
 git push -u origin master
 ```
-```{bash eval=FALSE}
+
+```bash
 Enumerating objects: 3, done.
 Counting objects: 100% (3/3), done.
 Delta compression using up to 12 threads
@@ -1032,7 +1075,7 @@ Writing objects: 100% (2/2), 230 bytes | 230.00 KiB/s, done.
 Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 To https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
-938e7b2..6ba8f7f  master -> master
+938e7b2..6ba8f7f  master -&gt; master
 Branch 'master' set up to track remote branch 'master' from 'origin'.
 ```
 
@@ -1206,7 +1249,7 @@ background-position: 50% 50%
 
 ## Git Cheat Sheets
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://github.github.com/training-kit/downloads/pt_BR/github-git-cheat-sheet.pdf
 
@@ -1222,7 +1265,8 @@ background-position: 50% 85%
 
 ### Comandos direto no R para criar e versionar um repositório
 
-```{r eval=FALSE}
+
+```r
 install.packages("usethis")
 devtools::install_github("r-lib/usethis")
 ```
@@ -1255,16 +1299,139 @@ class: clear, middle
 
 ## Maurício Vancine
 
-<br>
+&lt;br&gt;
 
 Contatos:
 
-`r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
-<br>
-`r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)
-<br>
-`r icon::fa_github(colour = "#0000ee")` [mauriciovancine](https://mauriciovancine.netlify.com/)
-<br>
-`r icon::fa_link(colour = "#0000ee")` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
+<i class="fas  fa-envelope " style="color:#0000ee;"></i> [mauricio.vancine@gmail.com]()
+&lt;br&gt;
+<i class="fab  fa-twitter " style="color:#0000ee;"></i> [@mauriciovancine](https://twitter.com/mauriciovancine)
+&lt;br&gt;
+<i class="fab  fa-github " style="color:#0000ee;"></i> [mauriciovancine](https://mauriciovancine.netlify.com/)
+&lt;br&gt;
+<i class="fas  fa-link " style="color:#0000ee;"></i> [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
 
 Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "rainbow",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
