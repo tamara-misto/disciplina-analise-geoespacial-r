@@ -641,7 +641,7 @@ git status
 ```bash
 ## Untracked files:
 ##   (use "git add &lt;file&gt;..." to include in what will be committed)
-##     ../teste.txt
+##     teste.txt
 ## 
 ## no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -816,16 +816,14 @@ git status
 ```
 
 ```bash
-## Changes to be committed:
-##   (use "git restore --staged &lt;file&gt;..." to unstage)
-##         new file:   teste.txt
+## On branch master
+## Your branch is ahead of 'origin/master' by 1 commit.
+##   (use "git push" to publish your local commits)
+## 
+## nothing to commit, working tree clean
 ```
 
 ---
-
-background-image: url(img/git_add_commit.png)
-background-size: 500px
-background-position: 50% 90%
 
 # 1.9 Básico: status, add, commit e log
 
@@ -837,10 +835,40 @@ git log
 ```
 
 ```bash
-## Changes to be committed:
-##   (use "git restore --staged &lt;file&gt;..." to unstage)
-##         new file:   teste.txt
+## commit 3ae6ececf901c8abbf39563a995978a78abe5919 (HEAD -&gt; master)
+## Author: mauriciovancine &lt;mauricio.vancine@gmail.com&gt;
+## Date:   Sun Oct 18 19:06:34 2020 -0300
+## 
+##     2020-10-19 add teste.txt
 ```
+
+---
+
+# 1.9 Básico: status, add, commit e log
+
+## **log**: **registro** de todo o histórico de commits (tags)
+
+
+```bash
+git log --oneline
+```
+
+```bash
+## 3ae6ece (HEAD -&gt; master) 2020-10-19 add teste.txt
+## 18f482f (origin/master, origin/HEAD) 2020-10-18
+## dd8fe74 2020-10-18
+## bbb5496 2020-10-17
+## 4247eaa 2020-10-16
+## 8fb3106 2020-10-15
+## 0cb95a1 2020-10-15
+## 22a9044 2020-10-13
+## c4f0201 2020-10-13
+## 867a1a5 2020-10-13
+## 297e808 2020-10-13
+## 68c310a 2020-10-12
+## ...
+```
+
 
 ---
 
@@ -1012,7 +1040,7 @@ git merge branch-1
 ---
 
 background-image: url(img/gif_git_merge.gif)
-background-size: 600px
+background-size: 800px
 background-position: 50% 60%
 
 # 1.10 Ramificações
@@ -1043,7 +1071,7 @@ background-position: 50% 60%
 
 # 1.11 Remoto: push e pull
 
-## **push**: **empurrar** uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+## **push**: **empurrar** uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
 
 ---
 
@@ -1053,13 +1081,13 @@ background-position: 50% 90%
 
 # 1.11 Remoto: push e pull
 
-## **push**: **empurrar** uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+## **push**: **empurrar** uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
 
 ---
 
 # 1.11 Remoto: push e pull
 
-## **push**: **empurrar** uma nova versão do **repositório remoto (GitHub)** para o **repositório local**
+## **push**: **empurrar** uma nova versão do **repositório local** para o **repositório remoto (GitHub)**
 
 
 ```bash
@@ -1133,7 +1161,13 @@ background-position: 50% 60%
 
 class: inverse, center, middle
 
-# Interface Gráfica RStudio [Agradecimento à Beatriz Milz]
+# Interface Gráfica RStudio 
+
+---
+
+class: inverse, center, middle
+
+# Agradecimento à [Beatriz Milz](https://beatrizmilz.com/) pelas figuras
 
 ---
 

@@ -15,13 +15,13 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, eval = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
 class: clear
-background-image: url(img/r_rstudio.png)
-background-size: 500px
+background-image: url(img/r_rollercoaster.png)
+background-size: 800px
 
 ---
 
@@ -67,7 +67,7 @@ O [Manual do R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) de
 --
 
 <br>
-O R é uma **linguagem de programação livre** (*open source*), direcionada ao **manipulação, análise e visualização de dados**, com diversas **expansões** (*pacotes*) para o uso de **dados com formatos específicos** (**Maurício Vancine**)
+O R é uma **linguagem de programação livre** (*open source*), direcionada à **manipulação, análise e visualização de dados**, com diversas **expansões** (*pacotes*) para o uso de **dados com formatos específicos** (**Maurício Vancine**)
 
 ---
 
@@ -224,7 +224,7 @@ class: inverse, center, middle
 
 # 2.3 Aplicações da linguagem R
 
-## Análises e Visualização
+## Análises e visualização de dados
 - Estatísticas univariadas e multivariadas
 - Análises de dados ecológicos (população, comunidades e ecossistemas)
 - Análise de dados espaciais, temporais e sonoros
@@ -291,7 +291,7 @@ background-position: 50% 60%, 95% 10%
 
 class: inverse, center, middle
 
-# 2.4 Principal material de estudo
+# Principal material de estudo
 
 ---
 
@@ -398,7 +398,7 @@ background-position: 50% 90%
 
 ## IDE RStudio
 
-- **1. Editor/Script**: é onde escrevemos nossos códigos
+- **1. Editor/Script**: é onde escrevemos nossos códigos em R ou R Markdown
 - **2. Console**: é onde os códigos são rodados e vemos as saídas
 - **3. Environment**: painel com todos os objetos criados na sessão
 - **3. History**: painel com o histórico dos comandos rodados
@@ -414,18 +414,18 @@ background-position: 50% 90%
 ## IDE RStudio
 - **f1**: abre o painel de *Help*
 - **ctrl + Enter**: roda a linha selecionada no script
-- **ctrl + shift + N**: abre um novo script
+- **ctrl + Shift + N**: abre um novo script
 - **ctrl + S**: salva um script
 - **ctrl + Z**: desfaz uma operação
 - **ctrl + shift + Z**: refaz uma operação
 - **alt + -**: insere um sinal de atribuição (<-)
-- **ctrl + shift + M**: insere um operador pipe (%>%) 
-- **ctrl + shift + C**: comenta uma linha no script - insere um (#) 
-- **ctrl + shift + R**: insere uma sessão (# ----------------------)
-- **ctrl + shift + H**: abre uma janela para selecionar o diretório de trabalho
-- **ctrl + shift + f10**: reinicia o console
+- **ctrl + Shift + M**: insere um operador pipe (%>%) 
+- **ctrl + Shift + C**: comenta uma linha no script - insere um (#) 
+- **ctrl + Shift + R**: insere uma sessão (# ----------------------)
+- **ctrl + Shift + H**: abre uma janela para selecionar o diretório de trabalho
+- **ctrl + Shift + f10**: reinicia o console
 - **ctrl + L**: limpa os comandos do console 
-- **alt + shift + K**: abre uma janela com todos os atalhos disponíveis
+- **alt + Shift + K**: abre uma janela com todos os atalhos disponíveis
 
 ---
 
@@ -441,6 +441,23 @@ background-position: 50% 80%
 - cada projeto possui seu diretório, documentos e workspace
 - permite versionamento
 
+---
+
+# 2.5 IDE RStudio e Projeto R
+
+## Projeto R (.Rproj)
+
+### Sempre **abram o RStudio** pelo arquivo **.Rproj**
+
+--
+
+### Ou **definam o projeto** depois de abrir o RStudio
+
+--
+
+background-image: url(img/rstudio_project.webp)
+background-size: 430px
+background-position: 50% 90%
 
 ---
 
@@ -615,6 +632,10 @@ class: inverse, center, middle
 
 --
 
+### São representados pelo **#** (hash) ou **#'** (hash-linha)
+
+--
+
 ### Cabeçalho
 
 ```{r}
@@ -646,11 +667,11 @@ background-position: 90% 60%
 
 ## Organização
 
-Organização em um script é fundamental!
+**Organização** em um script é **fundamental**!
 
 --
 
-Separe as linhas das análises e comente cada comando
+**Separe** as linhas das análises e **comente** cada comando
 
 --
 
@@ -807,11 +828,11 @@ obj_10 <- 10
 
 #### Mas não aconteceu nada....
 
----
+--
 
-class: clear, inverse
 background-image: url(img/gif_where.gif)
-background-size: 700px
+background-size: 500px
+background-position: 50% 90%
 
 ---
 
@@ -935,6 +956,14 @@ va1 + va2 # adicao
 ```{r}
 va1 - va2 # subtracao
 ```
+--
+```{r}
+va1 * va2 # multiplicacao
+```
+--
+```{r}
+va1 / va2 # divisao
+```
 
 ---
 
@@ -951,6 +980,16 @@ adi
 ```{r}
 sub <- va1 - va2 # subtracao
 sub
+```
+--
+```{r}
+mul <- va1 * va2 # multiplicacao
+mul
+```
+--
+```{r}
+div <- va1 / va2 # divisao
+div
 ```
 
 ---
@@ -1061,8 +1100,8 @@ countdown(minutes = 2, seconds = 00, color_background = "gray30")
 
 ### Exemplo:
 ```{r}
-sum(1, NA)
-sum(1, NA, na.rm = TRUE)
+sum(1, 2, 3, NA)
+sum(1, 2, 3, NA, na.rm = TRUE)
 ```
 
 ---
@@ -1215,7 +1254,7 @@ class: clear, clean, inverse, middle, center
 
 ### Multipliquem esses objetos (função **prod**) e atribuam ao objeto *mult*
 
-### Façam o logaritmo natural (função **log**) do objeto *mult* e atribuam ao objeto *loge*
+### Façam o logaritmo natural (função **log**) do objeto *mult* e atribuam ao objeto *ln*
 
 ```{r echo = FALSE}
 countdown(minutes = 4, seconds = 00, color_background = "gray30")
@@ -1245,15 +1284,15 @@ mult
 
 ```{r}
 # raiz e atribuir
-loge <- log(mult)
-loge
+ln <- log(mult)
+ln
 ```
 
 ---
 
 class: inverse, center, middle
 
-# E vocês devem estar se perguntando: e como saber o nome das funções?!
+# Nesse momento vocês devem estar se perguntando: e como vou saber o nome das funções?!
 
 ---
 
@@ -1280,7 +1319,7 @@ class: inverse, center, middle
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.10 Funções
 ## Funções vêm de **duas fontes**:
@@ -1301,7 +1340,7 @@ class: inverse, center, middle
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
@@ -1309,7 +1348,9 @@ background-position: 85% 100%
 
 --
 
-### Duas fontes: **CRAN** (*finalizados*) e **GitHub** (em *desenvolvimento*)
+### Duas fontes: 
+- **CRAN** (*finalizados*)
+- **GitHub** (em *desenvolvimento*)
 
 --
 
@@ -1323,13 +1364,15 @@ search()
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
 ## **Coleção de funções** para executar **tarefas específicas**
 
-### Duas fontes: **CRAN** (*finalizados*) e **GitHub** (em *desenvolvimento*)
+### Duas fontes: 
+- **CRAN** (*finalizados*)
+- **GitHub** (em *desenvolvimento*)
 
 ### Verificar **pacotes instalados**
 
@@ -1342,13 +1385,13 @@ library()
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
 ## Ex.: pacote `vegan` 
 
-<br><br>
+<br>
 
 ## Fontes:
 
@@ -1451,7 +1494,9 @@ library("vegan")
 # 2.11 Pacotes
 
 ## Atualização de pacotes
-### Pacotes são **atualizados com frequência** (mensal | semestral | anual)
+
+### Pacotes são **atualizados com frequência**
+
 --
 
 ### Pacotes **não atualizam sozinhos**
@@ -1481,7 +1526,7 @@ class: inverse, center, middle
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
@@ -1499,7 +1544,7 @@ C:/Users/**nome_do_computador**/Documentos/R/win-library/**numero_da_versao_r**
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
@@ -1595,6 +1640,10 @@ background-position: 50% 50%
 # 2.12 Ajuda (help)
 
 ---
+
+background-image: url(img/r_package_help.png)
+background-size: 600px
+background-position: 90% 70%
 
 # 2.12 Ajuda (help)
 

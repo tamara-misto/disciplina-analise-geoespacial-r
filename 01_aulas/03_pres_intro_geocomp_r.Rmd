@@ -1,6 +1,6 @@
 ---
 title: "Introdução à análise geoespacial com R <br><br><br>"
-subtitle: "3 Estrutura e manipulação de dados na linguagem R <br><br><br>"
+subtitle: "3 Estrutura e manipulação de dados <br><br><br>"
 author: "Maurício H. Vancine <br> Milton C. Ribeiro"
 date: "20/10/2020"
 output:
@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, eval = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
@@ -881,16 +881,6 @@ background-position: 50% 50%
 
 ---
 
-background-image: url(img/code_data_structures03.png)
-background-size: 800px
-background-position: 50% 60%
-
-# 3.3 Estrutura dos objetos
-
-## **5. Data frame**: heterogêneo (*mais de um modo*) e bidimensional (*duas dimensões*)
-
----
-
 class: inverse, center, middle
 
 # Esse formato também lembra algo?
@@ -1720,7 +1710,7 @@ df[df$flo == "floresta", ]
 
 ## Matrizes e Data Frames
 
-### **3 Funções de visualização e manipulação**
+### **3 Funções de conferência e manipulação**
 
 **head()**: mostra as primeiras 6 linhas <br>
 **tail()**: mostra as últimas 6 linhas <br>
@@ -1972,9 +1962,12 @@ background-position: 40% 40%,80% 90%
 # 3.8 Importar dados
 
 ## Ler uma planilha eletrônica (.csv)
-```{r}
+```{r eval=FALSE}
 # ler uma planilha eletronica (.csv)
 read.csv("ATLANTIC_AMPHIBIANS_sites.csv")
+```
+```{r echo=FALSE}
+read.csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
 ```
 
 ---
@@ -1982,8 +1975,11 @@ read.csv("ATLANTIC_AMPHIBIANS_sites.csv")
 # 3.8 Importar dados
 
 ## Ler e atribuir uma planilha eletrônica (.csv) a um objeto
+```{r echo=FALSE}
+da <- read.csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
+```
 
-```{r}
+```{r eval=FALSE}
 # ler e atribuir uma planilha eletronica (.csv) a um objeto
 da <- read.csv("ATLANTIC_AMPHIBIANS_sites.csv")
 ```
@@ -2018,6 +2014,10 @@ da <- read.table("ATLANTIC_AMPHIBIANS_sites.txt", header = TRUE, sep = "\t")
 da
 ```
 
+```{r echo=FALSE}
+da
+```
+
 ---
 
 # 3.8 Importar dados
@@ -2040,13 +2040,18 @@ da <- openxlsx::read.xlsx("ATLANTIC_AMPHIBIANS_sites.xlsx", sheet = 1)
 da
 ```
 
+```{r echo=FALSE}
+da
+```
+
+
 ---
 
 # 3.9 Conferir e manejar dados
 
 ## Conjunto de funções para conferir os dados
 
-<br><br>
+### **Funções de conferência**
 
 **head()**: mostra as primeiras 6 linhas<br>
 **tail()**: mostra as últimas 6 linhas<br>
@@ -2062,7 +2067,9 @@ da
 
 # 3.9 Conferir e manejar dados
 
-## **head()**: mostra as primeiras 6 linhas
+## Conjunto de funções para conferir os dados
+
+### **head()**: mostra as primeiras 6 linhas
 ```{r include=FALSE}
 # ler e atribuir uma planilha eletronica (.csv) a um objeto
 da <- read.csv("/home/mude/data/github/disciplina-geoprocessamento/03_dados/00_tabelas/ATLANTIC_AMPHIBIANS_sites.csv")
@@ -2076,7 +2083,9 @@ head(da)
 
 # 3.9 Conferir e manejar dados
 
-## **head()**: mostra as primeiras 10 linhas
+## Conjunto de funções para conferir os dados
+
+### **head()**: mostra as primeiras 10 linhas
 ```{r}
 head(da, 10)
 ```
@@ -2085,7 +2094,9 @@ head(da, 10)
 
 # 3.9 Conferir e manejar dados
 
-## **tail()**: mostra as últimas 6 linhas
+## Conjunto de funções para conferir os dados
+
+### **tail()**: mostra as últimas 6 linhas
 ```{r}
 tail(da)
 ```
@@ -2094,21 +2105,23 @@ tail(da)
 
 # 3.9 Conferir e manejar dados
 
-## **nrow()**: mostra o número de linhas
+## Conjunto de funções para conferir os dados
+
+### **nrow()**: mostra o número de linhas
 ```{r}
 nrow(da)
 ```
 
 --
 
-## **ncol()**: mostra o número de colunas
+### **ncol()**: mostra o número de colunas
 ```{r}
 ncol(da)
 ```
 
 --
 
-## **dim()**: mostra o número de linhas e de colunas
+### **dim()**: mostra o número de linhas e de colunas
 ```{r}
 dim(da)
 ```
@@ -2117,7 +2130,9 @@ dim(da)
 
 # 3.9 Conferir e manejar dados
 
-## **rownames()**: mostra os nomes das linhas (locais)
+## Conjunto de funções para conferir os dados
+
+### **rownames()**: mostra os nomes das linhas (locais)
 ```{r}
 rownames(da)
 ```
@@ -2126,7 +2141,9 @@ rownames(da)
 
 # 3.9 Conferir e manejar dados
 
-## **colnames()**: mostra os nomes das colunas (variáveis)
+## Conjunto de funções para conferir os dados
+
+### **colnames()**: mostra os nomes das colunas (variáveis)
 ```{r}
 colnames(da)
 ```
@@ -2135,7 +2152,9 @@ colnames(da)
 
 # 3.9 Conferir e manejar dados
 
-## **str()**: mostra as classes de cada coluna (estrutura)
+## Conjunto de funções para conferir os dados
+
+### **str()**: mostra as classes de cada coluna (estrutura)
 ```{r}
 str(da)
 ```
@@ -2144,7 +2163,9 @@ str(da)
 
 # 3.9 Conferir e manejar dados
 
-## **summary()**: mostra um resumo dos valores de cada coluna
+## Conjunto de funções para conferir os dados
+
+### **summary()**: mostra um resumo dos valores de cada coluna
 ```{r}
 summary(da)
 ```
@@ -2153,7 +2174,9 @@ summary(da)
 
 # 3.9 Conferir e manejar dados
 
-## Verificar a presença de NAs
+## Conjunto de funções para conferir os dados
+
+### Verificar a presença de NAs
 ```{r}
 # algum?
 any(is.na(da))
@@ -2168,7 +2191,9 @@ which(is.na(da))
 
 # 3.9 Conferir e manejar dados
 
-## Retirar os NAs
+## Conjunto de funções para manipular os dados
+
+### Retirar os NAs
 ```{r}
 da_na <- na.omit(da)
 ```
@@ -2184,6 +2209,8 @@ nrow(da_na)
 ---
 
 # 3.9 Conferir e manejar dados
+
+## Conjunto de funções para manipular os dados
 
 ## Subset das linhas
 ```{r}

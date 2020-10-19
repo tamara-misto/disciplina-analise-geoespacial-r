@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, eval=FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
@@ -300,7 +300,7 @@ background-position: 10% 30%, 85% 75%
 
 # 4.2 magrittr (pipe - %>%)
 
-### Atalho: `crtl + shift + M`
+### Atalho: `Crtl + Shift + M`
 ```{r}
 # sem pipe
 sqrt(sum(1:100))
@@ -532,7 +532,7 @@ background-size: 700px
 <br>
 
 ### - **Mudar o diretório**: tende à ser chato demais (principalmente se é um código alheio)
-### - **Fragilidade**: conectado exatamente a lugar e a momento (reprodutibilidade)
+### - **Fragilidade**: conectado exatamente a um lugar e a um momento (baixa reprodutibilidade)
 ### - **Subdiretórios**: facilita importar ou exportar para subpastas (Lei do Mínimo Esforço)
 
 ---
@@ -631,9 +631,9 @@ background-size: 400px
 
 # 4.4 readxl e writexl
 
-## São pacotes à parte do **tidyverse**
+## São pacotes à parte do **tidyverse** para importar planilhas no formato Excel®
 
-<br><br><br>
+<br><br>
 
 ```{r eval=FALSE}
 # import .xlsx
@@ -703,14 +703,26 @@ background-position: 50% 100%
 ## **Formato .csv**
 
 ### Matriz de localidades
-```{r}
+```{r include=FALSE}
+# import sites
+si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
+si
+```
+
+```{r eval=FALSE}
 # import sites
 si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
 si
 ```
 
 ### Matriz de espécies
-```{r}
+```{r include=FALSE}
+# import species
+sp <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"))
+sp
+```
+
+```{r eval=FALSE}
 # import species
 sp <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"))
 sp
@@ -770,7 +782,7 @@ tibble::glimpse(sp)
 
 ## tibble vs data.frame
 
-### 1. Nunca converte um tipo **character como factor**
+### 1. Nunca converte um tipo **character como factor** (R 4.0.x)
 ```{r}
 df <- data.frame(ch = c("a", "b"), nu = 1:2)
 str(df)
@@ -852,13 +864,13 @@ background-position: 50% 50%
 --
 
 ## Nos dados tidy:
-### 1 Cada variável em uma coluna
-### 2 Cada observação em uma linha
-### 3 Cada valor como uma célula
+### 1. Cada variável em uma coluna
+### 2. Cada observação em uma linha
+### 3. Cada valor como uma célula
 
 ---
 
-background-image: url(img/tidyr_data.png)
+background-image: url(img/tidyr_data01.png)
 background-size: 800px
 background-position: 50% 50%
 
@@ -868,23 +880,25 @@ background-position: 50% 50%
 
 ---
 
+background-image: url(img/tidyr_data02.jpg)
+background-size: 500px
+background-position: 70% 85%
+
 # 4.6 tidyr
 
 ## Funções
 
-#### **1 unite()**: junta dados de múltiplas colunas em uma
+1. **unite()**: junta dados de múltiplas colunas em uma
+1. **separate()**: separa caracteres em múlplica colunas
+1. **separate_rows()**: separa caracteres em múlplica colunas e linhas
+1. **drop_na()**: retira linhas com NA
+1. **replace_na()**: substitui NA
+1. **pivot_wider()**: long para wide
+1. **pivot_longer()**: wide para long
 
-#### **2 separate()**: separa caracteres em múlplica colunas
+<br><br><br><br><br><br><br>
 
-#### **3 separate_rows()**: separa caracteres em múlplica colunas e linhas
-
-#### **4 drop_na()**: retira linhas com NA
-
-#### **5 replace_na()**: substitui NA
-
-#### **6 pivot_wider()**: long para wide
-
-#### **7 pivot_longer()**: wide para long
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
@@ -993,6 +1007,16 @@ si_replace_na <- si %>%
   tidyr::replace_na(list(active_methods = 0))
 si_replace_na
 ```
+
+---
+
+background-image: url(img/gif_tidyr_pivot.gif),url(img/tidyr_tb_pivot.png)
+background-size: 300px,550px
+background-position: 10% 90%,90% 40%
+
+# 4.6 tidyr
+
+## Pivotar os dados
 
 ---
 
@@ -1178,7 +1202,7 @@ class: clear
 background-image: url(img/dplyr_wrangling.png)
 background-size: 600px
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
@@ -1200,12 +1224,16 @@ background-position: 50% 50%
 
 # 4.7 dplyr
 
+<br>
+
 ### O **dplyr** é um pacote que **facilita** o trabalho com dados, com uma **gramática de manipulação** de dados **simples e flexível** (filtragem, reordenamento, seleção, entre outras)
 
+<br>
 --
 
 ### Ele foi construído com o intuito de obter uma forma **mais rápida** e **expressiva** de tratar os dados 
 
+<br>
 --
 
 ### O **tibble** é a **versão de data frame** mais **conveniente** para **se usar** com dplyr
@@ -1239,17 +1267,19 @@ background-position: 50% 50%
 
 ### Sua gramática simples contém **funções verbais** para manipulação de dados
 
-1. select(): seleciona colunas pelo nome gerando um tibble<br>
-2. pull(): seleciona uma coluna como vetor<br>
-3. rename(): muda o nome das colunas<br>
-4. mutate(): adiciona novas colunas ou adiciona resultados em colunas existentes<br>
-5. arrange(): reordenar as linhas com base nos valores de colunas<br>
-6. filter(): seleciona linhas com base em valores<br>
-7. distinct(): remove linhas com valores repetidos com base nos valores de colunas<br>
-8. slice(): seleciona linhas pelos números<br>
-9. sample_n(): amostragem aleatória de linhas<br>
-10. summarise(): agrega ou resume os dados através de funções, podendo considerar valores das colunas<br>
-11. *_join(): junta dados de duas tabelas através de uma coluna chave
+<br>
+
+1. **select()**: seleciona colunas pelo nome gerando um tibble<br>
+1. **pull()**: seleciona uma coluna como vetor<br>
+1. **rename()**: muda o nome das colunas<br>
+1. **mutate()**: adiciona novas colunas ou adiciona resultados em colunas existentes<br>
+1. **arrange()**: reordenar as linhas com base nos valores de colunas<br>
+1. **filter()**: seleciona linhas com base em valores<br>
+1. **distinct()**: remove linhas com valores repetidos com base nos valores de colunas<br>
+1. **slice()**: seleciona linhas pelos números<br>
+1. **sample_n()**: amostragem aleatória de linhas<br>
+1. **summarise()**: agrega ou resume os dados através de funções, podendo considerar valores das colunas<br>
+1. **_join()**: junta dados de duas tabelas através de uma coluna chave
 
 ---
 
@@ -1644,6 +1674,46 @@ background-position: 50% 60%
 
 ---
 
+background-image: url(img/gif_dplyr_left_join.gif)
+background-size: 300px
+background-position: 20% 10%
+
+# 4.7 dplyr
+
+## **11 *_join**
+
+---
+
+background-image: url(img/gif_dplyr_left_join.gif),url(img/gif_dplyr_right_join.gif)
+background-size: 300px,300px
+background-position: 20% 10%,80% 10%
+
+# 4.7 dplyr
+
+## **11 *_join**
+
+---
+
+background-image: url(img/gif_dplyr_left_join.gif),url(img/gif_dplyr_right_join.gif),url(img/gif_dplyr_inner_join.gif)
+background-size: 300px,300px,300px
+background-position: 20% 10%,80% 10%,20% 100%
+
+# 4.7 dplyr
+
+## **11 *_join**
+
+---
+
+background-image: url(img/gif_dplyr_left_join.gif),url(img/gif_dplyr_right_join.gif),url(img/gif_dplyr_inner_join.gif),url(img/gif_dplyr_full_join.gif)
+background-size: 300px,300px,300px,300px
+background-position: 20% 10%,80% 10%,20% 100%,80% 105%
+
+# 4.7 dplyr
+
+## **11 *_join**
+
+---
+
 background-image: url(img/dplyr_leftjoin.png), url(img/dplyr_rightjoin.png), url(img/dplyr_innerjoin.png), url(img/dplyr_fulljoin.png)
 background-size: 600px, 600px, 600px, 600px
 background-position: 50% 20%, 50% 45%, 50% 70%, 50% 95%
@@ -1718,6 +1788,20 @@ colnames(sp_join)
 
 ---
 
+# 4.7 dplyr
+
+## **11 *_join**
+
+## Adicionar longitute e latitude na tabela de espécies
+
+### Nome das colunas
+```{r}
+sp_join %>% 
+  dplyr::select(species, longitude, latitude)
+```
+
+---
+
 class: inverse, center, middle
 
 # E não termina nunca...
@@ -1733,8 +1817,8 @@ class: inverse, center, middle
 ```{r}
 sp_wide_rename <- sp_wide %>% 
   dplyr::rename_at(vars(contains(" ")), 
-                   list(~stringr::stringr::str_replace_all(., " ", "_"))) %>% 
-  dplyr::rename_all(list(~stringr::stringr::str_to_lower(.)))
+                   list(~stringr::str_replace_all(., " ", "_"))) %>% 
+  dplyr::rename_all(list(~stringr::str_to_lower(.)))
 sp_wide_rename
 ```
 
@@ -2121,7 +2205,7 @@ class: clear
 background-image: url(img/lubridate_allison.png)
 background-size: 600px
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
@@ -2513,7 +2597,7 @@ background-position: 50% 50%
 
 <br>
 
-### Uma função chama outra função para ser aplicada repetidamente percorrendo elementos de um objeto (vetor, lista ou data frame)
+### Uma função **chama outra função** para ser **aplicada repetidamente** percorrendo **elementos de um objeto** (vetor, lista ou data frame)
 
 --
 
@@ -2548,8 +2632,7 @@ background-position: 85% 90%
 
 ## Aplicando uma função em série
 ```{r}
-x <- list(1:5, c(4, 5, 7), c(98, 34, -10), c(2, 2, 2, 2, 2))
-x
+x <- list(1:5, c(4, 5, 7), c(1, 1, 1), c(2, 2, 2, 2, 2))
 ```
 
 ```{r}
@@ -2652,6 +2735,24 @@ background-position: 10% 70%, 90% 80%
 ### [Webinar de purrr avançado](https://youtu.be/vb1lD9_AFcU) - Curso-R
 
 ### [purrr tutorial](https://jennybc.github.io/purrr-tutorial/) - Jennifer (Jenny) Bryan
+
+---
+
+class: inverse, center, middle
+
+# Leitura
+
+---
+
+background-image: url(img/geo_geoprocessing02.png)
+background-size: 800px
+background-position: 50% 40%
+
+# Leitura
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+*[http://www.ufrrj.br/lga/tiagomarino/artigos/oqueegeoprocessamento.pdf]
 
 ---
 

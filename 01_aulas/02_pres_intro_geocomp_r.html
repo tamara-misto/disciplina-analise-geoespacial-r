@@ -7,6 +7,8 @@
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown/countdown.js"></script>
     <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
   </head>
   <body>
@@ -24,8 +26,8 @@ class: center, middle, inverse, title-slide
 
 
 class: clear
-background-image: url(img/r_rstudio.png)
-background-size: 500px
+background-image: url(img/r_rollercoaster.png)
+background-size: 800px
 
 ---
 
@@ -71,7 +73,7 @@ O [Manual do R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) de
 --
 
 &lt;br&gt;
-O R é uma **linguagem de programação livre** (*open source*), direcionada ao **manipulação, análise e visualização de dados**, com diversas **expansões** (*pacotes*) para o uso de **dados com formatos específicos** (**Maurício Vancine**)
+O R é uma **linguagem de programação livre** (*open source*), direcionada à **manipulação, análise e visualização de dados**, com diversas **expansões** (*pacotes*) para o uso de **dados com formatos específicos** (**Maurício Vancine**)
 
 ---
 
@@ -228,7 +230,7 @@ class: inverse, center, middle
 
 # 2.3 Aplicações da linguagem R
 
-## Análises e Visualização
+## Análises e visualização de dados
 - Estatísticas univariadas e multivariadas
 - Análises de dados ecológicos (população, comunidades e ecossistemas)
 - Análise de dados espaciais, temporais e sonoros
@@ -295,7 +297,7 @@ background-position: 50% 60%, 95% 10%
 
 class: inverse, center, middle
 
-# 2.4 Principal material de estudo
+# Principal material de estudo
 
 ---
 
@@ -402,7 +404,7 @@ background-position: 50% 90%
 
 ## IDE RStudio
 
-- **1. Editor/Script**: é onde escrevemos nossos códigos
+- **1. Editor/Script**: é onde escrevemos nossos códigos em R ou R Markdown
 - **2. Console**: é onde os códigos são rodados e vemos as saídas
 - **3. Environment**: painel com todos os objetos criados na sessão
 - **3. History**: painel com o histórico dos comandos rodados
@@ -418,18 +420,18 @@ background-position: 50% 90%
 ## IDE RStudio
 - **f1**: abre o painel de *Help*
 - **ctrl + Enter**: roda a linha selecionada no script
-- **ctrl + shift + N**: abre um novo script
+- **ctrl + Shift + N**: abre um novo script
 - **ctrl + S**: salva um script
 - **ctrl + Z**: desfaz uma operação
 - **ctrl + shift + Z**: refaz uma operação
 - **alt + -**: insere um sinal de atribuição (&lt;-)
-- **ctrl + shift + M**: insere um operador pipe (%&gt;%) 
-- **ctrl + shift + C**: comenta uma linha no script - insere um (#) 
-- **ctrl + shift + R**: insere uma sessão (# ----------------------)
-- **ctrl + shift + H**: abre uma janela para selecionar o diretório de trabalho
-- **ctrl + shift + f10**: reinicia o console
+- **ctrl + Shift + M**: insere um operador pipe (%&gt;%) 
+- **ctrl + Shift + C**: comenta uma linha no script - insere um (#) 
+- **ctrl + Shift + R**: insere uma sessão (# ----------------------)
+- **ctrl + Shift + H**: abre uma janela para selecionar o diretório de trabalho
+- **ctrl + Shift + f10**: reinicia o console
 - **ctrl + L**: limpa os comandos do console 
-- **alt + shift + K**: abre uma janela com todos os atalhos disponíveis
+- **alt + Shift + K**: abre uma janela com todos os atalhos disponíveis
 
 ---
 
@@ -445,6 +447,23 @@ background-position: 50% 80%
 - cada projeto possui seu diretório, documentos e workspace
 - permite versionamento
 
+---
+
+# 2.5 IDE RStudio e Projeto R
+
+## Projeto R (.Rproj)
+
+### Sempre **abram o RStudio** pelo arquivo **.Rproj**
+
+--
+
+### Ou **definam o projeto** depois de abrir o RStudio
+
+--
+
+background-image: url(img/rstudio_project.webp)
+background-size: 430px
+background-position: 50% 90%
 
 ---
 
@@ -486,6 +505,9 @@ print("Isso é o resultado que deve aparecer no console")
 
 ### Resultado no console
 
+```
+## [1] "Isso é o resultado que deve aparecer no console"
+```
 
 ---
 
@@ -594,10 +616,18 @@ background-size:700px
 ```r
 1
 ```
+
+```
+## [1] 1
+```
 --
 
 ```r
 1 + 2
+```
+
+```
+## [1] 3
 ```
 
 ---
@@ -617,6 +647,10 @@ class: inverse, center, middle
 # 2.7 Comentários (#)
 
 ### Comentários **não são lidos** pelo R e **descrevem informações**
+
+--
+
+### São representados pelo **#** (hash) ou **#'** (hash-linha)
 
 --
 
@@ -643,6 +677,10 @@ class: inverse, center, middle
 42 # essas palavras nao sao executadas, apenas o 42
 ```
 
+```
+## [1] 42
+```
+
 ---
 
 background-image: url(img/cover_clean_code.png)
@@ -653,11 +691,11 @@ background-position: 90% 60%
 
 ## Organização
 
-Organização em um script é fundamental!
+**Organização** em um script é **fundamental**!
 
 --
 
-Separe as linhas das análises e comente cada comando
+**Separe** as linhas das análises e **comente** cada comando
 
 --
 
@@ -686,20 +724,36 @@ Há livros apenas sobre assunto: "[Clean Code](https://medium.com/joaorobertopb/
 ## operacoes aritmeticas (+, -, *, /, ^)
 10 + 2 # adicao
 ```
+
+```
+## [1] 12
+```
 --
 
 ```r
 10 - 2 # subtracao
+```
+
+```
+## [1] 8
 ```
 --
 
 ```r
 10 * 2 # multiplicacao
 ```
+
+```
+## [1] 20
+```
 --
 
 ```r
 10 / 2 # divisao
+```
+
+```
+## [1] 5
 ```
 
 ---
@@ -720,12 +774,20 @@ Há livros apenas sobre assunto: "[Clean Code](https://medium.com/joaorobertopb/
 1 * 2 + 2 / 2 ^ 2
 ```
 
+```
+## [1] 2.5
+```
+
 --
 
 
 ```r
 # especificando - segue os parênteses
 ((1 * 2) + (2 / 2)) ^ 2
+```
+
+```
+## [1] 9
 ```
 
 ---
@@ -739,7 +801,9 @@ background-image: url(img/exercicio01.jpg)
 background-size: 500px
 background-position: 50% 50%
 
-
+<div class="countdown" id="timer_5f8cd569" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 # Exercício 01
 
@@ -754,6 +818,10 @@ background-position: 50% 50%
 ```r
 # exercicio 01
 7 + 7 / 7 + 7 * 7 - 7
+```
+
+```
+## [1] 50
 ```
 
 ---
@@ -773,11 +841,21 @@ class: inverse, center, middle
 ## famigerados colchetes [] na resposta
 10 + 2 # adicao
 ```
+
+```
+## [1] 12
+```
 --
 
 ```r
 # indicam a posicao do numero em uma sequencia
 10:60 # sequencia unitaria de 10 a 60
+```
+
+```
+##  [1] 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34
+## [26] 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59
+## [51] 60
 ```
 
 ---
@@ -822,11 +900,11 @@ obj_10 &lt;- 10
 
 #### Mas não aconteceu nada....
 
----
+--
 
-class: clear, inverse
 background-image: url(img/gif_where.gif)
-background-size: 700px
+background-size: 500px
+background-position: 50% 90%
 
 ---
 
@@ -845,6 +923,10 @@ obj_10 &lt;- 10
 *obj_10
 ```
 
+```
+## [1] 10
+```
+
 --
 
 ## Outro exemplo:
@@ -853,6 +935,10 @@ obj_10 &lt;- 10
 ## atribuicao - simbolo (&lt;-)
 obj_2 &lt;- 2
 *obj_2
+```
+
+```
+## [1] 2
 ```
 
 ---
@@ -886,12 +972,20 @@ background-position: 50% 70%
 obj &lt;- 100
 obj
 ```
+
+```
+## [1] 100
+```
 --
 
 ```r
 # obj agora vale 2
 obj &lt;- 2
 obj
+```
+
+```
+## [1] 2
 ```
 
 ---
@@ -936,9 +1030,19 @@ obj
 # definir dois objetos
 va1 &lt;- 10
 va1
+```
 
+```
+## [1] 10
+```
+
+```r
 va2 &lt;- 2
 va2
+```
+
+```
+## [1] 2
 ```
 
 ---
@@ -952,10 +1056,36 @@ va2
 # operacoes com objetos
 va1 + va2 # adicao
 ```
+
+```
+## [1] 12
+```
 --
 
 ```r
 va1 - va2 # subtracao
+```
+
+```
+## [1] 8
+```
+--
+
+```r
+va1 * va2 # multiplicacao
+```
+
+```
+## [1] 20
+```
+--
+
+```r
+va1 / va2 # divisao
+```
+
+```
+## [1] 5
 ```
 
 ---
@@ -970,11 +1100,39 @@ va1 - va2 # subtracao
 adi &lt;- va1 + va2 # adicao
 adi
 ```
+
+```
+## [1] 12
+```
 --
 
 ```r
 sub &lt;- va1 - va2 # subtracao
 sub
+```
+
+```
+## [1] 8
+```
+--
+
+```r
+mul &lt;- va1 * va2 # multiplicacao
+mul
+```
+
+```
+## [1] 20
+```
+--
+
+```r
+div &lt;- va1 / va2 # divisao
+div
+```
+
+```
+## [1] 5
 ```
 
 ---
@@ -1028,7 +1186,9 @@ class: clear, clean, inverse, middle, center
 
 ## Verifique se 3x2³ é maior que 2x3²
 
-
+<div class="countdown" id="timer_5f8cd462" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
@@ -1039,6 +1199,10 @@ class: clear, clean, inverse, middle, center
 ```r
 # exercicio 02
 3 * 2 ^ 3 &gt;= 2 * 3 ^ 2
+```
+
+```
+## [1] TRUE
 ```
 
 ---
@@ -1086,8 +1250,19 @@ class: clear, clean, inverse, middle, center
 ### Exemplo:
 
 ```r
-sum(1, NA)
-sum(1, NA, na.rm = TRUE)
+sum(1, 2, 3, NA)
+```
+
+```
+## [1] NA
+```
+
+```r
+sum(1, 2, 3, NA, na.rm = TRUE)
+```
+
+```
+## [1] 6
 ```
 
 ---
@@ -1105,6 +1280,10 @@ sum(1, NA, na.rm = TRUE)
 sum(10, 2)
 ```
 
+```
+## [1] 12
+```
+
 --
 
 &lt;br&gt;
@@ -1113,6 +1292,10 @@ sum(10, 2)
 ```r
 # produto
 prod(10, 2)
+```
+
+```
+## [1] 20
 ```
 
 ---
@@ -1130,6 +1313,10 @@ prod(10, 2)
 sum(va1, va2)
 ```
 
+```
+## [1] 12
+```
+
 --
 
 &lt;br&gt;
@@ -1138,6 +1325,10 @@ sum(va1, va2)
 ```r
 # produto
 prod(va1, va2)
+```
+
+```
+## [1] 20
 ```
 
 ---
@@ -1153,6 +1344,11 @@ prod(va1, va2)
 rep(x = 1:5, times = 10)
 ```
 
+```
+##  [1] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3
+## [39] 4 5 1 2 3 4 5 1 2 3 4 5
+```
+
 &lt;br&gt;&lt;br&gt;
 
 --
@@ -1161,6 +1357,11 @@ rep(x = 1:5, times = 10)
 ```r
 # repeticao - cada
 rep(x = 1:5, each = 10)
+```
+
+```
+##  [1] 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+## [39] 4 4 5 5 5 5 5 5 5 5 5 5
 ```
 
 ---
@@ -1176,6 +1377,11 @@ rep(x = 1:5, each = 10)
 rep_times &lt;- rep(x = 1:5, times = 10)
 rep_times
 ```
+
+```
+##  [1] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3
+## [39] 4 5 1 2 3 4 5 1 2 3 4 5
+```
 --
 
 ```r
@@ -1183,6 +1389,11 @@ rep_times
 # repeticao - todos
 rep_each &lt;- rep(x = 1:5, each = 10)
 rep_each
+```
+
+```
+##  [1] 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+## [39] 4 4 5 5 5 5 5 5 5 5 5 5
 ```
 
 ---
@@ -1211,6 +1422,10 @@ su &lt;- sum(foo, bar)
 su
 ```
 
+```
+## [1] 5
+```
+
 --
 
 **Raiz quadrada** do *su* e **atribuição** ao *sq*
@@ -1219,6 +1434,10 @@ su
 # raiz e atribuir
 sq &lt;- sqrt(su)
 sq
+```
+
+```
+## [1] 2.236068
 ```
 
 ---
@@ -1251,9 +1470,11 @@ class: clear, clean, inverse, middle, center
 
 ### Multipliquem esses objetos (função **prod**) e atribuam ao objeto *mult*
 
-### Façam o logaritmo natural (função **log**) do objeto *mult* e atribuam ao objeto *loge*
+### Façam o logaritmo natural (função **log**) do objeto *mult* e atribuam ao objeto *ln*
 
-
+<div class="countdown" id="timer_5f8cd596" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
@@ -1277,20 +1498,28 @@ mult &lt;- prod(foo, bar)
 mult 
 ```
 
+```
+## [1] 30000
+```
+
 --
 
 
 ```r
 # raiz e atribuir
-loge &lt;- log(mult)
-loge
+ln &lt;- log(mult)
+ln
+```
+
+```
+## [1] 10.30895
 ```
 
 ---
 
 class: inverse, center, middle
 
-# E vocês devem estar se perguntando: e como saber o nome das funções?!
+# Nesse momento vocês devem estar se perguntando: e como vou saber o nome das funções?!
 
 ---
 
@@ -1317,7 +1546,7 @@ class: inverse, center, middle
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.10 Funções
 ## Funções vêm de **duas fontes**:
@@ -1338,7 +1567,7 @@ class: inverse, center, middle
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
@@ -1346,7 +1575,9 @@ background-position: 85% 100%
 
 --
 
-### Duas fontes: **CRAN** (*finalizados*) e **GitHub** (em *desenvolvimento*)
+### Duas fontes: 
+- **CRAN** (*finalizados*)
+- **GitHub** (em *desenvolvimento*)
 
 --
 
@@ -1357,17 +1588,26 @@ background-position: 85% 100%
 search()
 ```
 
+```
+##  [1] ".GlobalEnv"        "package:countdown" "package:stats"    
+##  [4] "package:graphics"  "package:grDevices" "package:utils"    
+##  [7] "package:datasets"  "package:methods"   "Autoloads"        
+## [10] "package:base"
+```
+
 ---
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
 ## **Coleção de funções** para executar **tarefas específicas**
 
-### Duas fontes: **CRAN** (*finalizados*) e **GitHub** (em *desenvolvimento*)
+### Duas fontes: 
+- **CRAN** (*finalizados*)
+- **GitHub** (em *desenvolvimento*)
 
 ### Verificar **pacotes instalados**
 
@@ -1381,13 +1621,13 @@ library()
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
 ## Ex.: pacote `vegan` 
 
-&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
 
 ## Fontes:
 
@@ -1494,7 +1734,9 @@ library("vegan")
 # 2.11 Pacotes
 
 ## Atualização de pacotes
-### Pacotes são **atualizados com frequência** (mensal | semestral | anual)
+
+### Pacotes são **atualizados com frequência**
+
 --
 
 ### Pacotes **não atualizam sozinhos**
@@ -1525,7 +1767,7 @@ class: inverse, center, middle
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
@@ -1543,7 +1785,7 @@ C:/Users/**nome_do_computador**/Documentos/R/win-library/**numero_da_versao_r**
 
 background-image: url(img/package_r.png)
 background-size: 200px
-background-position: 85% 100%
+background-position: 90% 100%
 
 # 2.11 Pacotes
 
@@ -1575,6 +1817,10 @@ background-position: 35% 60%
 nrow(available.packages(repos = "http://cran.r-project.org"))
 ```
 
+```
+## [1] 16418
+```
+
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 https://cran.r-project.org/web/packages/available_packages_by_name.html
@@ -1591,7 +1837,9 @@ class: inverse, middle, center
 
 ## Instalem o pacote **tidyverse** do CRAN
 
-
+<div class="countdown" id="timer_5f8cd717" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">00</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
+</div>
 
 ---
 
@@ -1641,6 +1889,10 @@ background-position: 50% 50%
 
 ---
 
+background-image: url(img/r_package_help.png)
+background-size: 600px
+background-position: 90% 70%
+
 # 2.12 Ajuda (help)
 
 ## Detalhes de um pacote
@@ -1682,11 +1934,23 @@ class: inverse, center, middle
 # listar objetos
 ls()
 ```
+
+```
+##  [1] "adi"       "bar"       "div"       "foo"       "ln"        "mul"      
+##  [7] "mult"      "obj"       "obj_10"    "obj_2"     "rep_each"  "rep_times"
+## [13] "sq"        "su"        "sub"       "va1"       "va2"
+```
 --
 
 ```r
 # listar objetos
 objects()
+```
+
+```
+##  [1] "adi"       "bar"       "div"       "foo"       "ln"        "mul"      
+##  [7] "mult"      "obj"       "obj_10"    "obj_2"     "rep_each"  "rep_times"
+## [13] "sq"        "su"        "sub"       "va1"       "va2"
 ```
 
 ---
@@ -1738,6 +2002,12 @@ load("meus_objetos.RData")
 # listar objetos
 ls()
 ```
+
+```
+##  [1] "adi"       "bar"       "div"       "foo"       "ln"        "mul"      
+##  [7] "mult"      "obj"       "obj_10"    "obj_2"     "rep_each"  "rep_times"
+## [13] "sq"        "su"        "sub"       "va1"       "va2"
+```
 --
 
 ```r
@@ -1751,6 +2021,12 @@ rm(bar)
 ls()
 ```
 
+```
+##  [1] "adi"       "div"       "foo"       "ln"        "mul"       "mult"     
+##  [7] "obj"       "obj_10"    "obj_2"     "rep_each"  "rep_times" "sq"       
+## [13] "su"        "sub"       "va1"       "va2"
+```
+
 ---
 
 # 2.13 Ambiente (environment)
@@ -1761,6 +2037,12 @@ ls()
 ```r
 # listar objetos
 ls()
+```
+
+```
+##  [1] "adi"       "div"       "foo"       "ln"        "mul"       "mult"     
+##  [7] "obj"       "obj_10"    "obj_2"     "rep_each"  "rep_times" "sq"       
+## [13] "su"        "sub"       "va1"       "va2"
 ```
 --
 
@@ -1773,6 +2055,10 @@ rm(list = ls())
 ```r
 # listar objetos
 ls()
+```
+
+```
+## character(0)
 ```
 
 ---
@@ -1791,6 +2077,12 @@ ls()
 ls()
 ```
 
+```
+##  [1] "adi"       "bar"       "foo"       "lo"        "mu"        "obj"      
+##  [7] "obj_10"    "obj_2"     "rep_each"  "rep_times" "sq"        "su"       
+## [13] "sub"       "va1"       "va2"
+```
+
 ---
 
 # 2.14 Citações
@@ -1805,6 +2097,30 @@ ls()
 citation()
 ```
 
+```
+## 
+## To cite R in publications use:
+## 
+##   R Core Team (2020). R: A language and environment for statistical
+##   computing. R Foundation for Statistical Computing, Vienna, Austria.
+##   URL https://www.R-project.org/.
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Manual{,
+##     title = {R: A Language and Environment for Statistical Computing},
+##     author = {{R Core Team}},
+##     organization = {R Foundation for Statistical Computing},
+##     address = {Vienna, Austria},
+##     year = {2020},
+##     url = {https://www.R-project.org/},
+##   }
+## 
+## We have invested a lot of time and effort in creating R, please cite it
+## when using it for data analysis. See also 'citation("pkgname")' for
+## citing R packages.
+```
+
 ---
 
 # 2.14 Citações
@@ -1815,6 +2131,31 @@ citation()
 ```r
 # citacao dos pacotes
 citation("vegan")
+```
+
+```
+## 
+## To cite package 'vegan' in publications use:
+## 
+##   Jari Oksanen, F. Guillaume Blanchet, Michael Friendly, Roeland Kindt,
+##   Pierre Legendre, Dan McGlinn, Peter R. Minchin, R. B. O'Hara, Gavin
+##   L. Simpson, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs and
+##   Helene Wagner (2019). vegan: Community Ecology Package. R package
+##   version 2.5-6. https://CRAN.R-project.org/package=vegan
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Manual{,
+##     title = {vegan: Community Ecology Package},
+##     author = {Jari Oksanen and F. Guillaume Blanchet and Michael Friendly and Roeland Kindt and Pierre Legendre and Dan McGlinn and Peter R. Minchin and R. B. O'Hara and Gavin L. Simpson and Peter Solymos and M. Henry H. Stevens and Eduard Szoecs and Helene Wagner},
+##     year = {2019},
+##     note = {R package version 2.5-6},
+##     url = {https://CRAN.R-project.org/package=vegan},
+##   }
+## 
+## ATTENTION: This citation information has been auto-generated from the
+## package DESCRIPTION file and may need manual editing, see
+## 'help("citation")'.
 ```
 
 ---
@@ -1851,12 +2192,26 @@ Parênteses
 sum(1, 2
     +
 ```
+
+```
+## Error: &lt;text&gt;:3:0: unexpected end of input
+## 1: sum(1, 2
+## 2:     +
+##   ^
+```
     
     Aspas
     
     ```r
     "string
     +
+    ```
+    
+    ```
+    ## Error: &lt;text&gt;:1:1: unexpected INCOMPLETE_STRING
+    ## 1: "string
+    ## 2: +
+    ##    ^
     ```
 
 ---
@@ -1867,6 +2222,12 @@ sum(1, 2
 
 ```r
 sum(1 2)
+```
+
+```
+## Error: &lt;text&gt;:1:7: unexpected numeric constant
+## 1: sum(1 2
+##           ^
 ```
 
 ---
@@ -1880,6 +2241,10 @@ obj &lt;- 10
 OBJ
 ```
 
+```
+## Error in eval(expr, envir, enclos): object 'OBJ' not found
+```
+
 ---
 
 # 2.15 Principais erros
@@ -1888,6 +2253,10 @@ OBJ
 
 ```r
 ggplot(iris) + aes(Sepal.Length, Sepal.Width) + geom_point()
+```
+
+```
+## Error in ggplot(iris): could not find function "ggplot"
 ```
 
 ---
@@ -1900,6 +2269,8 @@ ggplot(iris) + aes(Sepal.Length, Sepal.Width) + geom_point()
 library(ggplot2)
 ggplot(iris) + aes(Sepal.Length, Sepal.Width) + geom_point() + theme_bw()
 ```
+
+&lt;img src="02_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-81-1.png" width="396" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1915,6 +2286,11 @@ background-position: 50% 90%
 rowSums(iris[1:10, -5])
 ```
 
+```
+##    1    2    3    4    5    6    7    8    9   10 
+## 10.2  9.5  9.4  9.4 10.2 11.4  9.7 10.1  8.9  9.6
+```
+
 ---
 
 background-image: url(img/code_camel_case.png)
@@ -1927,6 +2303,10 @@ background-position: 50% 90%
 
 ```r
 rowsums(iris[1:10, -5])
+```
+
+```
+## Error in rowsums(iris[1:10, -5]): could not find function "rowsums"
 ```
 
 ---

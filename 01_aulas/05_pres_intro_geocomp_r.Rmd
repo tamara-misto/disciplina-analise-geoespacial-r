@@ -35,7 +35,7 @@ background-position: 90% 80%
 1. Cartografia
 1. GPS
 1. Sensoriamento Remoto
-1. 5.5 Sistema de Informação Geográfica (SIG)
+1. Sistema de Informação Geográfica (SIG)
 1. Dados geoespaciais
 1. Dados vetoriais 
 1. Tabela de atributos
@@ -49,17 +49,35 @@ background-position: 90% 80%
 
 ---
 
-background-image: url(img/cover_qgis_abc.jpg),url(img/cover_qgis_geoprocessamento.jpg)
-background-size: 250px,250px
-background-position: 30% 50%,80% 50%
+background-image: url(img/cover_geoprocessamento.jpg)
+background-size: 250px
+background-position: 50% 65%
 
 # 5.1 Geoprocessamento
 
 ## Livos
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+### Geoprocessamento sem complicação (2008)
 
-*[https://ecojustus.com.br/livros]
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://www.ofitexto.com.br/livro/geoprocessamento-sem-complicacao/
+
+---
+
+background-image: url(img/cover_qgis_abc.jpg),url(img/cover_qgis_geoprocessamento.jpg)
+background-size: 250px,250px
+background-position: 25% 65%,75% 65%
+
+# 5.1 Geoprocessamento
+
+## Livos
+
+### QGIS ABC ao XYZ e QGIS e geoprocessamento na prática
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://ecojustus.com.br/livros
 
 ---
 
@@ -125,6 +143,11 @@ background-position: 50% 18%,50% 108%
 
 ---
 
+class: inverse, center, middle
+# Cartografia
+
+---
+
 background-image: url(img/geo_cartografia.jpg)
 background-size: 400px
 background-position: 80% 85%
@@ -152,7 +175,7 @@ background-position: 80% 85%
 <br>
 
 ### **D (distância real)**: 250 m
-### **d (distância gráfica)**: 0.01 m
+### **d (distância gráfica)**: 0.01 m (1 cm)
 
 <br>
 
@@ -171,7 +194,7 @@ background-position: 80% 85%
 <br>
 
 ### **D (distância real)**: 250 m
-### **d (distância gráfica)**: 0.01 m
+### **d (distância gráfica)**: 0.01 m (1 cm)
 ### **T (título da escala)**: indica a **quantidade de vezes** que cada unidade gráfica (papel) representa da medida real
 
 <br>
@@ -280,7 +303,6 @@ background-position: 70% 85%
 - Y UTM: 7411482 m S
 - Zona: 23K
 
-
 ---
 
 background-image: url(img/geo_geoide.jpg)
@@ -339,9 +361,7 @@ background-position: 85% 45%
 - SAD 69
 - Córrego Alegre
 
-<br><br>
-
-**conversão**: não é trival e requer muita trigonometria - feita por computador
+### **Conversão**: não é trival e requer muita trigonometria - feita por computador
 
 ---
 
@@ -388,7 +408,7 @@ background-position: 50% 99%
 
 background-image: url(img/geo_src.png)
 background-size: 500px
-background-position: 95% 90%
+background-position: 95% 50%
 
 # 5.2 Cartografia
 
@@ -411,7 +431,7 @@ background-position: 95% 90%
 
 class: inverse, center, middle
 
-# E se eu te disser que há códigos numéricos para cada SRC?
+# Para facilitar o trabalho com CRSs, existem códigos numéricos para cada SRC
 
 ---
 
@@ -421,9 +441,9 @@ background-position: 50% 80%
 
 # 5.2 Cartografia
 
-## EPSG (European Petroleum Survey Group)
+## EPSG (*European Petroleum Survey Group*)
 
-### Possui códigos numéricos para os CRS do mundo
+### Possui códigos numéricos para quase todos os CRSs
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -433,7 +453,7 @@ background-position: 50% 80%
 
 # 5.2 Cartografia
 
-## EPSG (European Petroleum Survey Group)
+## EPSG (*European Petroleum Survey Group*)
 
 <br><br><br>
 
@@ -447,6 +467,10 @@ background-position: 50% 80%
 
 *[https://epsg.io/]
 
+---
+
+class: inverse, center, middle
+# GPS
 
 ---
 
@@ -456,7 +480,7 @@ background-position: 50% 80%
 
 # 5.3 GPS (Global Positioning System)
 
-## Indica Sua localização no planeta
+## Indica sua localização no planeta
 
 ### 3 satélites - localização
 ### 4 satélites - altitude
@@ -475,7 +499,7 @@ background-position: 50% 80%
 
 **2. Formato do google earth (.kml ou .kmz)**: linguagem XML focada em visualização geográfica, incluindo anotações de mapas e imagens, usado para exibir dados geográficos no Google Earth e/ou Google Maps
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 **Conversão**: https://kml2gpx.com/
 
@@ -487,9 +511,9 @@ background-position: 20% 95%, 80% 85%
 
 # 5.3 GPS (Global Positioning System)
 
-## Tipos de dados em GPS
+## Tipos de dados em GPSs
 
-**1. Waypoints**: **ponto de interesse**, contendo longitude e latitude, além de informações como elevação, nome, descrição
+**1. Waypoints**: **ponto de interesse**, contendo longitude e latitude, além de informações como elevação, nome, descrição, etc.
 
 **2. Rotas**: sequência de waypoints, representa uma **sugestão da trajetória** entre os waypoints
 
@@ -497,8 +521,13 @@ background-position: 20% 95%, 80% 85%
 
 ---
 
+class: inverse, center, middle
+# Sensoriamento Remoto
+
+---
+
 background-image: url(img/geo_rs.jpg)
-background-size: 600px
+background-size: 500px
 background-position: 80% 70%
 
 # 5.4 Sensoriamento Remoto
@@ -549,6 +578,10 @@ background-position: 80% 65%
 ### 1. Landsat (1-8)
 ### 2. Sentinel (1-3)
 ### 3. MODIS
+
+<br><br><br><br><br><br><br><br>
+
+[*] https://webapps.itc.utwente.nl/sensor/default.aspx?view=searchsat
 
 ---
 
@@ -650,6 +683,12 @@ background-position: 50% 95%
 
 ---
 
+class: inverse, center, middle
+
+# Sistema de Informação Geográfica
+
+---
+
 background-image: url(img/geo_sig01.png),url(img/geo_sig02.png)
 background-size: 350px,550px
 background-position: 7% 30%,90% 90%
@@ -677,6 +716,11 @@ background-position: 45% 70%
 # 5.5 Sistema de Informação Geográfica
 
 ## Softwares
+
+---
+
+class: inverse, center, middle
+# Dados geoespaciais
 
 ---
 
@@ -813,16 +857,14 @@ background-position: 50% 90%
 ---
 
 background-image: url(img/geo_data_convert.png)
-background-size: 400px
+background-size: 450px
 background-position: 45% 90%
 
 # 5.13 Conversão de dados geosespaciais
 
-## Geopackage
+## Conversão entre dados vetoriais e matriciais
 
-### Conversão entre dados vetoriais e matriciais
-
-#### É possível converter os dados vetoriais em matriciais e vice-versa
+### É possível converter os dados vetoriais em matriciais e vice-versa
 
 ---
 

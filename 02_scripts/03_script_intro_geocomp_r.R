@@ -1,5 +1,5 @@
 #' ---
-#' title: aula 03 - estrutura e manejo de dados na linguagem R
+#' title: aula 03 - estrutura e manipulacao de dados na linguagem R
 #' author: mauricio vancine
 #' date: 2020-10-20
 #' ---
@@ -8,8 +8,8 @@
 # 3.1 atributos dos objetos
 # 3.2 modos dos objetos (numeric, character e logical)
 # 3.3 estrutura dos objetos (vector, factor, matrix, data frame e list)
-# 3.4 manejo de dados unidimensionais
-# 3.5 manejo de dados bidimensionais
+# 3.4 manipulacao de dados unidimensionais
+# 3.5 manipulacao de dados bidimensionais
 # 3.6 valores faltantes e especiais
 # 3.7 diretorio de trabalho
 # 3.8 importar dados
@@ -77,11 +77,11 @@ rep_each <- rep(x = c("a", "b"), each = 5)
 rep_each
 
 # palavra e sequencia numerica - sem separacao
-am1 <- paste("amostra", 1:6, sep = "0")
+am1 <- paste("amostra", 1:5, sep = "0")
 am1
 
 # palavra e sequencia numerica - separacao por "_"
-am2 <- paste("amostra", 1:6, sep = "_0")
+am2 <- paste("amostra", 1:5, sep = "_0")
 am2
 
 # amostragem aleatória - sem reposição
@@ -245,7 +245,7 @@ li <- list(vector = rep(1, 20), # vector
 li
 
 
-# 3.4 Manejo de dados unidimensionais -------------------------------------
+# 3.4 manipulacao de dados unidimensionais -------------------------------------
 # vetor e fator
 # 1 indexacao []
 # vetor
@@ -371,7 +371,7 @@ length(li)
 # names
 names(li)
 
-# 3.5 manejo de dados bidimensionais --------------------------------------
+# 3.5 manipulacao de dados bidimensionais --------------------------------------
 # matriz - indexacao []
 ma <- matrix(1:12, 4, 3)
 ma 
@@ -431,7 +431,7 @@ df[df$abu2 == 0, ]
 # selecionar linhas de uma matriz ou data frame 
 df[df$flo == "floresta", ]
 
-# 3 funcoes de visualizacao e manejo
+# 3 funcoes de visualizacao e manipulacao
 # head(): mostra as primeiras 6 linhas
 # tail(): mostra as últimas 6 linhas
 # nrow(): mostra o número de linhas
