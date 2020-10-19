@@ -4,14 +4,6 @@
 #' date: 2020-10-23
 #' ---
 
-# packages ----------------------------------------------------------------
-library(raster)
-library(sf)
-library(tidyverse)
-library(geobr)
-library(rnaturalearth)
-library(viridis)
-
 # topics ------------------------------------------------------------------
 # 7.1 pacotes
 # 7.2 sados raster
@@ -25,6 +17,14 @@ library(viridis)
 # 7.10 interacoes raster-vetor
 # 7.11 conversoes raster-vetor
 # 7.12 exportar dados matriciais
+
+# packages ----------------------------------------------------------------
+library(raster)
+library(sf)
+library(tidyverse)
+library(geobr)
+library(rnaturalearth)
+library(viridis)
 
 # 7.1 pacotes -------------------------------------------------------------
 # raster
@@ -98,7 +98,8 @@ download.file(url = "https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_1
               destfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"), mode = "wb")
 
 # unzip
-unzip(zipfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"))
+unzip(zipfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"),
+      exdir = here::here("03_dados", "raster"))
 
 # list files
 fi <- dir(path = here::here("03_dados", "raster"), pattern = "wc") %>% 
@@ -111,7 +112,6 @@ st
 
 # map
 raster::plot(st[[1:2]], col = viridis::viridis(10))
-
 
 # 7.5 descricao de objetos raster -----------------------------------------
 # raster
@@ -174,12 +174,12 @@ st[]
 ra
 
 # proj4string utm 23 s
-utm23 <- "+proj=utm +zone=23 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
-utm23
+sirgas2000_utm23 <- "+proj=utm +zone=23 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+sirgas2000_utm23
 
 # reprojection
-# ra_utm23 <- raster::projectRaster(ra, crs = utm23, res = 90, method = "bilinear") # demora muito para rodar
-ra_utm23
+ra_sirgas2000_utm23 <- raster::projectRaster(ra, crs = utm23, res = 90, method = "bilinear") # demora muito para rodar
+ra_sirgas2000_utm23
 
 # plot
 plot(ra_utm23, col = viridis::viridis(10))

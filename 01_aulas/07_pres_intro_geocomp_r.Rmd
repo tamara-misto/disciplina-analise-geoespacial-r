@@ -1044,11 +1044,92 @@ class: inverse, center, middle
 ---
 
 # 7.7 Manipulação de dados raster
-## Seleção de raster
+
+## Subset do raster
+
+### Indexação de linha-coluna ou id da célula
 ```{r}
-# map
-raster::plot(st[[1:5]])
+# raster - row 1, column 1
+ra[1, 1]
 ```
+--
+```{r}
+# cell is 1
+ra[1]
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Indexação de linha-coluna ou id da célula
+```{r}
+# stack - row 1, column 1
+st[1, 1]
+```
+--
+```{r}
+# cell is 1
+st[1]
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer
+```{r}
+# selection layer in stack
+st_bio01 <- raster::subset(st, "wc2.1_10m_bio_1")
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer [[]]
+```{r}
+# selection layer in stack
+st_bio01 <- st[["wc2.1_10m_bio_1"]]
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer [[]]
+```{r}
+# selection layer in stack
+st_bio01 <- st[[1]]
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer $
+```{r}
+# selection layer in stack
+st_bio01 <- st$wc2.1_10m_bio_1
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
 
 ---
 
@@ -1194,17 +1275,6 @@ ra_fast
 ```{r}
 rec_uso_raster <- fasterize::fasterize(sf = rec_bairros, ra_fast)
 rec_uso_raster
-```
-
----
-
-# 8.20 Reprojeção e exportar dados matriciais
-# Reprojeção
-```{r}
-ra_mask_utm <- raster::projectRaster(ra_mask, CRS = 31965)
-ra_mask_utm
-
-plot(ra_mask_utm)
 ```
 
 ---

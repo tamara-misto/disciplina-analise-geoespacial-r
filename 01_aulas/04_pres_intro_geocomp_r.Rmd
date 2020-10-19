@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, eval=FALSE, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
@@ -23,10 +23,14 @@ class: clear
 background-image: url(img/general_data_science_r4ds.png)
 background-size: 800px
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
+
 ---
 
 background-image: url(img/tidyverse_celestial.png)
-background-size: 350px
+background-size: 400px
 background-position: 85% 75%
 
 # 4 tidyverse
@@ -43,6 +47,10 @@ background-position: 85% 75%
 1. forcats
 1. lubridate
 1. purrr
+
+<br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
@@ -523,6 +531,10 @@ class: clear
 background-image: url(img/here.png)
 background-size: 700px
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
+
 ---
 
 # here
@@ -552,6 +564,10 @@ install.packages("here")
 library(here)
 ```
 
+<br><br><br><br><br><br><br><br><br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
+
 ---
 
 background-image: url(img/here.png)
@@ -569,6 +585,10 @@ here::here()
 # create a .here file
 here::set_here()
 ```
+
+<br><br><br><br><br><br><br><br><br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 

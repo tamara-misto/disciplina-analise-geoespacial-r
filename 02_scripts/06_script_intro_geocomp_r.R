@@ -17,15 +17,34 @@
 # 6.10 operacoes geometricas
 # 6.11 exportar dados vetoriais
 
-# 6.1 packages ----------------------------------------------------------------
+# packages ----------------------------------------------------------------
 library(sp)
 library(sf)
 library(geobr)
 library(rnaturalearth)
 library(tidyverse)
 
+# 6.1 pacotes -------------------------------------------------------------
+# sp
+# install.packages("sp")
+# library(sp)
+
+# sf
+# install.packages("sf")
+# library(sf)
+
 # 6.3 classes sf ----------------------------------------------------------
 # simple feature geometries (sfg)
+# simple
+# sf::st_point()
+# sf::st_linestring()
+# sf::st_polygon()
+# multi
+# sf::st_multipoint()
+# sf::st_multilinestring()
+# sf::st_multipolygon()
+# collections
+# sf::st_geometrycollection()
 
 # vector - point
 vec <- c(5, 2)
@@ -68,7 +87,6 @@ pol
 plot(pol, col = "gray", axes = TRUE, graticule = TRUE)
 
 # simple feature columns (sfc)
-
 # sfc point
 point1 <- sf::st_point(c(5, 2))
 point1
@@ -251,7 +269,7 @@ coastline <- rnaturalearth::ne_coastline(scale = "small", returnclass = "sf")
 coastline
 
 # plot
-plot(coastline$geometry, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
+plot(coastline$geometry, col = "blue", main = NA)
 
 # 6.5 descricao de objetos sf ---------------------------------------------
 # south america
@@ -300,7 +318,7 @@ co110_sf <- sf::st_as_sf(co110_sp)
 co110_sf
 
 # plot
-plot(co110_sf$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(co110_sf$geometry, col = "gray", main = NA)
 
 # countries sp
 co110_sp <- sf::as_Spatial(co110_sf)
@@ -325,7 +343,7 @@ rc_2019_wgs84_gcs
 co110_sf
 
 # plot
-plot(co110_sf$geometry, col = "gray", axes = TRUE, graticule = TRUE)
+plot(co110_sf$geometry, col = "gray")
 
 # mollweide projection
 co110_sf_moll <- sf::st_transform(co110_sf, crs = "+proj=moll")
@@ -371,7 +389,6 @@ rc_use_forest
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
-
 
 # 2. attribute joining
 # create data
@@ -580,7 +597,8 @@ rc_riv_spr_forest_buf_int
 
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_riv_spr_forest_buf_int$geometry, add = TRUE)
+plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_riv_spr_forest_buf_int$geometry, col = "blue", add = TRUE)
 
 # 5. clipping - difference
 rc_riv_spr_forest_buf_dif <- sf::st_difference(x = rc_riv, y = rc_spr_forest_buf_union)
@@ -588,7 +606,8 @@ rc_riv_spr_forest_buf_dif
 
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_riv_spr_forest_buf_dif$geometry)
+plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_riv_spr_forest_buf_dif$geometry, col = "blue", add = TRUE)
 
 # 6.11 exportar dados -----------------------------------------------------
 # export shapefile

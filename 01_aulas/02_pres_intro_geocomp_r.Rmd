@@ -15,13 +15,17 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, eval=F,warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
 class: clear
 background-image: url(img/r_rollercoaster.png)
 background-size: 800px
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
@@ -110,6 +114,10 @@ background-position: 50% 80%
 # 2.1 Linguagem R
 
 ## É legal, mas nem sempre é fácil...
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
@@ -1935,10 +1943,9 @@ background-position: 50% 30%
 
 # Cases
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-Allison Horst 
-<br>
-[*] https://github.com/allisonhorst/stats-illustrations
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 

@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, eval=FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 if(!require(emo)) devtools::install_github("hadley/emo")
 if(!require(sf)) install.packages("sf")
 if(!require(tidyverse)) install.packages("tidyverse")
@@ -27,13 +27,17 @@ class: clear
 background-image: url(img/geo_vector_sf_allison.png)
 background-size: 800px
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
+
 ---
 
 background-image: url(img/r_spatial.jpeg)
 background-size: 350px
 background-position: 80% 65%
 
-# 6 Estrutura e manipulação de dados vetoriais
+# 6 Estrutura e manipulação de vetores
 
 ## Tópicos
 1. Pacotes
@@ -50,7 +54,7 @@ background-position: 80% 65%
 
 ---
 
-# 6 Estrutura e manipulação de dados vetoriais
+# 6 Estrutura e manipulação de vetores
 
 ## Script
 
@@ -88,7 +92,7 @@ background-position: 50% 70%
 
 ## Pacote sf
 
-```{r}
+```{r eval=FALSE}
 # sf
 install.packages("sf")
 library(sf)
@@ -335,7 +339,7 @@ plot(pol, col = "gray", axes = TRUE, graticule = TRUE)
 --
 
 ### Funções para **criar** a classe `sfc` e verificar o **tipo da geometria e CRS**:
-```{r}
+```{r eval=FALSE}
 sf::st_sfc()
 sf::st_geometry_type()
 sf::st_crs()
@@ -635,7 +639,7 @@ rc_use
 # 6.4 Importar dados
 
 ## Dados preexistentes
-```{r fig.align='center', out.width='50%'}
+```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_use[5], col = c("blue", "orange", "gray30", "forestgreen", "green"), main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -709,7 +713,7 @@ background-position: 50% 70%
 # 6.4 Importar dadosf
 
 ## Dados de pacotes: geobr
-```{r}
+```{r eval=FALSE}
 install.packages("geobr")
 library(geobr)
 ```
@@ -756,7 +760,7 @@ br_1872
 
 ## Dados de pacotes: geobr
 
-```{r fig.align='center', out.width='60%'}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(br_1872$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -777,7 +781,7 @@ sp_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', out.width='60%'}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(sp_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -798,7 +802,7 @@ sp_mun_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', out.width='60%'}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(sp_mun_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -880,7 +884,7 @@ background-position: 50% 55%
 # 6.4 Importar dados
 
 ## Dados de pacotes: rnaturalearth
-```{r}
+```{r eval=FALSE}
 # package
 install.packages("rnaturalearth")
 library(rnaturalearth)
@@ -908,7 +912,7 @@ sa
 # 6.4 Importar dados
 
 ## Dados de pacotes: rnaturalearth
-```{r fig.align='center', fig.height = 4, out.width='80%'}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(sa$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -929,9 +933,9 @@ coastline
 # 6.4 Importar dados
 
 ## Dados de pacotes: rnaturalearth
-```{r fig.align='center', fig.height = 4, out.width='80%'}
+```{r fig.align='center', fig.height=4, out.width='100%'}
 # plot
-plot(coastline$geometry, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
+plot(coastline$geometry, col = "blue", main = NA)
 ```
 
 ---
@@ -970,7 +974,11 @@ sf::st_geometry_type(sa)
 sf::st_bbox(sa)
 ```
 
---
+---
+
+# 6.5 Descrição de objetos sf
+
+## Informações geográficas
 
 ### Coordinate reference system
 ```{r}
@@ -1102,9 +1110,9 @@ co110_sf
 # 6.6 Converter dados sf
 
 ## Converter `sf` para `sp`
-```{r fig.align='center', fig.height = 4, out.width='80%'}
+```{r fig.align='center', fig.height=4, out.width='90%'}
 # plot
-plot(co110_sf$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(co110_sf$geometry, col = "gray", main = NA, graticule = TRUE)
 ```
 
 ---
@@ -1126,6 +1134,10 @@ class: inverse, center, middle
 
 ---
 
+background-image: url(img/geo_proj_sirgas2000.png)
+background-size: 200px
+background-position: 50% 75%
+
 # 6.7 Conversão do CRS
 
 ## Converter CRS local
@@ -1134,10 +1146,13 @@ class: inverse, center, middle
 ```{r}
 # convert coordinate system
 rc_2019_sirgas2000_utm23s <- sf::st_transform(rc_2019, crs = 31983)
-rc_2019_sirgas2000_utm23s
 ```
 
+<br><br><br><br><br><br><br><br>
+
 [*] https://epsg.io/31983
+
+[*] http://www.sirgas.org/pt/sirgas-realizations/sirgas2000/
 
 ---
 
@@ -1146,7 +1161,7 @@ rc_2019_sirgas2000_utm23s
 ## Converter CRS local
 
 ### Mapa
-```{r echo=FALSE, fig.align='center', fig.height=4, out.width='100%'}
+```{r echo=FALSE, fig.align='center', fig.height=4, out.width='80%'}
 library(tidyverse)
 p1 <- ggplot() +
   geom_sf(data = rc_2019) +
@@ -1171,6 +1186,10 @@ gridExtra::grid.arrange(p1, p2, nrow = 1)
 
 ---
 
+background-image: url(img/geo_utm_zones.png)
+background-size: 400px
+background-position: 50% 65%
+
 # 6.7 Conversão do CRS
 
 ## Converter CRS local
@@ -1179,14 +1198,19 @@ gridExtra::grid.arrange(p1, p2, nrow = 1)
 ```{r}
 # convert datum and coordinate system
 rc_2019_wgs84_utm23s <- sf::st_transform(rc_2019, crs = 32723)
-rc_2019_wgs84_utm23s
 ```
+
+<br><br><br><br><br><br><br><br>
 
 [*] https://epsg.io/32723
 
 [*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/transverse-mercator.htm
 
 ---
+
+background-image: url(img/geo_geographic.png)
+background-size: 400px
+background-position: 50% 70%
 
 # 6.7 Conversão do CRS
 
@@ -1196,8 +1220,9 @@ rc_2019_wgs84_utm23s
 ```{r}
 # convert datum
 rc_2019_wgs84_gcs <- sf::st_transform(rc_2019, crs = 4326)
-rc_2019_wgs84_gcs
 ```
+
+<br><br><br><br><br><br><br><br><br>
 
 [*] https://epsg.io/4326
 
@@ -1216,12 +1241,16 @@ co110_sf
 # 6.7 Conversão do CRS
 
 ## Converter CRS global
-```{r fig.align='center'}
+```{r fig.align='center', fig.height=4, out.width='90%'}
 # plot
-plot(co110_sf$geometry, col = "gray", axes = TRUE, graticule = TRUE)
+plot(co110_sf$geometry, col = "gray", graticule = TRUE)
 ```
 
 ---
+
+background-image: url(img/geo_proj_moll.png)
+background-size: 450px
+background-position: 50% 70%
 
 # 6.7 Conversão do CRS
 
@@ -1231,8 +1260,9 @@ plot(co110_sf$geometry, col = "gray", axes = TRUE, graticule = TRUE)
 ```{r}
 # mollweide projection
 co110_sf_moll <- sf::st_transform(co110_sf, crs = "+proj=moll")
-co110_sf_moll
 ```
+
+<br><br><br><br><br><br><br><br>
 
 [*] https://epsg.io/54009
 
@@ -1245,12 +1275,16 @@ co110_sf_moll
 ## Converter CRS global
 
 ### Projeção de Mollweide
-```{r fig.align='center'}
+```{r fig.align='center', fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_moll$geometry, col = "gray", graticule = TRUE)
 ```
 
 ---
+
+background-image: url(img/geo_proj_wintri.png)
+background-size: 400px
+background-position: 50% 75%
 
 # 6.7 Conversão do CRS
 
@@ -1260,8 +1294,9 @@ plot(co110_sf_moll$geometry, col = "gray", graticule = TRUE)
 ```{r}
 # winkel tripel projection
 co110_sf_wintri <- lwgeom::st_transform_proj(co110_sf, crs = "+proj=wintri")
-co110_sf_wintri
 ```
+
+<br><br><br><br><br><br><br><br>
 
 [*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/winkel-tripel.htm
 
@@ -1272,12 +1307,16 @@ co110_sf_wintri
 ## Converter CRS global
 
 ### Projeção de Winkel Tripel
-```{r fig.align='center'}
+```{r fig.align='center', fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_wintri$geometry, col = "gray")
 ```
 
 ---
+
+background-image: url(img/geo_proj_eck4.png)
+background-size: 400px
+background-position: 50% 70%
 
 # 6.7 Conversão do CRS
 
@@ -1287,8 +1326,9 @@ plot(co110_sf_wintri$geometry, col = "gray")
 ```{r}
 # eckert iv projection
 co110_sf_eck4 <- sf::st_transform(co110_sf, crs = "+proj=eck4")
-co110_sf_eck4
 ```
+
+<br><br><br><br><br><br><br>
 
 [*] https://epsg.io/54012
 
@@ -1301,12 +1341,16 @@ co110_sf_eck4
 ## Converter CRS global
 
 ### Projeção de Eckert IV
-```{r fig.align='center'}
+```{r fig.align='center', fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_eck4$geometry, col = "gray", graticule = TRUE)
 ```
 
 ---
+
+background-image: url(img/geo_proj_laea.png)
+background-size: 200px
+background-position: 50% 70%
 
 # 6.7 Conversão do CRS
 
@@ -1316,8 +1360,9 @@ plot(co110_sf_eck4$geometry, col = "gray", graticule = TRUE)
 ```{r}
 # lambert projection
 co110_sf_laea1 <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0")
-co110_sf_laea1
 ```
+
+<br><br><br><br><br><br><br>
 
 [*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/lambert-azimuthal-equal-area.htm
 
@@ -1328,12 +1373,16 @@ co110_sf_laea1
 ## Converter CRS global
 
 ### Projeção azimutal de Lambert
-```{r fig.align='center'}
+```{r fig.align='center', fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_laea1$geometry, col = "gray", graticule = TRUE)
 ```
 
 ---
+
+background-image: url(img/geo_proj_laea.png)
+background-size: 200px
+background-position: 50% 70%
 
 # 6.7 Conversão do CRS
 
@@ -1343,8 +1392,9 @@ plot(co110_sf_laea1$geometry, col = "gray", graticule = TRUE)
 ```{r}
 # lambert projection
 co110_sf_laea2 <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-50 +lat_0=0")
-co110_sf_laea2
 ```
+
+<br><br><br><br><br><br><br>
 
 [*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/lambert-azimuthal-equal-area.htm
 
@@ -1355,7 +1405,7 @@ co110_sf_laea2
 ## Converter CRS global
 
 ### Projeção azimutal de Lambert
-```{r fig.align='center'}
+```{r fig.align='center', fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_laea2$geometry, col = "gray", graticule = TRUE)
 ```
@@ -1363,7 +1413,7 @@ plot(co110_sf_laea2$geometry, col = "gray", graticule = TRUE)
 ---
 
 class: inverse, center, middle
-# manipulação e análise de dados vetoriais
+# Manipulação e análise de dados vetoriais
 
 ---
 
@@ -1443,7 +1493,7 @@ rc_spr_n
 # 6.8 Operações de atributos
 
 ## 3. Aggregation de atributos
-```{r}
+```{r fig.align='center', out.width='50%'}
 # plot 
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_spr_n$geometry, pch = 20, col = "blue", add = TRUE)
@@ -1481,7 +1531,7 @@ rc_use_area
 # 6.8 Operações de atributos
 
 ## 5. Outros operações: funções do `dplyr` para manipulação de feições
-```{r}
+```{r eval=FALSE}
 dplyr::filter()
 dplyr::distinc()
 dplyr::slice()
@@ -1577,7 +1627,7 @@ rc_spr_forest
 # 6.9 Operações espaciais
 
 ## 1. Subset espacial []
-```{r}
+```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
@@ -1600,7 +1650,7 @@ rc_spr_forest_out
 # 6.9 Operações espaciais
 
 ## 1. Subset espacial []
-```{r}
+```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
@@ -1659,7 +1709,7 @@ rc_spr_use
 # 6.9 Operações espaciais
 
 ## 2. Join espacial
-```{r}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_spr_use[10], col = rc_spr_use$color, pch = 20, add = TRUE)
@@ -1681,7 +1731,7 @@ rc_2019_sirgas2000_utm23s_rp
 # 6.9 Operações espaciais
 
 ## 3. Pontos aleatórios
-```{r echo=FALSE, fig.align='center', out.width='50%'}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_rp, pch = 20, cex = .5, col = "red", add = TRUE)
@@ -1703,7 +1753,7 @@ rc_use_forest_rp
 # 6.9 Operações espaciais
 
 ## 3. Pontos aleatórios
-```{r echo=FALSE, fig.align='center', out.width='50%'}
+```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geom, col = "forestgreen", add = TRUE)
@@ -1728,7 +1778,7 @@ rc_2019_sirgas2000_utm23s_grid
 # 6.9 Operações espaciais
 
 ## 4. Quadrículas
-```{r}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
@@ -1750,7 +1800,7 @@ rc_2019_sirgas2000_utm23s_grid_in
 # 6.9 Operações espaciais
 
 ## 4. Quadrículas
-```{r}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_grid_in, col = adjustcolor("red", .1), add = TRUE)
@@ -1773,7 +1823,7 @@ rc_2019_sirgas2000_utm23s_grid_in_spr_count
 # 6.9 Operações espaciais
 
 ## 4. Quadrículas
-```{r}
+```{r fig.align='center', out.width='50%'}
 # map
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count, add = TRUE)
@@ -1797,7 +1847,7 @@ rc_2019_sirgas2000_utm23s_hex
 # 6.9 Operações espaciais
 
 ## 5. Hexágonos
-```{r}
+```{r fig.align='center', out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
@@ -1820,7 +1870,7 @@ rc_2019_sirgas2000_utm23s_hex_spr_count
 # 6.9 Operações espaciais
 
 ## 5. Hexágonos
-```{r}
+```{r fig.align='center', out.width='50%'}
 # map
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_hex_spr_count, add = TRUE)
@@ -1836,7 +1886,8 @@ plot(rc_2019_sirgas2000_utm23s_hex_spr_count, add = TRUE)
 1. Simplificação
 1. Centroides
 1. Buffers
-1. União
+1. União (Dissolve)
+1. Corte (Clip)
 
 ---
 
@@ -1854,11 +1905,11 @@ rc_riv_simp
 # 6.10 Operações geométricas
 
 ## 1. Simplificação
-```{r echo=FALSE, fig.align='center', out.width='50%'}
+```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_riv$geometry, col = "steelblue", add = TRUE)
-plot(rc_riv_simp$geometry, col = "red", add = TRUE)
+plot(rc_riv_simp$geometry, col = adjustcolor("red", .7), add = TRUE)
 ```
 
 ---
@@ -1899,7 +1950,7 @@ rc_2019_sirgas2000_utm23s_grid_cent
 # 6.10 Operações geométricas
 
 ## 2. Centroides
-```{r fig.align='center', out.width='50%'}
+```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
@@ -1923,7 +1974,7 @@ rc_spr_forest_buf
 # 6.10 Operações geométricas
 
 ## 3. Buffer
-```{r echo=FALSE, fig.align='center', out.width='50%'}
+```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_spr_forest$geom, pch = 20, cex = .5, col = "blue", add = TRUE)
@@ -1946,9 +1997,11 @@ rc_spr_forest_buf_union
 # 6.10 Operações geométricas
 
 ## 4. União (Dissolve)
-```{r fig.align='center', out.width='50%'}
+```{r fig.align='center', out.width='45%'}
 # plot
-plot(rc_spr_forest_buf$geometry, main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_forest$geom, pch = 20, cex = .5, col = "blue", add = TRUE)
+plot(rc_spr_forest_buf_union, col = adjustcolor("white", 0), add = TRUE)
 ```
 
 ---
@@ -1967,10 +2020,11 @@ rc_riv_spr_forest_buf_int
 # 6.10 Operações geométricas
 
 ## 5. Corte (Clip) - intersecção
-```{r}
+```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_riv_spr_forest_buf_int$geometry, add = TRUE)
+plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_riv_spr_forest_buf_int$geometry, col = "blue", add = TRUE)
 
 ```
 
@@ -1990,11 +2044,17 @@ rc_riv_spr_forest_buf_dif
 # 6.10 Operações geométricas
 
 ## 5. Corte (Clip)
-```{r}
+```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_riv_spr_forest_buf_dif$geometry)
+plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_riv_spr_forest_buf_dif$geometry, col = "blue", add = TRUE)
 ```
+
+---
+
+class: inverse, center, middle
+# Exportar dados
 
 ---
 
